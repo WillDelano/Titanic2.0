@@ -39,14 +39,14 @@ other or otherwise coupled, then the two classes should not directly interact.
 Javadoc allows you to turn comments into a searchable html site with all
 our classes and functions. To create the documentation, copy the path of the
 documentation folder in our project (you can use just the name if you're in the
-folder that contains it) and make sure all your comments are correctly formated 
-as shown below. In your console, navigate to the file you want documentation
+folder that contains it on your console) and make sure all your comments are correctly 
+formated as shown below. In your console, navigate to the file you want documentation
 for and type `javadoc -d /path/to/output/directory *.java`. You have a couple
 options for that last parameter, but it's recommended you update documentation
-for all our files (everything in the java) folder instead of just individual ones,
+for all our files (everything in the java) instead of just individual ones,
 in order to prevent you from missing anything.
 
-*Here is an example on my mac using a file path for the source .java's:*
+*Here is an example on my mac using a file path for the source:*
 `javadoc -d documentation java/com/core/*.java`
 
 ### Viewing documentation
