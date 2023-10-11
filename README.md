@@ -7,16 +7,6 @@ Software Engineering 3471 Project
 
 Ex. //finds the user with the correct name
 
-<pre>
-```
-public class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-    }
-}
-```
-</pre>
-
     for (User a : list) { 
 	   if (a.getName() == functionParameter.getName()) { return a; } 
     }
@@ -40,6 +30,7 @@ Things to keep in mind:
 
 Comment Templates:
 
+<pre>
 /*
  * file: test.java
  * author: William Delano
@@ -48,7 +39,9 @@ Comment Templates:
  * This file contains the code for ... It should be used as an attribute for
  * *ClassName* in order to achieve ... 
  */
+</pre>
 
+<pre>
 /*
  * getName
  *
@@ -58,3 +51,4 @@ Comment Templates:
  *     user -- the user to return the name of
  * return value: the name of the user
  */
+</pre>
