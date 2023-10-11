@@ -1,9 +1,9 @@
 # Titanic2.0
 Software Engineering 3471 Project
 
-### 1. All classes should have Javadoc block comments.
-### 2. All functions should have Javadoc block comments.
-### 3. All code that is not self-explanatory should have comments documenting what it does.
+1. All classes should have Javadoc block comments.
+2. All functions should have Javadoc block comments.
+3. All code that is not self-explanatory should have comments documenting what it does.
 
 Ex.
 <pre>
@@ -59,6 +59,10 @@ this file to view the Javadoc of our project.
  */
 </pre>
 
+![Example:](https://imgur.com/oAi474a)
+*Note: **<p></p>** is not necessary, but creates a separate paragraph for whatever
+is inside. This can be helpful if more in-depth description is large.*
+
 ## Functions:
 <pre>
 /**
@@ -69,3 +73,5 @@ this file to view the Javadoc of our project.
  * @return The sum of num1 and num2.
  */
 </pre>
+
+![Example:](https://imgur.com/D7x3MeY)

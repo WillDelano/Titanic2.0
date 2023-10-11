@@ -4,6 +4,10 @@ import java.util.Set;
 /**
  * Controls the wait-list attributed with each Room.
  *
+ * <p>
+ * Each Room object should have a wait-list attribute to hold all the Users waiting for the room.
+ * </p>
+ *
  * @author William Delano
  * @version 1.0
  * @see Room
@@ -40,7 +44,6 @@ public class Waitlist {
      * This function removes a user from the wait-list
      *
      * @param user The user to remove from the wait-list
-     * return value: the name of the user
      */
     public void removeFromWaitlist(User user) {
         waitlist_list.remove(user);
