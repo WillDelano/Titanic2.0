@@ -1,8 +1,8 @@
-#Titanic2.0
+# Titanic2.0
 Software Engineering 3471 Project
 
-1. All classes should have block comments describing what they do/how they should be used.
-2. All functions should have block comments in the style of Hamerly's projects.
+1. All classes should have Javadoc block comments.
+2. All functions should have Javadoc block comments.
 3. All code that is not self-explanatory should have comments documenting what it does.
 
 Ex.
@@ -30,27 +30,27 @@ Things to keep in mind:
    Law of Demeter - If two classes have no other reason to be directly aware of each
    other or otherwise coupled, then the two classes should not directly interact.
 
-Comment Templates:
+# Javadoc:
 
+## Classes:
 <pre>
-/*
- * file: test.java
- * author: William Delano
- * date: 8/11/23
+/**
+ * Class Description...
  *
- * This file contains the code for ... It should be used as an attribute for
- * *ClassName* in order to achieve ... 
- */
+ * More detailed description of the class, including its purpose, usage, and any other relevant information.
+ *
+ * @author Author Name
+ * @version Version Number
+ * @see Related Class or Method
 </pre>
 
+## Functions:
 <pre>
-/*
- * getName
+/**
+ * This method adds two integers and returns the result.
  *
- * This function returns the name of a User
- *
- * parameters:
- *     user -- the user to return the name of
- * return value: the name of the user
+ * @param num1 The first integer to be added.
+ * @param num2 The second integer to be added.
+ * @return The sum of num1 and num2.
  */
 </pre>
