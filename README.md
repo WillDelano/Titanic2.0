@@ -36,7 +36,7 @@ Javadoc allows you to turn comments into a searchable html site with all
 our classes and functions. To create the documentation, copy the path of the
 documentation folder in our project and make sure all your comments are correctly
 formated as shown below. In your console, navigate to the file you want documentation
-for and type **javadoc -d /path/to/output/directory java**. You have a couple
+for and type `javadoc -d /path/to/output/directory java`. You have a couple
 options for that last parameter, but it's recommended you update documentation
 for all our files (everything in the java) folder instead of just individual ones,
 in order to prevent you from missing anything.
@@ -60,7 +60,7 @@ this file to view the Javadoc of our project.
 </pre>
 
 ![Example:](https://i.imgur.com/oAi474a.png)
-*Note: `__<p></p>__` is not necessary, but creates a separate paragraph for whatever
+*Note: `<p></p>` is not necessary, but creates a separate paragraph for whatever
 is inside. This can be helpful if more in-depth description is large.*
 
 ## Functions:
