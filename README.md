@@ -21,25 +21,33 @@ from the UI (buttons, etc.) and decides who to call in the backend before it
 returns results from the backend to the frontend. Typically one per event, 
 but if there is lots of overlap in events, they can share a controller.
 
-Low Coupling - Measure of how strongly one element is connected to, and has
+**Use Comments Sparingly** - Inline comments should be used sparingly, focusing
+ on the most critical or complex parts of the code. Focus on clean, readable code
+that doesn't require excessive commenting.
+
+**Low Coupling** - Measure of how strongly one element is connected to, and has
 knowledge of, or relies upon other elements.
 
-High Cohesion - Measure of how strongly related and focused the responsibilities of
+**High Cohesion** - Measure of how strongly related and focused the responsibilities of
 an element are.
 
-Law of Demeter - If two classes have no other reason to be directly aware of each
+**Law of Demeter** - If two classes have no other reason to be directly aware of each
 other or otherwise coupled, then the two classes should not directly interact.
 
 # Javadoc:
 ### Creating/updating documentation
 Javadoc allows you to turn comments into a searchable html site with all
 our classes and functions. To create the documentation, copy the path of the
-documentation folder in our project and make sure all your comments are correctly
-formated as shown below. In your console, navigate to the file you want documentation
-for and type `javadoc -d /path/to/output/directory java`. You have a couple
+documentation folder in our project (you can use just the name if you're in the
+folder that contains it) and make sure all your comments are correctly formated 
+as shown below. In your console, navigate to the file you want documentation
+for and type `javadoc -d /path/to/output/directory *.java`. You have a couple
 options for that last parameter, but it's recommended you update documentation
 for all our files (everything in the java) folder instead of just individual ones,
 in order to prevent you from missing anything.
+
+*Here is an example on my mac using a file path for the source .java's:*
+`javadoc -d documentation java/com/core/*.java`
 
 ### Viewing documentation
 To view the documentation for the project, navigate to the documentation folder
@@ -61,7 +69,7 @@ this file to view the Javadoc of our project.
 
 ![Example:](https://i.imgur.com/oAi474a.png)
 *Note: `<p></p>` is not necessary, but creates a separate paragraph for whatever
-is inside. This can be helpful if more in-depth description is large.*
+is inside. This can be helpful if the more in-depth description is large.*
 
 ## Functions:
 <pre>
