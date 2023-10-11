@@ -52,7 +52,8 @@ in order to prevent you from missing anything.
 ### Viewing documentation
 To view the documentation for the project, navigate to the documentation folder
 in src/main/documentation. In this folder there should be a index.html file. Open
-this file to view the Javadoc of our project.
+this file on your desktop to view the Javadoc of our project. You can't open this
+file on github or intelliJ because it will just show you the html code.
 
 ## Classes:
 <pre>
