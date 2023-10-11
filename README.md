@@ -6,6 +6,7 @@ Software Engineering 3471 Project
 3. All code that is not self-explanatory should have comments documenting what it does.
 
 Ex. //finds the user with the correct name
+
     for (User a : list) { 
 	if (a.getName() == functionParameter.getName()) { return a; } 
     }
@@ -26,3 +27,24 @@ Things to keep in mind:
 
    Law of Demeter - If two classes have no other reason to be directly aware of each
    other or otherwise coupled, then the two classes should not directly interact.
+
+Comment Templates:
+
+/*
+ * file: test.java
+ * author: William Delano
+ * date: 8/11/23
+ *
+ * This file contains the code for ... It should be used as an attribute for
+ * *ClassName* in order to achieve ... 
+ */
+
+/*
+ * getName
+ *
+ * This function returns the name of a User
+ *
+ * parameters:
+ *     user -- the user to return the name of
+ * return value: the name of the user
+ */
