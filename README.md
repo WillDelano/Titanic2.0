@@ -18,7 +18,7 @@ Ex.
 ### Things to keep in mind
 When working with the UI, use a Controller class. A Controller receives calls 
 from the UI (buttons, etc.) and decides who to call in the backend before it 
-returns results from the backend to the frontend. Typically one per event, 
+returns results from the backend to the frontend. There is typically one per event, 
 but if there is lots of overlap in events, they can share a controller.
 
 **Use Comments Sparingly** - Inline comments should be used sparingly, focusing
@@ -70,7 +70,7 @@ file on github or intelliJ because it will just show you the html code.
 
 ![Example:](https://i.imgur.com/oAi474a.png)
 *Note: `<p></p>` is not necessary, but creates a separate paragraph for whatever
-is inside. This can be helpful if the more in-depth description is large.*
+is inside. This can be helpful to discern the in-depth description from the brief one.*
 
 ## Functions:
 <pre>
