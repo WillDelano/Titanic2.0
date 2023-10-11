@@ -60,7 +60,7 @@ this file to view the Javadoc of our project.
 </pre>
 
 ![Example:](https://i.imgur.com/oAi474a.png)
-*Note: **<p></p>** is not necessary, but creates a separate paragraph for whatever
+*Note: `__<p></p>__` is not necessary, but creates a separate paragraph for whatever
 is inside. This can be helpful if more in-depth description is large.*
 
 ## Functions:
