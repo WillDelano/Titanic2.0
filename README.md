@@ -59,7 +59,7 @@ this file to view the Javadoc of our project.
  */
 </pre>
 
-![Example:](https://imgur.com/oAi474a)
+![Example:](https://i.imgur.com/oAi474a.png)
 *Note: **<p></p>** is not necessary, but creates a separate paragraph for whatever
 is inside. This can be helpful if more in-depth description is large.*
 
@@ -74,4 +74,4 @@ is inside. This can be helpful if more in-depth description is large.*
  */
 </pre>
 
-![Example:](https://imgur.com/D7x3MeY)
+![Example:](https://i.imgur.com/D7x3MeY.png)
