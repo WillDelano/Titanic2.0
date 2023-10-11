@@ -5,11 +5,13 @@ Software Engineering 3471 Project
 2. All functions should have block comments in the style of Hamerly's projects.
 3. All code that is not self-explanatory should have comments documenting what it does.
 
-Ex. //finds the user with the correct name
-
+Ex.
+<pre>
+    //finds the user with the correct name
     for (User a : list) { 
 	   if (a.getName() == functionParameter.getName()) { return a; } 
     }
+</pre>
     
 4. Single function responsibility - A function should ideally have one responsibility. Avoid functions that do too much.
 
