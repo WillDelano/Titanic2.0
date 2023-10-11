@@ -7,8 +7,18 @@ Software Engineering 3471 Project
 
 Ex. //finds the user with the correct name
 
+<pre>
+```
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+```
+</pre>
+
     for (User a : list) { 
-	if (a.getName() == functionParameter.getName()) { return a; } 
+	   if (a.getName() == functionParameter.getName()) { return a; } 
     }
     
 4. Single function responsibility - A function should ideally have one responsibility. Avoid functions that do too much.
