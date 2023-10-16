@@ -63,4 +63,5 @@ public class Guest extends User {
     public void requestCancelReservation(int reservationID) {
         //TODO Implement method
     }
+    // add more functions
 }
