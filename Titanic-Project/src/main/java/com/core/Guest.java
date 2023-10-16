@@ -63,5 +63,52 @@ public class Guest extends User {
     public void requestCancelReservation(int reservationID) {
         //TODO Implement method
     }
+
+    /**
+     * This changes the password of the guest.
+     *
+     * @param newPassword The new password that replaces the initial password
+     */
+    public void changePassword(String newPassword){
+        //TODO
+    }
+
+    /**
+     * creates the account of the guest.
+     *
+     * @param username   The username of the guest.
+     * @param password   The password of the guest.
+     * @param id         The unique ID of the guest.
+     * @param firstName  The first name of the guest.
+     * @param lastName   The last name of the guest.
+     * @return if the account has successfully been created
+     */
+    public boolean createAccount(String username, String password, Long id, String firstName, String lastName){
+        //TODO
+        return false;
+    }
+
+    /**
+     * This logs the guest into the system.
+     *
+     * @param username The username of the guest.
+     * @param password The password of the guest.
+     * @return if the guest has successfully been logged into the system
+     */
+    public boolean login(String username, String password){
+        //TODO
+        return false;
+    }
+
+    /**
+     * This logs the guest out of the system.
+     *
+     * @return if the guest has successfully been logged out of the system
+     */
+    public boolean logout(){
+        //TODO
+        return false;
+    }
+
     // add more functions
 }

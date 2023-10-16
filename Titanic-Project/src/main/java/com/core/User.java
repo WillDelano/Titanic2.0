@@ -1,5 +1,7 @@
 package com.core;
 
+import com.authentication.Authentication;
+
 /**
  * Abstract representation of a user in the cruise reservation system.
  *
@@ -8,7 +10,7 @@ package com.core;
  * @author Your Name (replace this with your actual name)
  * @version 1.0
  */
-public abstract class User {
+public abstract class User implements Authentication {
     private String username;
     private String password;
     private Long id;
