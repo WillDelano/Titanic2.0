@@ -5,7 +5,7 @@ package com.core;
  *
  * This class provides specific functionalities and attributes related to a travel agent who assists guests in cruise booking and other related services.
  *
- * @author Your Name (replace this with your actual name)
+ * @author Vincent Dinh
  * @version 1.0
  * @see User
  */
