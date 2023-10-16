@@ -75,7 +75,8 @@ public class Room {
      *
      */
     public void setRoomPrice() {
-        //Here the
+        //TO DO
+
     }
     /**
      * retrieves the Room Number
