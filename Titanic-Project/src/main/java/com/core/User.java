@@ -5,7 +5,7 @@ package com.core;
  *
  * This class provides a basic blueprint for all types of users in the system like Guest, Travel Agent, and Admin.
  *
- * @author Your Name (replace this with your actual name)
+ * @author Vincent Dinh
  * @version 1.0
  */
 public abstract class User {
