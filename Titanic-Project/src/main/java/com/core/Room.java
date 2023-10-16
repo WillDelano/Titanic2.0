@@ -21,13 +21,13 @@ public class Room {
 
     private Double roomPrice;
 
+    private roomType roomType;
+
 
 
     /**
      * default constructor of the Room
      *
-     * @param
-     * @param
      */
     public Room(){
         numberOfBeds = 0;
@@ -72,7 +72,7 @@ public class Room {
      * will take the number of beds, and the types, the room type,
      * to set the room price.
      *
-     * @param
+     *
      */
     public void setRoomPrice() {
         //Here the
@@ -80,7 +80,7 @@ public class Room {
     /**
      * retrieves the Room Number
      *
-     * @param
+     *  @return returns the roomNumber
      */
     public Integer getRoomNumber() {
         return roomNumber;
@@ -88,7 +88,7 @@ public class Room {
     /**
      * retrieves the number of Beds
      *
-     * @param
+     *  @return the numberOfBeds
      */
     public Integer getNumberOfBeds() {
         return numberOfBeds;
@@ -96,7 +96,7 @@ public class Room {
     /**
      * retrives the bed type
      *
-     * @param
+     * @return the current bedType
      */
     public Integer getBedType() {
         return bedType;
@@ -104,7 +104,7 @@ public class Room {
     /**
      * retrives the smoking availability
      *
-     * @param
+     * @return true of false
      */
     public Boolean getSmokingAvailable() {
         return smokingAvailable;
@@ -112,7 +112,7 @@ public class Room {
     /**
      * retrieves the Room price
      *
-     * @param
+     * @return the roomPrice
      */
     public Double getRoomPrice() {
         return roomPrice;
@@ -121,6 +121,7 @@ public class Room {
      * overrtides the equals operation to aid in comparing Rooms with eachother
      *
      * @param object: the room being compared with this
+     * @return returns a true or false statement if object == this
      */
     public boolean equals(Object object) {
         if (this == object) return true;
@@ -132,9 +133,63 @@ public class Room {
     /**
      * overrides the hashing of the rooms, allowing the system to put rooms in maps and sets
      *
-     * @param
+     * @return hash of all the items in the Room  class
      */
     public int hashCode() {
         return Objects.hash(super.hashCode(), numberOfBeds, bedType, smokingAvailable, roomPrice);
     }
 }
+
+/**
+ * Has types of Rooms along with respective prices of those rooms
+ *
+ * <p>
+ * There are four different room types, as the user looks to find a type room, they will have a different luxery of
+ * room based on their pick. With diffferent luxery type, there are different prices.
+ * </p>
+ *
+ * @author Cole Hogan
+ * @version 1.0
+ * @see Room
+ */
+public enum roomType {
+    Economy(100.0),Comfort(200.0),Business(300.0),Executive(400.0);
+
+    private double price;
+    /**
+     * default constructor, sets a room price at Economy
+     *
+     */
+    RoomType(){
+
+        this.price = 100.0;
+    }
+    /**
+     * constructor that will assign a RoomType with it's respective price
+     *
+     * @param newPrice:assigns a new price to a room type
+     */
+    RoomType (double newPrice){
+        this.price = newPrice;
+    }
+    /**
+     * sets the price of a roomType
+     *
+     * @param newPrice:assigns a new price to a room type
+     */
+    public void setPrice(double newPrice) {
+
+        this.price = newPrice;
+    }
+    /**
+     * sets the price of a roomType
+     *
+     * @return the price of a RoomType
+     */
+    public double getPrice() {
+
+        return price;
+    }
+}
+
+
