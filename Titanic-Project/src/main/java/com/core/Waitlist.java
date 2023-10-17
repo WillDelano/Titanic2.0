@@ -18,19 +18,19 @@ public class Waitlist {
     private Set<User> waitlist_list;
 
     /**
-     * This function is the constructor of the Wait list object. It initializes the waitlist_list.
+     * This function is the constructor of the Wait list object. It initializes the list.
      */
     public Waitlist() {
         waitlist_list = new HashSet<>();
     }
 
     /**
-     * This function returns all the users of a wait-list for debugging
+     * This function returns the size of the wait-list
      *
-     * @return The wait-list of the Room
+     * @return The size of the wait-list
      */
-    public Set<User> waitList() {
-        return waitlist_list;
+    public int getSize() {
+        return waitlist_list.size();
     }
 
     /**
