@@ -6,11 +6,12 @@ package com.core;
  * This class provides specific functionalities and attributes related to a guest user.
  *
  * @author Vincent Dinh
- * @version 1.0
+ * @version 1.2
  * @see User
  */
 public class Guest extends User {
     private int rewardPoints;
+    private PaymentInfo paymentInfo;
 
     /**
      * Constructor for creating a new Guest.
@@ -27,7 +28,13 @@ public class Guest extends User {
         this.rewardPoints = rewardPoints;
     }
 
-    // The getters and setters, along with their documentation...
+    public PaymentInfo getPaymentInfo() {
+        return paymentInfo;
+    }
+
+    public void setPaymentInfo(PaymentInfo paymentInfo) {
+        this.paymentInfo = paymentInfo;
+    }
 
     public void setRewardPoints(int rewardPoints) {
         this.rewardPoints = rewardPoints;
@@ -111,6 +118,30 @@ public class Guest extends User {
     }
 
     /**
+     * Method that allows for the guest to make a payment for their cruise
+     *
+     * @param bill The bill that the guest is making a payment towards
+     */
+
+    public void makePayment(Billing bill) {
+
+        PaymentInfo pInfo = this.getPaymentInfo();
+
+        if (pInfo == null) {
+            System.out.println("No payment information available.");
+            return;
+        }
+
+        double amountToPay = bill.getTotalAmount();
+        System.out.println("Payment of $" + amountToPay + " was successful using " + pInfo.getCardType()
+                + " ending in " + pInfo.getCardNumber().substring(pInfo.getCardNumber().length() - 4));
+
+        String receipt = bill.generateReceipt();
+        System.out.println(receipt);
+
+    }
+
+    /**
      * Allows the guest to raise a dispute against a specific bill.
      *
      * @param bill The bill that the guest is disputing.
@@ -118,5 +149,14 @@ public class Guest extends User {
      */
     public void raiseDispute(Billing bill, String reason) {
         bill.disputeCharge(reason);
+    }
+
+    /**
+     * Allows the guest to request an invoice for their bill
+     *
+     * @param bill The bill that the guest is requesting an invoice
+     */
+    public void requestInvoice(Billing bill) {
+        //TODO
     }
 }
