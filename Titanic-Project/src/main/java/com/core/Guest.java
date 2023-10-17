@@ -110,5 +110,13 @@ public class Guest extends User {
         return false;
     }
 
-    // add more functions
+    /**
+     * Allows the guest to raise a dispute against a specific bill.
+     *
+     * @param bill The bill that the guest is disputing.
+     * @param reason The reason the guest is raising the dispute.
+     */
+    public void raiseDispute(Billing bill, String reason) {
+        bill.disputeCharge(reason);
+    }
 }
