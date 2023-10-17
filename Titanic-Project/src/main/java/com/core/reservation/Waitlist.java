@@ -1,4 +1,7 @@
-package com.core;
+package com.core.reservation;
+
+import com.core.reservation.Room;
+import com.core.users.User;
 
 import java.util.HashSet;
 import java.util.Set;

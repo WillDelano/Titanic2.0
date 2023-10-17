@@ -1,4 +1,6 @@
-package com.core;
+package com.core.users;
+
+import com.core.users.User;
 
 /**
  * Representation of a travel agent in the cruise reservation system.

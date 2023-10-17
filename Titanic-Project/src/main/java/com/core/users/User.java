@@ -1,4 +1,4 @@
-package com.core;
+package com.core.users;
 
 import com.authentication.Authentication;
 
