@@ -1,4 +1,4 @@
-package com.core;
+package com.core.uniqueID;
 
 public class UniqueID {
     private static int id = 0;
