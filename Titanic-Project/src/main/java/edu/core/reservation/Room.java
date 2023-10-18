@@ -1,6 +1,6 @@
-package com.core.reservation;
+package edu.core.reservation;
 
-import com.core.uniqueID.UniqueID;
+import edu.core.uniqueID.UniqueID;
 
 /**
  * Documents information about a room

@@ -1,6 +1,4 @@
-package com.core.cruise;
-
-import com.core.reservation.Room;
+package edu.core.cruise;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package com.authentication;
+package edu.authentication;
 
 /**
  * Interface for any authentication features

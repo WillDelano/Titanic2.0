@@ -1,6 +1,6 @@
-package com.core.cruise;
+package edu.core.cruise;
 
-import com.core.uniqueID.UniqueID;
+import edu.core.uniqueID.UniqueID;
 
 import java.util.Date;
 import java.util.List;

@@ -1,6 +1,6 @@
-package com.core.users;
+package edu.core.users;
 
-import com.authentication.Authentication;
+import edu.authentication.Authentication;
 
 /**
  * Abstract representation of a user in the cruise reservation system.
