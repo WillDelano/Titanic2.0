@@ -1,4 +1,4 @@
-package com.core;
+package com.core.reservation;
 
 /**
  * Documents information about a room
