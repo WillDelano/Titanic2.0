@@ -1,4 +1,4 @@
-package com.core;
+package edu.core.users;
 
 /**
  * Representation of a guest user in the cruise reservation system.

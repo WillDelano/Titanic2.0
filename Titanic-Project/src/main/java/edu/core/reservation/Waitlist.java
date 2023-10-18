@@ -1,4 +1,6 @@
-package com.core;
+package edu.core.reservation;
+
+import edu.core.users.User;
 
 import java.util.HashSet;
 import java.util.Set;

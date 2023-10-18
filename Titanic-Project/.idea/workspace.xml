@@ -5,12 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9bc2edc-c1b2-471e-aa5e-e015b79a5583" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/core/cruise/Country.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/core/cruise/Cruise.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/core/uniqueID/UniqueID.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/core/Billing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/core/Billing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/core/Guest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/core/Guest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/core/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/core/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/core/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/core/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/documentation/com/core/Room.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/documentation/com/core/Room.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/documentation/com/core/User.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/documentation/com/core/User.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/documentation/com/core/Waitlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/documentation/com/core/Waitlist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/authentication/Authentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/authentication/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/authentication/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/core/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/users/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/core/Billing.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/core/Guest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/users/Guest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/core/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/landingpage/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/core/LoginInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/landingpage/LoginInventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/core/PaymentInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/core/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/reservation/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/core/TravelAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/users/TravelAgent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/core/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/core/Waitlist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/reservation/Waitlist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ui/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/users/Billing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/users/Billing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/users/PaymentInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/users/PaymentInfo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

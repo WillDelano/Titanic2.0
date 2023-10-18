@@ -1,6 +1,6 @@
-package com.core;
+package edu.core.users;
 
-import com.authentication.Authentication;
+import edu.authentication.Authentication;
 
 import java.util.Objects;
 

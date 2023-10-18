@@ -1,4 +1,4 @@
-package org.example;
+package edu.core.landingpage;
 
 import java.io.*;
 import java.util.*;

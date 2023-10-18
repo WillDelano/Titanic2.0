@@ -1,4 +1,6 @@
-package com.core;
+package edu.core.reservation;
+
+import edu.core.uniqueID.UniqueID;
 
 /**
  * Documents information about a room
@@ -23,6 +25,7 @@ public class Room {
 
     private roomType roomType;
 
+    private int id;
 
 
     /**
@@ -32,7 +35,7 @@ public class Room {
     public Room(){
         numberOfBeds = 0;
         bedType = 0;
-
+        id = new UniqueID().getId();
     }
     /**
      * sets the Room number/ id

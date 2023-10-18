@@ -1,4 +1,4 @@
-package com.core;
+package edu.core.users;
 
 /**
  * Representation of an admin user in the cruise reservation system.
