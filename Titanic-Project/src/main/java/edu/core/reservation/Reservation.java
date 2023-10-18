@@ -1,4 +1,4 @@
-package com.core;
+package edu.core.reservation;
 import edu.core.uniqueID.UniqueID;
 
 import java.util.Objects;

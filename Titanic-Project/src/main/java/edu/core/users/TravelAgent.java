@@ -1,5 +1,7 @@
 package edu.core.users;
 
+import edu.core.billingmanagement.Billing;
+
 /**
  * Representation of a travel agent in the cruise reservation system.
  *
@@ -68,5 +70,20 @@ public class TravelAgent extends User {
     public boolean logout(){
         //TODO
         return false;
+    }
+
+    /**
+     * Allows the travel agent to handle a dispute raised by a guest.
+     *
+     * @param bill The disputed bill that needs to be resolved.
+     * @param acceptDispute Boolean indicating if the dispute is accepted (true) or rejected (false).
+     * @param resolutionNotes Notes detailing the reason for accepting or rejecting the dispute.
+     */
+    public void handleDispute(Billing bill, boolean acceptDispute, String resolutionNotes) {
+        if (acceptDispute) {
+            bill.resolveDispute(resolutionNotes);
+        } else {
+            bill.resolveDispute(resolutionNotes);
+        }
     }
 }

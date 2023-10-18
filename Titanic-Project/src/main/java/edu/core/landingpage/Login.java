@@ -10,6 +10,7 @@ package edu.core.landingpage;
  * @author Michael Okonkwo
  * @version 1.0
  */
+
 public class Login {
 
     /**

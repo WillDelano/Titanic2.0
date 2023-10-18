@@ -2,6 +2,8 @@ package edu.core.users;
 
 import edu.authentication.Authentication;
 
+import java.util.Objects;
+
 /**
  * Abstract representation of a user in the cruise reservation system.
  *
@@ -33,4 +35,14 @@ public abstract class User implements Authentication {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(id, user.id) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName);
+    }
+
+
 }
