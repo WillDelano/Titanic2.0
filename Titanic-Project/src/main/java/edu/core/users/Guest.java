@@ -11,6 +11,7 @@ package edu.core.users;
  */
 public class Guest extends User {
     private int rewardPoints;
+    private list<Reservation> reservations;
 
     /**
      * Constructor for creating a new Guest.
@@ -43,7 +44,7 @@ public class Guest extends User {
      * @param cruiseID The ID of the cruise to be reserved.
      */
     public void requestReservation(int cruiseID) {
-        //TODO Implement method
+        //TODO
     }
 
     /**
