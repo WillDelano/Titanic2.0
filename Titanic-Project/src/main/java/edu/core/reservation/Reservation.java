@@ -1,4 +1,6 @@
 package com.core;
+import edu.core.uniqueID.UniqueID;
+
 import java.util.Objects;
 
 
@@ -14,7 +16,7 @@ import java.util.Objects;
  * @see Room
  */
 public class Reservation {
-    private static Integer id;
+    private int id;
     private Integer days;
     private String startCountry;
     private String endCountry;
@@ -26,9 +28,9 @@ public class Reservation {
 
 
     ///Constructor might be adjusted to where rather than relying on set and get to add into the Reservation,
-    ///A constrcutor initilaized with all the information needed will be used.
+    ///A constructor initialized with all the information needed will be used.
     public Reservation() {
-        id++;
+        id = new UniqueID().getId();
     }
 
     public Integer getId() {
