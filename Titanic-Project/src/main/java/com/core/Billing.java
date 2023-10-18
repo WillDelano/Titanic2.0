@@ -43,7 +43,7 @@ public class Billing {
     /**
      * Marks the current bill as disputed.
      */
-    public void disputeCharge() {
+    public void disputeCharge(String reason) {
         this.isDisputed = true;
     }
 

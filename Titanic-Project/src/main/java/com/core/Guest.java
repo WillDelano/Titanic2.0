@@ -128,7 +128,7 @@ public class Guest extends User {
 
         PaymentInfo pInfo = this.getPaymentInfo();
 
-        if (pInfo == null || isDeclined == true) {
+        if (pInfo == null || isDeclined) {
             System.out.println("Payment did not go through, exiting the system.");
             return;
         }
