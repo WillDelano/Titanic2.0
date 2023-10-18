@@ -10,6 +10,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/core/Billing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/core/Billing.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/core/Guest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/core/Guest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/core/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/core/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/core/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/core/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +62,7 @@
       <workItem from="1697001098048" duration="6879000" />
       <workItem from="1697475266263" duration="249000" />
       <workItem from="1697475650895" duration="6931000" />
-      <workItem from="1697589710670" duration="1948000" />
+      <workItem from="1697589710670" duration="2274000" />
     </task>
     <servers />
   </component>
