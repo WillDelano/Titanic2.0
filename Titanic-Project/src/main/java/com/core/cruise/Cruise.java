@@ -1,6 +1,6 @@
 package com.core.cruise;
 
-import com.core.reservation.Room;
+import com.core.uniqueID.UniqueID;
 
 import java.util.Date;
 import java.util.List;
@@ -17,7 +17,6 @@ import java.util.List;
  * @see Country
  */
 public class Cruise {
-    private static int uniqueNumber = -1;
     private int id;
     private String name;
     private Date departure;
@@ -34,7 +33,7 @@ public class Cruise {
      * @param path The in-order list of countries the cruise will travel to
      */
     public Cruise(String name, Date departure, int maxCapacity, List<Country> path) {
-        this.id = ++uniqueNumber;
+        this.id = new UniqueID().getId();
         this.travelPath = path;
         this.name = name;
         this.departure = departure;

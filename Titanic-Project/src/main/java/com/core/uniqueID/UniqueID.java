@@ -1,9 +1,14 @@
 package com.core.uniqueID;
 
 public class UniqueID {
-    private static int id = 0;
+    private static int uniqueNumber = 0;
+    private int id;
 
-    public int getUniqueID() {
-        return id++;
+    public UniqueID() {
+        id = uniqueNumber;
+    }
+
+    public int getId() {
+        return id;
     }
 }
