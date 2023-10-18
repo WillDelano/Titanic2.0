@@ -1,5 +1,7 @@
 package edu.core.users;
 
+import edu.core.billingmanagement.Billing;
+
 /**
  * Representation of a travel agent in the cruise reservation system.
  *
