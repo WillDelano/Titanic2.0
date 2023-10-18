@@ -1,4 +1,4 @@
-package org.example;
+package com.core.landingpage;
 
 import java.io.*;
 import java.util.*;
