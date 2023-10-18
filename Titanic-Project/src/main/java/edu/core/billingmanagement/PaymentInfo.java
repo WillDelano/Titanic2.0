@@ -1,4 +1,4 @@
-package com.core;
+package edu.core.billingmanagement;
 
 /**
  * Represents payment information associated with a user or transaction.

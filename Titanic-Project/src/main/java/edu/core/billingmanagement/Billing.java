@@ -1,4 +1,4 @@
-package com.core;
+package edu.core.billingmanagement;
 
 /**
  * Represents the billing information associated with a reservation.
