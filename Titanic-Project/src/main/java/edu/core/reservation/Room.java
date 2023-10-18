@@ -38,7 +38,7 @@ public class Room {
         id = new UniqueID().getId();
     }
     /**
-     * sets the Room number/ id
+     * sets the Room number/id
      *
      * @param roomNumber
      */
