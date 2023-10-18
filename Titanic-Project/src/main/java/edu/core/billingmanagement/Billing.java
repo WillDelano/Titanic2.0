@@ -1,5 +1,7 @@
 package edu.core.billingmanagement;
 
+import edu.core.reservation.*;
+
 /**
  * Represents the billing information associated with a reservation.
  * This class provides methods to manage, dispute, and adjust the bill,
@@ -72,7 +74,7 @@ public class Billing {
      * @return A string representation of the digital receipt.
      */
     public String generateReceipt() {
-        this.receipt = "Digital Receipt for Reservation ID: " + reservation.getReservationId() +
+        this.receipt = "Digital Receipt for Reservation ID: " + reservation.getId() +
                 "\nTotal Amount: $" + totalAmount;
         return receipt;
     }
