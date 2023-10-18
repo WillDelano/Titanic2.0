@@ -12,6 +12,7 @@ package com.core;
 public class Guest extends User {
     private int rewardPoints;
     private PaymentInfo paymentInfo;
+    private boolean isDeclined = false;
 
     /**
      * Constructor for creating a new Guest.
@@ -127,8 +128,8 @@ public class Guest extends User {
 
         PaymentInfo pInfo = this.getPaymentInfo();
 
-        if (pInfo == null) {
-            System.out.println("No payment information available.");
+        if (pInfo == null || isDeclined == true) {
+            System.out.println("Payment did not go through, exiting the system.");
             return;
         }
 
