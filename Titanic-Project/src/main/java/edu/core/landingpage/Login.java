@@ -1,7 +1,4 @@
-package com.core.landingpage;
-
-import java.util.*;
-import java.io.*;
+package edu.core.landingpage;
 
 
 /**

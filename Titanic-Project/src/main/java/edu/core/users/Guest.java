@@ -1,6 +1,4 @@
-package com.core.users;
-
-import com.core.users.User;
+package edu.core.users;
 
 /**
  * Representation of a guest user in the cruise reservation system.
@@ -40,11 +38,11 @@ public class Guest extends User {
     }
 
     /**
-     * Requests a reservation for a specific cruise.
+     * Requests a reservation for a specific room.
      *
-     * @param cruiseID The ID of the cruise to be reserved.
+     * @param roomID The ID of the room to be reserved.
      */
-    public void requestReservation(int cruiseID) {
+    public void requestReservation(int roomID) {
         //TODO Implement method
     }
 

@@ -1,4 +1,4 @@
-package com.core.uniqueID;
+package edu.core.uniqueID;
 
 public class UniqueID {
     private static int uniqueNumber = 0;

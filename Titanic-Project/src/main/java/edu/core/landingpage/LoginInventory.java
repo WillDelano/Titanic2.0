@@ -1,4 +1,4 @@
-package com.core.landingpage;
+package edu.core.landingpage;
 
 import java.io.*;
 import java.util.*;
