@@ -140,10 +140,17 @@ public class Room {
     /**
      * overrides the hashing of the rooms, allowing the system to put rooms in maps and sets
      *
-     * @return hash of all the items in the Room  class
+     * @return hash of all the items in the Room class
      */
+    @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), numberOfBeds, bedType, smokingAvailable, roomPrice);
+        int result = 31; // A prime number as the initial value
+        result = 31 * result + Objects.hashCode(numberOfBeds);
+        result = 31 * result + Objects.hashCode(bedType);
+        result = 31 * result + Objects.hashCode(smokingAvailable);
+        result = 31 * result + Objects.hashCode(roomNumber);
+
+        return result;
     }
 }
 

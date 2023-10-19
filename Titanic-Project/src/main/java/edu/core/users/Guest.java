@@ -62,9 +62,11 @@ public class Guest extends User {
      * Requests a reservation for a specific room.
      *
      * @param room Room to be reserved.
+     *
+     * @return Returns reservation for testing purposes
      */
-    public void makeReservation(Room room, LocalDate startDate, LocalDate endDate, Country startCountry, Country endCountry) {
-        Reservation reservation = new Reservation(room, startDate, endDate, startCountry, endCountry);
+    public Reservation makeReservation(Room room, LocalDate startDate, LocalDate endDate, Country startCountry, Country endCountry) {
+        Reservation reservation = new Reservation(this, room, startDate, endDate, startCountry, endCountry);
 
         //if user already exists in reservation database (i.e. they have an outstanding reservation)
         if (ReservationDatabase.getReservationDatabase().containsKey(this)) {
@@ -73,8 +75,24 @@ public class Guest extends User {
             Set<Reservation> reservationSet = new LinkedHashSet<>();
             reservationSet = ReservationDatabase.getReservationDatabase().get(this);
 
-            //add new reservation to set
-            reservationSet.add(reservation);
+            /*
+            I have no idea why I need this to prevent duplicates in the set. I've doubled checked the hashcodes and equals
+            for room, country, and reservation and tested in every possible way. The equals operation finds them to be
+            equal but the set will still add them??? No clue so added this scuffed fix
+             */
+            boolean duplicate = false;
+
+            //if any reservation (q) in the set equals the new reservation, set duplicate to true
+            for (Reservation q : reservationSet) {
+                if (q.equals(reservation)) {
+                    duplicate = true;
+                }
+            }
+
+            //if it is not a duplicate, add it to the set
+            if (!duplicate) {
+                reservationSet.add(reservation);
+            }
 
             //put set back in database, replacing the outdated key-value pair
             ReservationDatabase.getReservationDatabase().put(this, reservationSet);
@@ -89,6 +107,21 @@ public class Guest extends User {
 
             //put reservation in map
             ReservationDatabase.getReservationDatabase().put(this, reservationSet);
+        }
+        return reservation;
+    }
+
+    /**
+     * Returns the reservations for a guest
+     *
+     * @return Set of reservations associated with a guest.
+     */
+    public Set<Reservation> getReservations() {
+        if (ReservationDatabase.getReservationDatabase().containsKey(this)) {
+            return ReservationDatabase.getReservationDatabase().get(this);
+        }
+        else {
+            throw new NoSuchElementException("User has no reservation");
         }
     }
 
