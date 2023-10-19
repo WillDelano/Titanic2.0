@@ -1,5 +1,8 @@
 package edu.core.users;
 
+import edu.core.billingmanagement.Billing;
+import edu.core.billingmanagement.PaymentInfo;
+
 /**
  * Representation of a guest user in the cruise reservation system.
  *
@@ -24,7 +27,7 @@ public class Guest extends User {
      * @param lastName   The last name of the guest.
      * @param rewardPoints Initial reward points of the guest.
      */
-    public Guest(String username, String password, Long id, String firstName, String lastName, int rewardPoints) {
+    public Guest(String username, String password, int id, String firstName, String lastName, int rewardPoints) {
         super(username, password, id, firstName, lastName);
         this.rewardPoints = rewardPoints;
     }
@@ -72,51 +75,7 @@ public class Guest extends User {
         //TODO Implement method
     }
 
-    /**
-     * This changes the password of the guest.
-     *
-     * @param newPassword The new password that replaces the initial password
-     */
-    public void changePassword(String newPassword){
-        //TODO
-    }
 
-    /**
-     * creates the account of the guest.
-     *
-     * @param username   The username of the guest.
-     * @param password   The password of the guest.
-     * @param id         The unique ID of the guest.
-     * @param firstName  The first name of the guest.
-     * @param lastName   The last name of the guest.
-     * @return if the account has successfully been created
-     */
-    public boolean createAccount(String username, String password, Long id, String firstName, String lastName){
-        //TODO
-        return false;
-    }
-
-    /**
-     * This logs the guest into the system.
-     *
-     * @param username The username of the guest.
-     * @param password The password of the guest.
-     * @return if the guest has successfully been logged into the system
-     */
-    public boolean login(String username, String password){
-        //TODO
-        return false;
-    }
-
-    /**
-     * This logs the guest out of the system.
-     *
-     * @return if the guest has successfully been logged out of the system
-     */
-    public boolean logout(){
-        //TODO
-        return false;
-    }
 
     /**
      * Method that allows for the guest to make a payment for their cruise

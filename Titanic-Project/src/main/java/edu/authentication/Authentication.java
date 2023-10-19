@@ -1,5 +1,14 @@
 package edu.authentication;
 
+import edu.core.landingpage.AccountDatabase;
+import edu.core.uniqueID.UniqueID;
+import edu.core.users.Admin;
+import edu.core.users.Guest;
+import edu.core.users.TravelAgent;
+
+import java.io.*;
+import java.util.*;
+import java.lang.*;
 /**
  * Interface for any authentication features
  *
@@ -10,39 +19,48 @@ package edu.authentication;
  * @author Gabriel Choi
  * @version 1.0
  */
-public interface Authentication {
-    /**
-     * This changes the password of the user.
-     *
-     * @param newPassword The new password that replaces the initial password
-     */
-    public void changePassword(String newPassword);
+public class Authentication {
+
 
     /**
      * creates the account of the user.
      *
      * @param username   The username of the user.
      * @param password   The password of the user.
-     * @param id         The unique ID of the user.
      * @param firstName  The first name of the user.
      * @param lastName   The last name of the user.
      * @return if the account has successfully been created
      */
-    public boolean createAccount(String username, String password, Long id, String firstName, String lastName);
+    public void createAccount(String username, String password, String firstName, String lastName){
+
+        AccountDatabase d = new AccountDatabase();
+
+        if(!d.accountExists(username)){
+            Guest guest = new Guest(username,password,new UniqueID().getId(),firstName,lastName,0);
+            d.addUser(guest);
+        }
+
+
+    }
+
+
 
     /**
-     * This logs the user into the system.
+     * operation to validate login information from input
      *
-     * @param username The username of the user.
-     * @param password The password of the user.
-     * @return if the user has successfully been logged into the system
+     * @param username   The given username for potential user account.
+     * @param password   The given password for potential user account.
      */
-    public boolean login(String username, String password);
+    public boolean login(String username, String password){
+        AccountDatabase loginList= new AccountDatabase();
+        boolean validLogin = false;
 
-    /**
-     * This logs the user out of the system.
-     *
-     * @return if the user has successfully been logged out of the system
-     */
-    public boolean logout();
+        //first check if username and pw are valid  and connected
+        if(loginList.isValidLogin(username,password)){
+            validLogin=true;
+        }
+        return validLogin;
+    }
+
+
 }
