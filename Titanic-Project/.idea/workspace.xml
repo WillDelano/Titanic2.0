@@ -7,7 +7,6 @@
     <list default="true" id="a9bc2edc-c1b2-471e-aa5e-e015b79a5583" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/reservation/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/reservation/Reservation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/edu/ReserveRoomTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/ReserveRoomTester.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
