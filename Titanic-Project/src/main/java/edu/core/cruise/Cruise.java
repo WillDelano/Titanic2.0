@@ -3,7 +3,7 @@ package edu.core.cruise;
 import edu.core.reservation.Room;
 import edu.core.uniqueID.UniqueID;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -20,7 +20,7 @@ import java.util.List;
 public class Cruise {
     private int id;
     private String name;
-    private Date departure;
+    private LocalDate departure;
     private List<Country> travelPath;
     private List<Room> roomList;
     private final int maxCapacity;
@@ -34,7 +34,7 @@ public class Cruise {
      * @param maxCapacity The maximum amount of passengers
      * @param path The in-order list of countries the cruise will travel to
      */
-    public Cruise(String name, Date departure, int maxCapacity, List<Country> path) {
+    public Cruise(String name, LocalDate departure, int maxCapacity, List<Country> path) {
         this.id = new UniqueID().getId();
         this.travelPath = path;
         this.name = name;
@@ -97,7 +97,7 @@ public class Cruise {
      *
      * @return The departure of a cruise
      */
-    public Date getDeparture() { return departure; }
+    public LocalDate getDeparture() { return departure; }
 
     /**
      * This function returns the id of a cruise
