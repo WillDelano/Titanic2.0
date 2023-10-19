@@ -16,7 +16,6 @@ import java.util.Objects;
  * @see Room
  */
 public class Room {
-    //private Room room;
     private int numberOfBeds;
 
     private int bedType;

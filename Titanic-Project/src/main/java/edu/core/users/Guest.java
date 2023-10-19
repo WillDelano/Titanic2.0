@@ -1,7 +1,9 @@
 package edu.core.users;
 
-import edu.core.billingmanagement.Billing;
+<<<<<<< HEAD
 import edu.core.billingmanagement.PaymentInfo;
+import edu.core.reservation.Reservation;
+import edu.core.reservation.Room;
 
 /**
  * Representation of a guest user in the cruise reservation system.
@@ -51,10 +53,13 @@ public class Guest extends User {
     /**
      * Requests a reservation for a specific room.
      *
-     * @param roomID The ID of the room to be reserved.
+     * @param room Room to be reserved.
      */
-    public void requestReservation(int roomID) {
-        //TODO Implement method
+    public void requestReservation(Room room) {
+        Reservation reservation = new Reservation(room);
+        ReservationDatabase database = new ReservationDatabase();
+
+        database.add(reservation);
     }
 
     /**
