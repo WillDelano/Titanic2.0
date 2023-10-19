@@ -26,6 +26,11 @@ public class ReservationDatabase {
         reservationDatabase = new HashMap<>();
     }
 
+    /**
+     * Returns the reservation database
+     *
+     * @return The reservation database
+     */
     public static Map<User, Set<Reservation>> getReservationDatabase() {
         return reservationDatabase;
     }
