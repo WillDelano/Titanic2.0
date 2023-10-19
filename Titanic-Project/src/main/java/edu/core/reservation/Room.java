@@ -30,6 +30,8 @@ public class Room {
 
     private int roomNumber;
 
+    private boolean isBooked = false;
+
 
     /**
      * default constructor of the Room
@@ -84,6 +86,15 @@ public class Room {
         //TO DO
 
     }
+
+    public void setBooked(boolean booked) {
+        isBooked = booked;
+    }
+
+    public boolean isBooked() {
+        return isBooked;
+    }
+
     /**
      * retrieves the Room Number
      *
