@@ -36,13 +36,13 @@ public class ReserveRoomTester {
     @Test
     public void reservationDatabaseTest() {
         //ensure database is empty
-        Assertions.assertTrue(ReservationDatabase.getReservationDatabase().size() == 0);
+        Assertions.assertTrue(ReservationDatabase.getReservationDatabase().isEmpty());
 
         //initializing
         Room room = new Room();
         Country usa = new Country("USA", LocalDate.of(2001, 9, 11), LocalDate.of(2011, 5, 2));
         Country germany = new Country("Germany", LocalDate.of(1939, 9, 1), LocalDate.of(1945, 7, 5));
-        Guest guest = new Guest("username", "password", 0, "john", "doe", 0);
+        Guest guest = new Guest("username", "password", 0, "john", "doe", 0, "email");
         Reservation testRes = new Reservation(guest, room, LocalDate.of(2002, 9, 29), LocalDate.of(2023, 9, 29), germany, usa);
 
         Set<Reservation> testSet = new LinkedHashSet<>();
@@ -65,7 +65,7 @@ public class ReserveRoomTester {
     @Test
     public void makeSingleReservation() {
         //ensure database is empty
-        Assertions.assertTrue(ReservationDatabase.getReservationDatabase().size() == 0);
+        Assertions.assertTrue(ReservationDatabase.getReservationDatabase().isEmpty());
 
         /*
         USA:
@@ -78,7 +78,7 @@ public class ReserveRoomTester {
         */
 
         //initializing
-        Guest guest = new Guest("username", "password", 0, "john", "doe", 0);
+        Guest guest = new Guest("username", "password", 0, "john", "doe", 0, "email");
         Room room = new Room();
 
         Country usa = new Country("USA", LocalDate.of(2001, 9, 11), LocalDate.of(2011, 5, 2));
@@ -104,7 +104,7 @@ public class ReserveRoomTester {
     @Test
     public void makeMultipleReservations() {
         //ensure database is empty
-        Assertions.assertTrue(ReservationDatabase.getReservationDatabase().size() == 0);
+        Assertions.assertTrue(ReservationDatabase.getReservationDatabase().isEmpty());
 
         /*
         USA:
@@ -117,7 +117,7 @@ public class ReserveRoomTester {
         */
 
         //initializing reservation 1
-        Guest guest = new Guest("username", "password", 0, "john", "doe", 0);
+        Guest guest = new Guest("username", "password", 0, "john", "doe", 0, "email");
         Room room = new Room();
         Country usa = new Country("USA", LocalDate.of(2001, 9, 11), LocalDate.of(2011, 5, 2));
         Country germany = new Country("Germany", LocalDate.of(1939, 9, 1), LocalDate.of(1945, 7, 5));
