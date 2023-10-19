@@ -66,48 +66,22 @@ public class Guest extends User {
      * @return Returns reservation for testing purposes
      */
     public Reservation makeReservation(Room room, LocalDate startDate, LocalDate endDate, Country startCountry, Country endCountry) {
+        // if end date is before or equal to start date, throw error message
+        if (endDate.isBefore(startDate) || startDate.equals(endDate)) {
+            throw new RuntimeException("Invalid Date Range. Please make sure start date is before end date.");
+        }
+
         Reservation reservation = new Reservation(this, room, startDate, endDate, startCountry, endCountry);
 
-        //if user already exists in reservation database (i.e. they have an outstanding reservation)
-        if (ReservationDatabase.getReservationDatabase().containsKey(this)) {
+        // fetch or create the reservation set for the user.
+        Set<Reservation> reservationSet = ReservationDatabase.getReservationDatabase().getOrDefault(this, new LinkedHashSet<>());
 
-            //assign set to reservation set of a user
-            Set<Reservation> reservationSet = new LinkedHashSet<>();
-            reservationSet = ReservationDatabase.getReservationDatabase().get(this);
+        // add the reservation. If it's a duplicate, the Set will handle it.
+        reservationSet.add(reservation);
 
-            /*
-            I have no idea why I need this to prevent duplicates in the set. I've doubled checked the hashcodes and equals
-            for room, country, and reservation and tested in every possible way. The equals operation finds them to be
-            equal but the set will still add them??? No clue so added this scuffed fix
-             */
-            boolean duplicate = false;
+        // update the database with the reservation set.
+        ReservationDatabase.getReservationDatabase().put(this, reservationSet);
 
-            //if any reservation (q) in the set equals the new reservation, set duplicate to true
-            for (Reservation q : reservationSet) {
-                if (q.equals(reservation)) {
-                    duplicate = true;
-                }
-            }
-
-            //if it is not a duplicate, add it to the set
-            if (!duplicate) {
-                reservationSet.add(reservation);
-            }
-
-            //put set back in database, replacing the outdated key-value pair
-            ReservationDatabase.getReservationDatabase().put(this, reservationSet);
-        }
-        //user doesn't have an outstanding reservation
-        else {
-            //Create the new set of reservations for the user
-            Set<Reservation> reservationSet = new LinkedHashSet<>();
-
-            //add their reservation
-            reservationSet.add(reservation);
-
-            //put reservation in map
-            ReservationDatabase.getReservationDatabase().put(this, reservationSet);
-        }
         return reservation;
     }
 

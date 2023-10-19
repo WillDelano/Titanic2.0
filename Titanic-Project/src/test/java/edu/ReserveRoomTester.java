@@ -159,4 +159,32 @@ public class ReserveRoomTester {
         //Check for duplicate
         Assertions.assertFalse(ReservationDatabase.getReservationDatabase().get(guest).contains(testReservationDup));
     }
+
+    // Test to validate date range of reservation
+    @Test
+    public void testInvalidDateRange() {
+        Guest guest = new Guest("user", "pass", 0, "first", "last", 0, "email");
+
+        Room room = new Room();
+
+        Country usa = new Country("USA", LocalDate.of(2001, 9, 11), LocalDate.of(2011, 5, 2));
+
+        // 1. End Date is before Start Date
+        Reservation invalidReservation1 = new Reservation(guest, room, LocalDate.of(2023, 9, 29), LocalDate.of(2002, 9, 29), usa, usa);
+        Assertions.assertFalse(isValidDateRange(invalidReservation1.getStartDate(), invalidReservation1.getEndDate()));
+
+        // 2. Start and End Date are the same
+        Reservation invalidReservation2 = new Reservation(guest, room, LocalDate.of(2022, 9, 29), LocalDate.of(2022, 9, 29), usa, usa);
+        Assertions.assertFalse(isValidDateRange(invalidReservation2.getStartDate(), invalidReservation2.getEndDate()));
+
+        // 3. Checking a valid date range for comparison
+        Reservation validReservation = new Reservation(guest, room, LocalDate.of(2002, 9, 29), LocalDate.of(2023, 9, 29), usa, usa);
+        Assertions.assertTrue(isValidDateRange(validReservation.getStartDate(), validReservation.getEndDate()));
+    }
+
+    public boolean isValidDateRange(LocalDate startDate, LocalDate endDate) {
+        //checking if the end date is after the start date for validity
+        // and if they aren't the same
+        return !endDate.isBefore(startDate) && !startDate.isEqual(endDate);
+    }
 }

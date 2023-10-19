@@ -28,6 +28,10 @@ public class Reservation {
     private int roomNumber;
     private Room room;
 
+    private LocalDate startDate;
+
+    private LocalDate endDate;
+
     public Reservation(User user, Room room, LocalDate startDate, LocalDate endDate, Country startCountry, Country endCountry) {
         this.user = user;
         this.id = new UniqueID().getId();
@@ -36,6 +40,8 @@ public class Reservation {
         this.days = ChronoUnit.DAYS.between(startDate, endDate);
         this.startCountry = startCountry;
         this.endCountry = endCountry;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     public int getId() {
@@ -76,6 +82,21 @@ public class Reservation {
         this.endCountry = endCountry;
     }
 
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
 
     @Override
     public boolean equals(Object o) {
