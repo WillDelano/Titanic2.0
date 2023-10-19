@@ -2,6 +2,9 @@ package edu.core.users;
 
 import edu.core.billingmanagement.Billing;
 import edu.core.billingmanagement.PaymentInfo;
+import edu.core.reservation.Reservation;
+
+import java.util.List;
 
 /**
  * Representation of a guest user in the cruise reservation system.
@@ -14,12 +17,9 @@ import edu.core.billingmanagement.PaymentInfo;
  */
 public class Guest extends User {
     private int rewardPoints;
-<<<<<<< HEAD
-    private list<Reservation> reservations;
-=======
+    private List<Reservation> reservations;
     private PaymentInfo paymentInfo;
     private boolean isDeclined = false;
->>>>>>> main
 
     /**
      * Constructor for creating a new Guest.
