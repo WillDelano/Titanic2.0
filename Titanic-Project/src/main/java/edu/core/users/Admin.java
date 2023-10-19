@@ -19,9 +19,10 @@ public class Admin extends User {
      * @param id         The unique ID of the admin.
      * @param firstName  The first name of the admin.
      * @param lastName   The last name of the admin.
+     * @param email      The email of the admin.
      */
-    public Admin(String username, String password, int id, String firstName, String lastName) {
-        super(username, password, id, firstName, lastName);
+    public Admin(String username, String password, int id, String firstName, String lastName, String email) {
+        super(username, password, id, firstName, lastName, email);
     }
 
 }
