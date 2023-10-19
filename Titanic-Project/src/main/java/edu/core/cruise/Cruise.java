@@ -47,7 +47,7 @@ public class Cruise {
      *
      */
     public void addPassenger() {
-        if (currentOccupancy == maxCapacity) {
+        if (currentOccupancy >= maxCapacity) {
             throw new IllegalStateException("Cannot add more passengers. Cruise is fully booked.");
         }
         currentOccupancy++;
@@ -58,7 +58,7 @@ public class Cruise {
      *
      */
     public void removePassenger() {
-        if (currentOccupancy == 0) {
+        if (currentOccupancy <= 0) {
             throw new IllegalStateException("Cannot remove more passengers. Cruise is empty.");
         }
         currentOccupancy--;
