@@ -1,6 +1,5 @@
 package edu.core.users;
 
-<<<<<<< HEAD
 import edu.core.billingmanagement.PaymentInfo;
 import edu.core.reservation.Reservation;
 import edu.core.reservation.Room;
