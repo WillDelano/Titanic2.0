@@ -2,6 +2,8 @@ package edu.core.users;
 
 import edu.core.billingmanagement.PaymentInfo;
 import edu.core.reservation.Reservation;
+
+import java.util.List;
 import edu.core.reservation.Room;
 
 /**
@@ -15,6 +17,7 @@ import edu.core.reservation.Room;
  */
 public class Guest extends User {
     private int rewardPoints;
+    private List<Reservation> reservations;
     private PaymentInfo paymentInfo;
     private boolean isDeclined = false;
 
