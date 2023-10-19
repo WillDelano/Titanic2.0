@@ -1,4 +1,4 @@
-package com.core.uniqueID;
+package uniqueID;
 
 import com.core.users.User;
 
