@@ -30,4 +30,25 @@ public class Country {
         this.arrivalTime = arrivalTime;
         this.departureTime = departureTime;
     }
+
+    /**
+     * This function returns the name of a country
+     *
+     * @return The name of a country
+     */
+    public String getName() { return name; }
+
+    /**
+     * This function returns the date a cruise will arrive
+     *
+     * @return The date the cruise arrives to the country
+     */
+    public Date getArrivalTime() { return arrivalTime; }
+
+    /**
+     * This function returns the date a cruise will depart
+     *
+     * @return The date the cruise departs from the country
+     */
+    public Date getDepartureTime() { return departureTime; }
 }

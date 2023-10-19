@@ -1,17 +1,25 @@
 package edu.core.users;
 
+import edu.core.billingmanagement.Billing;
+import edu.core.billingmanagement.PaymentInfo;
+
 /**
  * Representation of a guest user in the cruise reservation system.
  *
  * This class provides specific functionalities and attributes related to a guest user.
  *
  * @author Vincent Dinh
- * @version 1.0
+ * @version 1.2
  * @see User
  */
 public class Guest extends User {
     private int rewardPoints;
+<<<<<<< HEAD
     private list<Reservation> reservations;
+=======
+    private PaymentInfo paymentInfo;
+    private boolean isDeclined = false;
+>>>>>>> main
 
     /**
      * Constructor for creating a new Guest.
@@ -23,12 +31,18 @@ public class Guest extends User {
      * @param lastName   The last name of the guest.
      * @param rewardPoints Initial reward points of the guest.
      */
-    public Guest(String username, String password, Long id, String firstName, String lastName, int rewardPoints) {
+    public Guest(String username, String password, int id, String firstName, String lastName, int rewardPoints) {
         super(username, password, id, firstName, lastName);
         this.rewardPoints = rewardPoints;
     }
 
-    // The getters and setters, along with their documentation...
+    public PaymentInfo getPaymentInfo() {
+        return paymentInfo;
+    }
+
+    public void setPaymentInfo(PaymentInfo paymentInfo) {
+        this.paymentInfo = paymentInfo;
+    }
 
     public void setRewardPoints(int rewardPoints) {
         this.rewardPoints = rewardPoints;
@@ -39,12 +53,13 @@ public class Guest extends User {
     }
 
     /**
-     * Requests a reservation for a specific cruise.
+     * Requests a reservation for a specific room.
      *
-     * @param cruiseID The ID of the cruise to be reserved.
+     * @param roomID The ID of the room to be reserved.
      */
-    public void requestReservation(int cruiseID) {
-        //TODO
+
+    public void requestReservation(int roomID) {
+        //TODO Implement method
     }
 
     /**
@@ -65,51 +80,48 @@ public class Guest extends User {
         //TODO Implement method
     }
 
+
+
     /**
-     * This changes the password of the guest.
+     * Method that allows for the guest to make a payment for their cruise
      *
-     * @param newPassword The new password that replaces the initial password
+     * @param bill The bill that the guest is making a payment towards
      */
-    public void changePassword(String newPassword){
-        //TODO
+
+    public void makePayment(Billing bill) {
+
+        PaymentInfo pInfo = this.getPaymentInfo();
+
+        if (pInfo == null || isDeclined) {
+            System.out.println("Payment did not go through, exiting the system.");
+            return;
+        }
+
+        double amountToPay = bill.getTotalAmount();
+        System.out.println("Payment of $" + amountToPay + " was successful using " + pInfo.getCardType()
+                + " ending in " + pInfo.getCardNumber().substring(pInfo.getCardNumber().length() - 4));
+
+        String receipt = bill.generateReceipt();
+        System.out.println(receipt);
+
     }
 
     /**
-     * creates the account of the guest.
+     * Allows the guest to raise a dispute against a specific bill.
      *
-     * @param username   The username of the guest.
-     * @param password   The password of the guest.
-     * @param id         The unique ID of the guest.
-     * @param firstName  The first name of the guest.
-     * @param lastName   The last name of the guest.
-     * @return if the account has successfully been created
+     * @param bill The bill that the guest is disputing.
+     * @param reason The reason the guest is raising the dispute.
      */
-    public boolean createAccount(String username, String password, Long id, String firstName, String lastName){
-        //TODO
-        return false;
+    public void raiseDispute(Billing bill, String reason) {
+        bill.disputeCharge(reason);
     }
 
     /**
-     * This logs the guest into the system.
+     * Allows the guest to request an invoice for their bill
      *
-     * @param username The username of the guest.
-     * @param password The password of the guest.
-     * @return if the guest has successfully been logged into the system
+     * @param bill The bill that the guest is requesting an invoice
      */
-    public boolean login(String username, String password){
+    public void requestInvoice(Billing bill) {
         //TODO
-        return false;
     }
-
-    /**
-     * This logs the guest out of the system.
-     *
-     * @return if the guest has successfully been logged out of the system
-     */
-    public boolean logout(){
-        //TODO
-        return false;
-    }
-
-    // add more functions
 }
