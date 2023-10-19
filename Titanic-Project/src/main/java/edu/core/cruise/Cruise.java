@@ -24,7 +24,7 @@ public class Cruise {
     private List<Country> travelPath;
     private List<Room> roomList;
     private final int maxCapacity;
-    private int currentCapacity;
+    private int currentOccupancy;
 
     /**
      * This function creates a Cruise object with given values
@@ -40,17 +40,17 @@ public class Cruise {
         this.name = name;
         this.departure = departure;
         this.maxCapacity = maxCapacity;
-        currentCapacity = 0;
+        currentOccupancy = 0;
     }
     /**
      * This function adds a passenger to the passenger count on a cruise
      *
      */
     public void addPassenger() {
-        if (currentCapacity == maxCapacity) {
+        if (currentOccupancy == maxCapacity) {
             throw new IllegalStateException("Cannot add more passengers. Cruise is fully booked.");
         }
-        currentCapacity++;
+        currentOccupancy++;
     }
 
     /**
@@ -58,10 +58,10 @@ public class Cruise {
      *
      */
     public void removePassenger() {
-        if (currentCapacity == 0) {
+        if (currentOccupancy == 0) {
             throw new IllegalStateException("Cannot remove more passengers. Cruise is empty.");
         }
-        currentCapacity--;
+        currentOccupancy--;
     }
 
     /**
@@ -90,7 +90,7 @@ public class Cruise {
      *
      * @return The current capacity of a cruise
      */
-    public int getCurrentCapacity() { return currentCapacity; }
+    public int getCurrentOccupancy() { return currentOccupancy; }
 
     /**
      * This function returns the departure Date of a cruise
