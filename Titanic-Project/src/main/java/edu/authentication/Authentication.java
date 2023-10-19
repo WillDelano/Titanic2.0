@@ -1,6 +1,6 @@
 package edu.authentication;
 
-import edu.core.landingpage.AccountDatabase;
+import edu.database.AccountDatabase;
 import edu.core.uniqueID.UniqueID;
 import edu.core.users.Admin;
 import edu.core.users.Guest;
