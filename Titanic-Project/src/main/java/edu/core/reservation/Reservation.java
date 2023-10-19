@@ -1,6 +1,7 @@
 package edu.core.reservation;
 import edu.core.cruise.Country;
 import edu.core.uniqueID.UniqueID;
+import edu.core.users.User;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -19,6 +20,7 @@ import java.util.Objects;
  * @see Room
  */
 public class Reservation {
+    private User user;
     private int id;
     private long days;
     private Country startCountry;
@@ -26,7 +28,8 @@ public class Reservation {
     private int roomNumber;
     private Room room;
 
-    public Reservation(Room room, LocalDate startDate, LocalDate endDate, Country startCountry, Country endCountry) {
+    public Reservation(User user, Room room, LocalDate startDate, LocalDate endDate, Country startCountry, Country endCountry) {
+        this.user = user;
         this.id = new UniqueID().getId();
         this.room = room;
         this.roomNumber = room.getRoomNumber();
@@ -39,9 +42,15 @@ public class Reservation {
         return id;
     }
 
+    public User getUser() {
+        return user;
+    }
+
     public long getDays() {
         return days;
     }
+
+    public Room getRoom() { return room; }
 
     public Country getStartCountry() {
         return startCountry;
@@ -70,23 +79,34 @@ public class Reservation {
 
     @Override
     public boolean equals(Object o) {
+        System.out.println("here");
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Reservation that = (Reservation) o;
-        return Objects.equals(id, that.id) && Objects.equals(days, that.days) &&
+
+        //check if they are the same reservation by unique id
+        if (id == that.id) {
+            return true;
+        }
+        //if they have different ids, check if they are the same reservation details
+        else if (Objects.equals(days, that.days) &&
                 Objects.equals(startCountry, that.startCountry) &&
                 Objects.equals(endCountry, that.endCountry) &&
-                Objects.equals(roomNumber, that.roomNumber); /* &&
+                Objects.equals(roomNumber, that.roomNumber) &&
+                Objects.equals(room, that.room) /*&&
                 Objects.equals(numberOfBeds, that.numberOfBeds) &&
                 Objects.equals(bedType, that.bedType) &&
                 Objects.equals(smokingAvailable, that.smokingAvailable) &&
-                Objects.equals(roomPrice, that.roomPrice); */
+                Objects.equals(roomPrice, that.roomPrice);
+                */) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public int hashCode() {
-        int result = 31;
-        return Objects.hash(id, days, startCountry, endCountry, roomNumber); /*( numberOfBeds, bedType, smokingAvailable, roomPrice);*/
+        return Objects.hash(id, user, room, roomNumber, days, startCountry, endCountry);
     }
 };
 

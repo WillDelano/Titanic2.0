@@ -1,6 +1,9 @@
 package edu.core.cruise;
 
+import edu.core.reservation.Reservation;
+
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * Describes the country that a cruise will travel to
@@ -51,4 +54,24 @@ public class Country {
      * @return The date the cruise departs from the country
      */
     public LocalDate getDepartureTime() { return departureTime; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Country that = (Country) o;
+
+        return (Objects.equals(name, that.name) &&
+                Objects.equals(arrivalTime, that.arrivalTime)) &&
+                Objects.equals(departureTime, that.departureTime);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 31; // A prime number as the initial value
+        result = 31 * result + Objects.hashCode(name);
+        result = 31 * result + Objects.hashCode(arrivalTime);
+        result = 31 * result + Objects.hashCode(departureTime);
+        return result;
+    }
 }
