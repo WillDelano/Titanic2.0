@@ -79,7 +79,6 @@ public class Reservation {
 
     @Override
     public boolean equals(Object o) {
-        System.out.println("here");
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Reservation that = (Reservation) o;
