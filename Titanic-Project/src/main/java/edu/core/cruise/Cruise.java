@@ -71,4 +71,45 @@ public class Cruise {
      */
     public List<Room> getRoomList() { return roomList; }
 
+    /**
+     * This function gets the name of a cruise
+     *
+     * @return The name of a cruise
+     */
+    public String getName() { return name; }
+
+    /**
+     * This function gets the max capacity of a cruise
+     *
+     * @return The max capacity of a cruise
+     */
+    public int getMaxCapacity() { return maxCapacity; }
+
+    /**
+     * This function gets the current capacity of a cruise
+     *
+     * @return The current capacity of a cruise
+     */
+    public int getCurrentCapacity() { return currentCapacity; }
+
+    /**
+     * This function returns the departure Date of a cruise
+     *
+     * @return The departure of a cruise
+     */
+    public Date getDeparture() { return departure; }
+
+    /**
+     * This function returns the id of a cruise
+     *
+     * @return The id of a cruise
+     */
+    public int getId() { return id; }
+
+    /**
+     * This function returns the travel path of a cruise
+     *
+     * @return The travel path of a cruise
+     */
+    public List<Country> getTravelPath() { return travelPath; }
 }
