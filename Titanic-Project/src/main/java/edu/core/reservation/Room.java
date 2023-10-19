@@ -1,6 +1,8 @@
-package com.core.reservation;
+package edu.core.reservation;
 
-import com.core.uniqueID.UniqueID;
+import edu.core.uniqueID.UniqueID;
+
+import java.util.Objects;
 
 /**
  * Documents information about a room
@@ -14,18 +16,19 @@ import com.core.uniqueID.UniqueID;
  * @see Room
  */
 public class Room {
-    //private Room room;
-    private Integer numberOfBeds;
+    private int numberOfBeds;
 
-    private Integer bedType;
+    private int bedType;
 
-    private Boolean smokingAvailable;
+    private boolean smokingAvailable;
 
-    private Double roomPrice;
+    private double roomPrice;
 
     private roomType roomType;
 
     private int id;
+
+    private int roomNumber;
 
 
     /**
@@ -38,7 +41,7 @@ public class Room {
         id = new UniqueID().getId();
     }
     /**
-     * sets the Room number/ id
+     * sets the Room number/id
      *
      * @param roomNumber
      */
@@ -137,62 +140,17 @@ public class Room {
     /**
      * overrides the hashing of the rooms, allowing the system to put rooms in maps and sets
      *
-     * @return hash of all the items in the Room  class
+     * @return hash of all the items in the Room class
      */
+    @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), numberOfBeds, bedType, smokingAvailable, roomPrice);
-    }
-}
+        int result = 31; // A prime number as the initial value
+        result = 31 * result + Objects.hashCode(numberOfBeds);
+        result = 31 * result + Objects.hashCode(bedType);
+        result = 31 * result + Objects.hashCode(smokingAvailable);
+        result = 31 * result + Objects.hashCode(roomNumber);
 
-/**
- * Has types of Rooms along with respective prices of those rooms
- *
- * <p>
- * There are four different room types, as the user looks to find a type room, they will have a different luxery of
- * room based on their pick. With diffferent luxery type, there are different prices.
- * </p>
- *
- * @author Cole Hogan
- * @version 1.0
- * @see Room
- */
-public enum roomType {
-    Economy(100.0),Comfort(200.0),Business(300.0),Executive(400.0);
-
-    private double price;
-    /**
-     * default constructor, sets a room price at Economy
-     *
-     */
-    RoomType(){
-
-        this.price = 100.0;
-    }
-    /**
-     * constructor that will assign a RoomType with it's respective price
-     *
-     * @param newPrice:assigns a new price to a room type
-     */
-    RoomType (double newPrice){
-        this.price = newPrice;
-    }
-    /**
-     * sets the price of a roomType
-     *
-     * @param newPrice:assigns a new price to a room type
-     */
-    public void setPrice(double newPrice) {
-
-        this.price = newPrice;
-    }
-    /**
-     * sets the price of a roomType
-     *
-     * @return the price of a RoomType
-     */
-    public double getPrice() {
-
-        return price;
+        return result;
     }
 }
 
