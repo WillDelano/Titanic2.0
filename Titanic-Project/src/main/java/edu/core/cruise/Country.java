@@ -1,6 +1,6 @@
 package edu.core.cruise;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * Describes the country that a cruise will travel to
@@ -15,8 +15,8 @@ import java.util.Date;
  */
 public class Country {
     private String name;
-    private Date arrivalTime;
-    private Date departureTime;
+    private LocalDate arrivalTime;
+    private LocalDate departureTime;
 
     /**
      * This function creates a Cruise object with given values
@@ -25,7 +25,7 @@ public class Country {
      * @param arrivalTime The date the cruise will arrive
      * @param departureTime The date the cruise will depart
      */
-    public Country(String name, Date arrivalTime, Date departureTime) {
+    public Country(String name, LocalDate arrivalTime, LocalDate departureTime) {
         this.name = name;
         this.arrivalTime = arrivalTime;
         this.departureTime = departureTime;
@@ -43,12 +43,12 @@ public class Country {
      *
      * @return The date the cruise arrives to the country
      */
-    public Date getArrivalTime() { return arrivalTime; }
+    public LocalDate getArrivalTime() { return arrivalTime; }
 
     /**
      * This function returns the date a cruise will depart
      *
      * @return The date the cruise departs from the country
      */
-    public Date getDepartureTime() { return departureTime; }
+    public LocalDate getDepartureTime() { return departureTime; }
 }
