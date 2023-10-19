@@ -1,5 +1,6 @@
 package edu.core.cruise;
 
+import edu.core.reservation.Room;
 import edu.core.uniqueID.UniqueID;
 
 import java.util.Date;
@@ -21,8 +22,9 @@ public class Cruise {
     private String name;
     private Date departure;
     private List<Country> travelPath;
+    private List<Room> roomList;
     private final int maxCapacity;
-    private int currentCapacity;
+    private int currentOccupancy;
 
     /**
      * This function creates a Cruise object with given values
@@ -38,17 +40,76 @@ public class Cruise {
         this.name = name;
         this.departure = departure;
         this.maxCapacity = maxCapacity;
-        currentCapacity = 0;
+        currentOccupancy = 0;
     }
     /**
      * This function adds a passenger to the passenger count on a cruise
      *
      */
     public void addPassenger() {
-        if (currentCapacity == maxCapacity) {
+        if (currentOccupancy >= maxCapacity) {
             throw new IllegalStateException("Cannot add more passengers. Cruise is fully booked.");
         }
-        currentCapacity++;
+        currentOccupancy++;
     }
 
+    /**
+     * This function removes a passenger from the passenger count on a cruise
+     *
+     */
+    public void removePassenger() {
+        if (currentOccupancy <= 0) {
+            throw new IllegalStateException("Cannot remove more passengers. Cruise is empty.");
+        }
+        currentOccupancy--;
+    }
+
+    /**
+     * This function returns the list of rooms on a cruise
+     *
+     * @return The list of rooms on a cruise
+     */
+    public List<Room> getRoomList() { return roomList; }
+
+    /**
+     * This function gets the name of a cruise
+     *
+     * @return The name of a cruise
+     */
+    public String getName() { return name; }
+
+    /**
+     * This function gets the max capacity of a cruise
+     *
+     * @return The max capacity of a cruise
+     */
+    public int getMaxCapacity() { return maxCapacity; }
+
+    /**
+     * This function gets the current capacity of a cruise
+     *
+     * @return The current capacity of a cruise
+     */
+    public int getCurrentOccupancy() { return currentOccupancy; }
+
+    /**
+     * This function returns the departure Date of a cruise
+     *
+     * @return The departure of a cruise
+     */
+    public Date getDeparture() { return departure; }
+
+    /**
+     * This function returns the id of a cruise
+     *
+     * @return The id of a cruise
+     */
+    public int getId() { return id; }
+
+    /**
+     * This function returns the travel path of a cruise
+     *
+     * @return The travel path of a cruise
+     */
+    public List<Country> getTravelPath() { return travelPath; }
 }
