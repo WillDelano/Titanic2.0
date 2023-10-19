@@ -21,14 +21,16 @@ public class Reservation {
     private String startCountry;
     private String endCountry;
     private Integer roomNumber;
-
     private Room room;
 
+<<<<<<< HEAD
+=======
     //private roomClass class;
 
 
     ///Constructor might be adjusted to where rather than relying on set and get to add into the Reservation,
     ///A constructor initialized with all the information needed will be used.
+>>>>>>> main
     public Reservation(Room room) {
         id = new UniqueID().getId();
         this.room = room;

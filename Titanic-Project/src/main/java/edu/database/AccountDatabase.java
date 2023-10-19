@@ -1,4 +1,4 @@
-package edu.core.landingpage;
+package edu.database;
 
 import edu.core.users.User;
 
@@ -8,7 +8,7 @@ import java.lang.*;
 
 
 /**
- * Inventory to record valid accounts and information for accounts
+ * Database to record valid accounts and information for accounts
  *
  * This class documents a collection of unique usernames and another collection of unique passwords mapped with
  * user information.
@@ -18,8 +18,16 @@ import java.lang.*;
  */
 public class AccountDatabase {
 
-    static Set<User> accountDatabase;
- 
+    private static Set<User> accountDatabase;
+
+
+    /**
+     * Creates the database for accounts
+     *
+     */
+    public AccountDatabase() {
+        accountDatabase = new HashSet<>();
+    }
 
     /**
      * operation to validate username from input
