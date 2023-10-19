@@ -18,6 +18,7 @@ public abstract class User  {
     private int id;
     private String firstName;
     private String lastName;
+    private String email;
 
     /**
      * Constructor for creating a new User.
@@ -27,13 +28,15 @@ public abstract class User  {
      * @param id         The unique ID of the user.
      * @param firstName  The first name of the user.
      * @param lastName   The last name of the user.
+     * @param email      The email of the user.
      */
-    public User(String username, String password, int id, String firstName, String lastName) {
+    public User(String username, String password, int id, String firstName, String lastName, String email) {
         this.username = username;
         this.password = password;
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
     }
 
 
@@ -56,6 +59,7 @@ public abstract class User  {
     public int getId() {
         return id;
     }
+    public String getEmail() { return email; }
 
     public void setPassword(String password) {
         this.password = password;
