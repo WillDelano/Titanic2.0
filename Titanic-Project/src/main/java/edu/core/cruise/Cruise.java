@@ -1,5 +1,6 @@
 package edu.core.cruise;
 
+import edu.core.reservation.Room;
 import edu.core.uniqueID.UniqueID;
 
 import java.util.Date;
@@ -21,6 +22,7 @@ public class Cruise {
     private String name;
     private Date departure;
     private List<Country> travelPath;
+    private List<Room> roomList;
     private final int maxCapacity;
     private int currentCapacity;
 
@@ -50,5 +52,23 @@ public class Cruise {
         }
         currentCapacity++;
     }
+
+    /**
+     * This function removes a passenger from the passenger count on a cruise
+     *
+     */
+    public void removePassenger() {
+        if (currentCapacity == 0) {
+            throw new IllegalStateException("Cannot remove more passengers. Cruise is empty.");
+        }
+        currentCapacity--;
+    }
+
+    /**
+     * This function returns the list of rooms on a cruise
+     *
+     * @return The list of rooms on a cruise
+     */
+    public List<Room> getRoomList() { return roomList; }
 
 }
