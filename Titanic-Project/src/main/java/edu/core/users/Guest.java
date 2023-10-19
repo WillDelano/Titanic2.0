@@ -57,17 +57,11 @@ public class Guest extends User {
      *
      * @param room Room to be reserved.
      */
-<<<<<<< HEAD
-
-    public void requestReservation(int roomID) {
-        //TODO Implement method
-=======
     public void requestReservation(Room room) {
         Reservation reservation = new Reservation(room);
         ReservationDatabase database = new ReservationDatabase();
 
         database.add(reservation);
->>>>>>> main
     }
 
     /**
