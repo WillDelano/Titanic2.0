@@ -3,11 +3,11 @@ package com.core.uniqueID;
 import com.core.users.User;
 
 /**
- * Representation of an admin user in the cruise reservation system.
+ * Creates a unqiue id
  *
- * This class provides specific functionalities and attributes related to an admin user responsible for managing system settings, travel agent accounts, etc.
+ * This class provides a unique id for any instance
  *
- * @author Vincent Dinh
+ * @author William Delano
  * @version 1.0
  * @see User
  */
