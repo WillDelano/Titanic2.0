@@ -48,7 +48,7 @@ public class Reservation {
         this.startDate = startDate;
         this.endDate = endDate;
 
-        room.setBooked(true);
+        room.bookRoom();
     }
 
     public int getId() {
