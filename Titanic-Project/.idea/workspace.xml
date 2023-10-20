@@ -33,7 +33,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "ui/SelectCruisePage",
+    "git-widget-placeholder": "cruiseSelectionPage",
     "last_opened_file_path": "C:/Users/vince/Java Projects/Titanic2.0/Titanic-Project",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -93,7 +93,7 @@
       <workItem from="1697475650895" duration="6931000" />
       <workItem from="1697589710670" duration="2274000" />
       <workItem from="1697678288308" duration="1258000" />
-      <workItem from="1697767210144" duration="991000" />
+      <workItem from="1697767210144" duration="1305000" />
     </task>
     <servers />
   </component>

@@ -1,5 +1,7 @@
 package edu.ui.cruiseDetails;
 
+import edu.ui.landingPage.LandingPage;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -19,10 +21,12 @@ public class SelectCruisePage {
     private JButton selectButton;
     private JButton backButton;
 
+    private LandingPage landingPage;
     /**
      * Constructor for the SelectCruisePage that sets up the GUI
      */
-    public SelectCruisePage() {
+    public SelectCruisePage(LandingPage landingPage) {
+        this.landingPage = landingPage;
         prepareGUI();
     }
 
@@ -57,7 +61,8 @@ public class SelectCruisePage {
 
         backButton = new JButton("Back");
         backButton.addActionListener(e -> {
-            cruiseFrame.dispose(); // close the Select Cruise page
+            cruiseFrame.dispose();
+            landingPage.show(); // close the Select Cruise page
             // return to the previous screen, in this case, the Landing Page
             // new edu.ui.landingPage.LandingPage().showLandingPage(yourUserObjectHere);
         });
