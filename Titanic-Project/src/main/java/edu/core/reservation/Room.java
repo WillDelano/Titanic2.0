@@ -87,8 +87,18 @@ public class Room {
 
     }
 
-    public void setBooked(boolean booked) {
-        isBooked = booked;
+    /**
+     * books the Room instance
+     */
+    public void bookRoom() {
+        isBooked = true;
+    }
+
+    /**
+     * unbooks the Room instance
+     */
+    public void unbookRoom() {
+        isBooked = false;
     }
 
     public boolean isBooked() {
