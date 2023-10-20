@@ -121,8 +121,8 @@ public class LandingPage {
         }
     }
     private void navigateToSelectCruisePage() {
-        mainFrame.setVisible(false);   // Optionally hide the current landing page
-        new SelectCruisePage(this);       // Navigate to SelectCruisePage
+        mainFrame.setVisible(false);   // hide the current landing page
+        new SelectCruisePage(this);       // navigate to SelectCruisePage
     }
 
     public void show() {

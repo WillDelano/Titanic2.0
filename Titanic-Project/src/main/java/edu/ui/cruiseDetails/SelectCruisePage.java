@@ -61,10 +61,9 @@ public class SelectCruisePage {
 
         backButton = new JButton("Back");
         backButton.addActionListener(e -> {
-            cruiseFrame.dispose();
-            landingPage.show(); // close the Select Cruise page
-            // return to the previous screen, in this case, the Landing Page
-            // new edu.ui.landingPage.LandingPage().showLandingPage(yourUserObjectHere);
+            cruiseFrame.dispose(); // close the Select Cruise page
+            landingPage.show(); // go back to landingPage
+
         });
 
         JPanel buttonPanel = new JPanel();
