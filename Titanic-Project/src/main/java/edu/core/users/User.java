@@ -1,7 +1,5 @@
 package edu.core.users;
-
-import edu.authentication.Authentication;
-
+import edu.core.landingpage.AccountDatabase;
 import java.util.Objects;
 
 /**
@@ -10,7 +8,7 @@ import java.util.Objects;
  * This class provides a basic blueprint for all types of users in the system like Guest, Travel Agent, and Admin.
  *
  * @author Vincent Dinh
- * @version 1.0
+ * @version 1.1
  */
 public abstract class User  {
     private String username;
@@ -18,6 +16,8 @@ public abstract class User  {
     private int id;
     private String firstName;
     private String lastName;
+    private AccountDatabase accountList = new AccountDatabase();
+
 
     /**
      * Constructor for creating a new User.
@@ -57,11 +57,13 @@ public abstract class User  {
         return id;
     }
 
+
     public void setPassword(String password) {
         this.password = password;
     }
 
     public void setLastName(String lastName) {
+
         this.lastName = lastName;
     }
 
