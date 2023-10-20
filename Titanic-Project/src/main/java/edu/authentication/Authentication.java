@@ -1,6 +1,6 @@
 package edu.authentication;
 
-import edu.core.landingpage.AccountDatabase;
+import edu.database.AccountDatabase;
 import edu.core.uniqueID.UniqueID;
 import edu.core.users.Admin;
 import edu.core.users.Guest;
@@ -31,12 +31,12 @@ public class Authentication {
      * @param lastName   The last name of the user.
      *
      */
-    public void createAccount(String username, String password, String firstName, String lastName){
+    public void createAccount(String username, String password, String firstName, String lastName, String email){
 
         AccountDatabase d = new AccountDatabase();
 
         if(!d.accountExists(username)){
-            Guest guest = new Guest(username,password,new UniqueID().getId(),firstName,lastName,0);
+            Guest guest = new Guest(username,password,new UniqueID().getId(),firstName,lastName,0, email);
             d.addUser(guest);
         }
 

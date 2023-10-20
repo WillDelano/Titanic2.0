@@ -1,6 +1,9 @@
 package edu.core.cruise;
 
-import java.util.Date;
+import edu.core.reservation.Reservation;
+
+import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * Describes the country that a cruise will travel to
@@ -15,8 +18,8 @@ import java.util.Date;
  */
 public class Country {
     private String name;
-    private Date arrivalTime;
-    private Date departureTime;
+    private LocalDate arrivalTime;
+    private LocalDate departureTime;
 
     /**
      * This function creates a Cruise object with given values
@@ -25,7 +28,7 @@ public class Country {
      * @param arrivalTime The date the cruise will arrive
      * @param departureTime The date the cruise will depart
      */
-    public Country(String name, Date arrivalTime, Date departureTime) {
+    public Country(String name, LocalDate arrivalTime, LocalDate departureTime) {
         this.name = name;
         this.arrivalTime = arrivalTime;
         this.departureTime = departureTime;
@@ -43,12 +46,32 @@ public class Country {
      *
      * @return The date the cruise arrives to the country
      */
-    public Date getArrivalTime() { return arrivalTime; }
+    public LocalDate getArrivalTime() { return arrivalTime; }
 
     /**
      * This function returns the date a cruise will depart
      *
      * @return The date the cruise departs from the country
      */
-    public Date getDepartureTime() { return departureTime; }
+    public LocalDate getDepartureTime() { return departureTime; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Country that = (Country) o;
+
+        return (Objects.equals(name, that.name) &&
+                Objects.equals(arrivalTime, that.arrivalTime)) &&
+                Objects.equals(departureTime, that.departureTime);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 31; // A prime number as the initial value
+        result = 31 * result + Objects.hashCode(name);
+        result = 31 * result + Objects.hashCode(arrivalTime);
+        result = 31 * result + Objects.hashCode(departureTime);
+        return result;
+    }
 }
