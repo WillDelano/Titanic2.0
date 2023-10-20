@@ -66,6 +66,11 @@ public class Guest extends User {
      * @return Returns reservation for testing purposes
      */
     public Reservation makeReservation(Room room, LocalDate startDate, LocalDate endDate, Country startCountry, Country endCountry) {
+        // if end date is before or equal to start date, throw error message
+        if (endDate.isBefore(startDate) || startDate.equals(endDate)) {
+            throw new RuntimeException("Invalid Date Range. Please make sure start date is before end date.");
+        }
+
         Reservation reservation = new Reservation(this, room, startDate, endDate, startCountry, endCountry);
 
         //if user already exists in reservation database (i.e. they have an outstanding reservation)
