@@ -37,7 +37,7 @@ public class CruiseDetailsPage {
         JScrollPane textScrollPane = new JScrollPane(detailsTextArea);
         detailsFrame.add(textScrollPane, BorderLayout.CENTER);
 
-        selectRoomButton = new JButton("Select Room");
+        selectRoomButton = new JButton("Browse Rooms");
         selectRoomButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //TODO Add room selection functionality
