@@ -18,7 +18,7 @@ import java.util.Objects;
 public class Room {
     private int numberOfBeds;
 
-    private int bedType;
+    private String bedType;
 
     private boolean smokingAvailable;
 
@@ -37,17 +37,19 @@ public class Room {
      * default constructor of the Room
      *
      */
-    public Room(){
-        numberOfBeds = 0;
-        bedType = 0;
-        id = new UniqueID().getId();
+    public Room(int roomNumber, int numberOfBeds, String bedType, boolean smokingAvailable, double roomPrice) {
+        this.roomNumber = roomNumber;
+        this.numberOfBeds = numberOfBeds;
+        this.bedType = bedType;
+        this.smokingAvailable = smokingAvailable;
+        this.roomPrice = roomPrice;
     }
     /**
      * sets the Room number/id
      *
      * @param roomNumber
      */
-    public void setRoomNumber(Integer roomNumber) {
+    public void setRoomNumber(int roomNumber) {
         this.roomNumber = roomNumber;
     }
     /**
@@ -56,7 +58,7 @@ public class Room {
      * @param numberOfBeds
      */
 
-    public void setNumberOfBeds(Integer numberOfBeds) {
+    public void setNumberOfBeds(int numberOfBeds) {
         this.numberOfBeds = numberOfBeds;
     }
     /**
@@ -64,7 +66,7 @@ public class Room {
      *
      * @param bedType
      */
-    public void setBedType(Integer bedType) {
+    public void setBedType(String bedType) {
         this.bedType = bedType;
     }
     /**
@@ -72,7 +74,7 @@ public class Room {
      *
      * @param smokingAvailable
      */
-    public void setSmokingAvailable(Boolean smokingAvailable) {
+    public void setSmokingAvailable(boolean smokingAvailable) {
         this.smokingAvailable = smokingAvailable;
     }
     /**
@@ -110,7 +112,7 @@ public class Room {
      *
      *  @return returns the roomNumber
      */
-    public Integer getRoomNumber() {
+    public int getRoomNumber() {
         return roomNumber;
     }
     /**
@@ -118,7 +120,7 @@ public class Room {
      *
      *  @return the numberOfBeds
      */
-    public Integer getNumberOfBeds() {
+    public int getNumberOfBeds() {
         return numberOfBeds;
     }
     /**
@@ -126,7 +128,7 @@ public class Room {
      *
      * @return the current bedType
      */
-    public Integer getBedType() {
+    public String getBedType() {
         return bedType;
     }
     /**
@@ -134,7 +136,7 @@ public class Room {
      *
      * @return true of false
      */
-    public Boolean getSmokingAvailable() {
+    public boolean getSmokingAvailable() {
         return smokingAvailable;
     }
     /**
@@ -142,7 +144,7 @@ public class Room {
      *
      * @return the roomPrice
      */
-    public Double getRoomPrice() {
+    public double getRoomPrice() {
         return roomPrice;
     }
     /**
