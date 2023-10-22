@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9bc2edc-c1b2-471e-aa5e-e015b79a5583" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/room.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/edu/RoomCSVReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/reservation/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/reservation/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/edu/ReserveRoomTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/ReserveRoomTester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/edu/RoomCSVReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/RoomCSVReader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +47,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.ReserveRoomTester">
+  <component name="RunManager" selected="Application.RoomCSVReader">
     <configuration name="LandingPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="edu.ui.landingPage.LandingPage" />
       <module name="Titanic-Project" />
@@ -94,8 +91,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ReserveRoomTester" />
         <item itemvalue="Application.RoomCSVReader" />
+        <item itemvalue="JUnit.ReserveRoomTester" />
         <item itemvalue="Application.LandingPage" />
       </list>
     </recent_temporary>

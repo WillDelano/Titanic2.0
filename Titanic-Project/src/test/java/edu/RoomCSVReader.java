@@ -1,9 +1,8 @@
 package edu;
 
 import edu.core.reservation.Room;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+
+import java.io.*;
 import java.util.*;
 
 public class RoomCSVReader {
@@ -42,6 +41,9 @@ public class RoomCSVReader {
         reserveRoom(roomList, 101);
         reserveRoom(roomList, 102);
         reserveRoom(roomList, 105);
+
+        // after reservations, write the reserved rooms into csv file
+        writeReservedRoomsToCSV(roomList, csvFilePath);
     }
 
 
@@ -58,5 +60,28 @@ public class RoomCSVReader {
             }
         }
         System.out.println("Room " + roomNumber + " not found.");
+    }
+
+
+    private static void writeReservedRoomsToCSV(List<Room> roomList, String csvFilePath) {
+        try {
+            String outputFilePath = "C:\\Users\\vince\\Java Projects\\Titanic2.0\\Titanic-Project\\reserved_rooms.csv";
+            BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath));
+            // Write the header
+            writer.write("RoomNumber,NumberOfBeds,BedType,SmokingAvailable,RoomPrice,IsBooked");
+            writer.newLine();
+
+            for (Room room : roomList) {
+                if (room.isBooked()) {
+                    writer.write(room.getRoomNumber() + "," + room.getNumberOfBeds() + "," +
+                            room.getBedType() + "," + room.getSmokingAvailable() + "," +
+                            room.getRoomPrice() + "," + room.isBooked());
+                    writer.newLine();
+                }
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
