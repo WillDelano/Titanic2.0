@@ -1,7 +1,5 @@
 package edu.core.reservation;
 
-import edu.core.uniqueID.UniqueID;
-
 import java.util.Objects;
 
 /**
@@ -84,8 +82,8 @@ public class Room {
      *
      *
      */
-    public void setRoomPrice() {
-        //TO DO
+    public void setRoomPrice(double roomPrice) {
+        this.roomPrice = roomPrice;
 
     }
 

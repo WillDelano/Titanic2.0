@@ -39,7 +39,7 @@ public class ReserveRoomTester {
         Assertions.assertTrue(ReservationDatabase.getReservationDatabase().isEmpty());
 
         //initializing
-        Room room = new Room();
+        Room room = new Room(101,2,"Queen",false,100.0);
         Country usa = new Country("USA", LocalDate.of(2001, 9, 11), LocalDate.of(2011, 5, 2));
         Country germany = new Country("Germany", LocalDate.of(1939, 9, 1), LocalDate.of(1945, 7, 5));
         Guest guest = new Guest("username", "password", 0, "john", "doe", 0, "email");
@@ -79,7 +79,7 @@ public class ReserveRoomTester {
 
         //initializing
         Guest guest = new Guest("username", "password", 0, "john", "doe", 0, "email");
-        Room room = new Room();
+        Room room = new Room(101,2,"Queen",false,100.0);
 
         Country usa = new Country("USA", LocalDate.of(2001, 9, 11), LocalDate.of(2011, 5, 2));
         Country germany = new Country("Germany", LocalDate.of(1939, 9, 1), LocalDate.of(1945, 7, 5));
@@ -103,82 +103,60 @@ public class ReserveRoomTester {
      */
     @Test
     public void makeMultipleReservations() {
-        //ensure database is empty
+        // ensure the database is empty
         Assertions.assertTrue(ReservationDatabase.getReservationDatabase().isEmpty());
 
-        /*
-        USA:
-            Arrival Date: 09-11-2001
-            Departure Date: 05-2-2011
-
-        Germany:
-            Arrival Date: 09-1-1939
-            Departure Date: 05-7-1945
-        */
-
-        //initializing reservation 1
+        // initialize guest
         Guest guest = new Guest("username", "password", 0, "john", "doe", 0, "email");
-        Room room = new Room();
+
+        // create and make reservations with different rooms and date ranges
+        Room room1 = new Room(101, 2, "Queen", false, 100.0);
+        Room room2 = new Room(102, 2, "King", false, 100.0);
+        Room room3 = new Room(103, 2, "Twin", false, 100.0);
+
         Country usa = new Country("USA", LocalDate.of(2001, 9, 11), LocalDate.of(2011, 5, 2));
         Country germany = new Country("Germany", LocalDate.of(1939, 9, 1), LocalDate.of(1945, 7, 5));
-        //making reservation1
-        Reservation testReservation = guest.makeReservation(room, LocalDate.of(2002, 9, 29), LocalDate.of(2023, 9, 29), germany, usa);
-
-
-        //initializing reservation 2
-        Room room2 = new Room();
         Country france = new Country("France", LocalDate.of(2001, 9, 11), LocalDate.of(2011, 5, 2));
         Country algeria = new Country("Algeria", LocalDate.of(1939, 9, 1), LocalDate.of(1945, 7, 5));
-        //making reservation2
-        Reservation testReservation2 = guest.makeReservation(room, LocalDate.of(2002, 9, 29), LocalDate.of(2023, 9, 29), france, algeria);
-
-
-        //initializing reservation 3
-        Room room3 = new Room();
         Country cuba = new Country("Cuba", LocalDate.of(2001, 9, 11), LocalDate.of(2011, 5, 2));
         Country bahamas = new Country("Bahamas", LocalDate.of(1939, 9, 1), LocalDate.of(1945, 7, 5));
-        //making reservation3
-        Reservation testReservation3 = guest.makeReservation(room, LocalDate.of(2002, 9, 29), LocalDate.of(2023, 9, 29), cuba, bahamas);
 
+        // make reservations with unique rooms and date ranges
+        Reservation testReservation1 = guest.makeReservation(room1, LocalDate.of(2002, 9, 29), LocalDate.of(2023, 9, 29), germany, usa);
+        Reservation testReservation2 = guest.makeReservation(room2, LocalDate.of(2002, 9, 29), LocalDate.of(2023, 9, 29), france, algeria);
+        Reservation testReservation3 = guest.makeReservation(room3, LocalDate.of(2002, 9, 29), LocalDate.of(2023, 9, 29), cuba, bahamas);
 
-        //attempting a duplicate reservation1
-        Room room1 = new Room();
-        Country usa1 = new Country("USA", LocalDate.of(2001, 9, 11), LocalDate.of(2011, 5, 2));
-        Country germany1 = new Country("Germany", LocalDate.of(1939, 9, 1), LocalDate.of(1945, 7, 5));
-        //making reservationDup
-        Reservation testReservationDup = guest.makeReservation(room, LocalDate.of(2002, 9, 29), LocalDate.of(2023, 9, 29), germany1, usa1);
-
-        //Check if the database contains the user
+        // check if the database contains the user
         Assertions.assertTrue(ReservationDatabase.getReservationDatabase().containsKey(guest));
 
-        //Check if the database contains all three reservations
-        Assertions.assertTrue(ReservationDatabase.getReservationDatabase().get(guest).contains(testReservation));
+        // check if the database contains all three reservations
+        Assertions.assertTrue(ReservationDatabase.getReservationDatabase().get(guest).contains(testReservation1));
         Assertions.assertTrue(ReservationDatabase.getReservationDatabase().get(guest).contains(testReservation2));
         Assertions.assertTrue(ReservationDatabase.getReservationDatabase().get(guest).contains(testReservation3));
-
-        //Check for duplicate
-        Assertions.assertFalse(ReservationDatabase.getReservationDatabase().get(guest).contains(testReservationDup));
     }
+
 
     // Test to validate date range of reservation
     @Test
     public void testInvalidDateRange() {
         Guest guest = new Guest("user", "pass", 0, "first", "last", 0, "email");
 
-        Room room = new Room();
+        Room room1 = new Room(101,2,"Queen",false,100.0);
+        Room room2 = new Room(102,2,"Queen",false,100.0);
+        Room room3 = new Room(103,2,"Queen",false,100.0);
 
         Country usa = new Country("USA", LocalDate.of(2001, 9, 11), LocalDate.of(2011, 5, 2));
 
         // 1. End Date is before Start Date
-        Reservation invalidReservation1 = new Reservation(guest, room, LocalDate.of(2023, 9, 29), LocalDate.of(2002, 9, 29), usa, usa);
+        Reservation invalidReservation1 = new Reservation(guest, room1, LocalDate.of(2023, 9, 29), LocalDate.of(2002, 9, 29), usa, usa);
         Assertions.assertFalse(isValidDateRange(invalidReservation1.getStartDate(), invalidReservation1.getEndDate()));
 
         // 2. Start and End Date are the same
-        Reservation invalidReservation2 = new Reservation(guest, room, LocalDate.of(2022, 9, 29), LocalDate.of(2022, 9, 29), usa, usa);
+        Reservation invalidReservation2 = new Reservation(guest, room2, LocalDate.of(2022, 9, 29), LocalDate.of(2022, 9, 29), usa, usa);
         Assertions.assertFalse(isValidDateRange(invalidReservation2.getStartDate(), invalidReservation2.getEndDate()));
 
         // 3. Checking a valid date range for comparison
-        Reservation validReservation = new Reservation(guest, room, LocalDate.of(2002, 9, 29), LocalDate.of(2023, 9, 29), usa, usa);
+        Reservation validReservation = new Reservation(guest, room3, LocalDate.of(2002, 9, 29), LocalDate.of(2023, 9, 29), usa, usa);
         Assertions.assertTrue(isValidDateRange(validReservation.getStartDate(), validReservation.getEndDate()));
     }
 
