@@ -12,14 +12,14 @@ public class RoomCSVReader {
 
         try (BufferedReader reader = new BufferedReader(new FileReader(csvFilePath))) {
             String line;
-            boolean isFirstLine = true; // Flag to skip the first line
+            boolean isFirstLine = true; // flag to skip the first line
             while ((line = reader.readLine()) != null) {
                 if (isFirstLine) {
                     isFirstLine = false;
-                    continue; // Skip the header line
+                    continue; // skip the header line
                 }
 
-                String[] parts = line.split(","); // Assuming CSV uses a comma as the separator
+                String[] parts = line.split(","); // splits the csv by commas
 
                 if (parts.length >= 6) {
                     int roomNumber = Integer.parseInt(parts[0]);
@@ -67,7 +67,7 @@ public class RoomCSVReader {
         try {
             String outputFilePath = "C:\\Users\\vince\\Java Projects\\Titanic2.0\\Titanic-Project\\reserved_rooms.csv";
             BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath));
-            // Write the header
+            // write the header
             writer.write("RoomNumber,NumberOfBeds,BedType,SmokingAvailable,RoomPrice,IsBooked");
             writer.newLine();
 
