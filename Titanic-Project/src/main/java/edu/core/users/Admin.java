@@ -42,10 +42,9 @@ public class Admin extends User {
         AccountDatabase d = new AccountDatabase();
 
         if(!d.accountExists(username)){
-            TravelAgent agent = new TravelAgent(username,password,new UniqueID().getId(),firstName,lastName,0, email);
+            TravelAgent agent = new TravelAgent(username,password,new UniqueID().getId(),firstName,lastName, email);
             d.addUser(agent);
         }
-        //TODO
     }
 
     /**
