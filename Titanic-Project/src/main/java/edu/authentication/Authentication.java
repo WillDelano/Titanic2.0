@@ -1,7 +1,7 @@
 package edu.authentication;
 
 import edu.database.AccountDatabase;
-import edu.core.uniqueID.UniqueID;
+import uniqueID.UniqueID;
 import edu.core.users.Admin;
 import edu.core.users.Guest;
 import edu.core.users.TravelAgent;
