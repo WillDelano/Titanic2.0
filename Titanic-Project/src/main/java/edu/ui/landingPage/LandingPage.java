@@ -2,6 +2,7 @@ package edu.ui.landingPage;
 
 import edu.core.users.Guest;
 import edu.core.users.User;
+import edu.ui.cruiseDetails.SelectCruisePage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -68,6 +69,7 @@ public class LandingPage {
         JPanel middlePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
         JButton browseCruisesButton = new JButton("Browse cruises");
+        browseCruisesButton.addActionListener(e -> navigateToSelectCruisePage());
         JButton myReservationsButton = new JButton("My Reservations");
         JButton supportButton = new JButton("Support");
 
@@ -117,5 +119,13 @@ public class LandingPage {
         } catch (MalformedURLException e) {
             return null;
         }
+    }
+    private void navigateToSelectCruisePage() {
+        mainFrame.setVisible(false);   // hide the current landing page
+        new SelectCruisePage(this);       // navigate to SelectCruisePage
+    }
+
+    public void show() {
+        mainFrame.setVisible(true);
     }
 }

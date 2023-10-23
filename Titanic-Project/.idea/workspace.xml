@@ -4,6 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+    <list default="true" id="a9bc2edc-c1b2-471e-aa5e-e015b79a5583" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/AccountDatabase.java" afterDir="false" />
+    </list>
     <list default="true" id="a9bc2edc-c1b2-471e-aa5e-e015b79a5583" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,22 +34,75 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/vince/Downloads/8-XML-starter",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/vince/Downloads/8-XML-starter&quot;,
+=======
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+    &quot;git-widget-placeholder&quot;: &quot;database&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Michael O/IdeaProjects/Lab3&quot;,
+=======
+    &quot;git-widget-placeholder&quot;: &quot;cruiseSelectionPage&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/vince/Java Projects/Titanic2.0/Titanic-Project&quot;,
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 8fc1096f9027b4cd2468cf0678d9e874f9c8ed2e
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; bd38f51a2abdbd0603c1e1ee5d698eda8653d900
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager" selected="Application.LandingPage">
+    <configuration name="LandingPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.ui.landingPage.LandingPage" />
+      <module name="Titanic-Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.ui.landingPage.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReserveRoomTester" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Titanic-Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="edu" />
+      <option name="MAIN_CLASS_NAME" value="edu.ReserveRoomTester" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.LandingPage" />
+        <item itemvalue="JUnit.ReserveRoomTester" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -60,6 +119,18 @@
       <workItem from="1697671227994" duration="723000" />
       <workItem from="1697678288308" duration="1258000" />
       <workItem from="1697848865529" duration="60000" />
+      <workItem from="1697768412116" duration="130000" />
+      <workItem from="1697768556704" duration="241000" />
+      <workItem from="1697768819830" duration="12000" />
+      <workItem from="1697768865439" duration="98000" />
+      <workItem from="1697768970970" duration="152000" />
+      <workItem from="1697769132759" duration="1325000" />
+      <workItem from="1697782394278" duration="21000" />
+      <workItem from="1697782430148" duration="47000" />
+      <workItem from="1697782534520" duration="263000" />
+      <workItem from="1697782820799" duration="21000" />
+      <workItem from="1697782921326" duration="2661000" />
+      <workItem from="1697767210144" duration="1305000" />
     </task>
     <servers />
   </component>
