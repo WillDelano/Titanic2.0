@@ -63,7 +63,7 @@ public class SelectCruisePage {
         if (selectedCruise != null) {
             int dialogResult = JOptionPane.showConfirmDialog(cruiseFrame, "View details for " + selectedCruise + "?", "Confirmation", JOptionPane.OK_CANCEL_OPTION);
             if (dialogResult == JOptionPane.OK_OPTION) {
-                // If "OK" is clicked, open the CruiseDetailsPage
+                // if "OK" is clicked, open the CruiseDetailsPage
                 new CruiseDetailsPage(selectedCruise);
             }
         } else {

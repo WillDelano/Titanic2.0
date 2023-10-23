@@ -145,6 +145,22 @@ public class Room {
     public double getRoomPrice() {
         return roomPrice;
     }
+
+    /**
+     * prints out the room details
+     *
+     * @return String: The converted String to display room details
+     */
+    @Override
+    public String toString() {
+        return "Room Number: " + roomNumber + "\n" +
+                ", Number of Beds: " + numberOfBeds + "\n" +
+                ", Bed Type: " + bedType + "\n" +
+                ", Smoking Availability: " + smokingAvailable + "\n" +
+                ", Room Price: $" + roomPrice + "\n" +
+                ", Is Booked: " + isBooked;
+    }
+
     /**
      * overrtides the equals operation to aid in comparing Rooms with eachother
      *

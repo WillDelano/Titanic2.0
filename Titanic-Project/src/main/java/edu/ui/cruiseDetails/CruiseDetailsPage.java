@@ -1,5 +1,8 @@
 package edu.ui.cruiseDetails;
 
+import edu.core.cruise.Cruise;
+import edu.ui.roomDetails.BrowseRoomPage;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -40,7 +43,8 @@ public class CruiseDetailsPage {
         selectRoomButton = new JButton("Browse Rooms");
         selectRoomButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //TODO Add room selection functionality
+                // pass the selected cruise name to the BrowseRoomPage
+                new BrowseRoomPage(cruiseName);
             }
         });
 
