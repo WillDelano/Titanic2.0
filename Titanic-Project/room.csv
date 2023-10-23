@@ -1,0 +1,4 @@
+roomNumber,numberOfBeds,bedType,smokingAvailable,roomPrice,isBooked
+101,2,Queen,false,100.0,false
+102,1,Single,true,80.0,true
+103,3,Double,false,150.0,false
