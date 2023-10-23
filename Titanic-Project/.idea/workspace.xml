@@ -6,11 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a9bc2edc-c1b2-471e-aa5e-e015b79a5583" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/AccountDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/users/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/users/Admin.java" afterDir="false" />
     </list>
-    <list default="true" id="a9bc2edc-c1b2-471e-aa5e-e015b79a5583" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,10 +36,8 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;database&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Michael O/IdeaProjects/Lab3&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;cruiseSelectionPage&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/vince/Java Projects/Titanic2.0/Titanic-Project&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;authentication&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/gabec/SoftwareEngineeringI/Titanic2.0/Titanic-Project&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -52,7 +47,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.LandingPage">
+  <component name="RunManager">
     <configuration name="LandingPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="edu.ui.landingPage.LandingPage" />
       <module name="Titanic-Project" />
@@ -66,31 +61,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReserveRoomTester" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Titanic-Project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="edu" />
-      <option name="MAIN_CLASS_NAME" value="edu.ReserveRoomTester" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.LandingPage" />
-        <item itemvalue="JUnit.ReserveRoomTester" />
       </list>
     </recent_temporary>
   </component>
@@ -107,35 +80,14 @@
       <workItem from="1697475650895" duration="6931000" />
       <workItem from="1697589710670" duration="2274000" />
       <workItem from="1697678288308" duration="1258000" />
-      <workItem from="1697768412116" duration="130000" />
-      <workItem from="1697768556704" duration="241000" />
-      <workItem from="1697768819830" duration="12000" />
-      <workItem from="1697768865439" duration="98000" />
-      <workItem from="1697768970970" duration="152000" />
-      <workItem from="1697769132759" duration="1325000" />
-      <workItem from="1697782394278" duration="21000" />
-      <workItem from="1697782430148" duration="47000" />
-      <workItem from="1697782534520" duration="263000" />
-      <workItem from="1697782820799" duration="21000" />
-      <workItem from="1697782921326" duration="2661000" />
-      =======
-      <workItem from="1697767210144" duration="1305000" />
-      &gt;&gt;&gt;&gt;&gt;&gt;&gt; 8fc1096f9027b4cd2468cf0678d9e874f9c8ed2e
+      <workItem from="1697681717289" duration="2053000" />
+      <workItem from="1698019279207" duration="568000" />
+      <workItem from="1698019935757" duration="1752000" />
+      <workItem from="1698028885408" duration="2785000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
 </project>
