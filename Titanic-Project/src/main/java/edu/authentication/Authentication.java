@@ -17,7 +17,7 @@ import java.lang.*;
  * </p>
  *
  * @author Gabriel Choi
- * @version 1.0
+ * @version 1.1
  */
 public class Authentication {
 
@@ -29,7 +29,7 @@ public class Authentication {
      * @param password   The password of the user.
      * @param firstName  The first name of the user.
      * @param lastName   The last name of the user.
-     * @return if the account has successfully been created
+     *
      */
     public void createAccount(String username, String password, String firstName, String lastName, String email){
 
@@ -61,6 +61,4 @@ public class Authentication {
         }
         return validLogin;
     }
-
-
 }

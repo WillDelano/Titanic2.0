@@ -11,6 +11,12 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/cruiseDetails/CruiseDetailsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/cruiseDetails/CruiseDetailsPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/cruiseDetails/SelectCruisePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/cruiseDetails/SelectCruisePage.java" afterDir="false" />
     </list>
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/AccountDatabase.java" afterDir="false" />
+    </list>
+    <list default="true" id="a9bc2edc-c1b2-471e-aa5e-e015b79a5583" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,6 +46,9 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;reserveRoomUpdate&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;database&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Michael O/IdeaProjects/Lab3&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;cruiseSelectionPage&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/vince/Java Projects/Titanic2.0/Titanic-Project&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -47,6 +56,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.Java&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -92,6 +102,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.LandingPage" />
@@ -115,6 +131,19 @@
       <workItem from="1697678288308" duration="1258000" />
       <workItem from="1697767210144" duration="2989000" />
       <workItem from="1698018537956" duration="1428000" />
+      <workItem from="1697768412116" duration="130000" />
+      <workItem from="1697768556704" duration="241000" />
+      <workItem from="1697768819830" duration="12000" />
+      <workItem from="1697768865439" duration="98000" />
+      <workItem from="1697768970970" duration="152000" />
+      <workItem from="1697769132759" duration="1325000" />
+      <workItem from="1697782394278" duration="21000" />
+      <workItem from="1697782430148" duration="47000" />
+      <workItem from="1697782534520" duration="263000" />
+      <workItem from="1697782820799" duration="21000" />
+      <workItem from="1697782921326" duration="2661000" />
+      <workItem from="1697767210144" duration="1305000" />
+      &gt;&gt;&gt;&gt;&gt;&gt;&gt; 8fc1096f9027b4cd2468cf0678d9e874f9c8ed2e
     </task>
     <servers />
   </component>

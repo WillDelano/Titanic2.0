@@ -1,32 +1,30 @@
-package edu.core.uniqueID;
+package uniqueID;
 
-import edu.core.reservation.Room;
+import com.core.users.User;
 
 /**
- * Creates a unique id
+ * Creates a unqiue id
  *
- * <p>
- * Used by any class needing an id
- * </p>
+ * This class provides a unique id for any instance
  *
  * @author William Delano
  * @version 1.0
- * @see Room
+ * @see User
  */
 public class UniqueID {
     private static int uniqueNumber = 0;
     private int id;
 
     /**
-     * Sets a unique number id
+     * Constructor for creating a new Guest.
      *
      */
     public UniqueID() {
-        id = uniqueNumber++;
+        id = uniqueNumber;
     }
 
     /**
-     * Gets a unique id
+     * Constructor for creating a new Guest.
      *
      * @return The unique id
      */
