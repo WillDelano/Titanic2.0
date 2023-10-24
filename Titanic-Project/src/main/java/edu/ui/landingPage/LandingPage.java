@@ -1,5 +1,6 @@
 package edu.ui.landingPage;
 
+import edu.core.users.CurrentGuest;
 import edu.core.users.Guest;
 import edu.core.users.User;
 import edu.ui.cruiseDetails.SelectCruisePage;
@@ -31,12 +32,13 @@ public class LandingPage {
         prepareGUI();
     }
 
+
     /**
      * Calls the function to display the landing page and passes the logged-in user's account
      *
      */
     public static void main(String[] args) {
-        User account;
+        Guest account;
 
         /*
         Something like:
@@ -48,6 +50,7 @@ public class LandingPage {
          */
 
         account = new Guest("username", "password", 0, "John", "Doe", 0, "john_doe1@baylor.edu");
+        CurrentGuest.setCurrentGuest(account);
 
         LandingPage landingPage = new LandingPage();
         landingPage.showLandingPage(account);

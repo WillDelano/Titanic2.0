@@ -1,7 +1,8 @@
 package edu.ui.roomDetails;
 
+import edu.core.reservation.Reservation;
 import edu.core.reservation.Room;
-import edu.core.cruise.Cruise;
+import edu.core.users.CurrentGuest;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,6 +22,7 @@ public class BrowseRoomPage {
     }
 
     private void prepareGUI(String selectedCruise) {
+        BrowseRoomController controller = new BrowseRoomController();
         roomFrame = new JFrame("Rooms for Cruise: " + selectedCruise);
         roomFrame.setSize(1000, 700);
         roomFrame.setLayout(new BorderLayout());
@@ -54,6 +56,11 @@ public class BrowseRoomPage {
                 if (dialogResult == JOptionPane.OK_OPTION) {
                     // Perform room reservation logic here
                     JOptionPane.showMessageDialog(roomFrame, "Room " + selectedRoom.getRoomNumber() + " reserved.");
+                    controller.reserveRoom(CurrentGuest.getCurrentGuest(), selectedRoom);
+
+                    for (Reservation q : CurrentGuest.getCurrentGuest().getReservations()) {
+                        System.out.println(q.getRoom().getRoomNumber());
+                    }
                 }
             } else {
                 JOptionPane.showMessageDialog(roomFrame, "Please select a room first.");

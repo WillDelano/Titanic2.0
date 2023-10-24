@@ -17,7 +17,6 @@ import java.lang.*;
  * @version 1.1
  */
 public class AccountDatabase {
-
     private static Set<User> accountDatabase;
 
 
