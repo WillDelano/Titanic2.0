@@ -1,7 +1,8 @@
 package edu.core.cruise;
 
 import edu.core.reservation.Room;
-import edu.core.uniqueID.UniqueID;
+import uniqueID.UniqueID;
+
 
 import java.time.LocalDate;
 import java.util.List;

@@ -1,5 +1,9 @@
 package edu.core.users;
 
+import edu.authentication.Authentication;
+import edu.database.AccountDatabase;
+import uniqueID.UniqueID;
+
 /**
  * Representation of an admin user in the cruise reservation system.
  *
@@ -23,6 +27,34 @@ public class Admin extends User {
      */
     public Admin(String username, String password, int id, String firstName, String lastName, String email) {
         super(username, password, id, firstName, lastName, email);
+    }
+
+    /**
+     * Admin creates an account for a travel agent
+     *
+     * @param username   The username of the travel agent.
+     * @param password   The password of the travel agent.
+     * @param firstName  The first name of the travel agent.
+     * @param lastName   The last name of the travel agent.
+     * @param email      The email of the travel agent.
+     */
+    public void createTravelAgent(String username, String password, String firstName, String lastName, String email){
+        AccountDatabase d = new AccountDatabase();
+
+        if(!d.accountExists(username)){
+            TravelAgent agent = new TravelAgent(username,password,new UniqueID().getId(),firstName,lastName, email);
+            d.addUser(agent);
+        }
+    }
+
+    /**
+     * Admin changes the password for a travel agent
+     *
+     * @param agent   TThe travel agent.
+     * @param newPassword   The new password of the travel agent.
+     */
+    public void resetTravelAgentPassword(TravelAgent agent, String newPassword){
+        agent.setPassword(newPassword);
     }
 
 }

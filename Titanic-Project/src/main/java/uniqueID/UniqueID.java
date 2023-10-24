@@ -1,6 +1,6 @@
 package uniqueID;
 
-import com.core.users.User;
+import edu.core.users.User;
 
 /**
  * Creates a unqiue id
