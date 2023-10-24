@@ -36,8 +36,13 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+<<<<<<< HEAD
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/vince/Java Projects/Titanic2.0/Titanic-Project",
+=======
     "git-widget-placeholder": "authentication",
     "last_opened_file_path": "C:/Users/vince/Downloads/8-XML-starter",
+>>>>>>> e478f1d409e0fd5969e0dc26ae6f89b6bdc20be6
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
