@@ -4,9 +4,7 @@ import edu.core.cruise.Cruise;
 import edu.core.cruise.Country;
 import edu.core.reservation.Room;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +12,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class CruiseDatabase {
-    public static String filepath = "C:\\Users\\vince\\Java Projects\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\repositories\\cruises.csv";
+    public static String filepath = "/cruises.csv";
 
     public static Cruise getCruise(String searchName) {
         List<Country> travelPath = new ArrayList<>();
@@ -23,7 +21,8 @@ public class CruiseDatabase {
         int maxCapacity = 0;
 
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(filepath));
+            InputStream is = CruiseDatabase.class.getResourceAsStream(filepath);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             String line;
 
             while ((line = reader.readLine()) != null) {
@@ -54,7 +53,8 @@ public class CruiseDatabase {
         List<String> cruiseNames = new ArrayList<>();
 
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(filepath));
+            InputStream is = ReservationDatabase.class.getResourceAsStream(filepath);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             String line;
 
             while ((line = reader.readLine()) != null) {
