@@ -1,5 +1,6 @@
 package edu.database;
 
+import com.opencsv.CSVWriter;
 import edu.core.cruise.Country;
 import edu.core.reservation.Reservation;
 import edu.core.users.Guest;
@@ -129,7 +130,7 @@ public class ReservationDatabase {
                     + "," + newReservation.getStartDate() + "," + newReservation.getEndDate();
 
             try (CSVWriter writer = new CSVWriter(new FileWriter(fileName, true))) {
-                writer.writeNext(data);
+                writer.writeNext(toWrite.split(","));
             } catch (IOException e) {
                 e.printStackTrace();
             }
