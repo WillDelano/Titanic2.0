@@ -1,14 +1,12 @@
 package edu.core.reservation;
 import edu.core.cruise.Country;
-import uniqueID.UniqueID;
+import edu.uniqueID.UniqueID;
 import edu.core.users.User;
 import edu.database.ReservationDatabase;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 
 
 /**
@@ -133,7 +131,7 @@ public class Reservation {
      */
     private void alterReservationList(Reservation oldReservation){
         //iterate through set of values in map of reservations
-        for(Map.Entry<User, Set<Reservation>> r : ReservationDatabase.getReservationDatabase().entrySet()){
+        /*for(Map.Entry<User, Set<Reservation>> r : ReservationDatabase.getReservationDatabase().entrySet()){
             //find specified user attached to reservation
             if(r.getKey().equals(getUser())){
                 //now iterate through reservations for specified user
@@ -144,7 +142,7 @@ public class Reservation {
                     }
                 }
             }
-        }
+        }*/
     }
 
 

@@ -1,4 +1,4 @@
-package uniqueID;
+package edu.uniqueID;
 
 import edu.core.users.User;
 
@@ -20,7 +20,7 @@ public class UniqueID {
      *
      */
     public UniqueID() {
-        id = uniqueNumber;
+        id = uniqueNumber++;
     }
 
     /**
