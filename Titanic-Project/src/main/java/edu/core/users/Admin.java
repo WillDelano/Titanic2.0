@@ -4,6 +4,8 @@ import edu.authentication.Authentication;
 import edu.database.AccountDatabase;
 import uniqueID.UniqueID;
 
+import java.util.Objects;
+
 /**
  * Representation of an admin user in the cruise reservation system.
  *
@@ -54,6 +56,14 @@ public class Admin extends User {
      * @param newPassword   The new password of the travel agent.
      */
     public void resetTravelAgentPassword(TravelAgent agent, String newPassword){
+        if (agent == null || newPassword == null) {
+            throw new IllegalArgumentException("Agent and password cannot be null.");
+        }
+
+        if (Objects.equals(agent.getPassword(), newPassword)) {
+            throw new IllegalArgumentException("New password cannot be the same as the old password.");
+        }
+
         agent.setPassword(newPassword);
     }
 
