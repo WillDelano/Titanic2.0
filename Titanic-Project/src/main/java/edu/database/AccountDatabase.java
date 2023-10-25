@@ -28,7 +28,7 @@ public class AccountDatabase {
      *
      */
     public AccountDatabase() {
-        accountDatabase = new LinkedHashSet<>();
+        /*accountDatabase = new LinkedHashSet<>();
         //the way the GUEST account will be put in file is String type, ...
         //...String username,String password,int id, String firstName, String lastName,int rewardPoints, String email
 
@@ -71,7 +71,7 @@ public class AccountDatabase {
         }catch(IOException e){
             e.printStackTrace();
         }
-        //parse in everything into
+        //parse in everything into*/
     }
 
     /**

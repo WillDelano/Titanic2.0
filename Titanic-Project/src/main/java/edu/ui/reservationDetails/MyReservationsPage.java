@@ -1,8 +1,12 @@
 package edu.ui.reservationDetails;
 
+import edu.core.users.CurrentGuest;
+import edu.core.reservation.Reservation;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.util.Set;
 
 public class MyReservationsPage {
 
@@ -28,13 +32,22 @@ public class MyReservationsPage {
         contentPanel = new JPanel(new BorderLayout());
         contentPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        // random data just to show up
-        String[][] data = {
-                {"1", "Reservation 1", "Date 1", "Status 1"},
-                {"2", "Reservation 2", "Date 2", "Status 2"},
-                {"3", "Reservation 3", "Date 3", "Status 3"}
+        //display guest's reservations
+        Set<Reservation> reservationSet = CurrentGuest.getCurrentGuest().getReservations();
+        int numReservations = reservationSet.size();
+
+        String[][] data = new String[numReservations][5];
+        int i = 0;
+
+        for (Reservation temp : reservationSet) {
+            data[i][0] = String.valueOf(i + 1);
+            data[i][1] = String.valueOf(temp.getRoom().getRoomNumber());
+            data[i][2] = String.valueOf(temp.getStartDate());
+            data[i][3] = String.valueOf(temp.getEndDate());
+            data[i][4] = String.valueOf(temp.getEndCountry().getName());
+            i++;
         };
-        String[] columnNames = {"ID", "Reservation Name", "Date", "Status"};
+        String[] columnNames = {"Reservation", "Room Number", "Start Date", "End Date", "End Country"};
 
         reservationsTable = new JTable(data, columnNames);
         reservationsTable.setAutoCreateRowSorter(true);

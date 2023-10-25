@@ -20,7 +20,7 @@ public class UniqueID {
      *
      */
     public UniqueID() {
-        id = uniqueNumber;
+        id = uniqueNumber++;
     }
 
     /**

@@ -4,6 +4,7 @@ import edu.core.users.CurrentGuest;
 import edu.core.users.Guest;
 import edu.core.users.User;
 import edu.ui.cruiseDetails.SelectCruisePage;
+import uniqueID.UniqueID;
 
 import javax.swing.*;
 import java.awt.*;
@@ -49,7 +50,7 @@ public class LandingPage {
         And the login would return the user that was logged in to
          */
 
-        account = new Guest("username", "password", 0, "John", "Doe", 0, "john_doe1@baylor.edu");
+        account = new Guest("username", "password", new UniqueID().getId(), "John", "Doe", 0, "john_doe1@baylor.edu");
         CurrentGuest.setCurrentGuest(account);
 
         LandingPage landingPage = new LandingPage();

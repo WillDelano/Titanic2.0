@@ -11,6 +11,7 @@ import java.util.*;
 
 import edu.core.reservation.Room;
 import edu.database.AccountDatabase;
+import edu.database.CountryDatabase;
 import edu.database.ReservationDatabase;
 
 /**
@@ -61,13 +62,13 @@ public class Guest extends User {
     }
 
     /**
-     * Requests a reservation for a specific room.
+     * Makes a reservation for a specific room.
      *
      * @param room Room to be reserved.
      *
      * @return Returns reservation for testing purposes
      */
-    public Reservation makeReservation(Room room, LocalDate startDate, LocalDate endDate, Country startCountry, Country endCountry) {
+    public Reservation makeReservation(Room room, LocalDate startDate, LocalDate endDate, String startCountry, String endCountry) {
         AccountDatabase database = new AccountDatabase();
         ReservationDatabase resDatabase = new ReservationDatabase();
 
@@ -76,48 +77,21 @@ public class Guest extends User {
             throw new RuntimeException("Invalid Date Range. Please make sure start date is before end date.");
         }
 
-        Reservation reservation = new Reservation(this, room, startDate, endDate, startCountry, endCountry);
+        //getting country objects based on the strings given
+        Country startCountryObject = CountryDatabase.getCountry(startCountry);
+        Country endCountryObject = CountryDatabase.getCountry(endCountry);
 
-        //if user already exists in reservation database (i.e. they have an outstanding reservation)
-        if (ReservationDatabase.getReservationDatabase().containsKey(this)) {
+        Reservation reservation = new Reservation(this, room, startDate, endDate, startCountryObject, endCountryObject);
+        System.err.println("ID: " + reservation.getId());
 
-            //assign set to reservation set of a user
-            Set<Reservation> reservationSet = new LinkedHashSet<>();
-            reservationSet = ReservationDatabase.getReservationDatabase().get(this);
-
-            /*
-            I have no idea why I need this to prevent duplicates in the set. I've doubled checked the hashcodes and equals
-            for room, country, and reservation and tested in every possible way. The equals operation finds them to be
-            equal but the set will still add them??? No clue so added this scuffed fix
-             */
-            boolean duplicate = false;
-
-            //if any reservation (q) in the set equals the new reservation, set duplicate to true
-            for (Reservation q : reservationSet) {
-                if (q.equals(reservation)) {
-                    duplicate = true;
-                }
-            }
-
-            //if it is not a duplicate, add it to the set
-            if (!duplicate) {
-                reservationSet.add(reservation);
-            }
-
-            //put set back in database, replacing the outdated key-value pair
-            ReservationDatabase.getReservationDatabase().put(this, reservationSet);
+        //add their reservation to database if it's not a duplicate
+        if (!ReservationDatabase.hasReservation(reservation)) {
+            ReservationDatabase.addReservation(reservation);
         }
-        //user doesn't have an outstanding reservation
         else {
-            //Create the new set of reservations for the user
-            Set<Reservation> reservationSet = new LinkedHashSet<>();
-
-            //add their reservation
-            reservationSet.add(reservation);
-
-            //put reservation in map
-            ReservationDatabase.getReservationDatabase().put(this, reservationSet);
+            System.err.println("Attempting to add duplicate reservation - Cancelled.");
         }
+
         return reservation;
     }
 
@@ -127,12 +101,7 @@ public class Guest extends User {
      * @return Set of reservations associated with a guest.
      */
     public Set<Reservation> getReservations() {
-        if (ReservationDatabase.getReservationDatabase().containsKey(this)) {
-            return ReservationDatabase.getReservationDatabase().get(this);
-        }
-        else {
-            throw new NoSuchElementException("User has no reservation");
-        }
+        return ReservationDatabase.getReservations(this);
     }
 
     /**

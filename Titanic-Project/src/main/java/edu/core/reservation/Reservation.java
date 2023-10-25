@@ -133,7 +133,7 @@ public class Reservation {
      */
     private void alterReservationList(Reservation oldReservation){
         //iterate through set of values in map of reservations
-        for(Map.Entry<User, Set<Reservation>> r : ReservationDatabase.getReservationDatabase().entrySet()){
+        /*for(Map.Entry<User, Set<Reservation>> r : ReservationDatabase.getReservationDatabase().entrySet()){
             //find specified user attached to reservation
             if(r.getKey().equals(getUser())){
                 //now iterate through reservations for specified user
@@ -144,7 +144,7 @@ public class Reservation {
                     }
                 }
             }
-        }
+        }*/
     }
 
 
