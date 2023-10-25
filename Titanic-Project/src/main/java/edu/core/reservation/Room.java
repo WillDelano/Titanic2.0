@@ -42,8 +42,9 @@ public class Room {
         this.smokingAvailable = smokingAvailable;
         this.roomPrice = roomPrice;
     }
+
     /**
-     * sets the Room number/id
+     * sets the Room number
      *
      * @param roomNumber
      */

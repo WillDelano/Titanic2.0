@@ -1,9 +1,5 @@
 package edu.core.users;
 
-import edu.authentication.Authentication;
-import edu.database.AccountDatabase;
-import uniqueID.UniqueID;
-
 import java.util.Objects;
 
 /**

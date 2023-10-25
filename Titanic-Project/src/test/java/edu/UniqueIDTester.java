@@ -1,7 +1,7 @@
 package edu;
 
 import edu.core.reservation.Reservation;
-import edu.core.uniqueID.UniqueID;
+import edu.uniqueID.UniqueID;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 

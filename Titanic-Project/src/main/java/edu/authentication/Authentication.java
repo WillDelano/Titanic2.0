@@ -1,13 +1,9 @@
 package edu.authentication;
 
 import edu.database.AccountDatabase;
-import uniqueID.UniqueID;
-import edu.core.users.Admin;
+import edu.uniqueID.UniqueID;
 import edu.core.users.Guest;
-import edu.core.users.TravelAgent;
 
-import java.io.*;
-import java.util.*;
 import java.lang.*;
 /**
  * Interface for any authentication features
