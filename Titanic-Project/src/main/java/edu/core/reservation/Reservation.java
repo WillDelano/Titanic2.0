@@ -32,6 +32,8 @@ public class Reservation {
 
     private LocalDate endDate;
 
+
+
     public Reservation(User user, Room room, LocalDate startDate, LocalDate endDate, Country startCountry, Country endCountry) {
         // if room is already booked, throw error
         if (room.isBooked()) {
