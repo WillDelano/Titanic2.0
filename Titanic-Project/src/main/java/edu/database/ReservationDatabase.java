@@ -10,6 +10,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -65,7 +66,7 @@ public class ReservationDatabase {
                 String[] split = line.split(",");
 
                 //if the guest id of the reservation matches the guest
-                if (Integer.parseInt(split[0]) == guest.getId()) {
+                if (Integer.parseInt(split[1]) == guest.getId()) {
                     //get room that guest is in with id
                     Room guestRoom = RoomDatabase.getRoom(Integer.parseInt(split[5]));
 
@@ -108,7 +109,7 @@ public class ReservationDatabase {
 
         //if the reservation was not a duplicate
         if(!ReservationDatabase.hasReservation(newReservation)) {
-            try {
+
              /*
              * CSV style
              * split[0] = reservation id
@@ -120,18 +121,15 @@ public class ReservationDatabase {
              * split[6] = start date of reservation
              * split[7] = end date of reservation
              */
-                BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
 
-                //write to csv
-                String toWrite = newReservation.getId() + "," + newReservation.getUser().getId() + "," +
-                         newReservation.getDays() + "," + newReservation.getStartCountry().getName() + ","
-                        + newReservation.getEndCountry().getName() + "," + newReservation.getRoom().getRoomNumber()
-                        + "," + newReservation.getStartDate() + "," + newReservation.getEndDate();
+            //write to csv
+            String toWrite = newReservation.getId() + "," + newReservation.getUser().getId() + "," +
+                     newReservation.getDays() + "," + newReservation.getStartCountry().getName() + ","
+                    + newReservation.getEndCountry().getName() + "," + newReservation.getRoom().getRoomNumber()
+                    + "," + newReservation.getStartDate() + "," + newReservation.getEndDate();
 
-                FileWriter write = new FileWriter(fileName, true);
-                writer.write(toWrite);
-                writer.close();
-
+            try (CSVWriter writer = new CSVWriter(new FileWriter(fileName, true))) {
+                writer.writeNext(data);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -166,10 +164,23 @@ public class ReservationDatabase {
             while((line = reader.readLine()) != null) {
                 String[] split = line.split(",");
 
-                System.err.println("Comparing csv: " + split[0] + " with " + reservation.getId());
+                /*
+                 * CSV style
+                 * split[0] = reservation id
+                 * split[1] = user id
+                 * split[2] = duration of trip in days
+                 * split[3] = starting country
+                 * split[4] = ending country
+                 * split[5] = room number
+                 * split[6] = start date of reservation
+                 * split[7] = end date of reservation
+                 */
 
-                //if the reservation id exists in the database, return true
-                if (Integer.parseInt(split[0]) == reservation.getId()) {
+                //if the room number exists in a reservation already, check if everything's the same
+                if (Integer.parseInt(split[2]) == reservation.getDays() && Objects.equals(split[3], reservation.getStartCountry().getName()) &&
+                        Objects.equals(split[4], reservation.getEndCountry().getName()) && Objects.equals(Integer.parseInt(split[5]), reservation.getRoom().getRoomNumber()) &&
+                        Objects.equals(split[6], reservation.getStartDate().toString()) && Objects.equals(split[7], reservation.getEndDate().toString())) {
+
                     return true;
                 }
             }

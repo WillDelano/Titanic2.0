@@ -82,7 +82,6 @@ public class Guest extends User {
         Country endCountryObject = CountryDatabase.getCountry(endCountry);
 
         Reservation reservation = new Reservation(this, room, startDate, endDate, startCountryObject, endCountryObject);
-        System.err.println("ID: " + reservation.getId());
 
         //add their reservation to database if it's not a duplicate
         if (!ReservationDatabase.hasReservation(reservation)) {
