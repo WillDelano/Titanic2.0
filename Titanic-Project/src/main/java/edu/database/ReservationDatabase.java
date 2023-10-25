@@ -22,7 +22,7 @@ import java.util.Set;
  */
 public class ReservationDatabase {
     private static Map<User, Set<Reservation>> reservationDatabase;
-    private String fileName = "C:\\Users\\Michael O\\IdeaProjects\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\database\\reservationList.txt";
+    private String fileName = "C:\\Users\\Michael O\\IdeaProjects\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\database\\reservationList.csv";
 
 
     /**
