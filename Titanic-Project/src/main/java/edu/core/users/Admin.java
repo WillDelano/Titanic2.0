@@ -40,14 +40,14 @@ public class Admin extends User {
      * @param lastName   The last name of the travel agent.
      * @param email      The email of the travel agent.
      */
-    public void createTravelAgent(String username, String password, String firstName, String lastName, String email){
+    /*public void createTravelAgent(String username, String password, String firstName, String lastName, String email){
         AccountDatabase d = new AccountDatabase();
 
         if(!d.accountExists(username)){
             TravelAgent agent = new TravelAgent(username,password,new UniqueID().getId(),firstName,lastName, email);
             d.addUser(agent);
         }
-    }
+    }*/
 
     /**
      * Admin changes the password for a travel agent
