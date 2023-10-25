@@ -71,6 +71,8 @@ public class LandingPage {
         JButton browseCruisesButton = new JButton("Browse cruises");
         browseCruisesButton.addActionListener(e -> navigateToSelectCruisePage());
         JButton myReservationsButton = new JButton("My Reservations");
+        myReservationsButton.addActionListener(e -> openMyReservationsPage());
+
         JButton supportButton = new JButton("Support");
 
         headerPanel.add(browseCruisesButton);
@@ -124,6 +126,11 @@ public class LandingPage {
         mainFrame.setVisible(false);   // hide the current landing page
         new SelectCruisePage(this);       // navigate to SelectCruisePage
     }
+
+    private void openMyReservationsPage() {
+        new edu.ui.reservationDetails.MyReservationsPage().show();
+    }
+
 
     public void show() {
         mainFrame.setVisible(true);
