@@ -1,4 +1,4 @@
-package uniqueID;
+package edu.uniqueID;
 
 import edu.core.users.User;
 

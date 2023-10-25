@@ -1,14 +1,12 @@
 package edu.core.reservation;
 import edu.core.cruise.Country;
-import uniqueID.UniqueID;
+import edu.uniqueID.UniqueID;
 import edu.core.users.User;
 import edu.database.ReservationDatabase;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 
 
 /**

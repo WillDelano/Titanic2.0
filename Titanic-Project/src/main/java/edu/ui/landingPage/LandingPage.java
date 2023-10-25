@@ -4,7 +4,7 @@ import edu.core.users.CurrentGuest;
 import edu.core.users.Guest;
 import edu.core.users.User;
 import edu.ui.cruiseDetails.SelectCruisePage;
-import uniqueID.UniqueID;
+import edu.uniqueID.UniqueID;
 
 import javax.swing.*;
 import java.awt.*;
