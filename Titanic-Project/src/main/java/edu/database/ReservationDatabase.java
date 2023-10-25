@@ -24,7 +24,7 @@ import java.util.Set;
  */
 public class ReservationDatabase {
     private static Map<User, Set<Reservation>> reservationDatabase;
-    private static String fileName = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\repositories\\reservationList.csv";
+    private static String fileName = "Titanic-Project/src/main/java/edu/repositories/reservationList.csv";
 
 
     /**

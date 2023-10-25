@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class CountryDatabase {
-    private static String fileName = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\repositories\\countries.csv";
+    private static String fileName = "Titanic-Project/src/main/java/edu/repositories/countries.csv";
     public static Country getCountry(String name) {
         //look through database to find country with matching name
         try {

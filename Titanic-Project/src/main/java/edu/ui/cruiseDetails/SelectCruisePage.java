@@ -1,11 +1,14 @@
 package edu.ui.cruiseDetails;
 
+import edu.core.cruise.Cruise;
 import edu.ui.landingPage.LandingPage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.*;
+import java.util.List;
 
 
 public class SelectCruisePage {
@@ -32,8 +35,9 @@ public class SelectCruisePage {
         cruiseFrame.add(titleLabel, BorderLayout.NORTH);
 
         // TODO Replace with actual cruises
-        String[] sampleCruises = {"Caribbean Cruise", "Mediterranean Cruise", "Alaskan Cruise"};
-        cruiseList = new JList<>(sampleCruises);
+        List<String> cruisesFromDatabase = SelectCruiseController.getCruiseNames();
+        String[] cruiseArray = cruisesFromDatabase.toArray(new String[0]);
+        cruiseList = new JList<>(cruiseArray);
         JScrollPane listScrollPane = new JScrollPane(cruiseList);
         cruiseFrame.add(listScrollPane, BorderLayout.CENTER);
 
@@ -59,11 +63,12 @@ public class SelectCruisePage {
     }
 
     private void handleCruiseSelection() {
-        String selectedCruise = cruiseList.getSelectedValue();
-        if (selectedCruise != null) {
-            int dialogResult = JOptionPane.showConfirmDialog(cruiseFrame, "View details for " + selectedCruise + "?", "Confirmation", JOptionPane.OK_CANCEL_OPTION);
+        String selectedCruiseName = cruiseList.getSelectedValue();
+        if (selectedCruiseName != null) {
+            int dialogResult = JOptionPane.showConfirmDialog(cruiseFrame, "View details for " + selectedCruiseName + "?", "Confirmation", JOptionPane.OK_CANCEL_OPTION);
             if (dialogResult == JOptionPane.OK_OPTION) {
-                // if "OK" is clicked, open the CruiseDetailsPage
+
+                Cruise selectedCruise = SelectCruiseController.getCruiseDetails(selectedCruiseName);
                 new CruiseDetailsPage(selectedCruise);
             }
         } else {
