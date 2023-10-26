@@ -58,7 +58,9 @@ public class Authentication {
             validLogin=true;
 
             CurrentGuest.setCurrentGuest((Guest) AccountDatabase.getUser(username));
+            CurrentGuest.getCurrentGuest().setId(AccountDatabase.getUser(username).getId());
 
+            System.err.println("User: " + CurrentGuest.getCurrentGuest().getUsername() + " with id: " + CurrentGuest.getCurrentGuest().getId());
         }
         return validLogin;
     }

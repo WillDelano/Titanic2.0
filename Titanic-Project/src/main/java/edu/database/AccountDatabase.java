@@ -21,7 +21,7 @@ import java.lang.*;
 public class AccountDatabase {
     private static Set<User> accountDatabase;
     //private String fileName = getClass().getClassLoader().getResource("accountList.csv").getFile();
-    private String fileName = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\accountList.csv";
+    private static String fileName = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\accountList.csv";
 
 
     /**
@@ -170,8 +170,29 @@ public class AccountDatabase {
      *
      * @param username A given username to validate
      */
-    public boolean accountExists(String username) {
-        boolean accountFlag=false;
+    public static boolean accountExists(String username) {
+        System.err.println("HERE");
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            String line;
+            line = reader.readLine();
+
+            while(line != null) {
+                String [] split = line.split(",");
+
+                //if the username exists in the file return true
+                if(split[1].equals(username)) {
+                    return true;
+                }
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+        return false;
+
+        /*boolean accountFlag=false;
 
         if(!accountDatabase.isEmpty()){
             for(User u: accountDatabase){
@@ -180,9 +201,7 @@ public class AccountDatabase {
                     break;
                 }
             }
-        }
-
-        return accountFlag;
+        }*/
     }
 
     /**

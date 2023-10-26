@@ -17,7 +17,7 @@ import java.util.Set;
 /**
  * Database to record reservations
  *
- * This class documents a collection of reservations mapped with users
+ * This class documents a collection of reservations and reads/writes to the database file
  *
  * @author William Delano
  * @version 1.0
@@ -55,7 +55,7 @@ public class ReservationDatabase {
             /*
             * CSV style
             * split[0] = reservation id
-            * split[1] = user id
+            * split[1] = user username
             * split[2] = duration of trip in days
             * split[3] = starting country
             * split[4] = ending country
@@ -70,8 +70,8 @@ public class ReservationDatabase {
                 String[] split = line.split(",");
                 System.err.println("Room ID: " + split[5]);
 
-                //if the guest id of the reservation matches the guest
-                if (Integer.parseInt(split[1]) == guest.getId()) {
+                //if the guest username of the reservation matches the guest
+                if (Objects.equals(split[1], guest.getUsername())) {
                     //get room that guest is in with id
                     Room guestRoom = RoomDatabase.getRoom(Integer.parseInt(split[5]));
 
@@ -120,7 +120,7 @@ public class ReservationDatabase {
              /*
              * CSV style
              * split[0] = reservation id
-             * split[1] = user id
+             * split[1] = user username
              * split[2] = duration of trip in days
              * split[3] = starting country
              * split[4] = ending country
@@ -130,7 +130,8 @@ public class ReservationDatabase {
              */
 
             //write to csv
-            String toWrite = newReservation.getId() + "," + newReservation.getUser().getId() + "," +
+            System.err.println("ID: " + newReservation.getUser().getId());
+            String toWrite = newReservation.getId() + "," + newReservation.getUser().getUsername() + "," +
                      newReservation.getDays() + "," + newReservation.getStartCountry().getName() + ","
                     + newReservation.getEndCountry().getName() + "," + newReservation.getRoom().getRoomNumber()
                     + "," + newReservation.getStartDate() + "," + newReservation.getEndDate() + "\n";
@@ -156,8 +157,7 @@ public class ReservationDatabase {
 
     public static boolean hasUser(User user) {
         try {
-            InputStream is = ReservationDatabase.class.getResourceAsStream(fileName);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line;
 
             while((line = reader.readLine()) != null) {
@@ -167,6 +167,29 @@ public class ReservationDatabase {
                 if (Integer.parseInt(split[1]) == user.getId()) {
                     return true;
                 }
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static boolean hasRoom(int roomNumber) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            String line;
+
+            line = reader.readLine();
+            while(line != null) {
+                String[] split = line.split(",");
+
+                //if the user exists in the database, return true
+                if (Integer.parseInt(split[5]) == roomNumber) {
+                    return true;
+                }
+
+                line = reader.readLine();
             }
             reader.close();
         } catch (IOException e) {

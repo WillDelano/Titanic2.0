@@ -8,8 +8,16 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
 
-public class RoomDatabase {
 
+/**
+ * Database to record all the rooms
+ *
+ * This class documents a collection of rooms and reads/writes to the database file
+ *
+ * @author William Delano
+ * @version 1.0
+ */
+public class RoomDatabase {
     public static Room getRoom(int roomNumber) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\room.csv"));
@@ -31,8 +39,6 @@ public class RoomDatabase {
                 if (Objects.equals(roomNumber, Integer.parseInt(split[0]))) {
 
                     Room room = new Room(roomNumber, Integer.parseInt(split[3]), split[2], Boolean.parseBoolean(split[4]), Double.parseDouble(split[1]), split[6]);
-
-                    System.err.println(split[4]);
 
                     return room;
                 }
@@ -72,7 +78,9 @@ public class RoomDatabase {
                 if (Objects.equals(split[6], cruise)) {
                     Room room = new Room(Integer.parseInt(split[0]), Integer.parseInt(split[3]), split[2], Boolean.parseBoolean(split[4]), Double.parseDouble(split[1]), split[6]);
 
-                    rooms.add(room);
+                    if (!ReservationDatabase.hasRoom(room.getRoomNumber())) {
+                        rooms.add(room);
+                    }
                 }
                 line = reader.readLine();
             }

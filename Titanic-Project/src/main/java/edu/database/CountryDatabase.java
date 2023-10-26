@@ -8,6 +8,14 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
+/**
+ * Database to record all the countries
+ *
+ * This class documents a collection of countries and reads/writes to the database file
+ *
+ * @author William Delano
+ * @version 1.0
+ */
 public class CountryDatabase {
     private static String fileName = "/countries.csv";
     public static Country getCountry(String name) {

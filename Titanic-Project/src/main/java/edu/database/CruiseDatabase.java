@@ -11,6 +11,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Database to record all the cruises
+ *
+ * This class documents a collection of cruises and reads/writes to the database file
+ *
+ * @author Vincent Dinh
+ * @version 1.0
+ */
 public class CruiseDatabase {
     public static String filepath = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\cruises.csv";
 

@@ -18,6 +18,7 @@ import java.net.URL;
  *
  * @author William Delano
  * @version 1.0
+ * @see LandingPageController
  */
 public class LandingPage {
 

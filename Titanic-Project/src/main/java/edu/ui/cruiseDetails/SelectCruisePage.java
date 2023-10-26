@@ -10,9 +10,16 @@ import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.List;
 
-
+/**
+ * Controller for displaying and selecting a cruise on the ui
+ *
+ * This class allows a user to browse and select cruises
+ *
+ * @author Vincent Dinh
+ * @version 1.0
+ * @see Cruise, CruiseDatabase, CruiseDetailsPage
+ */
 public class SelectCruisePage {
-
     private JFrame cruiseFrame;
     private JLabel titleLabel;
     private JList<String> cruiseList;

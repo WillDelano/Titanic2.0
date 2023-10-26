@@ -85,8 +85,6 @@ public abstract class User  {
         this.id = id;
     }
 
-
-
     /**
      * This logs the Travel Agent out of the system.
      *
@@ -97,7 +95,6 @@ public abstract class User  {
         return false;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -105,6 +102,4 @@ public abstract class User  {
         User user = (User) o;
         return Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(id, user.id) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName);
     }
-
-
 }

@@ -1,5 +1,6 @@
 package edu.ui.reservationDetails;
 
+import edu.core.cruise.Cruise;
 import edu.core.users.CurrentGuest;
 import edu.core.reservation.Reservation;
 
@@ -8,8 +9,16 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.Set;
 
+/**
+ * UI display for a guest's reservations
+ *
+ * This class displays all the reservations assigned to a user
+ *
+ * @author Vincent Dinh
+ * @version 1.0
+ * @see edu.database.ReservationDatabase, Reservation
+ */
 public class MyReservationsPage {
-
     private JFrame frame;
     private JPanel contentPanel;
     private JTable reservationsTable;
