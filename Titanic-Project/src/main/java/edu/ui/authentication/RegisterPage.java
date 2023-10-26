@@ -95,14 +95,12 @@ public class RegisterPage {
         //please remove this and add to the Guest. The Guest should generate after authenticating the
         //the account. Right now we are passing in an id which seems weird. Either
         int id = new UniqueID().getId();
-        Guest g = new Guest(username, password, id, firstName, lastName, 100 , email);
+
 
         AccountDatabase d = new AccountDatabase();
         Authentication a = new Authentication();
 
         a.createAccount(username, password, firstName, lastName, email);
-
-        d.addUser(g);
 
 
 
