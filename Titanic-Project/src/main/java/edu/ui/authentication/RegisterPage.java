@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import edu.authentication.Authentication;
 import edu.core.users.User;
+import edu.database.AccountDatabase;
 import edu.ui.landingPage.LandingPage;
 
 public class RegisterPage {
@@ -88,11 +89,13 @@ public class RegisterPage {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
+        AccountDatabase d = new AccountDatabase();
         Authentication a = new Authentication();
 
         a.createAccount(username, password, firstName, lastName, email);
 
         mainFrame.setVisible(false);
         LandingPage landingPage = new LandingPage();
+        landingPage.showLandingPage(d.getUser(username));
     }
 }
