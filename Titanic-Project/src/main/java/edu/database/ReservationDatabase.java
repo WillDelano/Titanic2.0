@@ -24,7 +24,7 @@ import java.util.Set;
  */
 public class ReservationDatabase {
     private static Map<User, Set<Reservation>> reservationDatabase;
-    private static String fileName = "/reservationList.csv";
+    private static String fileName = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\reservationList.csv";
 
 
     /**
@@ -33,8 +33,7 @@ public class ReservationDatabase {
      */
     public ReservationDatabase() {
         try {
-            InputStream is = ReservationDatabase.class.getResourceAsStream(fileName);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
             reader.close();
         } catch(IOException e) {
             e.printStackTrace();
@@ -50,8 +49,7 @@ public class ReservationDatabase {
         Set<Reservation> guestReservations = new HashSet<>();
 
         try {
-            InputStream is = ReservationDatabase.class.getResourceAsStream(fileName);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line;
 
             /*
@@ -65,8 +63,12 @@ public class ReservationDatabase {
             * split[6] = start date of reservation
             * split[7] = end date of reservation
             */
-            while((line = reader.readLine()) != null) {
+
+            line = reader.readLine();
+
+            while(line != null) {
                 String[] split = line.split(",");
+                System.err.println("Room ID: " + split[5]);
 
                 //if the guest id of the reservation matches the guest
                 if (Integer.parseInt(split[1]) == guest.getId()) {
@@ -89,6 +91,7 @@ public class ReservationDatabase {
                     //add to the set of reservations for the current guest
                     guestReservations.add(reservation);
                 }
+                line = reader.readLine();
             }
 
             reader.close();
@@ -99,7 +102,7 @@ public class ReservationDatabase {
     }
 
     //Fixme: Reservation has User user, Room room, LocalDate startDate,
-    // LocalDate endDate, Country startCountry, Country endCountry
+    //LocalDate endDate, Country startCountry, Country endCountry
 
     /*public boolean isValidReservation(Reservation reservationCheck){
         return getReservationDatabase().get(reservationCheck.getUser()).contains(reservationCheck);
@@ -174,8 +177,7 @@ public class ReservationDatabase {
 
     public static boolean hasReservation(Reservation reservation) {
         try {
-            InputStream is = ReservationDatabase.class.getResourceAsStream(fileName);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line;
 
             while((line = reader.readLine()) != null) {
