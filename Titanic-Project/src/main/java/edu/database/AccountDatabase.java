@@ -28,7 +28,7 @@ public class AccountDatabase {
      *
      */
     public AccountDatabase() {
-        /*accountDatabase = new LinkedHashSet<>();
+        accountDatabase = new LinkedHashSet<>();/*
         //the way the GUEST account will be put in file is String type, ...
         //...String username,String password,int id, String firstName, String lastName,int rewardPoints, String email
 
@@ -166,11 +166,13 @@ public class AccountDatabase {
      */
     public boolean accountExists(String username) {
         boolean accountFlag=false;
-        
-        for(User u: accountDatabase){
-            if(u.getUsername().equals(username)){
-                accountFlag= true;
-                break;
+
+        if(!accountDatabase.isEmpty()){
+            for(User u: accountDatabase){
+                if(u.getUsername().equals(username)){
+                    accountFlag= true;
+                    break;
+                }
             }
         }
 
@@ -312,6 +314,15 @@ public class AccountDatabase {
 
         writer.close();
         reader.close();
+    }
+
+    public User getUser(String username){
+        for(User u: accountDatabase){
+            if(u.getUsername().equals(username)){
+                return u;
+            }
+        }
+        return null;
     }
 
 }
