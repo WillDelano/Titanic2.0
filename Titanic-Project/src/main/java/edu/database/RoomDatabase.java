@@ -32,6 +32,8 @@ public class RoomDatabase {
 
                     Room room = new Room(roomNumber, Integer.parseInt(split[3]), split[2], Boolean.parseBoolean(split[4]), Double.parseDouble(split[1]));
 
+                    System.err.println(split[4]);
+
                     return room;
                 }
             }
