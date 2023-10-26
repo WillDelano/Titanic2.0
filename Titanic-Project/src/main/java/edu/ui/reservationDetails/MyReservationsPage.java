@@ -5,17 +5,25 @@ import edu.core.reservation.Reservation;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Set;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 
 public class MyReservationsPage {
 
     private JFrame frame;
     private JPanel contentPanel;
     private JTable reservationsTable;
+    private Timer refreshTimer;
 
     public MyReservationsPage() {
         prepareUI();
+        setUpRefreshMechanism();
     }
 
     private void prepareUI() {
@@ -32,10 +40,25 @@ public class MyReservationsPage {
         contentPanel = new JPanel(new BorderLayout());
         contentPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        //display guest's reservations
-        Set<Reservation> reservationSet = CurrentGuest.getCurrentGuest().getReservations();
-        int numReservations = reservationSet.size();
+        reservationsTable = new JTable();
+        reservationsTable.setAutoCreateRowSorter(true);
+        reservationsTable.setFillsViewportHeight(true);
+        contentPanel.add(new JScrollPane(reservationsTable), BorderLayout.CENTER);
 
+        frame.add(contentPanel, BorderLayout.CENTER);
+
+        refreshReservations();
+    }
+
+    public void refreshReservations() {
+        Set<Reservation> reservationSet = CurrentGuest.getCurrentGuest().getReservations();
+        System.err.println("Reservations: ");
+
+        for (Reservation q : reservationSet) {
+            System.err.println(q.getRoom());
+        }
+
+        int numReservations = reservationSet.size();
         String[][] data = new String[numReservations][5];
         int i = 0;
 
@@ -46,20 +69,36 @@ public class MyReservationsPage {
             data[i][3] = String.valueOf(temp.getEndDate());
             data[i][4] = String.valueOf(temp.getEndCountry().getName());
             i++;
-        };
+        }
+
         String[] columnNames = {"Reservation", "Room Number", "Start Date", "End Date", "End Country"};
+        reservationsTable.setModel(new DefaultTableModel(data, columnNames));
+    }
 
-        reservationsTable = new JTable(data, columnNames);
-        reservationsTable.setAutoCreateRowSorter(true);
-        reservationsTable.setFillsViewportHeight(true);
+    private void setUpRefreshMechanism() {
+        int delay = 10000; // 10 seconds
+        ActionListener taskPerformer = new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                refreshReservations();
+            }
+        };
+        refreshTimer = new Timer(delay, taskPerformer);  // Initialize the Timer instance variable
+        refreshTimer.start();
 
-        contentPanel.add(new JScrollPane(reservationsTable), BorderLayout.CENTER);
-
-        frame.add(contentPanel, BorderLayout.CENTER);
+        // Add a WindowListener to refresh reservations every time the window is activated.
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowActivated(WindowEvent e) {
+                refreshReservations();
+            }
+        });
     }
 
     public void show() {
         frame.setVisible(true);
+        if (!refreshTimer.isRunning()) {
+            refreshTimer.start();  // Ensure the timer starts running when the window is shown
+        }
     }
 
     public static void main(String[] args) {

@@ -38,17 +38,8 @@ public class LandingPage {
      * Calls the function to display the landing page and passes the logged-in user's account
      *
      */
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
         Guest account;
-
-        /*
-        Something like:
-
-        LoginPage loginPage = new LoginPage()
-        user = loginPage.showLoginPage;
-
-        And the login would return the user that was logged in to
-
 
         account = new Guest("username", "password", 0, "John", "Doe", 0, "john_doe1@baylor.edu");
         CurrentGuest.setCurrentGuest(account);

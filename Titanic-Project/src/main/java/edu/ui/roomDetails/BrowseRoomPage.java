@@ -56,6 +56,9 @@ public class BrowseRoomPage {
                     // Perform room reservation logic here
                     JOptionPane.showMessageDialog(roomFrame, "Room " + selectedRoom.getRoomNumber() + " reserved.");
                     controller.reserveRoom(CurrentGuest.getCurrentGuest(), selectedRoom);
+
+                    // Notify the MyReservationsPage to refresh its data
+                    new edu.ui.reservationDetails.MyReservationsPage().refreshReservations();  // Make sure refreshReservations() is public
                 }
             } else {
                 JOptionPane.showMessageDialog(roomFrame, "Please select a room first.");
