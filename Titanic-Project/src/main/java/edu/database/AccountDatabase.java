@@ -21,6 +21,7 @@ import java.lang.*;
 public class AccountDatabase {
     private static Set<User> accountDatabase;
     private String fileName = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\repositories\\accountList.csv";
+    private String fileName = getClass().getClassLoader().getResource("accountList.csv").getFile();
 
 
     /**
@@ -28,7 +29,7 @@ public class AccountDatabase {
      *
      */
     public AccountDatabase() {
-        /*accountDatabase = new LinkedHashSet<>();
+        accountDatabase = new LinkedHashSet<>();/*
         //the way the GUEST account will be put in file is String type, ...
         //...String username,String password,int id, String firstName, String lastName,int rewardPoints, String email
 
@@ -135,7 +136,8 @@ public class AccountDatabase {
         String line;
 
 
-        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        InputStream in = getClass().getClassLoader().getResourceAsStream("accountList.csv");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
         while((line  = reader.readLine()) != null){
             newFileLines.add(line);
         }
@@ -166,11 +168,13 @@ public class AccountDatabase {
      */
     public boolean accountExists(String username) {
         boolean accountFlag=false;
-        
-        for(User u: accountDatabase){
-            if(u.getUsername().equals(username)){
-                accountFlag= true;
-                break;
+
+        if(!accountDatabase.isEmpty()){
+            for(User u: accountDatabase){
+                if(u.getUsername().equals(username)){
+                    accountFlag= true;
+                    break;
+                }
             }
         }
 
@@ -278,7 +282,8 @@ public class AccountDatabase {
         String line;
         ArrayList<String> fileList = new ArrayList<>();
 
-        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        InputStream in = getClass().getClassLoader().getResourceAsStream("accountList.csv");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 
         //copy lines into arraylist
         while((line  = reader.readLine()) != null){
@@ -312,6 +317,15 @@ public class AccountDatabase {
 
         writer.close();
         reader.close();
+    }
+
+    public User getUser(String username){
+        for(User u: accountDatabase){
+            if(u.getUsername().equals(username)){
+                return u;
+            }
+        }
+        return null;
     }
 
 }

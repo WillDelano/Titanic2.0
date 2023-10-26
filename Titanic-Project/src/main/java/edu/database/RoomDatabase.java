@@ -12,7 +12,8 @@ public class RoomDatabase {
 
     public static Room getRoom(int roomNumber) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            InputStream is = RoomDatabase.class.getResourceAsStream("/room.csv");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             String line;
 
             /*
@@ -79,7 +80,8 @@ public class RoomDatabase {
     public static List<Room> getAllRooms() {
         List<Room> rooms = new LinkedList<>();
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            InputStream is = RoomDatabase.class.getResourceAsStream("/room.csv");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             String line;
             /*
              * CSV style
