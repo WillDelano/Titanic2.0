@@ -20,8 +20,8 @@ import java.lang.*;
  */
 public class AccountDatabase {
     private static Set<User> accountDatabase;
-    private String fileName = getClass().getClassLoader().getResource("accountList.csv").getFile();
-
+    //private String fileName = getClass().getClassLoader().getResource("accountList.csv").getFile();
+    private String fileName = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\accountList.csv";
 
 
     /**
@@ -29,15 +29,17 @@ public class AccountDatabase {
      *
      */
     public AccountDatabase() {
-        accountDatabase = new LinkedHashSet<>();/*
+        accountDatabase = new LinkedHashSet<>();
         //the way the GUEST account will be put in file is String type, ...
         //...String username,String password,int id, String firstName, String lastName,int rewardPoints, String email
 
         // admin and agent are the same except no reward points
-        try{
+        try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line;
-            while((line = reader.readLine()) != null){
+            line = reader.readLine();
+
+            while(line != null){
                 String [] split = line.split(",");
                 if(split[0].equals("Guest")){
                     //guest has extra parameter for reward points
@@ -66,6 +68,7 @@ public class AccountDatabase {
 
                     }
                 }
+                line = reader.readLine();
             }
 
             reader.close();
@@ -104,13 +107,14 @@ public class AccountDatabase {
         //now add the user to the file. YOU WILL ONLY ADD GUESTS.
         //Agents and admins are hardcoded on the backend
         try{
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+            //BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
           //  String username,String password,int id, String firstName, String lastName,int rewardPoints, String email
+            System.err.println("HERE");
             String toWrite = "Guest,"+u.getUsername()+","+u.getPassword()+","+u.getId()+","
                     +u.getFirstName()+","+u.getLastName()+","+u.getRewardPoints()+","+u.getEmail()+"\n";
             FileWriter write= new FileWriter(fileName,true);
-            writer.write(toWrite);
-            writer.close();
+            write.write(toWrite);
+            write.close();
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -319,7 +323,7 @@ public class AccountDatabase {
         reader.close();
     }
 
-    public User getUser(String username){
+    public static User getUser(String username){
         for(User u: accountDatabase){
             if(u.getUsername().equals(username)){
                 return u;

@@ -16,7 +16,7 @@ public class RegisterPage {
     private JTextField emailField;
 
 
-    public RegisterPage(){createGUI();}
+    public RegisterPage() { createGUI(); }
 
     public void createGUI(){
         mainFrame = new JFrame("Create an Account Page");
@@ -95,7 +95,6 @@ public class RegisterPage {
         a.createAccount(username, password, firstName, lastName, email);
 
         mainFrame.setVisible(false);
-        LandingPage landingPage = new LandingPage();
-        landingPage.showLandingPage(d.getUser(username));
+        LoginPage loginPage = new LoginPage();
     }
 }

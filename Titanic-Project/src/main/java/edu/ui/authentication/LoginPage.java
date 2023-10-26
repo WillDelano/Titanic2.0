@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import edu.authentication.Authentication;
+import edu.database.AccountDatabase;
 import edu.ui.landingPage.LandingPage;
 
 public class LoginPage {
@@ -65,22 +66,15 @@ public class LoginPage {
         String password = passwordField.getText();
 
         Authentication a = new Authentication();
+        AccountDatabase d = new AccountDatabase();
 
-
-        /*
-
-        Something like this would be used to log user into the system
+        System.out.println("1");
 
         if(a.login(username, password)){
+            System.out.println("2");
             mainFrame.setVisible(false);
-            new LandingPage();
-        }
-
-         */
-
-        if(username.equals("username") && password.equals("password")){
-            mainFrame.setVisible(false);
-            new LandingPage();
+            LandingPage landingPage = new LandingPage();
+            landingPage.showLandingPage(d.getUser(username));
         }
 
     }
