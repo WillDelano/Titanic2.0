@@ -95,7 +95,6 @@ public class RegisterPage {
         a.createAccount(username, password, firstName, lastName, email);
 
         mainFrame.setVisible(false);
-        LandingPage landingPage = new LandingPage();
-        landingPage.showLandingPage(d.getUser(username));
+        LoginPage loginPage = new LoginPage();
     }
 }
