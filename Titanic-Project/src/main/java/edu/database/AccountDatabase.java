@@ -20,7 +20,8 @@ import java.lang.*;
  */
 public class AccountDatabase {
     private static Set<User> accountDatabase;
-    private String fileName = "C:\\Users\\Michael O\\IdeaProjects\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\database\\accountList.csv";
+    private String fileName = getClass().getClassLoader().getResource("accountList.csv").getFile();
+
 
 
     /**
@@ -135,7 +136,8 @@ public class AccountDatabase {
         String line;
 
 
-        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        InputStream in = getClass().getClassLoader().getResourceAsStream("accountList.csv");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
         while((line  = reader.readLine()) != null){
             newFileLines.add(line);
         }
@@ -278,7 +280,8 @@ public class AccountDatabase {
         String line;
         ArrayList<String> fileList = new ArrayList<>();
 
-        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        InputStream in = getClass().getClassLoader().getResourceAsStream("accountList.csv");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 
         //copy lines into arraylist
         while((line  = reader.readLine()) != null){
