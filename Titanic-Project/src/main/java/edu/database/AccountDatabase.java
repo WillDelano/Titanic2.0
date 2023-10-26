@@ -21,7 +21,7 @@ import java.lang.*;
 public class AccountDatabase {
     private static Set<User> accountDatabase;
     //private String fileName = getClass().getClassLoader().getResource("accountList.csv").getFile();
-    private String fileName = "C:\\Users\\gabec\\SoftwareEngineeringI\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\accountList.csv";
+    private String fileName = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\accountList.csv";
 
 
     /**
@@ -34,10 +34,11 @@ public class AccountDatabase {
         //...String username,String password,int id, String firstName, String lastName,int rewardPoints, String email
 
         // admin and agent are the same except no reward points
-        try{
+        try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line;
             line = reader.readLine();
+
             while(line != null){
                 String [] split = line.split(",");
                 if(split[0].equals("Guest")){
@@ -108,6 +109,7 @@ public class AccountDatabase {
         try{
             //BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
           //  String username,String password,int id, String firstName, String lastName,int rewardPoints, String email
+            System.err.println("HERE");
             String toWrite = "Guest,"+u.getUsername()+","+u.getPassword()+","+u.getId()+","
                     +u.getFirstName()+","+u.getLastName()+","+u.getRewardPoints()+","+u.getEmail()+"\n";
             FileWriter write= new FileWriter(fileName,true);
@@ -321,7 +323,7 @@ public class AccountDatabase {
         reader.close();
     }
 
-    public User getUser(String username){
+    public static User getUser(String username){
         for(User u: accountDatabase){
             if(u.getUsername().equals(username)){
                 return u;

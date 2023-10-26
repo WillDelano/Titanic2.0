@@ -21,7 +21,7 @@ public abstract class User  {
 
     private String email;
 
-    private AccountDatabase accountList = new AccountDatabase();
+    //private AccountDatabase accountList = new AccountDatabase();
 
     /**
      * Constructor for creating a new User.

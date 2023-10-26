@@ -16,7 +16,7 @@ public class RegisterPage {
     private JTextField emailField;
 
 
-    public RegisterPage(){createGUI();}
+    public RegisterPage() { createGUI(); }
 
     public void createGUI(){
         mainFrame = new JFrame("Create an Account Page");
