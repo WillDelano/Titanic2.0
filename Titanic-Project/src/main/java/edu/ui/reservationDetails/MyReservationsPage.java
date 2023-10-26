@@ -34,6 +34,12 @@ public class MyReservationsPage {
 
         //display guest's reservations
         Set<Reservation> reservationSet = CurrentGuest.getCurrentGuest().getReservations();
+        System.err.println("Reservations: ");
+
+        for (Reservation q : reservationSet) {
+            System.err.println(q.getRoom());
+        }
+
         int numReservations = reservationSet.size();
 
         String[][] data = new String[numReservations][5];

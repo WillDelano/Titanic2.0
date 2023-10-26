@@ -15,38 +15,44 @@ public class CruiseDetailsPage {
     private JTextArea detailsTextArea;
     private JButton selectRoomButton;
 
-    public CruiseDetailsPage(String cruiseName) {
-        prepareGUI(cruiseName);
+    private Cruise cruiseDetails;
+
+    public CruiseDetailsPage(Cruise cruiseDetails) {
+        this.cruiseDetails = cruiseDetails;
+        prepareGUI();
     }
 
-    private void prepareGUI(String cruiseName) {
-        detailsFrame = new JFrame("Cruise Details: " + cruiseName);
+    private void prepareGUI() {
+        detailsFrame = new JFrame("Cruise Details: " + cruiseDetails.getName());
         detailsFrame.setSize(800, 600);
         detailsFrame.setLayout(new BorderLayout());
 
-        cruiseLabel = new JLabel("Cruise Details: " + cruiseName, JLabel.CENTER);
+        cruiseLabel = new JLabel("Cruise Details: " + cruiseDetails.getName(), JLabel.CENTER);
         detailsFrame.add(cruiseLabel, BorderLayout.NORTH);
 
-        // Sample cruise details
-        //TODO make controller to get cruise details from backend
-        String sampleDetails = "Cruise Name: " + cruiseName + "\n" +
-                "Departure Date: January 1, 2024\n" +
-                "Travel Path: Caribbean, Mediterranean, Alaskan\n" +
-                "Max Capacity: 200 passengers\n" +
-                "Current Occupancy: 100 passengers\n";
+        // Fetching actual cruise details
+        StringBuilder travelPath = new StringBuilder();
+        for (int i = 0; i < cruiseDetails.getTravelPath().size(); i++) {
+            travelPath.append(cruiseDetails.getTravelPath().get(i).getName());
+            if (i < cruiseDetails.getTravelPath().size() - 1) {
+                travelPath.append(", ");
+            }
+        }
 
-        detailsTextArea = new JTextArea(sampleDetails);
+        String actualDetails = "Cruise Name: " + cruiseDetails.getName() + "\n" +
+                "Departure Date: " + cruiseDetails.getDeparture().toString() + "\n" +
+                "Travel Path: " + travelPath.toString() + "\n" +
+                "Max Capacity: " + cruiseDetails.getMaxCapacity() + " passengers\n" +
+                // assuming you have a method getCurrentOccupancy() in Cruise class
+                "Current Occupancy: " + cruiseDetails.getCurrentOccupancy() + " passengers\n";
+
+        detailsTextArea = new JTextArea(actualDetails);
         detailsTextArea.setEditable(false);
         JScrollPane textScrollPane = new JScrollPane(detailsTextArea);
         detailsFrame.add(textScrollPane, BorderLayout.CENTER);
 
         selectRoomButton = new JButton("Browse Rooms");
-        selectRoomButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // pass the selected cruise name to the BrowseRoomPage
-                new BrowseRoomPage(cruiseName);
-            }
-        });
+        selectRoomButton.addActionListener(e -> new BrowseRoomPage(cruiseDetails.getName()));
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(selectRoomButton);

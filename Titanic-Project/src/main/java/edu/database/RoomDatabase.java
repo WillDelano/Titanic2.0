@@ -8,11 +8,14 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class RoomDatabase {
+
     private static String fileName = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\repositories\\room.csv";
+
 
     public static Room getRoom(int roomNumber) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            InputStream is = RoomDatabase.class.getResourceAsStream("/room.csv");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             String line;
 
             /*
@@ -31,6 +34,8 @@ public class RoomDatabase {
                 if (Objects.equals(roomNumber, Integer.parseInt(split[0]))) {
 
                     Room room = new Room(roomNumber, Integer.parseInt(split[3]), split[2], Boolean.parseBoolean(split[4]), Double.parseDouble(split[1]));
+
+                    System.err.println(split[4]);
 
                     return room;
                 }
@@ -79,7 +84,8 @@ public class RoomDatabase {
     public static List<Room> getAllRooms() {
         List<Room> rooms = new LinkedList<>();
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            InputStream is = RoomDatabase.class.getResourceAsStream("/room.csv");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             String line;
             /*
              * CSV style

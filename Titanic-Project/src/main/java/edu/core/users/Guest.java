@@ -91,6 +91,7 @@ public class Guest extends User {
             System.err.println("Attempting to add duplicate reservation - Cancelled.");
         }
 
+        System.err.println("Res: " + reservation.getRoom());
         return reservation;
     }
 

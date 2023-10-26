@@ -21,7 +21,7 @@ import java.util.*;
  */
 public class ReservationDatabase {
     private static Map<User, Set<Reservation>> reservationDatabase;
-    private static String fileName = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\repositories\\reservationList.csv";
+    private static String fileName = "/reservationList.csv";
 
 
     /**
@@ -30,7 +30,8 @@ public class ReservationDatabase {
      */
     public ReservationDatabase() {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            InputStream is = ReservationDatabase.class.getResourceAsStream(fileName);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             reader.close();
         } catch(IOException e) {
             e.printStackTrace();
@@ -46,7 +47,8 @@ public class ReservationDatabase {
         Set<Reservation> guestReservations = new HashSet<>();
 
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            InputStream is = ReservationDatabase.class.getResourceAsStream(fileName);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             String line;
 
             /*
@@ -100,6 +102,7 @@ public class ReservationDatabase {
         return getReservationDatabase().get(reservationCheck.getUser()).contains(reservationCheck);
     }*/
     public static void addReservation(Reservation newReservation) {
+        String reservedRoomFile = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\reservationList.csv";
 
         //boolean added = reservationDatabase.get(newReservation.getUser()).add(newReservation);
         //now add reservation to file.
@@ -124,12 +127,23 @@ public class ReservationDatabase {
             String toWrite = newReservation.getId() + "," + newReservation.getUser().getId() + "," +
                      newReservation.getDays() + "," + newReservation.getStartCountry().getName() + ","
                     + newReservation.getEndCountry().getName() + "," + newReservation.getRoom().getRoomNumber()
-                    + "," + newReservation.getStartDate() + "," + newReservation.getEndDate();
+                    + "," + newReservation.getStartDate() + "," + newReservation.getEndDate() + "\n";
 
-            try (CSVWriter writer = new CSVWriter(new FileWriter(fileName, true))) {
-                writer.writeNext(toWrite.split(","));
+            BufferedWriter writer = null;
+            try {
+                writer = new BufferedWriter(new FileWriter(reservedRoomFile, true));
+                writer.write(toWrite);
+                writer.flush();
             } catch (IOException e) {
                 e.printStackTrace();
+            } finally {
+                try {
+                    if (writer != null) {
+                        writer.close(); // Closing the BufferedWriter
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -184,7 +198,8 @@ public class ReservationDatabase {
 
     public static boolean hasUser(User user) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            InputStream is = ReservationDatabase.class.getResourceAsStream(fileName);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             String line;
 
             while((line = reader.readLine()) != null) {
@@ -204,7 +219,8 @@ public class ReservationDatabase {
 
     public static boolean hasReservation(Reservation reservation) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            InputStream is = ReservationDatabase.class.getResourceAsStream(fileName);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             String line;
 
             while((line = reader.readLine()) != null) {
