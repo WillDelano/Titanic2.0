@@ -1,5 +1,7 @@
 package edu.database;
 
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
 import edu.core.users.*;
 
 
@@ -33,39 +35,40 @@ public class AccountDatabase {
      *
      */
     public AccountDatabase() {
-        accountDatabase = new LinkedHashSet<>();/*
+        accountDatabase = new LinkedHashSet<>();
         //the way the GUEST account will be put in file is String type, ...
         //...String username,String password,int id, String firstName, String lastName,int rewardPoints, String email
 
         // admin and agent are the same except no reward points
         try{
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            String line;
-            while((line = reader.readLine()) != null){
-                String [] split = line.split(",");
-                if(split[0].equals("Guest")){
+            CSVReader reader = new CSVReader(new FileReader(fileName));
+            String []line;
+            while((line = reader.readNext()) != null){
+
+                //String [] split = line.split(",");
+                if(line[0].equals("Guest")){
                     //guest has extra parameter for reward points
 
                     //make guest instance then add to account list
 
-                    Guest guest = new Guest(split[1],split[2],Integer.parseInt(split[3]),split[4],split[5],
-                            Integer.parseInt(split[6]),split[7]);
+                    Guest guest = new Guest(line[1],line[2],Integer.parseInt(line[3]),line[4],line[5],
+                            Integer.parseInt(line[6]),line[7]);
                     accountDatabase.add(guest);
 
 
                 }
                 else{
                     //normal parameters
-                    if(split[0].equals("Agent")){
+                    if(line[0].equals("Agent")){
                         //make agent instance based on file readings and add to list
-                        TravelAgent agent = new TravelAgent(split[1],split[2],Integer.parseInt(split[3]),split[4],split[5],
-                                split[6]);
+                        TravelAgent agent = new TravelAgent(line[1],line[2],Integer.parseInt(line[3]),line[4],line[5],
+                                line[6]);
                         accountDatabase.add(agent);
                     }
-                    else if(split[0].equals("Admin")){
+                    else if(line[0].equals("Admin")){
                         //make admin instance based on file readings and add to list
-                        Admin admin = new Admin(split[1],split[2],Integer.parseInt(split[3]),split[4],split[5],
-                                split[6]);
+                        Admin admin = new Admin(line[1],line[2],Integer.parseInt(line[3]),line[4],line[5],
+                                line[6]);
                         accountDatabase.add(admin);
 
                     }
@@ -75,8 +78,10 @@ public class AccountDatabase {
             reader.close();
         }catch(IOException e){
             e.printStackTrace();
+        } catch (CsvValidationException e) {
+            throw new RuntimeException(e);
         }
-        //parse in everything into*/
+        //parse in everything into
     }
 
     /**
