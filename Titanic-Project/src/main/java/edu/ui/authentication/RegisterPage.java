@@ -3,9 +3,11 @@ package edu.ui.authentication;
 import javax.swing.*;
 import java.awt.*;
 import edu.authentication.Authentication;
+import edu.core.users.Guest;
 import edu.core.users.User;
 import edu.database.AccountDatabase;
 import edu.ui.landingPage.LandingPage;
+import edu.uniqueID.UniqueID;
 
 public class RegisterPage {
     private JFrame mainFrame;
@@ -14,6 +16,8 @@ public class RegisterPage {
     private JTextField firstNameField;
     private JTextField lastNameField;
     private JTextField emailField;
+
+
 
 
     public RegisterPage(){createGUI();}
@@ -88,11 +92,19 @@ public class RegisterPage {
         String email = emailField.getText();
         String username = usernameField.getText();
         String password = passwordField.getText();
+        //please remove this and add to the Guest. The Guest should generate after authenticating the
+        //the account. Right now we are passing in an id which seems weird. Either
+        int id = new UniqueID().getId();
+        Guest g = new Guest(username, password, id, firstName, lastName, 100 , email);
 
         AccountDatabase d = new AccountDatabase();
         Authentication a = new Authentication();
 
         a.createAccount(username, password, firstName, lastName, email);
+
+        d.addUser(g);
+
+
 
         mainFrame.setVisible(false);
         LandingPage landingPage = new LandingPage();

@@ -20,6 +20,8 @@ import java.lang.*;
  */
 public class AccountDatabase {
     private static Set<User> accountDatabase;
+
+    private User person;
     private String fileName = getClass().getClassLoader().getResource("accountList.csv").getFile();
 
 

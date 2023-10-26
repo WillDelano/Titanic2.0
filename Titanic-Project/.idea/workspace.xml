@@ -5,58 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64eb4b36-0d34-4a25-aab4-8f9c9ab892af" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/users/Guest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/users/Guest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/AccountDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/RegisterPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/RegisterPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/LandingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/LandingPage.java" afterDir="false" />
-    <list default="true" id="7c623630-8b2b-483c-916c-47015e41145e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reserved_rooms.csv" beforeDir="false" afterPath="$PROJECT_DIR$/reserved_rooms.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/users/Guest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/users/Guest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/ReservationDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/ReservationDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/RoomDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/RoomDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/reservationDetails/MyReservationsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/reservationDetails/MyReservationsPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/roomDetails/BrowseRoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/roomDetails/BrowseRoomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/reservationList.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/reservationList.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "git-widget-placeholder": "authentication",
-    "node.js.selected.package.tslint": "(autodetect)"
-  }
-}]]></component>
-  <component name="TaskManager">
-    <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.NullPointerException" package="java.lang" />
-          <option name="timeStamp" value="1" />
-        </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/database/AccountDatabase.java</url>
-          <line>169</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java</url>
-          <line>33</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -77,7 +35,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "fileManagement",
+    "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -119,5 +77,28 @@
       <updated>1698294520800</updated>
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
