@@ -29,8 +29,7 @@ public class BrowseRoomPage {
         titleLabel = new JLabel("Available Rooms for " + selectedCruise, JLabel.CENTER);
         roomFrame.add(titleLabel, BorderLayout.NORTH);
 
-        //TODO: Add parameter to get rooms of a specific cruise
-        List<Room> sampleRooms = BrowseRoomController.getRooms();
+        List<Room> sampleRooms = BrowseRoomController.getRooms(selectedCruise);
         roomList = new JList<>(sampleRooms.toArray(new Room[0]));
 
         JScrollPane listScrollPane = new JScrollPane(roomList);
