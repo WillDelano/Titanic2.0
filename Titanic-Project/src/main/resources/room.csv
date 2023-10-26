@@ -1,2 +1,8 @@
-101,100,Queen,2,false,false
-104,150,King,2,false,false
+101,100,Queen,2,false,false,Carnival Cruise
+104,150,King,2,false,false,Alaskan Cruise
+106,100,Twin,4,false,false,Carnival Cruise
+254,150,Queen,2,false,false,Carnival Cruise
+251,100,King,2,false,false,Carnival Cruise
+343,150,Twin,2,false,false,Alaskan Cruise
+302,100,Queen,1,false,false,Alaskan Cruise
+301,300,Full,2,false,false,Alaskan Cruise
