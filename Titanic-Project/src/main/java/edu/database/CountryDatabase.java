@@ -4,18 +4,17 @@ import edu.core.cruise.Country;
 import edu.core.reservation.Reservation;
 import edu.core.reservation.Room;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
 public class CountryDatabase {
-    private static String fileName = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\repositories\\countries.csv";
+    private static String fileName = "/countries.csv";
     public static Country getCountry(String name) {
         //look through database to find country with matching name
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            InputStream is = CountryDatabase.class.getResourceAsStream(fileName);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             String line;
 
             /*

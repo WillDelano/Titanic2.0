@@ -3,17 +3,16 @@ package edu.database;
 import edu.core.cruise.Country;
 import edu.core.reservation.Room;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
 
 public class RoomDatabase {
-    private static String fileName = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\repositories\\room.csv";
+
     public static Room getRoom(int roomNumber) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            InputStream is = RoomDatabase.class.getResourceAsStream("/room.csv");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             String line;
 
             /*
@@ -49,7 +48,8 @@ public class RoomDatabase {
     public static List<Room> getAllRooms() {
         List<Room> rooms = new LinkedList<>();
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            InputStream is = RoomDatabase.class.getResourceAsStream("/room.csv");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             String line;
             /*
              * CSV style

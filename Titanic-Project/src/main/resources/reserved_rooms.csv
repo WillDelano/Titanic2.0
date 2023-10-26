@@ -1,3 +1,1 @@
 RoomNumber,NumberOfBeds,BedType,SmokingAvailable,RoomPrice,IsBooked
-101,2,Queen,false,100.0,true
-102,1,Single,true,80.0,true
