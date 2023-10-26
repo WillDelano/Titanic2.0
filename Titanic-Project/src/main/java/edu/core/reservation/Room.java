@@ -56,7 +56,6 @@ public class Room {
      *
      * @param numberOfBeds
      */
-
     public void setNumberOfBeds(int numberOfBeds) {
         this.numberOfBeds = numberOfBeds;
     }

@@ -9,10 +9,7 @@ import edu.core.users.User;
 
 import java.io.*;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Database to record reservations
@@ -135,6 +132,54 @@ public class ReservationDatabase {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void removeReservation(int userId,Reservation toRemove) throws IOException {
+        //precondition is that User has this specific reservation
+
+        //first remove reservation from the map
+        for(Map.Entry<User,Set<Reservation>> e : reservationDatabase.entrySet()){
+            //if we are at the correct user with the specified reservation
+            if (( e. getKey().getId()== userId) && e.getValue().contains(toRemove)){
+                //we can now remove this reservation
+                e.getValue().remove(toRemove);
+            }
+        }
+
+        //now remove reservation from the file
+        ArrayList<String> newFileLines= new ArrayList<>();
+
+        String lineToCut = toRemove.getId() + "," + toRemove.getUser().getId() + "," +
+                toRemove.getDays() + "," + toRemove.getStartCountry().getName() + ","
+                + toRemove.getEndCountry().getName() + "," + toRemove.getRoom().getRoomNumber()
+                + "," + toRemove.getStartDate() + "," + toRemove.getEndDate();
+
+        String line;
+
+        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        while((line  = reader.readLine()) != null){
+            newFileLines.add(line);
+        }
+        reader.close();
+
+        //remove specified line
+        for(String s:newFileLines){
+            if(s.contains(lineToCut)){
+                newFileLines.remove(s);
+            }
+        }
+
+        //overrides old file
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+        for(String newFileLine: newFileLines){
+            writer.write(newFileLine);
+            writer.newLine();
+        }
+
+        writer.close();
+        reader.close();
+
+
     }
 
     public static boolean hasUser(User user) {
