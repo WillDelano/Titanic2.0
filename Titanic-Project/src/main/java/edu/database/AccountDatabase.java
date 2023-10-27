@@ -1,16 +1,13 @@
 package edu.database;
-
 import edu.core.users.*;
-
-
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.*;
 import java.lang.*;
 
 
 /**
  * Database to record valid accounts and information for accounts
+ *
  *
  * This class documents a collection of unique usernames and another collection of unique passwords mapped with
  * user information.
@@ -25,7 +22,7 @@ public class AccountDatabase {
 
 
     /**
-     * Creates the database for accounts
+     * Constructor for creating an instance of AccountDatabase
      *
      */
     public AccountDatabase() {
@@ -82,6 +79,7 @@ public class AccountDatabase {
      * operation to validate login information from input
      *
      * @param username  The username of the user.
+     * @return truth value of whether login is valid
      */
     public boolean isValidLogin(String username, String pass){
         boolean isValid = false;
@@ -96,8 +94,9 @@ public class AccountDatabase {
         return isValid;
     }
 
+    //FIXME: Will have to use "User" type for parameter. Will be used for when admin wants to create a travel agent account
     /**
-     * operation to register a new account within account database
+     * Operation to register a new account within account database
      *
      * @param u  The new user to add to account database
      */
@@ -121,6 +120,7 @@ public class AccountDatabase {
 
 
     }
+
 
     /**
      * operation to remove an account within the account database
@@ -171,7 +171,9 @@ public class AccountDatabase {
      * @param username A given username to validate
      */
     public static boolean accountExists(String username) {
-        System.err.println("HERE");
+
+        //FIXME: Just commenting this out because the code below should be the one used. -Michael 10/26 at 12:23PM
+        /*System.err.println("HERE");
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line;
@@ -190,9 +192,9 @@ public class AccountDatabase {
         } catch(IOException e){
             e.printStackTrace();
         }
-        return false;
+        return false;*/
 
-        /*boolean accountFlag=false;
+        boolean accountFlag=false;
 
         if(!accountDatabase.isEmpty()){
             for(User u: accountDatabase){
@@ -201,7 +203,9 @@ public class AccountDatabase {
                     break;
                 }
             }
-        }*/
+        }
+
+        return accountFlag;
     }
 
     /**
@@ -214,7 +218,9 @@ public class AccountDatabase {
     public boolean modifyUsername(String oldUser,String newUser) throws IOException {
         boolean changeSuccess= false;
         int counter = 0;
-        if(!accountExists(newUser)){
+
+        //if user account exists, find where it is on data structure and change it.
+        if(accountExists(newUser)){
 
             for(User u: accountDatabase){
                 //finding the correct account to change username
@@ -226,6 +232,7 @@ public class AccountDatabase {
                 ++counter;
             }
 
+            //after changing on data structure, change on the file that stores accounts
             modifyFileLine(counter,0,newUser);
         }
 
@@ -241,16 +248,19 @@ public class AccountDatabase {
      */
     public void modifyPassword(String username,String oldPass,String newPass) throws IOException {
         int counter = 0;
+
+        //find account, then change data structure to match new password
         for(User u: accountDatabase){
             if(u.getUsername().equals(username)) {
                 if (u.getPassword().equals(oldPass)) {
-                    u.setUsername(newPass);
+                    u.setPassword(newPass);
                     break;
                 }
             }
             ++counter;
         }
 
+        //change account database to match new password
         modifyFileLine(counter,1,newPass);
     }
 
@@ -265,16 +275,18 @@ public class AccountDatabase {
     public void modifyFirstName(String username,String oldFName,String newFName) throws IOException {
         int counter = 0;
 
+        //update data structure
         for(User u: accountDatabase){
             if(u.getUsername().equals(username)) {
-                if (u.getPassword().equals(oldFName)) {
-                    u.setUsername(newFName);
+                if (u.getFirstName().equals(oldFName)) {
+                    u.setFirstName(newFName);
                     break;
                 }
                 ++counter;
             }
         }
 
+        //update file holding account list
         modifyFileLine(counter,2,newFName);
     }
 
@@ -289,18 +301,29 @@ public class AccountDatabase {
     public void modifyLastName(String username,String oldLName,String newLName) throws IOException {
         int counter = 0;
 
+        //update lastName on data structure
         for(User u: accountDatabase){
             if(u.getUsername().equals(username)) {
-                if (u.getPassword().equals(oldLName)) {
-                    u.setUsername(newLName);
+                if (u.getLastName().equals(oldLName)) {
+                    u.setLastName(newLName);
                     break;
                 }
             }
             ++counter;
         }
+
+        //update file holding account list
         modifyFileLine(counter,3,newLName);
     }
 
+    /**
+     * Operation to modify account changes on file database
+     *
+     * @param lineIndex line to alter
+     * @param dataToChange specific index of information to change for specified user
+     * @param newData   the newData to replace old data in file database
+     *
+     */
     public void modifyFileLine(int lineIndex,int dataToChange, String newData) throws IOException {
         String line;
         ArrayList<String> fileList = new ArrayList<>();
@@ -319,8 +342,13 @@ public class AccountDatabase {
 
         //modify specified line
         String linetoModify = fileList.get(lineIndex);
+        //split line into pieces of data
         String[]split = linetoModify.split(",");
+
+        //modify specific data you want
         split[dataToChange] = newData;
+
+        //make a string builder to make new string
         StringBuilder sb = new StringBuilder();
         for(int i=0;i <= split.length; i++){
             sb.append(split[i]);
@@ -328,7 +356,9 @@ public class AccountDatabase {
 
         String lineToPut = sb.toString();
 
+        //put modified line back into ArrayList
         fileList.set(lineIndex,lineToPut);
+
 
 
         //overrides old file
@@ -337,11 +367,17 @@ public class AccountDatabase {
             writer.write(newFileLine);
             writer.newLine();
         }
-
         writer.close();
-        reader.close();
     }
 
+
+    /**
+     * Operation to access specified user
+     *
+     * @param username the specified username of user to access
+     *
+     * @return the specified user
+     */
     public static User getUser(String username){
         for(User u: accountDatabase){
             if(u.getUsername().equals(username)){
