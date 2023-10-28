@@ -9,7 +9,6 @@ import edu.authentication.Authentication;
 import edu.core.cruise.Cruise;
 import edu.core.users.User;
 import edu.database.AccountDatabase;
-import edu.ui.cruiseDetails.CruiseDetailsPage;
 import edu.ui.cruiseDetails.SelectCruiseController;
 import edu.ui.landingPage.LandingPage;
 

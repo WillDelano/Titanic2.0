@@ -18,14 +18,42 @@ import java.util.*;
  * @version 1.0
  */
 public class RoomDatabase {
+    private static String fileName = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\room.csv";
 
-    /**
-     * Operation to give access to a room
-     *
-     * @param roomNumber room number to find room
-     *
-     * @return specified room with room #
-     */
+    public static void addRoom(Room room) {
+        /*
+         * CSV style
+         * split[0] = room number
+         * split[1] = room price
+         * split[2] = bedType
+         * split[3] = number of beds
+         * split[4] = smoking status
+         * split[5] = booked status
+         */
+
+        //write to csv
+        String toWrite = room.getRoomNumber() + "," + room.getRoomPrice() + "," +
+                room.getBedType() + "," + room.getNumberOfBeds() + ","
+                + room.getSmokingAvailable() + "," + room.isBooked() + "," + room.getCruise() + "\n";
+
+        BufferedWriter writer = null;
+        try {
+            writer = new BufferedWriter(new FileWriter(fileName, true));
+            writer.write(toWrite);
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (writer != null) {
+                    writer.close(); // Closing the BufferedWriter
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public static Room getRoom(int roomNumber) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\room.csv"));
@@ -55,8 +83,8 @@ public class RoomDatabase {
         } catch(IOException e){
             e.printStackTrace();
         }
-        System.err.println("Room does not exist. Creating null values.");
-        return new Room(0, 0, null, false, 0, null);
+        System.err.println("Room does not exist. Creating null values. If you are creating a room you can ignore this error.");
+        return new Room(-1, 0, null, false, 0, null);
     }
 
 

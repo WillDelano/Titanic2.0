@@ -41,9 +41,46 @@ public class ReservationDatabase {
     }
 
     /**
+     * Returns the reservation database size
+     **
+     * @return The reservation database size
+     */
+    public static int getReservationDatabaseSize() {
+        int count = 0;
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            String line;
+
+            /*
+             * CSV style
+             * split[0] = reservation id
+             * split[1] = user username
+             * split[2] = duration of trip in days
+             * split[3] = starting country
+             * split[4] = ending country
+             * split[5] = room id
+             * split[6] = start date of reservation
+             * split[7] = end date of reservation
+             */
+
+            line = reader.readLine();
+
+            while(line != null) {
+                count++;
+
+                line = reader.readLine();
+            }
+
+            reader.close();
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    /**
      * Returns the reservation database
-     *
-     * @param guest specified user's reservations to access
      *
      * @return The reservation database
      */
@@ -70,7 +107,6 @@ public class ReservationDatabase {
 
             while(line != null) {
                 String[] split = line.split(",");
-                System.err.println("Room ID: " + split[5]);
 
                 //if the guest username of the reservation matches the guest
                 if (Objects.equals(split[1], guest.getUsername())) {
@@ -103,8 +139,51 @@ public class ReservationDatabase {
         return guestReservations;
     }
 
-    //Fixme:(Just a note) Reservation has User user, Room room, LocalDate startDate,
-    //..LocalDate endDate, Country startCountry, Country endCountry
+    /**
+     * Returns all the usernames of users with a reservation
+     *
+     * @return A set of usernames
+     */
+    public static Set<String> getAllUsernames() {
+        Set<String> allUsernames = new HashSet<>();
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            String line;
+
+            /*
+             * CSV style
+             * split[0] = reservation id
+             * split[1] = user username
+             * split[2] = duration of trip in days
+             * split[3] = starting country
+             * split[4] = ending country
+             * split[5] = room id
+             * split[6] = start date of reservation
+             * split[7] = end date of reservation
+             */
+
+            line = reader.readLine();
+
+            while(line != null) {
+                String[] split = line.split(",");
+
+                //add the username
+                allUsernames.add(split[1]);
+
+                line = reader.readLine();
+            }
+
+            reader.close();
+        } catch(IOException e){
+            e.printStackTrace();
+            System.err.println("Could not retrieve all usernames.");
+        }
+        return allUsernames;
+    }
+
+    //Fixme: Reservation has User user, Room room, LocalDate startDate,
+    //LocalDate endDate, Country startCountry, Country endCountry
 
     /**
      * Operation to check if reservation is valid
@@ -283,6 +362,17 @@ public class ReservationDatabase {
             e.printStackTrace();
         }
         return false;
+    }
+
+    //TODO: Write using our database when we start that
+    public static void deleteReservation(Reservation reservation) {
+        System.err.println("Trying to delete reservation: " + reservation.getId() + " with owner " + reservation.getUser().getUsername());
+    }
+
+    //TODO: Write using our database when we start that
+    public static void updateReservation(Reservation reservation, String checkout, String roomNumber) {
+        System.err.println("Trying to update reservation: " + reservation.getId() + " from " + reservation.getUser().getUsername());
+        System.err.println("To new checkout: " + checkout + " and new room number: " + roomNumber);
     }
 }
 

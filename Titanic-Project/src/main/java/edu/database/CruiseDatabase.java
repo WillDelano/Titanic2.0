@@ -6,10 +6,7 @@ import edu.core.reservation.Room;
 
 import java.io.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * Database to record all the cruises
@@ -24,8 +21,7 @@ public class CruiseDatabase {
 
     public static Room getRoom(int roomNumber) {
         try {
-            InputStream is = RoomDatabase.class.getResourceAsStream("/room.csv");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            BufferedReader reader = new BufferedReader(new FileReader(filepath));
             String line;
 
             /*
@@ -120,6 +116,9 @@ public class CruiseDatabase {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        //sort to alphabetical order
+        Collections.sort(cruiseNames);
 
         return cruiseNames;
     }
