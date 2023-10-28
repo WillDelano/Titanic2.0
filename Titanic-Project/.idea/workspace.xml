@@ -5,10 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64eb4b36-0d34-4a25-aab4-8f9c9ab892af" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ui/addRoom/AddRoomController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ui/addRoom/AddRoomPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ui/editReservation/EditReservationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ui/editReservation/EditReservationPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ui/editReservation/GuestsWithReservationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ui/editReservation/GuestsWithReservationPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ui/editReservation/ReservationListPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ui/editReservation/ReservationListPageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/GuestLandingPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/TravelAgentLandingPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/reservation/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/reservation/Reservation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/reservation/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/reservation/Room.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/AccountDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/CountryDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/CountryDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/CruiseDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/CruiseDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/ReservationDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/ReservationDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/RoomDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/RoomDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/LoginPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/RegisterPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/RegisterPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/cruiseDetails/CruiseDetailsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/cruiseDetails/CruiseDetailsPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/cruiseDetails/SelectCruisePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/cruiseDetails/SelectCruisePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/LandingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/LandingPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/reservationDetails/MyReservationsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/reservationDetails/MyReservationsPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/roomDetails/BrowseRoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/roomDetails/BrowseRoomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/roomDetails/BrowseRoomPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/roomDetails/BrowseRoomPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/accountList.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/accountList.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cruises.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cruises.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/reservationList.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/reservationList.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/room.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/room.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,23 +93,13 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java</url>
-          <line>31</line>
+          <line>33</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/database/AccountDatabase.java</url>
-          <line>173</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java</url>
-          <line>33</line>
+          <line>35</line>
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/database/AccountDatabase.java</url>
-          <line>95</line>
-          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

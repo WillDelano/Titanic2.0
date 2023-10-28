@@ -26,7 +26,6 @@ public class AccountDatabase {
 
     /**
      * Creates the database for accounts
-     *
      */
     public AccountDatabase() {
         accountDatabase = new LinkedHashSet<>();
@@ -39,30 +38,28 @@ public class AccountDatabase {
             String line;
             line = reader.readLine();
 
-            while(line != null){
-                String [] split = line.split(",");
-                if(split[0].equals("Guest")){
+            while (line != null) {
+                String[] split = line.split(",");
+                if (split[0].equals("Guest")) {
                     //guest has extra parameter for reward points
 
                     //make guest instance then add to account list
 
-                    Guest guest = new Guest(split[1],split[2],Integer.parseInt(split[3]),split[4],split[5],
-                            Integer.parseInt(split[6]),split[7]);
+                    Guest guest = new Guest(split[1], split[2], Integer.parseInt(split[3]), split[4], split[5],
+                            Integer.parseInt(split[6]), split[7]);
                     accountDatabase.add(guest);
 
 
-                }
-                else{
+                } else {
                     //normal parameters
-                    if(split[0].equals("Agent")){
+                    if (split[0].equals("Agent")) {
                         //make agent instance based on file readings and add to list
-                        TravelAgent agent = new TravelAgent(split[1],split[2],Integer.parseInt(split[3]),split[4],split[5],
+                        TravelAgent agent = new TravelAgent(split[1], split[2], Integer.parseInt(split[3]), split[4], split[5],
                                 split[6]);
                         accountDatabase.add(agent);
-                    }
-                    else if(split[0].equals("Admin")){
+                    } else if (split[0].equals("Admin")) {
                         //make admin instance based on file readings and add to list
-                        Admin admin = new Admin(split[1],split[2],Integer.parseInt(split[3]),split[4],split[5],
+                        Admin admin = new Admin(split[1], split[2], Integer.parseInt(split[3]), split[4], split[5],
                                 split[6]);
                         accountDatabase.add(admin);
 
@@ -72,7 +69,7 @@ public class AccountDatabase {
             }
 
             reader.close();
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         //parse in everything into*/
@@ -80,15 +77,41 @@ public class AccountDatabase {
 
     /**
      * operation to validate login information from input
-     *
-     * @param username  The username of the user.
      */
-    public boolean isValidLogin(String username, String pass){
+    public static int getUserCount() {
+        int count = 0;
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            String line;
+            line = reader.readLine();
+
+            while (line != null) {
+                String[] split = line.split(",");
+
+                //if the username is found, return the account type
+                if (split[0].equals("Guest")) {
+                    count++;
+                }
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    /**
+     * operation to validate login information from input
+     *
+     * @param username The username of the user.
+     */
+    public boolean isValidLogin(String username, String pass) {
         boolean isValid = false;
-        for(User user:accountDatabase){
-            if(user.getUsername().equals(username)){
-                if(user.getPassword().equals(pass)){
-                    isValid= true;
+        for (User user : accountDatabase) {
+            if (user.getUsername().equals(username)) {
+                if (user.getPassword().equals(pass)) {
+                    isValid = true;
                 }
             }
         }
@@ -99,27 +122,25 @@ public class AccountDatabase {
     /**
      * operation to register a new account within account database
      *
-     * @param u  The new user to add to account database
+     * @param u The new user to add to account database
      */
-    public void addUser(Guest u){
+    public void addUser(Guest u) {
         accountDatabase.add(u);
 
         //now add the user to the file. YOU WILL ONLY ADD GUESTS.
         //Agents and admins are hardcoded on the backend
-        try{
+        try {
             //BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-          //  String username,String password,int id, String firstName, String lastName,int rewardPoints, String email
+            //  String username,String password,int id, String firstName, String lastName,int rewardPoints, String email
             System.err.println("HERE");
-            String toWrite = "Guest,"+u.getUsername()+","+u.getPassword()+","+u.getId()+","
-                    +u.getFirstName()+","+u.getLastName()+","+u.getRewardPoints()+","+u.getEmail()+"\n";
-            FileWriter write= new FileWriter(fileName,true);
+            String toWrite = "Guest," + u.getUsername() + "," + u.getPassword() + "," + u.getId() + ","
+                    + u.getFirstName() + "," + u.getLastName() + "," + u.getRewardPoints() + "," + u.getEmail() + "\n";
+            FileWriter write = new FileWriter(fileName, true);
             write.write(toWrite);
             write.close();
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     /**
@@ -132,9 +153,9 @@ public class AccountDatabase {
 
         ArrayList<String> newFileLines = new ArrayList<>();
 
-        String lineToCut = "Guest,"+userToRemove.getUsername()+","+userToRemove.getPassword()+","+userToRemove.getId()
-                +","+userToRemove.getFirstName()+","+userToRemove.getLastName()+","+userToRemove.getRewardPoints()+
-                ","+userToRemove.getEmail();
+        String lineToCut = "Guest," + userToRemove.getUsername() + "," + userToRemove.getPassword() + "," + userToRemove.getId()
+                + "," + userToRemove.getFirstName() + "," + userToRemove.getLastName() + "," + userToRemove.getRewardPoints() +
+                "," + userToRemove.getEmail();
 
 
         String line;
@@ -142,21 +163,21 @@ public class AccountDatabase {
 
         InputStream in = getClass().getClassLoader().getResourceAsStream("accountList.csv");
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-        while((line  = reader.readLine()) != null){
+        while ((line = reader.readLine()) != null) {
             newFileLines.add(line);
         }
         reader.close();
 
         //remove specified line
-        for(String s:newFileLines){
-            if(s.contains(lineToCut)){
+        for (String s : newFileLines) {
+            if (s.contains(lineToCut)) {
                 newFileLines.remove(s);
             }
         }
 
         //overrides old file
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-        for(String newFileLine: newFileLines){
+        for (String newFileLine : newFileLines) {
             writer.write(newFileLine);
             writer.newLine();
         }
@@ -166,28 +187,55 @@ public class AccountDatabase {
     }
 
     /**
-     * Operation to validate the existence of a given username.
+     * Operation to get the type an account belongs to
      *
-     * @param username A given username to validate
+     * @param username A given username to find
      */
-    public static boolean accountExists(String username) {
-        System.err.println("HERE");
+    public static String getAccountType(String username) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line;
             line = reader.readLine();
 
-            while(line != null) {
-                String [] split = line.split(",");
+            while (line != null) {
+                String[] split = line.split(",");
+
+                //if the username is found, return the account type
+                if (split[1].equals(username)) {
+                    return split[0];
+                }
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.err.println("No account found, returning empty account type.");
+        return "";
+    }
+
+    /**
+     * Operation to validate the existence of a given username.
+     *
+     * @param username A given username to validate
+     */
+    public static boolean accountExists(String username) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            String line;
+            line = reader.readLine();
+
+            while (line != null) {
+                String[] split = line.split(",");
 
                 //if the username exists in the file return true
-                if(split[1].equals(username)) {
+                if (split[1].equals(username)) {
                     return true;
                 }
                 line = reader.readLine();
             }
             reader.close();
-        } catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return false;
@@ -211,14 +259,14 @@ public class AccountDatabase {
      * @param newUser A given username to change into
      * @return the truth value of successfully modifying account
      */
-    public boolean modifyUsername(String oldUser,String newUser) throws IOException {
-        boolean changeSuccess= false;
+    public boolean modifyUsername(String oldUser, String newUser) throws IOException {
+        boolean changeSuccess = false;
         int counter = 0;
-        if(!accountExists(newUser)){
+        if (!accountExists(newUser)) {
 
-            for(User u: accountDatabase){
+            for (User u : accountDatabase) {
                 //finding the correct account to change username
-                if(u.getUsername().equals(oldUser)){
+                if (u.getUsername().equals(oldUser)) {
                     u.setUsername(newUser);
                     changeSuccess = true;
                     break;
@@ -226,7 +274,7 @@ public class AccountDatabase {
                 ++counter;
             }
 
-            modifyFileLine(counter,0,newUser);
+            modifyFileLine(counter, 0, newUser);
         }
 
         return changeSuccess;
@@ -236,13 +284,13 @@ public class AccountDatabase {
      * Operation to modify an account password.
      *
      * @param username User's username
-     * @param oldPass User's old password to change
-     * @param newPass A given password to change into
+     * @param oldPass  User's old password to change
+     * @param newPass  A given password to change into
      */
-    public void modifyPassword(String username,String oldPass,String newPass) throws IOException {
+    public void modifyPassword(String username, String oldPass, String newPass) throws IOException {
         int counter = 0;
-        for(User u: accountDatabase){
-            if(u.getUsername().equals(username)) {
+        for (User u : accountDatabase) {
+            if (u.getUsername().equals(username)) {
                 if (u.getPassword().equals(oldPass)) {
                     u.setUsername(newPass);
                     break;
@@ -251,7 +299,7 @@ public class AccountDatabase {
             ++counter;
         }
 
-        modifyFileLine(counter,1,newPass);
+        modifyFileLine(counter, 1, newPass);
     }
 
 
@@ -262,11 +310,11 @@ public class AccountDatabase {
      * @param oldFName User's old first name to change
      * @param newFName A given first name to change into
      */
-    public void modifyFirstName(String username,String oldFName,String newFName) throws IOException {
+    public void modifyFirstName(String username, String oldFName, String newFName) throws IOException {
         int counter = 0;
 
-        for(User u: accountDatabase){
-            if(u.getUsername().equals(username)) {
+        for (User u : accountDatabase) {
+            if (u.getUsername().equals(username)) {
                 if (u.getPassword().equals(oldFName)) {
                     u.setUsername(newFName);
                     break;
@@ -275,7 +323,7 @@ public class AccountDatabase {
             }
         }
 
-        modifyFileLine(counter,2,newFName);
+        modifyFileLine(counter, 2, newFName);
     }
 
 
@@ -286,11 +334,11 @@ public class AccountDatabase {
      * @param oldLName User's old last name to change
      * @param newLName A given last name to change into
      */
-    public void modifyLastName(String username,String oldLName,String newLName) throws IOException {
+    public void modifyLastName(String username, String oldLName, String newLName) throws IOException {
         int counter = 0;
 
-        for(User u: accountDatabase){
-            if(u.getUsername().equals(username)) {
+        for (User u : accountDatabase) {
+            if (u.getUsername().equals(username)) {
                 if (u.getPassword().equals(oldLName)) {
                     u.setUsername(newLName);
                     break;
@@ -298,10 +346,10 @@ public class AccountDatabase {
             }
             ++counter;
         }
-        modifyFileLine(counter,3,newLName);
+        modifyFileLine(counter, 3, newLName);
     }
 
-    public void modifyFileLine(int lineIndex,int dataToChange, String newData) throws IOException {
+    public void modifyFileLine(int lineIndex, int dataToChange, String newData) throws IOException {
         String line;
         ArrayList<String> fileList = new ArrayList<>();
 
@@ -309,7 +357,7 @@ public class AccountDatabase {
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 
         //copy lines into arraylist
-        while((line  = reader.readLine()) != null){
+        while ((line = reader.readLine()) != null) {
             //find specified line to remove
             fileList.add(line);
 
@@ -319,21 +367,21 @@ public class AccountDatabase {
 
         //modify specified line
         String linetoModify = fileList.get(lineIndex);
-        String[]split = linetoModify.split(",");
+        String[] split = linetoModify.split(",");
         split[dataToChange] = newData;
         StringBuilder sb = new StringBuilder();
-        for(int i=0;i <= split.length; i++){
+        for (int i = 0; i <= split.length; i++) {
             sb.append(split[i]);
         }
 
         String lineToPut = sb.toString();
 
-        fileList.set(lineIndex,lineToPut);
+        fileList.set(lineIndex, lineToPut);
 
 
         //overrides old file
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-        for(String newFileLine: fileList){
+        for (String newFileLine : fileList) {
             writer.write(newFileLine);
             writer.newLine();
         }
@@ -342,13 +390,12 @@ public class AccountDatabase {
         reader.close();
     }
 
-    public static User getUser(String username){
-        for(User u: accountDatabase){
-            if(u.getUsername().equals(username)){
+    public static User getUser(String username) {
+        for (User u : accountDatabase) {
+            if (u.getUsername().equals(username)) {
                 return u;
             }
         }
         return null;
     }
-
 }
