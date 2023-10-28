@@ -18,6 +18,14 @@ import java.util.*;
  * @version 1.0
  */
 public class RoomDatabase {
+
+    /**
+     * Operation to give access to a room
+     *
+     * @param roomNumber room number to find room
+     *
+     * @return specified room with room #
+     */
     public static Room getRoom(int roomNumber) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\room.csv"));
@@ -52,6 +60,13 @@ public class RoomDatabase {
     }
 
 
+    /**
+     * Operation to give access to a list of all rooms of a specific cruise
+     *
+     * @param cruise cruise name to parse all rooms
+     *
+     * @return list of rooms for a specific cruise
+     */
     //TODO: Add a parameter to get all the rooms of a certain cruise
     public static List<Room> getAllRooms(String cruise) {
         List<Room> rooms = new LinkedList<>();

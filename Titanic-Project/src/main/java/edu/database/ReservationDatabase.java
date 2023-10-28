@@ -25,7 +25,7 @@ import java.util.Set;
 public class ReservationDatabase {
     private static Map<User, Set<Reservation>> reservationDatabase;
     private static String fileName = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\reservationList.csv";
-
+    private static String reservedRoomFile = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\reservationList.csv";
 
     /**
      * Creates the database for reservations
@@ -42,6 +42,8 @@ public class ReservationDatabase {
 
     /**
      * Returns the reservation database
+     *
+     * @param guest specified user's reservations to access
      *
      * @return The reservation database
      */
@@ -101,22 +103,49 @@ public class ReservationDatabase {
         return guestReservations;
     }
 
-    //Fixme: Reservation has User user, Room room, LocalDate startDate,
-    //LocalDate endDate, Country startCountry, Country endCountry
+    //Fixme:(Just a note) Reservation has User user, Room room, LocalDate startDate,
+    //..LocalDate endDate, Country startCountry, Country endCountry
 
-    /*public boolean isValidReservation(Reservation reservationCheck){
-        return getReservationDatabase().get(reservationCheck.getUser()).contains(reservationCheck);
-    }*/
-    public static void addReservation(Reservation newReservation) {
-        String reservedRoomFile = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\reservationList.csv";
+    /**
+     * Operation to check if reservation is valid
+     *
+     * @param u specified user to check reservations
+     * @param reservationCheck specified reservation to validate
+     *
+     * @return Truth value of whether reservation is valid for user
+     */
+    public boolean isValidReservation(User u,Reservation reservationCheck){
+        //THIS will be checked before removing a database
+        boolean reservationExists = false;
+        //iterate through data structure then search if specific reservation exists
+        for(Map.Entry<User,Set<Reservation>> e: reservationDatabase.entrySet()){
+            if(e.getKey().equals(u)){
+                //check if reservation exists in set
+                if(e.getValue().contains(reservationCheck)){
+                    reservationExists = true;
+                }
+            }
+        }
 
+        return reservationExists;
+    }
+
+
+
+    /**
+     * Operation to check if reservation is valid
+     *
+     * @param u specified user to add reservation
+     * @param newReservation specified reservation to add
+     *
+     */
+    public static void addReservation(User u,Reservation newReservation) {
         //boolean added = reservationDatabase.get(newReservation.getUser()).add(newReservation);
         //now add reservation to file.
         //Agents and admins are hardcoded on the backend
 
         //if the reservation was not a duplicate
-        if(!ReservationDatabase.hasReservation(newReservation)) {
-
+        if(ReservationDatabase.hasReservation(newReservation)) {
              /*
              * CSV style
              * split[0] = reservation id
@@ -155,6 +184,13 @@ public class ReservationDatabase {
         }
     }
 
+
+    /**
+     * Operation to check if a User has valid reservations
+     *
+     * @param user user to check database for
+     *
+     */
     public static boolean hasUser(User user) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
@@ -175,6 +211,14 @@ public class ReservationDatabase {
         return false;
     }
 
+
+
+    /**
+     * Operation to check if a specific room is in reservation
+     *
+     * @param roomNumber room number to check database for
+     *
+     */
     public static boolean hasRoom(int roomNumber) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
@@ -184,7 +228,7 @@ public class ReservationDatabase {
             while(line != null) {
                 String[] split = line.split(",");
 
-                //if the user exists in the database, return true
+                //if the room exists in the database, return true
                 if (Integer.parseInt(split[5]) == roomNumber) {
                     return true;
                 }
@@ -198,6 +242,14 @@ public class ReservationDatabase {
         return false;
     }
 
+
+
+    /**
+     * Operation to check if the database has a reservation
+     *
+     * @param reservation specified reservation to check
+     *
+     */
     public static boolean hasReservation(Reservation reservation) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
