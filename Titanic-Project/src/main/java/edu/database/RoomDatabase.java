@@ -1,11 +1,8 @@
 package edu.database;
 
-import edu.core.cruise.Country;
-import edu.core.cruise.Cruise;
 import edu.core.reservation.Room;
 
 import java.io.*;
-import java.time.LocalDate;
 import java.util.*;
 
 
@@ -33,7 +30,7 @@ public class RoomDatabase {
 
         //write to csv
         String toWrite = room.getRoomNumber() + "," + room.getRoomPrice() + "," +
-                room.getBedType() + "," + room.getNumberOfBeds() + ","
+                room.getBedTypeStr() + "," + room.getNumberOfBeds() + ","
                 + room.getSmokingAvailable() + "," + room.isBooked() + "," + room.getCruise() + "\n";
 
         BufferedWriter writer = null;

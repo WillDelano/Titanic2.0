@@ -74,7 +74,7 @@ public class RoomCSVReader {
             for (Room room : roomList) {
                 if (room.isBooked()) {
                     writer.write(room.getRoomNumber() + "," + room.getNumberOfBeds() + "," +
-                            room.getBedType() + "," + room.getSmokingAvailable() + "," +
+                            room.getBedTypeStr() + "," + room.getSmokingAvailable() + "," +
                             room.getRoomPrice() + "," + room.isBooked());
                     writer.newLine();
                 }
