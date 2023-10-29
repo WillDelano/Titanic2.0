@@ -81,7 +81,8 @@ public class Room {
     }
     /**
      * will take the string bedType
-     * to pick the room's type.
+     * to set the value of the bedType, this will help with calculating the price
+     * of the room.
      *
      */
     public void setBedTypeFromStr(){
