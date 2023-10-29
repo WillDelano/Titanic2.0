@@ -88,7 +88,6 @@ public class LoginPage {
                 landingPage.showLandingPage(AccountDatabase.getUser(username));
             }
             else if (Objects.equals(AccountDatabase.getAccountType(username), "Agent")) {
-                System.err.println("here");
                 TravelAgentLandingPage landingPage = new TravelAgentLandingPage();
                 landingPage.showLandingPage(AccountDatabase.getUser(username));
             }
