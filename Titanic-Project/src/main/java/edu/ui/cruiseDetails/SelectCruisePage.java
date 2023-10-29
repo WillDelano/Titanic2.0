@@ -1,7 +1,9 @@
 package edu.ui.cruiseDetails;
 
 import edu.core.cruise.Cruise;
+import edu.database.CruiseDatabase;
 import edu.ui.landingPage.LandingPage;
+import edu.ui.roomDetails.BrowseRoomPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,8 +27,8 @@ public class SelectCruisePage {
     private JList<String> cruiseList;
     private JButton selectButton;
     private JButton backButton;
-
     private LandingPage landingPage;
+    private JTextArea detailsTextArea;
 
     public SelectCruisePage(LandingPage landingPage) {
         this.landingPage = landingPage;
@@ -41,19 +43,52 @@ public class SelectCruisePage {
         titleLabel = new JLabel("Available Cruises", JLabel.CENTER);
         cruiseFrame.add(titleLabel, BorderLayout.NORTH);
 
-        // TODO Replace with actual cruises
         List<String> cruisesFromDatabase = SelectCruiseController.getCruiseNames();
         String[] cruiseArray = cruisesFromDatabase.toArray(new String[0]);
         cruiseList = new JList<>(cruiseArray);
         JScrollPane listScrollPane = new JScrollPane(cruiseList);
         cruiseFrame.add(listScrollPane, BorderLayout.CENTER);
 
-        selectButton = new JButton("Select Cruise");
-        selectButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                handleCruiseSelection();
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BorderLayout());
+
+        JPanel detailsPanel = new JPanel();
+        detailsPanel.setLayout(new BoxLayout(detailsPanel, BoxLayout.Y_AXIS));
+
+        for (int i = 0; i < cruisesFromDatabase.size(); i++) {
+            // get a cruise from the database list
+            Cruise cruise = CruiseDatabase.getCruise(cruisesFromDatabase.get(i));
+
+            StringBuilder travelPath = new StringBuilder();
+            for (int j = 0; j < cruise.getTravelPath().size(); j++) {
+                travelPath.append(cruise.getTravelPath().get(j).getName());
+                if (j < cruise.getTravelPath().size() - 1) {
+                    travelPath.append(", ");
+                }
             }
-        });
+
+            String actualDetails = "Cruise Name: " + cruise.getName() + "\n" +
+                    "Departure Date: " + cruise.getDeparture().toString() + "\n" +
+                    "Travel Path: " + travelPath.toString() + "\n" +
+                    "Max Capacity: " + cruise.getMaxCapacity() + " passengers\n" +
+                    "Current Occupancy: " + cruise.getCurrentOccupancy() + " passengers\n";
+
+            JTextArea detailsTextArea = new JTextArea(actualDetails);
+            detailsTextArea.setEditable(false);
+            JScrollPane textScrollPane = new JScrollPane(detailsTextArea);
+            detailsPanel.add(textScrollPane);
+
+            JButton selectButton = new JButton("Select " + cruise.getName());
+            selectButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+            selectButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    handleCruiseSelection(cruise);
+                }
+            });
+            detailsPanel.add(selectButton);
+        }
+
+        mainPanel.add(detailsPanel, BorderLayout.CENTER);
 
         backButton = new JButton("Back");
         backButton.addActionListener(e -> {
@@ -62,16 +97,17 @@ public class SelectCruisePage {
         });
 
         JPanel buttonPanel = new JPanel();
-        buttonPanel.add(selectButton);
         buttonPanel.add(backButton);
 
-        cruiseFrame.add(buttonPanel, BorderLayout.SOUTH);
+        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
+
+        cruiseFrame.add(mainPanel);
         cruiseFrame.setVisible(true);
     }
 
-    private void handleCruiseSelection() {
-        String selectedCruiseName = cruiseList.getSelectedValue();
-        if (selectedCruiseName != null) {
+    private void handleCruiseSelection(Cruise cruise) {
+        String selectedCruiseName = cruise.getName();
+        /*if (selectedCruiseName != null) {
             int dialogResult = JOptionPane.showConfirmDialog(cruiseFrame, "View details for " + selectedCruiseName + "?", "Confirmation", JOptionPane.OK_CANCEL_OPTION);
             if (dialogResult == JOptionPane.OK_OPTION) {
 
@@ -80,7 +116,9 @@ public class SelectCruisePage {
             }
         } else {
             showMessage("Please select a cruise first.");
-        }
+        }*/
+        Cruise selectedCruise = SelectCruiseController.getCruiseDetails(selectedCruiseName);
+        new BrowseRoomPage(selectedCruise.getName());
     }
 
     private void showMessage(String message) {

@@ -6,12 +6,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import edu.authentication.Authentication;
+<<<<<<< HEAD
+import edu.core.users.Guest;
+=======
 import edu.core.cruise.Cruise;
+>>>>>>> 59194080a9c19a650d755b0950368856fc6195ac
 import edu.core.users.User;
 import edu.database.AccountDatabase;
-import edu.ui.cruiseDetails.CruiseDetailsPage;
 import edu.ui.cruiseDetails.SelectCruiseController;
 import edu.ui.landingPage.LandingPage;
+import edu.uniqueID.UniqueID;
 
 /**
  * UI display for the registration page
@@ -31,7 +35,13 @@ public class RegisterPage {
     private JTextField emailField;
 
 
+<<<<<<< HEAD
+
+
+    public RegisterPage(){createGUI();}
+=======
     public RegisterPage() { createGUI(); }
+>>>>>>> 59194080a9c19a650d755b0950368856fc6195ac
 
     public void createGUI(){
         mainFrame = new JFrame("Create an Account Page");
@@ -122,11 +132,19 @@ public class RegisterPage {
         String email = emailField.getText();
         String username = usernameField.getText();
         String password = passwordField.getText();
+        //please remove this and add to the Guest. The Guest should generate after authenticating the
+        //the account. Right now we are passing in an id which seems weird. Either
+        int id = new UniqueID().getId();
+        Guest g = new Guest(username, password, id, firstName, lastName, 100 , email);
 
         AccountDatabase d = new AccountDatabase();
         Authentication a = new Authentication();
 
         a.createAccount(username, password, firstName, lastName, email);
+
+        d.addUser(g);
+
+
 
         mainFrame.setVisible(false);
         LoginPage loginPage = new LoginPage();

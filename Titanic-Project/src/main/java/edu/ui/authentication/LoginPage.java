@@ -2,10 +2,13 @@ package edu.ui.authentication;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 import edu.authentication.Authentication;
 import edu.database.AccountDatabase;
+import edu.ui.landingPage.GuestLandingPage;
 import edu.ui.landingPage.LandingPage;
+import edu.ui.landingPage.TravelAgentLandingPage;
 
 /**
  * UI display for the login page
@@ -70,19 +73,26 @@ public class LoginPage {
         mainFrame.setVisible(true);
     }
 
-    private void loginToSystem(){
+    private void loginToSystem() {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
         Authentication a = new Authentication();
-        AccountDatabase d = new AccountDatabase();
+        new AccountDatabase();
 
         if (a.login(username, password)) {
             mainFrame.setVisible(false);
-            LandingPage landingPage = new LandingPage();
-            landingPage.showLandingPage(d.getUser(username));
-        }
 
+            if (Objects.equals(AccountDatabase.getAccountType(username), "Guest")) {
+                GuestLandingPage landingPage = new GuestLandingPage();
+                landingPage.showLandingPage(AccountDatabase.getUser(username));
+            }
+            else if (Objects.equals(AccountDatabase.getAccountType(username), "Agent")) {
+                System.err.println("here");
+                TravelAgentLandingPage landingPage = new TravelAgentLandingPage();
+                landingPage.showLandingPage(AccountDatabase.getUser(username));
+            }
+        }
     }
 
     private void registerAccount(){

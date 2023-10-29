@@ -45,6 +45,8 @@ public class Guest extends User {
         this.rewardPoints = rewardPoints;
     }
 
+
+
     public PaymentInfo getPaymentInfo() {
         return paymentInfo;
     }
