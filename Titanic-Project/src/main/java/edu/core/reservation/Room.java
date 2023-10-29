@@ -10,7 +10,7 @@ import java.util.Objects;
  * </p>
  *
  * @author Cole Hogan
- * @version 1.0
+ * @version 1.3
  * @see Room
  */
 public class Room {
@@ -82,7 +82,7 @@ public class Room {
     /**
      * will take the string bedType
      * to set the value of the bedType, this will help with calculating the price
-     * of the room.
+     * of the room.g
      *
      */
     public void setBedTypeFromStr(){
