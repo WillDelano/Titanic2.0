@@ -226,7 +226,7 @@ public class AccountDatabase {
      */
     public static boolean accountExists(String username) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("fileName"gi));
+            BufferedReader reader = new BufferedReader(new FileReader("fileName"));
             String line;
             line = reader.readLine();
 
