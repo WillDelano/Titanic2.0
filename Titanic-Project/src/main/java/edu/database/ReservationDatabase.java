@@ -17,15 +17,15 @@ import java.util.Set;
 /**
  * Database to record reservations
  *
- * This class documents a collection of reservations mapped with users
+ * This class documents a collection of reservations and reads/writes to the database file
  *
  * @author William Delano
  * @version 1.0
  */
 public class ReservationDatabase {
     private static Map<User, Set<Reservation>> reservationDatabase;
-    private static String fileName = "/reservationList.csv";
-
+    private static String fileName = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\reservationList.csv";
+    private static String reservedRoomFile = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\reservationList.csv";
 
     /**
      * Creates the database for reservations
@@ -33,12 +33,50 @@ public class ReservationDatabase {
      */
     public ReservationDatabase() {
         try {
-            InputStream is = ReservationDatabase.class.getResourceAsStream(fileName);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
             reader.close();
         } catch(IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Returns the reservation database size
+     **
+     * @return The reservation database size
+     */
+    public static int getReservationDatabaseSize() {
+        int count = 0;
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            String line;
+
+            /*
+             * CSV style
+             * split[0] = reservation id
+             * split[1] = user username
+             * split[2] = duration of trip in days
+             * split[3] = starting country
+             * split[4] = ending country
+             * split[5] = room id
+             * split[6] = start date of reservation
+             * split[7] = end date of reservation
+             */
+
+            line = reader.readLine();
+
+            while(line != null) {
+                count++;
+
+                line = reader.readLine();
+            }
+
+            reader.close();
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+        return count;
     }
 
     /**
@@ -50,14 +88,13 @@ public class ReservationDatabase {
         Set<Reservation> guestReservations = new HashSet<>();
 
         try {
-            InputStream is = ReservationDatabase.class.getResourceAsStream(fileName);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line;
 
             /*
             * CSV style
             * split[0] = reservation id
-            * split[1] = user id
+            * split[1] = user username
             * split[2] = duration of trip in days
             * split[3] = starting country
             * split[4] = ending country
@@ -65,11 +102,14 @@ public class ReservationDatabase {
             * split[6] = start date of reservation
             * split[7] = end date of reservation
             */
-            while((line = reader.readLine()) != null) {
+
+            line = reader.readLine();
+
+            while(line != null) {
                 String[] split = line.split(",");
 
-                //if the guest id of the reservation matches the guest
-                if (Integer.parseInt(split[1]) == guest.getId()) {
+                //if the guest username of the reservation matches the guest
+                if (Objects.equals(split[1], guest.getUsername())) {
                     //get room that guest is in with id
                     Room guestRoom = RoomDatabase.getRoom(Integer.parseInt(split[5]));
 
@@ -89,6 +129,7 @@ public class ReservationDatabase {
                     //add to the set of reservations for the current guest
                     guestReservations.add(reservation);
                 }
+                line = reader.readLine();
             }
 
             reader.close();
@@ -98,26 +139,96 @@ public class ReservationDatabase {
         return guestReservations;
     }
 
+    /**
+     * Returns all the usernames of users with a reservation
+     *
+     * @return A set of usernames
+     */
+    public static Set<String> getAllUsernames() {
+        Set<String> allUsernames = new HashSet<>();
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            String line;
+
+            /*
+             * CSV style
+             * split[0] = reservation id
+             * split[1] = user username
+             * split[2] = duration of trip in days
+             * split[3] = starting country
+             * split[4] = ending country
+             * split[5] = room id
+             * split[6] = start date of reservation
+             * split[7] = end date of reservation
+             */
+
+            line = reader.readLine();
+
+            while(line != null) {
+                String[] split = line.split(",");
+
+                //add the username
+                allUsernames.add(split[1]);
+
+                line = reader.readLine();
+            }
+
+            reader.close();
+        } catch(IOException e){
+            e.printStackTrace();
+            System.err.println("Could not retrieve all usernames.");
+        }
+        return allUsernames;
+    }
+
     //Fixme: Reservation has User user, Room room, LocalDate startDate,
-    // LocalDate endDate, Country startCountry, Country endCountry
+    //LocalDate endDate, Country startCountry, Country endCountry
 
-    /*public boolean isValidReservation(Reservation reservationCheck){
-        return getReservationDatabase().get(reservationCheck.getUser()).contains(reservationCheck);
-    }*/
-    public static void addReservation(Reservation newReservation) {
-        String reservedRoomFile = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\reservationList.csv";
+    /**
+     * Operation to check if reservation is valid
+     *
+     * @param u specified user to check reservations
+     * @param reservationCheck specified reservation to validate
+     *
+     * @return Truth value of whether reservation is valid for user
+     */
+    public boolean isValidReservation(User u,Reservation reservationCheck){
+        //THIS will be checked before removing a database
+        boolean reservationExists = false;
+        //iterate through data structure then search if specific reservation exists
+        for(Map.Entry<User,Set<Reservation>> e: reservationDatabase.entrySet()){
+            if(e.getKey().equals(u)){
+                //check if reservation exists in set
+                if(e.getValue().contains(reservationCheck)){
+                    reservationExists = true;
+                }
+            }
+        }
 
+        return reservationExists;
+    }
+
+
+
+    /**
+     * Operation to check if reservation is valid
+     *
+     * @param u specified user to add reservation
+     * @param newReservation specified reservation to add
+     *
+     */
+    public static void addReservation(User u,Reservation newReservation) {
         //boolean added = reservationDatabase.get(newReservation.getUser()).add(newReservation);
         //now add reservation to file.
         //Agents and admins are hardcoded on the backend
 
         //if the reservation was not a duplicate
-        if(!ReservationDatabase.hasReservation(newReservation)) {
-
+        if(ReservationDatabase.hasReservation(newReservation)) {
              /*
              * CSV style
              * split[0] = reservation id
-             * split[1] = user id
+             * split[1] = user username
              * split[2] = duration of trip in days
              * split[3] = starting country
              * split[4] = ending country
@@ -127,7 +238,8 @@ public class ReservationDatabase {
              */
 
             //write to csv
-            String toWrite = newReservation.getId() + "," + newReservation.getUser().getId() + "," +
+            System.err.println("ID: " + newReservation.getUser().getId());
+            String toWrite = newReservation.getId() + "," + newReservation.getUser().getUsername() + "," +
                      newReservation.getDays() + "," + newReservation.getStartCountry().getName() + ","
                     + newReservation.getEndCountry().getName() + "," + newReservation.getRoom().getRoomNumber()
                     + "," + newReservation.getStartDate() + "," + newReservation.getEndDate() + "\n";
@@ -151,10 +263,16 @@ public class ReservationDatabase {
         }
     }
 
+
+    /**
+     * Operation to check if a User has valid reservations
+     *
+     * @param user user to check database for
+     *
+     */
     public static boolean hasUser(User user) {
         try {
-            InputStream is = ReservationDatabase.class.getResourceAsStream(fileName);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line;
 
             while((line = reader.readLine()) != null) {
@@ -172,10 +290,48 @@ public class ReservationDatabase {
         return false;
     }
 
+
+
+    /**
+     * Operation to check if a specific room is in reservation
+     *
+     * @param roomNumber room number to check database for
+     *
+     */
+    public static boolean hasRoom(int roomNumber) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            String line;
+
+            line = reader.readLine();
+            while(line != null) {
+                String[] split = line.split(",");
+
+                //if the room exists in the database, return true
+                if (Integer.parseInt(split[5]) == roomNumber) {
+                    return true;
+                }
+
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
+
+    /**
+     * Operation to check if the database has a reservation
+     *
+     * @param reservation specified reservation to check
+     *
+     */
     public static boolean hasReservation(Reservation reservation) {
         try {
-            InputStream is = ReservationDatabase.class.getResourceAsStream(fileName);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line;
 
             while((line = reader.readLine()) != null) {
@@ -206,6 +362,17 @@ public class ReservationDatabase {
             e.printStackTrace();
         }
         return false;
+    }
+
+    //TODO: Write using our database when we start that
+    public static void deleteReservation(Reservation reservation) {
+        System.err.println("Trying to delete reservation: " + reservation.getId() + " with owner " + reservation.getUser().getUsername());
+    }
+
+    //TODO: Write using our database when we start that
+    public static void updateReservation(Reservation reservation, String checkout, String roomNumber) {
+        System.err.println("Trying to update reservation: " + reservation.getId() + " from " + reservation.getUser().getUsername());
+        System.err.println("To new checkout: " + checkout + " and new room number: " + roomNumber);
     }
 }
 

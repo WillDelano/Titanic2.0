@@ -2,10 +2,23 @@ package edu.ui.authentication;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 import edu.authentication.Authentication;
+import edu.database.AccountDatabase;
+import edu.ui.landingPage.GuestLandingPage;
 import edu.ui.landingPage.LandingPage;
+import edu.ui.landingPage.TravelAgentLandingPage;
 
+/**
+ * UI display for the login page
+ *
+ * This class creates the login page and allows access to the RegisterPage
+ *
+ * @author Gabriel Choi
+ * @version 1.0
+ * @see RegisterPage
+ */
 public class LoginPage {
     private JFrame mainFrame;
     private JTextField usernameField;
@@ -60,29 +73,26 @@ public class LoginPage {
         mainFrame.setVisible(true);
     }
 
-    private void loginToSystem(){
+    private void loginToSystem() {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
         Authentication a = new Authentication();
+        new AccountDatabase();
 
-
-        /*
-
-        Something like this would be used to log user into the system
-
-        if(a.login(username, password)){
+        if (a.login(username, password)) {
             mainFrame.setVisible(false);
-            new LandingPage();
+
+            if (Objects.equals(AccountDatabase.getAccountType(username), "Guest")) {
+                GuestLandingPage landingPage = new GuestLandingPage();
+                landingPage.showLandingPage(AccountDatabase.getUser(username));
+            }
+            else if (Objects.equals(AccountDatabase.getAccountType(username), "Agent")) {
+                System.err.println("here");
+                TravelAgentLandingPage landingPage = new TravelAgentLandingPage();
+                landingPage.showLandingPage(AccountDatabase.getUser(username));
+            }
         }
-
-         */
-
-        if(username.equals("username") && password.equals("password")){
-            mainFrame.setVisible(false);
-            new LandingPage();
-        }
-
     }
 
     private void registerAccount(){

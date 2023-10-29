@@ -8,13 +8,20 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
+/**
+ * Database to record all the countries
+ *
+ * This class documents a collection of countries and reads/writes to the database file
+ *
+ * @author William Delano
+ * @version 1.0
+ */
 public class CountryDatabase {
-    private static String fileName = "/countries.csv";
+    private static String fileName = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\countries.csv";
     public static Country getCountry(String name) {
         //look through database to find country with matching name
         try {
-            InputStream is = CountryDatabase.class.getResourceAsStream(fileName);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line;
 
             /*

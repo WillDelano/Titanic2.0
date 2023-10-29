@@ -1,10 +1,13 @@
 package edu.authentication;
 
+import edu.core.users.CurrentGuest;
 import edu.database.AccountDatabase;
 import edu.uniqueID.UniqueID;
 import edu.core.users.Guest;
 
 import java.lang.*;
+import java.util.Objects;
+
 /**
  * Interface for any authentication features
  *
@@ -48,12 +51,19 @@ public class Authentication {
      * @param password   The given password for potential user account.
      */
     public boolean login(String username, String password){
-        AccountDatabase loginList= new AccountDatabase();
+        AccountDatabase loginList = new AccountDatabase();
         boolean validLogin = false;
 
         //first check if username and pw are valid  and connected
         if(loginList.isValidLogin(username,password)){
+            System.out.println("Success");
             validLogin=true;
+
+            if (Objects.equals(AccountDatabase.getAccountType(username), "Guest")) {
+                System.err.println("HERE");
+                CurrentGuest.setCurrentGuest((Guest) AccountDatabase.getUser(username));
+                CurrentGuest.getCurrentGuest().setId(AccountDatabase.getUser(username).getId());
+            }
         }
         return validLogin;
     }

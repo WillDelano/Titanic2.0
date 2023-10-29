@@ -30,18 +30,35 @@ public class Room {
 
     private boolean isBooked = false;
 
+    private String cruise;
 
     /**
      * default constructor of the Room
      *
      */
-    public Room(int roomNumber, int numberOfBeds, String bedType, boolean smokingAvailable, double roomPrice) {
+    public Room(int roomNumber, int numberOfBeds, String bedType, boolean smokingAvailable, double roomPrice, String cruise) {
         this.roomNumber = roomNumber;
         this.numberOfBeds = numberOfBeds;
         this.bedType = bedType;
         this.smokingAvailable = smokingAvailable;
         this.roomPrice = roomPrice;
+        this.cruise = cruise;
     }
+
+    /**
+     * Returns the cruise
+     *
+     * @return The cruise name associated with this room
+     */
+    public String getCruise() {
+        return this.cruise;
+    }
+
+    /**
+     * sets the NumberOfBeds in a room
+     *
+     * @param numberOfBeds
+     */
 
     /**
      * sets the Room number
@@ -154,12 +171,18 @@ public class Room {
      */
     @Override
     public String toString() {
-        return "Room Number: " + roomNumber + "\n" +
-                ", Number of Beds: " + numberOfBeds + "\n" +
-                ", Bed Type: " + bedType + "\n" +
-                ", Smoking Availability: " + smokingAvailable + "\n" +
-                ", Room Price: $" + roomPrice + "\n" +
-                ", Is Booked: " + isBooked;
+        String smoking;
+        if (smokingAvailable) {
+            smoking = "Yes";
+        }
+        else {
+            smoking = "No";
+        }
+
+        return "Room Number: " + roomNumber + ", Number of Beds: " + numberOfBeds +
+                ", Bed Type: " + bedType +
+                ", Smoking Availability: " + smoking +
+                ", Room Price: $" + roomPrice;
     }
 
     /**

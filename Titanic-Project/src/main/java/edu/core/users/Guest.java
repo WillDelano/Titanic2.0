@@ -88,6 +88,7 @@ public class Guest extends User {
         //add their reservation to database if it's not a duplicate
         if (!ReservationDatabase.hasReservation(reservation)) {
             ReservationDatabase.addReservation(reservation);
+            room.bookRoom();
         }
         else {
             System.err.println("Attempting to add duplicate reservation - Cancelled.");

@@ -1,12 +1,23 @@
-package edu.ui.cruiseDetails;
+/*package edu.ui.cruiseDetails;
 
 import edu.core.cruise.Cruise;
+import edu.ui.authentication.RegisterPage;
+import edu.ui.landingPage.LandingPage;
 import edu.ui.roomDetails.BrowseRoomPage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+/**
+ * UI display for cruise details
+ *
+ * This class creates the ui display which shows the user details of the selected cruise
+ *
+ * @author Vincent Dinh
+ * @version 1.0
+ * @see LandingPage
 
 public class CruiseDetailsPage {
 
@@ -43,7 +54,6 @@ public class CruiseDetailsPage {
                 "Departure Date: " + cruiseDetails.getDeparture().toString() + "\n" +
                 "Travel Path: " + travelPath.toString() + "\n" +
                 "Max Capacity: " + cruiseDetails.getMaxCapacity() + " passengers\n" +
-                // assuming you have a method getCurrentOccupancy() in Cruise class
                 "Current Occupancy: " + cruiseDetails.getCurrentOccupancy() + " passengers\n";
 
         detailsTextArea = new JTextArea(actualDetails);
@@ -61,3 +71,4 @@ public class CruiseDetailsPage {
         detailsFrame.setVisible(true);
     }
 }
+*/
