@@ -3,7 +3,7 @@ package edu.uniqueID;
 import edu.core.users.User;
 
 /**
- * Creates a unqiue id
+ * Creates a unique id
  *
  * This class provides a unique id for any instance
  *

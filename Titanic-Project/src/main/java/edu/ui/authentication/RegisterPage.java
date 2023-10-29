@@ -2,11 +2,26 @@ package edu.ui.authentication;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import edu.authentication.Authentication;
+import edu.core.cruise.Cruise;
 import edu.core.users.User;
 import edu.database.AccountDatabase;
+import edu.ui.cruiseDetails.CruiseDetailsPage;
+import edu.ui.cruiseDetails.SelectCruiseController;
 import edu.ui.landingPage.LandingPage;
 
+/**
+ * UI display for the registration page
+ *
+ * This class creates the registration page and allows a user to register for an account
+ *
+ * @author Gabriel Choi
+ * @version 1.0
+ * @see LoginPage
+ */
 public class RegisterPage {
     private JFrame mainFrame;
     private JTextField usernameField;
@@ -16,7 +31,7 @@ public class RegisterPage {
     private JTextField emailField;
 
 
-    public RegisterPage(){createGUI();}
+    public RegisterPage() { createGUI(); }
 
     public void createGUI(){
         mainFrame = new JFrame("Create an Account Page");
@@ -82,7 +97,26 @@ public class RegisterPage {
         mainFrame.setVisible(true);
     }
 
-    public void registerAccount(){
+    public boolean validateUsername() {
+        AccountDatabase d = new AccountDatabase();
+        String username = usernameField.getText();
+
+        if (AccountDatabase.accountExists(username)) {
+            JOptionPane.showMessageDialog(mainFrame, "A user with that name already exists", "Sorry!", JOptionPane.WARNING_MESSAGE);
+
+            return true;
+        }
+        return false;
+    }
+
+    public void registerAccount() {
+        //if username exists, start over
+        if (validateUsername()) {
+            mainFrame.dispose();
+            createGUI();
+            return;
+        }
+
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String email = emailField.getText();
@@ -95,7 +129,6 @@ public class RegisterPage {
         a.createAccount(username, password, firstName, lastName, email);
 
         mainFrame.setVisible(false);
-        LandingPage landingPage = new LandingPage();
-        landingPage.showLandingPage(d.getUser(username));
+        LoginPage loginPage = new LoginPage();
     }
 }

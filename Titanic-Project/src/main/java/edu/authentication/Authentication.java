@@ -1,5 +1,6 @@
 package edu.authentication;
 
+import edu.core.users.CurrentGuest;
 import edu.database.AccountDatabase;
 import edu.uniqueID.UniqueID;
 import edu.core.users.Guest;
@@ -53,7 +54,13 @@ public class Authentication {
 
         //first check if username and pw are valid  and connected
         if(loginList.isValidLogin(username,password)){
+            System.out.println("Success");
             validLogin=true;
+
+            CurrentGuest.setCurrentGuest((Guest) AccountDatabase.getUser(username));
+            CurrentGuest.getCurrentGuest().setId(AccountDatabase.getUser(username).getId());
+
+            System.err.println("User: " + CurrentGuest.getCurrentGuest().getUsername() + " with id: " + CurrentGuest.getCurrentGuest().getId());
         }
         return validLogin;
     }

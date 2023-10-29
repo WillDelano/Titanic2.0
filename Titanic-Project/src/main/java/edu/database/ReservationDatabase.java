@@ -17,14 +17,14 @@ import java.util.Set;
 /**
  * Database to record reservations
  *
- * This class documents a collection of reservations mapped with users
+ * This class documents a collection of reservations and reads/writes to the database file
  *
  * @author William Delano
  * @version 1.0
  */
 public class ReservationDatabase {
     private static Map<User, Set<Reservation>> reservationDatabase;
-    private static String fileName = "/reservationList.csv";
+    private static String fileName = "C:\\Users\\vince\\Java Projects\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\reserved_rooms.csv";
 
 
     /**
@@ -33,8 +33,7 @@ public class ReservationDatabase {
      */
     public ReservationDatabase() {
         try {
-            InputStream is = ReservationDatabase.class.getResourceAsStream(fileName);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
             reader.close();
         } catch(IOException e) {
             e.printStackTrace();
@@ -50,14 +49,13 @@ public class ReservationDatabase {
         Set<Reservation> guestReservations = new HashSet<>();
 
         try {
-            InputStream is = ReservationDatabase.class.getResourceAsStream(fileName);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line;
 
             /*
             * CSV style
             * split[0] = reservation id
-            * split[1] = user id
+            * split[1] = user username
             * split[2] = duration of trip in days
             * split[3] = starting country
             * split[4] = ending country
@@ -65,11 +63,15 @@ public class ReservationDatabase {
             * split[6] = start date of reservation
             * split[7] = end date of reservation
             */
-            while((line = reader.readLine()) != null) {
-                String[] split = line.split(",");
 
-                //if the guest id of the reservation matches the guest
-                if (Integer.parseInt(split[1]) == guest.getId()) {
+            line = reader.readLine();
+
+            while(line != null) {
+                String[] split = line.split(",");
+                System.err.println("Room ID: " + split[5]);
+
+                //if the guest username of the reservation matches the guest
+                if (Objects.equals(split[1], guest.getUsername())) {
                     //get room that guest is in with id
                     Room guestRoom = RoomDatabase.getRoom(Integer.parseInt(split[5]));
 
@@ -89,6 +91,7 @@ public class ReservationDatabase {
                     //add to the set of reservations for the current guest
                     guestReservations.add(reservation);
                 }
+                line = reader.readLine();
             }
 
             reader.close();
@@ -99,7 +102,7 @@ public class ReservationDatabase {
     }
 
     //Fixme: Reservation has User user, Room room, LocalDate startDate,
-    // LocalDate endDate, Country startCountry, Country endCountry
+    //LocalDate endDate, Country startCountry, Country endCountry
 
     /*public boolean isValidReservation(Reservation reservationCheck){
         return getReservationDatabase().get(reservationCheck.getUser()).contains(reservationCheck);
@@ -117,7 +120,7 @@ public class ReservationDatabase {
              /*
              * CSV style
              * split[0] = reservation id
-             * split[1] = user id
+             * split[1] = user username
              * split[2] = duration of trip in days
              * split[3] = starting country
              * split[4] = ending country
@@ -127,7 +130,8 @@ public class ReservationDatabase {
              */
 
             //write to csv
-            String toWrite = newReservation.getId() + "," + newReservation.getUser().getId() + "," +
+            System.err.println("ID: " + newReservation.getUser().getId());
+            String toWrite = newReservation.getId() + "," + newReservation.getUser().getUsername() + "," +
                      newReservation.getDays() + "," + newReservation.getStartCountry().getName() + ","
                     + newReservation.getEndCountry().getName() + "," + newReservation.getRoom().getRoomNumber()
                     + "," + newReservation.getStartDate() + "," + newReservation.getEndDate() + "\n";
@@ -153,8 +157,7 @@ public class ReservationDatabase {
 
     public static boolean hasUser(User user) {
         try {
-            InputStream is = ReservationDatabase.class.getResourceAsStream(fileName);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line;
 
             while((line = reader.readLine()) != null) {
@@ -172,10 +175,32 @@ public class ReservationDatabase {
         return false;
     }
 
+    public static boolean hasRoom(int roomNumber) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            String line;
+
+            line = reader.readLine();
+            while(line != null) {
+                String[] split = line.split(",");
+
+                //if the user exists in the database, return true
+                if (Integer.parseInt(split[5]) == roomNumber) {
+                    return true;
+                }
+
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public static boolean hasReservation(Reservation reservation) {
         try {
-            InputStream is = ReservationDatabase.class.getResourceAsStream(fileName);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line;
 
             while((line = reader.readLine()) != null) {

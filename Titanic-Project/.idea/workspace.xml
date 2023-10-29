@@ -4,42 +4,44 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64eb4b36-0d34-4a25-aab4-8f9c9ab892af" name="Changes" comment="">
+    <list default="true" id="1096fd3a-3f61-4015-9b8d-14dd98c0eea7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reserved_rooms.csv" beforeDir="false" afterPath="$PROJECT_DIR$/reserved_rooms.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/reservation/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/reservation/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/users/CurrentGuest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/users/CurrentGuest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/users/Guest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/users/Guest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/AccountDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/CountryDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/CountryDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/CruiseDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/CruiseDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/ReservationDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/ReservationDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/RoomDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/RoomDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/LoginPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/RegisterPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/RegisterPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/cruiseDetails/CruiseDetailsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/cruiseDetails/CruiseDetailsPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/cruiseDetails/SelectCruiseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/cruiseDetails/SelectCruiseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/cruiseDetails/SelectCruisePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/cruiseDetails/SelectCruisePage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/LandingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/LandingPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/LandingPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/LandingPageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/reservationDetails/MyReservationsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/reservationDetails/MyReservationsPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/roomDetails/BrowseRoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/roomDetails/BrowseRoomController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/roomDetails/BrowseRoomPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/roomDetails/BrowseRoomPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/uniqueID/UniqueID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/uniqueID/UniqueID.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/accountList.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/accountList.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/reservationList.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/reservationList.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/room.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/room.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
-  <component name="ProjectId" id="2XHmk8yhhDnMtuRV9Lmwv0921tL" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 5
+}]]></component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "Merging main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -47,18 +49,13 @@
     "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\vince\Java Projects\Titanic2.0\Titanic-Project\src\main\resources" />
-    </key>
-  </component>
   <component name="RunManager">
-    <configuration name="LandingPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="edu.ui.landingPage.LandingPage" />
+    <configuration name="LoginPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.ui.authentication.LoginPage" />
       <module name="Titanic-Project" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="edu.ui.landingPage.*" />
+          <option name="PATTERN" value="edu.ui.authentication.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -68,44 +65,14 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.LandingPage" />
+        <item itemvalue="Application.LoginPage" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="7c623630-8b2b-483c-916c-47015e41145e" name="Changes" comment="" />
-      <created>1698294520800</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1698294520800</updated>
-    </task>
     <servers />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.NullPointerException" package="java.lang" />
-          <option name="timeStamp" value="1" />
-        </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/database/AccountDatabase.java</url>
-          <line>169</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java</url>
-          <line>33</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>

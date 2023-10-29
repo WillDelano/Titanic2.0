@@ -1,6 +1,8 @@
 package edu.ui.cruiseDetails;
 
 import edu.core.cruise.Cruise;
+import edu.ui.authentication.RegisterPage;
+import edu.ui.landingPage.LandingPage;
 import edu.ui.roomDetails.BrowseRoomPage;
 
 import javax.swing.*;
@@ -8,6 +10,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * UI display for cruise details
+ *
+ * This class creates the ui display which shows the user details of the selected cruise
+ *
+ * @author Vincent Dinh
+ * @version 1.0
+ * @see LandingPage
+ */
 public class CruiseDetailsPage {
 
     private JFrame detailsFrame;

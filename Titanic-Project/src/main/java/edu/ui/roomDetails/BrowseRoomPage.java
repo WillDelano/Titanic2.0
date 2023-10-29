@@ -1,5 +1,6 @@
 package edu.ui.roomDetails;
 
+import edu.core.cruise.Cruise;
 import edu.core.reservation.Reservation;
 import edu.core.reservation.Room;
 import edu.core.users.CurrentGuest;
@@ -8,6 +9,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * UI for displaying all rooms on a cruise
+ *
+ * This class displays all the rooms of a selected cruise to a user
+ *
+ * @author Vincent Dinh
+ * @version 1.0
+ * @see edu.database.RoomDatabase, Room, BrowseRoomController
+ */
 public class BrowseRoomPage {
 
     private JFrame roomFrame;
@@ -29,8 +39,7 @@ public class BrowseRoomPage {
         titleLabel = new JLabel("Available Rooms for " + selectedCruise, JLabel.CENTER);
         roomFrame.add(titleLabel, BorderLayout.NORTH);
 
-        //TODO: Add parameter to get rooms of a specific cruise
-        List<Room> sampleRooms = BrowseRoomController.getRooms();
+        List<Room> sampleRooms = BrowseRoomController.getRooms(selectedCruise);
         roomList = new JList<>(sampleRooms.toArray(new Room[0]));
 
         JScrollPane listScrollPane = new JScrollPane(roomList);

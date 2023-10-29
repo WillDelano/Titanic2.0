@@ -4,8 +4,18 @@ import javax.swing.*;
 import java.awt.*;
 
 import edu.authentication.Authentication;
+import edu.database.AccountDatabase;
 import edu.ui.landingPage.LandingPage;
 
+/**
+ * UI display for the login page
+ *
+ * This class creates the login page and allows access to the RegisterPage
+ *
+ * @author Gabriel Choi
+ * @version 1.0
+ * @see RegisterPage
+ */
 public class LoginPage {
     private JFrame mainFrame;
     private JTextField usernameField;
@@ -65,22 +75,12 @@ public class LoginPage {
         String password = passwordField.getText();
 
         Authentication a = new Authentication();
+        AccountDatabase d = new AccountDatabase();
 
-
-        /*
-
-        Something like this would be used to log user into the system
-
-        if(a.login(username, password)){
+        if (a.login(username, password)) {
             mainFrame.setVisible(false);
-            new LandingPage();
-        }
-
-         */
-
-        if(username.equals("username") && password.equals("password")){
-            mainFrame.setVisible(false);
-            new LandingPage();
+            LandingPage landingPage = new LandingPage();
+            landingPage.showLandingPage(d.getUser(username));
         }
 
     }

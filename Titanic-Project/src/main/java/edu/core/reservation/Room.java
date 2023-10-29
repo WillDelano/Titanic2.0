@@ -30,17 +30,19 @@ public class Room {
 
     private boolean isBooked = false;
 
+    private String cruise;
 
     /**
      * default constructor of the Room
      *
      */
-    public Room(int roomNumber, int numberOfBeds, String bedType, boolean smokingAvailable, double roomPrice) {
+    public Room(int roomNumber, int numberOfBeds, String bedType, boolean smokingAvailable, double roomPrice, String cruise) {
         this.roomNumber = roomNumber;
         this.numberOfBeds = numberOfBeds;
         this.bedType = bedType;
         this.smokingAvailable = smokingAvailable;
         this.roomPrice = roomPrice;
+        this.cruise = cruise;
     }
 
     /**

@@ -1,18 +1,26 @@
 package edu.database;
 
 import edu.core.cruise.Country;
+import edu.core.cruise.Cruise;
 import edu.core.reservation.Room;
 
 import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
 
-public class RoomDatabase {
 
+/**
+ * Database to record all the rooms
+ *
+ * This class documents a collection of rooms and reads/writes to the database file
+ *
+ * @author William Delano
+ * @version 1.0
+ */
+public class RoomDatabase {
     public static Room getRoom(int roomNumber) {
         try {
-            InputStream is = RoomDatabase.class.getResourceAsStream("/room.csv");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\vince\\Java Projects\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\room.csv"));
             String line;
 
             /*
@@ -30,9 +38,7 @@ public class RoomDatabase {
                 //if the room id matches the room to be retrieved
                 if (Objects.equals(roomNumber, Integer.parseInt(split[0]))) {
 
-                    Room room = new Room(roomNumber, Integer.parseInt(split[3]), split[2], Boolean.parseBoolean(split[4]), Double.parseDouble(split[1]));
-
-                    System.err.println(split[4]);
+                    Room room = new Room(roomNumber, Integer.parseInt(split[3]), split[2], Boolean.parseBoolean(split[4]), Double.parseDouble(split[1]), split[6]);
 
                     return room;
                 }
@@ -42,16 +48,15 @@ public class RoomDatabase {
             e.printStackTrace();
         }
         System.err.println("Room does not exist. Creating null values.");
-        return new Room(0, 0, null, false, 0);
+        return new Room(0, 0, null, false, 0, null);
     }
 
 
     //TODO: Add a parameter to get all the rooms of a certain cruise
-    public static List<Room> getAllRooms() {
+    public static List<Room> getAllRooms(String cruise) {
         List<Room> rooms = new LinkedList<>();
         try {
-            InputStream is = RoomDatabase.class.getResourceAsStream("/room.csv");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\vince\\Java Projects\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\room.csv"));
             String line;
             /*
              * CSV style
@@ -61,13 +66,23 @@ public class RoomDatabase {
              * split[3] = number of beds
              * split[4] = smoking status
              * split[5] = booked status
+             * split[6] = cruise name
              */
-            while((line = reader.readLine()) != null) {
+
+            line = reader.readLine();
+
+            while(line != null) {
                 String[] split = line.split(",");
 
-                Room room = new Room(Integer.parseInt(split[0]), Integer.parseInt(split[3]), split[2], Boolean.parseBoolean(split[4]), Double.parseDouble(split[1]));
+                //if the room is on the correct cruise
+                if (Objects.equals(split[6], cruise)) {
+                    Room room = new Room(Integer.parseInt(split[0]), Integer.parseInt(split[3]), split[2], Boolean.parseBoolean(split[4]), Double.parseDouble(split[1]), split[6]);
 
-                rooms.add(room);
+                    if (!ReservationDatabase.hasRoom(room.getRoomNumber())) {
+                        rooms.add(room);
+                    }
+                }
+                line = reader.readLine();
             }
             reader.close();
             return rooms;
