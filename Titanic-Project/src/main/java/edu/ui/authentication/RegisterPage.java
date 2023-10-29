@@ -6,11 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import edu.authentication.Authentication;
-<<<<<<< HEAD
+
 import edu.core.users.Guest;
-=======
 import edu.core.cruise.Cruise;
->>>>>>> 59194080a9c19a650d755b0950368856fc6195ac
 import edu.core.users.User;
 import edu.database.AccountDatabase;
 import edu.ui.cruiseDetails.SelectCruiseController;
@@ -35,13 +33,7 @@ public class RegisterPage {
     private JTextField emailField;
 
 
-<<<<<<< HEAD
-
-
-    public RegisterPage(){createGUI();}
-=======
     public RegisterPage() { createGUI(); }
->>>>>>> 59194080a9c19a650d755b0950368856fc6195ac
 
     public void createGUI(){
         mainFrame = new JFrame("Create an Account Page");
