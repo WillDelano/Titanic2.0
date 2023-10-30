@@ -12,8 +12,13 @@
 532,100,Queen,1,false,false,Alaskan Cruise
 321,300,Full,2,false,false,Alaskan Cruise
 14,9999.0,King,4,true,false,Carnival Cruise
+<<<<<<< HEAD
 77,9.99,Single,1,true,false,Alaskan Cruise2,300.0,Single,1,true,false,Alaskan Cruise
 3,300.0,Single,1,true,false,Alaskan Cruise
 4,300.0,Single,1,true,false,Alaskan Cruise
 5,300.0,Single,1,true,false,Alaskan Cruise
 6,300.0,Single,1,true,false,Alaskan Cruise
+=======
+77,9.99,Single,1,true,false,Alaskan Cruise
+11,4000.0,King,4,true,false,Alaskan Cruise
+>>>>>>> e27029fa6f9002cf0c4b91d61e4c2711b50d6e89

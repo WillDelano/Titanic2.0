@@ -218,18 +218,19 @@ public class ReservationDatabase {
     /**
      * Operation to check if reservation is valid
      *
-     * @param u specified user to add reservation
      * @param newReservation specified reservation to add
      *
      */
-    public static void addReservation(User u,Reservation newReservation) {
+    public static void addReservation(Reservation newReservation) {
         //boolean added = reservationDatabase.get(newReservation.getUser()).add(newReservation);
         //now add reservation to file.
         //Agents and admins are hardcoded on the backend
 
         //if the reservation was not a duplicate
+
         if(ReservationDatabase.hasReservation(newReservation)) {
             /*
+
              * CSV style
              * split[0] = reservation id
              * split[1] = user username
@@ -357,7 +358,6 @@ public class ReservationDatabase {
                 if (Integer.parseInt(split[2]) == reservation.getDays() && Objects.equals(split[3], reservation.getStartCountry().getName()) &&
                         Objects.equals(split[4], reservation.getEndCountry().getName()) && Objects.equals(Integer.parseInt(split[5]), reservation.getRoom().getRoomNumber()) &&
                         Objects.equals(split[6], reservation.getStartDate().toString()) && Objects.equals(split[7], reservation.getEndDate().toString())) {
-
                     return true;
                 }
             }
