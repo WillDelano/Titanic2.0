@@ -107,16 +107,11 @@ public class SelectCruisePage {
 
     private void handleCruiseSelection(Cruise cruise) {
         String selectedCruiseName = cruise.getName();
-        /*if (selectedCruiseName != null) {
-            int dialogResult = JOptionPane.showConfirmDialog(cruiseFrame, "View details for " + selectedCruiseName + "?", "Confirmation", JOptionPane.OK_CANCEL_OPTION);
-            if (dialogResult == JOptionPane.OK_OPTION) {
 
-                Cruise selectedCruise = SelectCruiseController.getCruiseDetails(selectedCruiseName);
-                new CruiseDetailsPage(selectedCruise);
-            }
-        } else {
+        if (selectedCruiseName == null) {
             showMessage("Please select a cruise first.");
-        }*/
+        }
+
         Cruise selectedCruise = SelectCruiseController.getCruiseDetails(selectedCruiseName);
         new BrowseRoomPage(selectedCruise.getName());
     }
