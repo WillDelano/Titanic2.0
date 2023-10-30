@@ -1,7 +1,7 @@
 package edu.ui.cruiseDetails;
 
 import edu.core.cruise.Cruise;
-import edu.database.CruiseDatabase;
+import edu.databaseAccessors.CruiseDatabase;
 import edu.ui.landingPage.LandingPage;
 import edu.ui.roomDetails.BrowseRoomPage;
 
@@ -9,7 +9,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
 import java.util.List;
 
 /**

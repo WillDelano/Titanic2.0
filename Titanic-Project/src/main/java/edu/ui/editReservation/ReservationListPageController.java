@@ -2,7 +2,7 @@ package edu.ui.editReservation;
 
 import edu.core.reservation.Reservation;
 import edu.core.users.Guest;
-import edu.database.ReservationDatabase;
+import edu.databaseAccessors.ReservationDatabase;
 
 import java.util.Set;
 

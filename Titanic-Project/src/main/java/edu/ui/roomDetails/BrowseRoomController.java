@@ -1,13 +1,10 @@
 package edu.ui.roomDetails;
 
-import edu.core.cruise.Cruise;
 import edu.core.reservation.Room;
 import edu.core.users.Guest;
-import edu.database.CruiseDatabase;
-import edu.database.RoomDatabase;
+import edu.databaseAccessors.RoomDatabase;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

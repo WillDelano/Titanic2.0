@@ -1,8 +1,8 @@
 package edu.ui.reservationDetails;
 
-import edu.core.cruise.Cruise;
 import edu.core.users.CurrentGuest;
 import edu.core.reservation.Reservation;
+import edu.databaseAccessors.ReservationDatabase;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -16,7 +16,7 @@ import java.util.Set;
  *
  * @author Vincent Dinh
  * @version 1.0
- * @see edu.database.ReservationDatabase, Reservation
+ * @see ReservationDatabase , Reservation
  */
 public class MyReservationsPage {
     private JFrame frame;

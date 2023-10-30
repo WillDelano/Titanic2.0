@@ -5,9 +5,8 @@ import java.awt.*;
 import java.util.Objects;
 
 import edu.authentication.Authentication;
-import edu.database.AccountDatabase;
+import edu.databaseAccessors.AccountDatabase;
 import edu.ui.landingPage.GuestLandingPage;
-import edu.ui.landingPage.LandingPage;
 import edu.ui.landingPage.TravelAgentLandingPage;
 
 /**
