@@ -87,7 +87,7 @@ public class Guest extends User {
 
         //add their reservation to database if it's not a duplicate
         if (!ReservationDatabase.hasReservation(reservation)) {
-            ReservationDatabase.addReservation(reservation);
+            ReservationDatabase.addReservation(this, reservation);
             room.bookRoom();
         }
         else {

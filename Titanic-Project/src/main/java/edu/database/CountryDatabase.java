@@ -17,7 +17,7 @@ import java.util.Objects;
  * @version 1.0
  */
 public class CountryDatabase {
-    private static String fileName = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\countries.csv";
+    private static String fileName = "C:\\Users\\Colet\\Documents\\GIT\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\countries.csv";
     public static Country getCountry(String name) {
         //look through database to find country with matching name
         try {

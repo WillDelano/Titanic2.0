@@ -19,7 +19,7 @@ public class AccountDatabase {
     private static Set<User> accountDatabase;
 
     private User person;
-    private String fileName = getClass().getClassLoader().getResource("accountList.csv").getFile();
+    private static String fileName = "C:\\Users\\Colet\\Documents\\GIT\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\accountList.csv";
 
 
 
@@ -83,7 +83,7 @@ public class AccountDatabase {
     public static int getUserCount() {
         int count = 0;
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("fileName"));
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line;
             line = reader.readLine();
 
@@ -180,7 +180,7 @@ public class AccountDatabase {
         }
 
         //overrides old file
-        BufferedWriter writer = new BufferedWriter(new FileWriter("fileName"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
         for (String newFileLine : newFileLines) {
             writer.write(newFileLine);
             writer.newLine();
@@ -198,7 +198,7 @@ public class AccountDatabase {
 
     public static String getAccountType(String username) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("fileName"));
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line;
             line = reader.readLine();
 
@@ -226,7 +226,7 @@ public class AccountDatabase {
      */
     public static boolean accountExists(String username) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("fileName"));
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line;
             line = reader.readLine();
 

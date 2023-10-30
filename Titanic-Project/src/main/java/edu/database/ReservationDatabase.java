@@ -24,9 +24,13 @@ import java.util.Set;
  */
 public class ReservationDatabase {
     private static Map<User, Set<Reservation>> reservationDatabase;
-    private static String fileName = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\reservationList.csv";
-    private static String reservedRoomFile = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\reservationList.csv";
+    private static String fileName = "C:\\Users\\Colet\\Documents\\GIT\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\reservationList.csv";
+    private static String reservedRoomFile = "C:\\Users\\Colet\\Documents\\GIT\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\reserved_rooms.csv";
 
+    /**
+     * Creates the database for reservations
+     *
+     */
     /**
      * Creates the database for reservations
      *
@@ -92,16 +96,16 @@ public class ReservationDatabase {
             String line;
 
             /*
-            * CSV style
-            * split[0] = reservation id
-            * split[1] = user username
-            * split[2] = duration of trip in days
-            * split[3] = starting country
-            * split[4] = ending country
-            * split[5] = room id
-            * split[6] = start date of reservation
-            * split[7] = end date of reservation
-            */
+             * CSV style
+             * split[0] = reservation id
+             * split[1] = user username
+             * split[2] = duration of trip in days
+             * split[3] = starting country
+             * split[4] = ending country
+             * split[5] = room id
+             * split[6] = start date of reservation
+             * split[7] = end date of reservation
+             */
 
             line = reader.readLine();
 
@@ -225,7 +229,7 @@ public class ReservationDatabase {
 
         //if the reservation was not a duplicate
         if(ReservationDatabase.hasReservation(newReservation)) {
-             /*
+            /*
              * CSV style
              * split[0] = reservation id
              * split[1] = user username
@@ -240,7 +244,7 @@ public class ReservationDatabase {
             //write to csv
             System.err.println("ID: " + newReservation.getUser().getId());
             String toWrite = newReservation.getId() + "," + newReservation.getUser().getUsername() + "," +
-                     newReservation.getDays() + "," + newReservation.getStartCountry().getName() + ","
+                    newReservation.getDays() + "," + newReservation.getStartCountry().getName() + ","
                     + newReservation.getEndCountry().getName() + "," + newReservation.getRoom().getRoomNumber()
                     + "," + newReservation.getStartDate() + "," + newReservation.getEndDate() + "\n";
 
@@ -375,5 +379,3 @@ public class ReservationDatabase {
         System.err.println("To new checkout: " + checkout + " and new room number: " + roomNumber);
     }
 }
-
-

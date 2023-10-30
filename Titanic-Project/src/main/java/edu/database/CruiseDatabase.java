@@ -17,7 +17,7 @@ import java.util.*;
  * @version 1.0
  */
 public class CruiseDatabase {
-    public static String filepath = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\cruises.csv";
+    public static String filepath = "C:\\Users\\Colet\\Documents\\GIT\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\cruises.csv";
 
     public static Room getRoom(int roomNumber) {
         try {
