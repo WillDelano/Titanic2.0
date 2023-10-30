@@ -50,7 +50,6 @@ public class BrowseRoomPage {
             roomFrame.dispose(); // close the RoomPage
         });
 
-        // Add a "Select Room" button
         selectRoomButton = new JButton("Select Room");
         selectRoomButton.addActionListener(e -> {
             Room selectedRoom = roomList.getSelectedValue();
@@ -76,7 +75,7 @@ public class BrowseRoomPage {
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(backButton);
-        buttonPanel.add(selectRoomButton); // Add the "Select Room" button
+        buttonPanel.add(selectRoomButton);
 
         roomFrame.add(buttonPanel, BorderLayout.SOUTH);
         roomFrame.setVisible(true);

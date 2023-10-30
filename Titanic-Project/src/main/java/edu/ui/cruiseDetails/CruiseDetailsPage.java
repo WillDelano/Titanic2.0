@@ -1,4 +1,4 @@
-package edu.ui.cruiseDetails;
+/*package edu.ui.cruiseDetails;
 
 import edu.core.cruise.Cruise;
 import edu.ui.authentication.RegisterPage;
@@ -18,7 +18,7 @@ import java.awt.event.ActionListener;
  * @author Vincent Dinh
  * @version 1.0
  * @see LandingPage
- */
+
 public class CruiseDetailsPage {
 
     private JFrame detailsFrame;
@@ -54,7 +54,6 @@ public class CruiseDetailsPage {
                 "Departure Date: " + cruiseDetails.getDeparture().toString() + "\n" +
                 "Travel Path: " + travelPath.toString() + "\n" +
                 "Max Capacity: " + cruiseDetails.getMaxCapacity() + " passengers\n" +
-                // assuming you have a method getCurrentOccupancy() in Cruise class
                 "Current Occupancy: " + cruiseDetails.getCurrentOccupancy() + " passengers\n";
 
         detailsTextArea = new JTextArea(actualDetails);
@@ -72,3 +71,4 @@ public class CruiseDetailsPage {
         detailsFrame.setVisible(true);
     }
 }
+*/

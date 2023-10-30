@@ -21,8 +21,7 @@ public class CountryDatabase {
     public static Country getCountry(String name) {
         //look through database to find country with matching name
         try {
-            InputStream is = CountryDatabase.class.getResourceAsStream(fileName);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line;
 
             /*

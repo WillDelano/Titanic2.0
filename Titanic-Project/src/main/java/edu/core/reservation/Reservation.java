@@ -28,7 +28,6 @@ public class Reservation {
     private Country endCountry;
     private int roomNumber;
     private Room room;
-
     private LocalDate startDate;
 
     private LocalDate endDate;

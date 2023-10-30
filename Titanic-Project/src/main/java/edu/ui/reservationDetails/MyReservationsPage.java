@@ -36,12 +36,6 @@ public class MyReservationsPage {
     }
 
     private void prepareUI() {
-        try {
-            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         frame = new JFrame("My Reservations");
         frame.setSize(800, 600);
         frame.setLayout(new BorderLayout());
