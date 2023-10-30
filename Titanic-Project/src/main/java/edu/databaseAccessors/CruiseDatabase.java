@@ -1,4 +1,4 @@
-package edu.database;
+package edu.databaseAccessors;
 
 import edu.core.cruise.Cruise;
 import edu.core.cruise.Country;

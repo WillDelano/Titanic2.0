@@ -2,15 +2,9 @@ package edu.ui.authentication;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import edu.authentication.Authentication;
-import edu.core.cruise.Cruise;
-import edu.core.users.User;
-import edu.database.AccountDatabase;
-import edu.ui.cruiseDetails.SelectCruiseController;
-import edu.ui.landingPage.LandingPage;
+import edu.databaseAccessors.AccountDatabase;
 
 /**
  * UI display for the registration page
