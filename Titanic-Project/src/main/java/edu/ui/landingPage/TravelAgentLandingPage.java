@@ -1,13 +1,9 @@
 package edu.ui.landingPage;
 
-import edu.core.users.CurrentGuest;
-import edu.core.users.Guest;
 import edu.core.users.User;
-import edu.database.AccountDatabase;
+import edu.databaseAccessors.AccountDatabase;
 import edu.ui.addRoom.AddRoomPage;
-import edu.ui.cruiseDetails.SelectCruisePage;
 import edu.ui.editReservation.GuestsWithReservationPage;
-import edu.uniqueID.UniqueID;
 
 import javax.swing.*;
 import java.awt.*;

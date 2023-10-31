@@ -1,10 +1,9 @@
 package edu.ui.editReservation;
 
-import edu.core.cruise.Cruise;
 import edu.core.reservation.Reservation;
 import edu.core.reservation.Room;
-import edu.database.ReservationDatabase;
-import edu.database.RoomDatabase;
+import edu.databaseAccessors.ReservationDatabase;
+import edu.databaseAccessors.RoomDatabase;
 
 import java.util.List;
 

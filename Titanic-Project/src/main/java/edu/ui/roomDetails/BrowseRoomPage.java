@@ -1,9 +1,8 @@
 package edu.ui.roomDetails;
 
-import edu.core.cruise.Cruise;
-import edu.core.reservation.Reservation;
 import edu.core.reservation.Room;
 import edu.core.users.CurrentGuest;
+import edu.databaseAccessors.RoomDatabase;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +15,7 @@ import java.util.List;
  *
  * @author Vincent Dinh
  * @version 1.0
- * @see edu.database.RoomDatabase, Room, BrowseRoomController
+ * @see RoomDatabase , Room, BrowseRoomController
  */
 public class BrowseRoomPage {
 
