@@ -22,6 +22,7 @@ public class BrowseRoomPage {
 
     private JFrame roomFrame;
     private JLabel titleLabel;
+    private JPanel northPanel;
     private JList<Room> roomList;
     private JButton backButton;
     private JButton selectRoomButton;
@@ -37,7 +38,34 @@ public class BrowseRoomPage {
         roomFrame.setLayout(new BorderLayout());
 
         titleLabel = new JLabel("Available Rooms for " + selectedCruise, JLabel.CENTER);
+
+        northPanel = new JPanel();
+
+        //northPanel.add(titleLabel);//, BorderLayout.NORTH);
         roomFrame.add(titleLabel, BorderLayout.NORTH);
+
+        //Search menu components
+        JMenuBar searchMenu= new JMenuBar();
+        searchMenu.setPreferredSize(new Dimension(1000, 30));
+        JTextField searchTextField = new JTextField();
+        JButton searchButton = new JButton("search");
+        JButton optionsButton = new JButton("options");
+
+        JPanel filterPanel = new JPanel();
+        JCheckBox smoking = new JCheckBox("Smoking");
+
+        filterPanel.add(smoking);
+
+
+        optionsButton.addActionListener(e -> {
+            //northPanel.add(filterPanel);// BorderLayout.NORTH);
+            roomFrame.add(filterPanel, BorderLayout.NORTH);
+            roomFrame.revalidate();
+        });
+
+        searchMenu.add(searchTextField);
+        searchMenu.add(searchButton);
+        searchMenu.add(optionsButton);
 
         List<Room> sampleRooms = BrowseRoomController.getRooms(selectedCruise);
         roomList = new JList<>(sampleRooms.toArray(new Room[0]));
@@ -74,6 +102,9 @@ public class BrowseRoomPage {
         buttonPanel.add(backButton);
         buttonPanel.add(selectRoomButton);
 
+        //roomFrame.add(searchPanel, BorderLayout.NORTH);
+        //roomFrame.add(northPanel, BorderLayout.NORTH);
+        roomFrame.setJMenuBar(searchMenu);
         roomFrame.add(buttonPanel, BorderLayout.SOUTH);
         roomFrame.setVisible(true);
     }
