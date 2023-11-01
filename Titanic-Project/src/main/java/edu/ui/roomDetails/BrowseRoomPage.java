@@ -26,6 +26,7 @@ public class BrowseRoomPage {
     private JList<Room> roomList;
     private JButton backButton;
     private JButton selectRoomButton;
+    private boolean optionVisible = false;
 
     public BrowseRoomPage(String selectedCruise) {
         prepareGUI(selectedCruise);
@@ -41,8 +42,8 @@ public class BrowseRoomPage {
 
         northPanel = new JPanel();
 
-        //northPanel.add(titleLabel);//, BorderLayout.NORTH);
-        roomFrame.add(titleLabel, BorderLayout.NORTH);
+        northPanel.add(titleLabel);//, BorderLayout.NORTH);
+        //roomFrame.add(titleLabel, BorderLayout.NORTH);
 
         //Search menu components
         JMenuBar searchMenu= new JMenuBar();
@@ -58,9 +59,17 @@ public class BrowseRoomPage {
 
 
         optionsButton.addActionListener(e -> {
-            //northPanel.add(filterPanel);// BorderLayout.NORTH);
-            roomFrame.add(filterPanel, BorderLayout.NORTH);
-            roomFrame.revalidate();
+            if(!optionVisible) {
+                northPanel.add(filterPanel);// BorderLayout.NORTH);
+                optionVisible = true;
+                //roomFrame.add(filterPanel, BorderLayout.NORTH);
+                roomFrame.revalidate();
+            } else {
+                optionVisible = false;
+                //roomFrame.remove(filterPanel);
+                northPanel.remove(filterPanel);
+                roomFrame.revalidate();
+            }
         });
 
         searchMenu.add(searchTextField);
@@ -103,7 +112,7 @@ public class BrowseRoomPage {
         buttonPanel.add(selectRoomButton);
 
         //roomFrame.add(searchPanel, BorderLayout.NORTH);
-        //roomFrame.add(northPanel, BorderLayout.NORTH);
+        roomFrame.add(northPanel, BorderLayout.NORTH);
         roomFrame.setJMenuBar(searchMenu);
         roomFrame.add(buttonPanel, BorderLayout.SOUTH);
         roomFrame.setVisible(true);

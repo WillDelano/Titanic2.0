@@ -6,14 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="64eb4b36-0d34-4a25-aab4-8f9c9ab892af" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/AccountDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/CountryDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/CountryDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/CruiseDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/CruiseDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/ReservationDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/ReservationDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/RoomDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/RoomDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/roomDetails/BrowseRoomPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/roomDetails/BrowseRoomPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/accountList.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/accountList.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/room.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/room.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
