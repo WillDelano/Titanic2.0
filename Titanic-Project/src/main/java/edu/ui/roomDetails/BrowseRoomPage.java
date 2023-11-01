@@ -7,6 +7,7 @@ import edu.core.users.CurrentGuest;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ import java.util.List;
 public class BrowseRoomPage {
 
     private JFrame roomFrame;
-    private JLabel titleLabel;
+    private JLabel titleLabel, bedCount, sortBy;
     private JPanel northPanel, filterPanel;
     private JMenuBar searchMenu;
     private JList<Room> roomList;
@@ -42,10 +43,13 @@ public class BrowseRoomPage {
         roomFrame.setLayout(new BorderLayout());
 
         titleLabel = new JLabel("Available Rooms for " + selectedCruise, JLabel.CENTER);
+        JPanel titlePanel = new JPanel();
+        titlePanel.add(titleLabel);
 
         northPanel = new JPanel();
+        northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
 
-        northPanel.add(titleLabel, BorderLayout.NORTH);
+        northPanel.add(titlePanel, BorderLayout.NORTH);
         //roomFrame.add(titleLabel, BorderLayout.NORTH);
 
         generateSearchMenu();
@@ -93,9 +97,6 @@ public class BrowseRoomPage {
         roomFrame.setVisible(true);
     }
 
-    private void addRoomCountFilter(){
-
-    }
     private void generateSearchMenu(){
         searchMenu = new JMenuBar();
         searchMenu.setPreferredSize(new Dimension(1000, 30));
@@ -115,16 +116,31 @@ public class BrowseRoomPage {
         filterPanel = new JPanel();
         smokingBox = new JCheckBox("Smoking");
         smokingBox.setSelected(true);
-        nonSmokingBox = new JCheckBox("Non-Smoking");
+        nonSmokingBox = new JCheckBox("Non-Smoking  ");
         nonSmokingBox.setSelected(true);
         applyButton = new JButton("apply");
+
+        bedCount = new JLabel("number of beds  ");
+        sortBy = new JLabel("sortBy  ");
+
+        JComboBox<String> bedCountOption, sortTypeOption;
+        String bedCounts[] = { "All","1", "2", "3", "4"};
+        bedCountOption = new JComboBox<>(bedCounts);
+
+        String sortTypes[] = { "None","Price: Ascending", "Price: Descending"};
+        sortTypeOption = new JComboBox<>(sortTypes);
 
         applyButton.addActionListener( e->{
             applyFilters();
         });
 
-        filterPanel.add(smokingBox);
+        filterPanel.add(smokingBox, BorderLayout.SOUTH);
         filterPanel.add(nonSmokingBox);
+        filterPanel.add(bedCountOption);
+        filterPanel.add(bedCount);
+        filterPanel.add(sortTypeOption);
+        filterPanel.add(sortBy);
+
         filterPanel.add(applyButton);
     }
 
