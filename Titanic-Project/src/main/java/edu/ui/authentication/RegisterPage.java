@@ -46,6 +46,7 @@ public class RegisterPage {
         c.fill = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(10, 0, 0, 0);
 
+        //adding text fields for account information
         c.gridx = 0;
         c.gridy = 0;
         informationPanel.add(new JLabel("First Name: ", JLabel.CENTER), c);
@@ -89,6 +90,21 @@ public class RegisterPage {
         c.anchor = GridBagConstraints.CENTER;
         c.insets = new Insets(20, 0, 0, 0);
         informationPanel.add(registerButton, c);
+
+        c.gridy = 6;
+        informationPanel.add(new JLabel(), c);
+
+        JButton backButton = new JButton("Back");
+        c.gridx = 0;
+        c.gridy = 7;
+        c.gridwidth = 2;
+        c.anchor = GridBagConstraints.CENTER;
+        c.insets = new Insets(20,0,0,0);
+        backButton.addActionListener(e -> {
+            mainFrame.dispose();
+            LoginPage loginPage = new LoginPage();
+        });
+        informationPanel.add(backButton, c);
 
         mainFrame.add(new JLabel(), BorderLayout.LINE_START);
         mainFrame.add(informationPanel, BorderLayout.CENTER);

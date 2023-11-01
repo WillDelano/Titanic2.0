@@ -5,20 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64eb4b36-0d34-4a25-aab4-8f9c9ab892af" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/LoginPageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/RegisterPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/73220af7-872d-48ed-a1fd-ee272dbf41cb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73220af7-872d-48ed-a1fd-ee272dbf41cb.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/AccountDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CountryDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CountryDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CruiseDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CruiseDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/ReservationDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/ReservationDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/RoomDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/RoomDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/LoginPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/RegisterPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/RegisterPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/accountList.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/accountList.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

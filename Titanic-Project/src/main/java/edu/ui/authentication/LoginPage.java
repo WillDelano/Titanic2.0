@@ -88,8 +88,13 @@ public class LoginPage {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
+        //Takes user to landing page if login successful
         if(LoginPageController.loginUser(username, password)){
             mainFrame.setVisible(false);
+        }
+        //Outputs error message if login fails
+        else{
+            JOptionPane.showMessageDialog(mainFrame, "Username or Password Incorrect", "Oops!", JOptionPane.WARNING_MESSAGE);
         }
 
     }
