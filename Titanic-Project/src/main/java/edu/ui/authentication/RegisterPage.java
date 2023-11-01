@@ -12,7 +12,7 @@ import edu.databaseAccessors.AccountDatabase;
  * This class creates the registration page and allows a user to register for an account
  *
  * @author Gabriel Choi
- * @version 1.0
+ * @version 1.2
  * @see LoginPage
  */
 public class RegisterPage {
@@ -23,9 +23,16 @@ public class RegisterPage {
     private JTextField lastNameField;
     private JTextField emailField;
 
-
+    /**
+     * This is the constructor for the Register page. It calls createGUI.
+     *
+     */
     public RegisterPage() { createGUI(); }
 
+    /**
+     * This creates the GUI for the Register Page.
+     *
+     */
     public void createGUI(){
         mainFrame = new JFrame("Create an Account Page");
         mainFrame.setSize(1000, 700);
@@ -90,11 +97,15 @@ public class RegisterPage {
         mainFrame.setVisible(true);
     }
 
+    /**
+     * This checks if the username exists or not in the database.
+     *
+     * @return Returns true if the account does not exist.
+     */
     public boolean validateUsername() {
-        AccountDatabase d = new AccountDatabase();
         String username = usernameField.getText();
 
-        if (AccountDatabase.accountExists(username)) {
+        if (RegisterPageController.accountExists(username)) {
             JOptionPane.showMessageDialog(mainFrame, "A user with that name already exists", "Sorry!", JOptionPane.WARNING_MESSAGE);
 
             return true;
@@ -102,6 +113,10 @@ public class RegisterPage {
         return false;
     }
 
+    /**
+     * This registers the Guest into the system.
+     *
+     */
     public void registerAccount() {
         //if username exists, start over
         if (validateUsername()) {
@@ -116,10 +131,7 @@ public class RegisterPage {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        AccountDatabase d = new AccountDatabase();
-        Authentication a = new Authentication();
-
-        a.createAccount(username, password, firstName, lastName, email);
+        RegisterPageController.createAccount(username, password, firstName, lastName, email);
 
         mainFrame.setVisible(false);
         LoginPage loginPage = new LoginPage();

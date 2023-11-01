@@ -15,7 +15,7 @@ import java.util.*;
  * @version 1.0
  */
 public class RoomDatabase {
-    private static String fileName = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\room.csv";
+    private static String fileName = "C:\\Users\\gabec\\SoftwareEngineeringI\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\room.csv";
 
     public static void addRoom(Room room) {
         /*
@@ -96,7 +96,7 @@ public class RoomDatabase {
     public static List<Room> getAllRooms(String cruise) {
         List<Room> rooms = new LinkedList<>();
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\room.csv"));
+            BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\gabec\\SoftwareEngineeringI\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\room.csv"));
             String line;
             /*
              * CSV style
