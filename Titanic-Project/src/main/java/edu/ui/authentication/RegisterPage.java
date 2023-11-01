@@ -2,9 +2,8 @@ package edu.ui.authentication;
 
 import javax.swing.*;
 import java.awt.*;
-
-import edu.authentication.Authentication;
-import edu.databaseAccessors.AccountDatabase;
+import java.util.regex.Pattern;
+import java.util.regex.*;
 
 /**
  * UI display for the registration page
@@ -123,7 +122,6 @@ public class RegisterPage {
 
         if (RegisterPageController.accountExists(username)) {
             JOptionPane.showMessageDialog(mainFrame, "A user with that name already exists", "Sorry!", JOptionPane.WARNING_MESSAGE);
-
             return true;
         }
         return false;
@@ -146,6 +144,15 @@ public class RegisterPage {
         String email = emailField.getText();
         String username = usernameField.getText();
         String password = passwordField.getText();
+
+        //Checking email format
+        String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        if(!matcher.matches()){
+            JOptionPane.showMessageDialog(mainFrame, "Invalid email format", "Oops!", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
         RegisterPageController.createAccount(username, password, firstName, lastName, email);
 

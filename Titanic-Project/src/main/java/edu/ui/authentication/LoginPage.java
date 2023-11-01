@@ -95,6 +95,8 @@ public class LoginPage {
         //Outputs error message if login fails
         else{
             JOptionPane.showMessageDialog(mainFrame, "Username or Password Incorrect", "Oops!", JOptionPane.WARNING_MESSAGE);
+            usernameField.setText("");
+            passwordField.setText("");
         }
 
     }
