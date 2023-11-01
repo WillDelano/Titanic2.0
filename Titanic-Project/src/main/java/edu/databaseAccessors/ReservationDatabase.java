@@ -23,7 +23,7 @@ import java.util.Set;
  * @version 1.0
  */
 public class ReservationDatabase {
-    private static String url = "jdbc:derby:C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
+    private static String url = "jdbc:derby:C:\\Users\\gabec\\SoftwareEngineeringI\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
     /**
      * TODO
      *
