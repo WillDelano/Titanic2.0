@@ -26,7 +26,7 @@ public class BrowseRoomPage {
     private JList<Room> roomList;
     private JButton backButton;
     private JButton selectRoomButton;
-    private boolean optionVisible = false;
+    private boolean optionVisible = false;//, smokingRooms = true, nonSmokingRooms = true;
 
     public BrowseRoomPage(String selectedCruise) {
         prepareGUI(selectedCruise);
@@ -42,7 +42,7 @@ public class BrowseRoomPage {
 
         northPanel = new JPanel();
 
-        northPanel.add(titleLabel);//, BorderLayout.NORTH);
+        northPanel.add(titleLabel, BorderLayout.NORTH);
         //roomFrame.add(titleLabel, BorderLayout.NORTH);
 
         //Search menu components
@@ -52,15 +52,23 @@ public class BrowseRoomPage {
         JButton searchButton = new JButton("search");
         JButton optionsButton = new JButton("options");
 
-        JPanel filterPanel = new JPanel();
-        JCheckBox smoking = new JCheckBox("Smoking");
 
-        filterPanel.add(smoking);
+        JPanel filterPanel = new JPanel();
+        JCheckBox smokingBox = new JCheckBox("Smoking");
+        smokingBox.setSelected(true);
+        JCheckBox nonSmokingBox = new JCheckBox("Non-Smoking");
+        nonSmokingBox.setSelected(true);
+        JButton applyButton = new JButton("apply");
+
+
+        filterPanel.add(smokingBox);
+        filterPanel.add(nonSmokingBox);
+        filterPanel.add(applyButton);
 
 
         optionsButton.addActionListener(e -> {
             if(!optionVisible) {
-                northPanel.add(filterPanel);// BorderLayout.NORTH);
+                northPanel.add(filterPanel, BorderLayout.CENTER);
                 optionVisible = true;
                 //roomFrame.add(filterPanel, BorderLayout.NORTH);
                 roomFrame.revalidate();
