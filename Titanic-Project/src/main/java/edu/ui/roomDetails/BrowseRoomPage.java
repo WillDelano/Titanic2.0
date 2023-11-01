@@ -22,10 +22,13 @@ public class BrowseRoomPage {
 
     private JFrame roomFrame;
     private JLabel titleLabel;
-    private JPanel northPanel;
+    private JPanel northPanel, filterPanel;
+    private JMenuBar searchMenu;
     private JList<Room> roomList;
-    private JButton backButton;
-    private JButton selectRoomButton;
+    private JTextField searchTextField;
+    private JButton backButton, selectRoomButton, optionsButton, searchButton;
+    private JButton applyButton;
+    private JCheckBox smokingBox, nonSmokingBox;
     private boolean optionVisible = false;//, smokingRooms = true, nonSmokingRooms = true;
 
     public BrowseRoomPage(String selectedCruise) {
@@ -45,44 +48,8 @@ public class BrowseRoomPage {
         northPanel.add(titleLabel, BorderLayout.NORTH);
         //roomFrame.add(titleLabel, BorderLayout.NORTH);
 
-        //Search menu components
-        JMenuBar searchMenu= new JMenuBar();
-        searchMenu.setPreferredSize(new Dimension(1000, 30));
-        JTextField searchTextField = new JTextField();
-        JButton searchButton = new JButton("search");
-        JButton optionsButton = new JButton("options");
-
-
-        JPanel filterPanel = new JPanel();
-        JCheckBox smokingBox = new JCheckBox("Smoking");
-        smokingBox.setSelected(true);
-        JCheckBox nonSmokingBox = new JCheckBox("Non-Smoking");
-        nonSmokingBox.setSelected(true);
-        JButton applyButton = new JButton("apply");
-
-
-        filterPanel.add(smokingBox);
-        filterPanel.add(nonSmokingBox);
-        filterPanel.add(applyButton);
-
-
-        optionsButton.addActionListener(e -> {
-            if(!optionVisible) {
-                northPanel.add(filterPanel, BorderLayout.CENTER);
-                optionVisible = true;
-                //roomFrame.add(filterPanel, BorderLayout.NORTH);
-                roomFrame.revalidate();
-            } else {
-                optionVisible = false;
-                //roomFrame.remove(filterPanel);
-                northPanel.remove(filterPanel);
-                roomFrame.revalidate();
-            }
-        });
-
-        searchMenu.add(searchTextField);
-        searchMenu.add(searchButton);
-        searchMenu.add(optionsButton);
+        generateSearchMenu();
+        generateFilterPanel();
 
         List<Room> sampleRooms = BrowseRoomController.getRooms(selectedCruise);
         roomList = new JList<>(sampleRooms.toArray(new Room[0]));
@@ -125,4 +92,58 @@ public class BrowseRoomPage {
         roomFrame.add(buttonPanel, BorderLayout.SOUTH);
         roomFrame.setVisible(true);
     }
+
+    private void addRoomCountFilter(){
+
+    }
+    private void generateSearchMenu(){
+        searchMenu = new JMenuBar();
+        searchMenu.setPreferredSize(new Dimension(1000, 30));
+        searchTextField = new JTextField();
+        searchButton = new JButton("search");
+        optionsButton = new JButton("options");
+
+        optionsButton.addActionListener(e -> {
+            filterPanelVisiblity();
+        });
+
+        searchMenu.add(searchTextField);
+        searchMenu.add(searchButton);
+        searchMenu.add(optionsButton);
+    }
+    private void generateFilterPanel(){
+        filterPanel = new JPanel();
+        smokingBox = new JCheckBox("Smoking");
+        smokingBox.setSelected(true);
+        nonSmokingBox = new JCheckBox("Non-Smoking");
+        nonSmokingBox.setSelected(true);
+        applyButton = new JButton("apply");
+
+        applyButton.addActionListener( e->{
+            applyFilters();
+        });
+
+        filterPanel.add(smokingBox);
+        filterPanel.add(nonSmokingBox);
+        filterPanel.add(applyButton);
+    }
+
+    private void filterPanelVisiblity(){
+        if(!optionVisible) {
+            northPanel.add(filterPanel, BorderLayout.CENTER);
+            optionVisible = true;
+            //roomFrame.add(filterPanel, BorderLayout.NORTH);
+            roomFrame.revalidate();
+        } else {
+            optionVisible = false;
+            //roomFrame.remove(filterPanel);
+            northPanel.remove(filterPanel);
+            roomFrame.revalidate();
+        }
+    }
+
+    private void applyFilters(){
+
+    }
+
 }
