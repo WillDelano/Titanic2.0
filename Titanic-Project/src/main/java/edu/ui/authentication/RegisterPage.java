@@ -2,8 +2,14 @@ package edu.ui.authentication;
 
 import javax.swing.*;
 import java.awt.*;
+<<<<<<< HEAD
+
+import edu.authentication.Authentication;
+import edu.databaseAccessors.AccountDatabase;
+=======
 import java.util.regex.Pattern;
 import java.util.regex.*;
+>>>>>>> main
 
 /**
  * UI display for the registration page
