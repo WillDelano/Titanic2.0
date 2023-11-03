@@ -2,8 +2,8 @@ package edu.ui.editReservation;
 
 import edu.core.users.Guest;
 import edu.core.users.User;
-import edu.database.AccountDatabase;
-import edu.database.ReservationDatabase;
+import edu.databaseAccessors.AccountDatabase;
+import edu.databaseAccessors.ReservationDatabase;
 
 import java.util.ArrayList;
 import java.util.List;

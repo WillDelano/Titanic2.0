@@ -1,8 +1,7 @@
 package edu.ui.addRoom;
 
 import edu.core.reservation.Room;
-import edu.database.RoomDatabase;
-import edu.ui.roomDetails.BrowseRoomController;
+import edu.databaseAccessors.RoomDatabase;
 import edu.uniqueID.UniqueID;
 
 import javax.swing.*;

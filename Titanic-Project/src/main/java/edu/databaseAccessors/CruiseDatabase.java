@@ -1,4 +1,4 @@
-package edu.database;
+package edu.databaseAccessors;
 
 import edu.core.cruise.Cruise;
 import edu.core.cruise.Country;
@@ -17,7 +17,11 @@ import java.util.*;
  * @version 1.0
  */
 public class CruiseDatabase {
+<<<<<<< HEAD:Titanic-Project/src/main/java/edu/database/CruiseDatabase.java
     public static String filepath = "C:\\Users\\Colet\\Documents\\GIT\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\cruises.csv";
+=======
+    public static String filepath = "C:\\Users\\vince\\Java Projects\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\cruises.csv";
+>>>>>>> 7d1521485f6b487929a2e1275f9c74a737f369bb:Titanic-Project/src/main/java/edu/databaseAccessors/CruiseDatabase.java
 
     public static Room getRoom(int roomNumber) {
         try {

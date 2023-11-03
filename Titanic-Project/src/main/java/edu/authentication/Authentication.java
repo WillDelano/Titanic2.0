@@ -1,7 +1,7 @@
 package edu.authentication;
 
 import edu.core.users.CurrentGuest;
-import edu.database.AccountDatabase;
+import edu.databaseAccessors.AccountDatabase;
 import edu.uniqueID.UniqueID;
 import edu.core.users.Guest;
 
@@ -28,7 +28,7 @@ public class Authentication {
      * @param password   The password of the user.
      * @param firstName  The first name of the user.
      * @param lastName   The last name of the user.
-     *
+     * @param email      The email of the user.
      */
     public void createAccount(String username, String password, String firstName, String lastName, String email){
 

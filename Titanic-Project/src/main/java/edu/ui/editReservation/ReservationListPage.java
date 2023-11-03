@@ -3,8 +3,6 @@ package edu.ui.editReservation;
 import edu.core.cruise.Cruise;
 import edu.core.reservation.Reservation;
 import edu.core.users.Guest;
-import edu.database.AccountDatabase;
-import edu.ui.landingPage.LandingPage;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,8 +1,8 @@
 package edu.ui.addRoom;
 
 import edu.core.reservation.Room;
-import edu.database.CruiseDatabase;
-import edu.database.RoomDatabase;
+import edu.databaseAccessors.CruiseDatabase;
+import edu.databaseAccessors.RoomDatabase;
 
 import java.util.ArrayList;
 import java.util.List;

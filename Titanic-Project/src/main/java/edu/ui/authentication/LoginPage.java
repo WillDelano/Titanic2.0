@@ -5,9 +5,8 @@ import java.awt.*;
 import java.util.Objects;
 
 import edu.authentication.Authentication;
-import edu.database.AccountDatabase;
+import edu.databaseAccessors.AccountDatabase;
 import edu.ui.landingPage.GuestLandingPage;
-import edu.ui.landingPage.LandingPage;
 import edu.ui.landingPage.TravelAgentLandingPage;
 
 /**
@@ -24,8 +23,16 @@ public class LoginPage {
     private JTextField usernameField;
     private JTextField passwordField;
 
+    /**
+     * This is the constructor for the Login page. It calls createGUI.
+     *
+     */
     public LoginPage(){createGUI();}
 
+    /**
+     * This creates the GUI for the Login Page.
+     *
+     */
     private void createGUI(){
         mainFrame = new JFrame("Login Page");
         mainFrame.setSize(1000, 700);
@@ -73,32 +80,42 @@ public class LoginPage {
         mainFrame.setVisible(true);
     }
 
+    /**
+     * This logs the Guest into the system.
+     *
+     */
     private void loginToSystem() {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        Authentication a = new Authentication();
-        new AccountDatabase();
-
-        if (a.login(username, password)) {
+        //Takes user to landing page if login successful
+        if(LoginPageController.loginUser(username, password)){
             mainFrame.setVisible(false);
-
-            if (Objects.equals(AccountDatabase.getAccountType(username), "Guest")) {
-                GuestLandingPage landingPage = new GuestLandingPage();
-                landingPage.showLandingPage(AccountDatabase.getUser(username));
-            }
-            else if (Objects.equals(AccountDatabase.getAccountType(username), "Agent")) {
-                TravelAgentLandingPage landingPage = new TravelAgentLandingPage();
-                landingPage.showLandingPage(AccountDatabase.getUser(username));
-            }
         }
+        //Outputs error message if login fails
+        else{
+            JOptionPane.showMessageDialog(mainFrame, "Username or Password Incorrect", "Oops!", JOptionPane.WARNING_MESSAGE);
+            usernameField.setText("");
+            passwordField.setText("");
+        }
+
     }
 
+    /**
+     * This calls the Register Page.
+     *
+     */
     private void registerAccount(){
         mainFrame.setVisible(false);
         RegisterPage registerPage = new RegisterPage();
     }
 
+    /**
+     * This sends the User to the Login Page.
+     *
+     * @param args  The console arguments.
+     *
+     */
     public static void main(String[] args) {
         new LoginPage();
     }

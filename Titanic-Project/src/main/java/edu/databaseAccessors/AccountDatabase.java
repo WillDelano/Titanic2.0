@@ -1,4 +1,4 @@
-package edu.database;
+package edu.databaseAccessors;
 import edu.core.users.*;
 import java.io.*;
 import java.util.*;
@@ -17,10 +17,15 @@ import java.lang.*;
  */
 public class AccountDatabase {
     private static Set<User> accountDatabase;
+<<<<<<< HEAD:Titanic-Project/src/main/java/edu/database/AccountDatabase.java
 
     private User person;
     private static String fileName = "C:\\Users\\Colet\\Documents\\GIT\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\accountList.csv";
 
+=======
+    //private String fileName = getClass().getClassLoader().getResource("accountList.csv").getFile();
+    private static String fileName = "C:\\Users\\vince\\Java Projects\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\accountList.csv";
+>>>>>>> 7d1521485f6b487929a2e1275f9c74a737f369bb:Titanic-Project/src/main/java/edu/databaseAccessors/AccountDatabase.java
 
 
     /**
