@@ -6,7 +6,11 @@
     </root>
     <schema id="2" parent="1" name="APP">
       <Current>1</Current>
+<<<<<<< HEAD
       <LocalIntrospectionTimestamp>2023-10-31.22:32:59</LocalIntrospectionTimestamp>
+=======
+      <LocalIntrospectionTimestamp>2023-11-03.20:48:32</LocalIntrospectionTimestamp>
+>>>>>>> 1c50d02a79cb6e0d5adab3910f1056153f3c4053
     </schema>
     <schema id="3" parent="1" name="NULLID"/>
     <schema id="4" parent="1" name="SQLJ"/>
