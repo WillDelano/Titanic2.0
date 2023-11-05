@@ -1,4 +1,4 @@
-package edu;
+/*package edu;
 
 import edu.core.reservation.Room;
 
@@ -65,7 +65,6 @@ public class RoomCSVReader {
 
     private static void writeReservedRoomsToCSV(List<Room> roomList, String csvFilePath) {
         try {
-            String outputFilePath = "C:\\Users\\vince\\Java Projects\\Titanic2.0\\Titanic-Project\\reserved_rooms.csv";
             BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath));
             // write the header
             writer.write("RoomNumber,NumberOfBeds,BedType,SmokingAvailable,RoomPrice,IsBooked");
@@ -84,4 +83,4 @@ public class RoomCSVReader {
             e.printStackTrace();
         }
     }
-}
+}*/

@@ -1,8 +1,7 @@
 package edu.ui.cruiseDetails;
 
 import edu.core.cruise.Cruise;
-import edu.database.CruiseDatabase;
-import edu.ui.authentication.RegisterPage;
+import edu.databaseAccessors.CruiseDatabase;
 
 import java.util.List;
 

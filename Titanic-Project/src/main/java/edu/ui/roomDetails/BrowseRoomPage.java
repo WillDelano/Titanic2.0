@@ -1,9 +1,8 @@
 package edu.ui.roomDetails;
 
-import edu.core.cruise.Cruise;
-import edu.core.reservation.Reservation;
 import edu.core.reservation.Room;
 import edu.core.users.CurrentGuest;
+import edu.databaseAccessors.RoomDatabase;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +15,7 @@ import java.util.List;
  *
  * @author Vincent Dinh
  * @version 1.0
- * @see edu.database.RoomDatabase, Room, BrowseRoomController
+ * @see RoomDatabase , Room, BrowseRoomController
  */
 public class BrowseRoomPage {
 
@@ -64,6 +63,9 @@ public class BrowseRoomPage {
                     // Perform room reservation logic here
                     JOptionPane.showMessageDialog(roomFrame, "Room " + selectedRoom.getRoomNumber() + " reserved.");
                     controller.reserveRoom(CurrentGuest.getCurrentGuest(), selectedRoom);
+
+                    // Notify the MyReservationsPage to refresh its data
+                    new edu.ui.reservationDetails.MyReservationsPage().refreshReservations();  // Make sure refreshReservations() is public
                 }
             } else {
                 JOptionPane.showMessageDialog(roomFrame, "Please select a room first.");
