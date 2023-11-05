@@ -19,11 +19,14 @@ public class roomSearch {
     List<Room> allRooms;
     boolean price;
     enum priceSortType {NONE, ASCENDING, DESCENDING}
-    enum bedCountSortType {NONE, ASCENDING, DESCENDING}
-    //enum bedSortType {  };
+    enum bedPreferenceType {ALL, SINGLE, TWIN, FULL, QUEEN, KING}
+    enum bedCountType {ALL, ONE, TWO, THREE, FOUR}
+
     enum smokingSortType {ALL, NON_SMOKING, SMOKING}
     priceSortType priceSort = priceSortType.NONE;
     smokingSortType smokeType = smokingSortType.ALL;
+    bedPreferenceType bedType = bedPreferenceType.ALL;
+    bedCountType bedCount = bedCountType.ALL;
 
     enum roomSortType{/* add room types here */};
 
@@ -47,10 +50,16 @@ public class roomSearch {
 
                 // iterate through traits to find in room's attributes
                 for (String s : traits) {
-
-                    /*if () {
-                        //relevantRooms.add(obj);
-                    }*/
+                    if (s.toLowerCase().contains(obj.getBedType().toLowerCase())) { //bed type
+                        relevantRooms.add(obj);
+                    } else if (s.toLowerCase().contains( // searching for beds
+                            (obj.getNumberOfBeds() + " beds").toLowerCase())) {
+                        relevantRooms.add(obj);
+                    } else if (s.contains(String.valueOf(obj.getRoomNumber()))) {
+                        relevantRooms.add(obj);
+                    } else if (s.contains(String.valueOf(obj.getRoomPrice()))) {
+                        relevantRooms.add(obj);
+                    }
                 }
             }
         }
@@ -71,6 +80,16 @@ public class roomSearch {
         // filter rooms
         if(smokeType != smokingSortType.ALL) {
             filterBySmokingType(sortedRooms);
+        }
+
+        // filter by bed type
+        if(bedType != bedPreferenceType.ALL){
+            filterByBedType(sortedRooms);
+        }
+
+        // filter by bed Count
+        if(bedCount != bedCountType.ALL){
+            filterByBedCount(sortedRooms);
         }
 
         // sort rooms
@@ -155,6 +174,132 @@ public class roomSearch {
                 }
         }
     }
+
+    /**
+     * setter for bed type preference option
+     *
+     * //@param bed preference
+     */
+    void setBedType(bedPreferenceType type){
+        switch (type){
+            case ALL:
+                bedType = bedPreferenceType.ALL;
+
+            case SINGLE:
+                bedType = bedPreferenceType.SINGLE;
+
+            case TWIN:
+                bedType = bedPreferenceType.TWIN;
+
+            case FULL:
+                bedType = bedPreferenceType.FULL;
+
+            case QUEEN:
+                bedType = bedPreferenceType.QUEEN;
+
+            case KING:
+                bedType = bedPreferenceType.KING;
+        }
+    }
+
+    /**
+     * sorts rooms if a bed type preference is enabled
+     *
+     * //@param list of rooms to sort
+     */
+    void filterByBedType(List<Room> roomList){
+
+        switch(bedType){
+            case SINGLE:
+                for(Room obj: roomList){
+                    if(obj.getBedType().equalsIgnoreCase("single")){
+                        roomList.add(obj);
+                    }
+                }
+
+            case TWIN:
+                for(Room obj: roomList){
+                    if(obj.getBedType().equalsIgnoreCase("twin")){
+                        roomList.add(obj);
+                    }
+                }
+
+            case FULL:
+                for(Room obj: roomList){
+                    if(obj.getBedType().equalsIgnoreCase("full")){
+                        roomList.add(obj);
+                    }
+                }
+
+            case QUEEN:
+                for(Room obj: roomList){
+                    if(obj.getBedType().equalsIgnoreCase("queen")){
+                        roomList.add(obj);
+                    }
+                }
+
+            case KING:
+                for(Room obj: roomList){
+                    if(obj.getBedType().equalsIgnoreCase("king")){
+                        roomList.add(obj);
+                    }
+                }
+        }
+    }
+
+    /**
+     * setter for bed count preference option
+     *
+     * //@param bedtype choice
+     */
+    void setBedCount(bedCountType type){
+        switch (type){
+            case ALL:
+                bedCount = bedCountType.ALL;
+
+            case ONE:
+                bedCount = bedCountType.ONE;
+
+            case TWO:
+                bedCount = bedCountType.TWO;
+
+            case THREE:
+                bedCount = bedCountType.THREE;
+
+            case FOUR:
+                bedCount = bedCountType.FOUR;
+        }
+    }
+
+    /**
+     * sorts rooms if a bed count preference is enabled
+     *
+     * //@param list of rooms to sort
+     */
+    void filterByBedCount(List<Room> roomList){
+        int preferredBedCount = 0;
+
+        switch(bedCount){
+            case ONE:
+                preferredBedCount = 1;
+
+            case TWO:
+                preferredBedCount = 2;
+
+            case THREE:
+                preferredBedCount = 3;
+
+            case FOUR:
+                preferredBedCount = 4;
+        }
+
+        for(Room obj: roomList){
+            if(obj.getNumberOfBeds() == preferredBedCount){
+                roomList.add(obj);
+            }
+        }
+    }
+
 }
 
 
