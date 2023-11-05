@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fc14b32d-70fe-4d06-8946-f4a8359f9ce0" name="Changes" comment="" />
+    <list default="true" id="fc14b32d-70fe-4d06-8946-f4a8359f9ce0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ui/modifyRoom/ChangeBedTypePage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ui/modifyRoom/ChangeNumberOfBedsPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ui/modifyRoom/ChangePricePage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ui/modifyRoom/ChangeRoomNumberPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ui/modifyRoom/ChangeSmokingAvailabilityPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ui/modifyRoom/DetailOptionsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ui/modifyRoom/DetailOptionsLandingPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/AccountDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/editProfile/EditProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/editProfile/EditProfile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/editProfile/EditProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/editProfile/EditProfileController.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,30 +43,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;authentication&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;20&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Owner/Desktop/Titanic2.0/Titanic-Project/libs2/derbytools.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "jdk.selected.JAVA_MODULE": "20",
+    "last_opened_file_path": "C:/Users/Owner/Desktop/Titanic2.0/Titanic-Project/libs2/derbytools.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;RunConfigurationTargetLRU&quot;: [
-      &quot;73220af7-872d-48ed-a1fd-ee272dbf41cb/schema/\&quot;APP\&quot;&quot;
+  "keyToStringList": {
+    "RunConfigurationTargetLRU": [
+      "73220af7-872d-48ed-a1fd-ee272dbf41cb/schema/\"APP\""
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="edu.ui.modifyRoom" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Owner\Desktop\Titanic2.0\Titanic-Project\libs2" />
       <recent name="C:\Users\Owner\Desktop\Titanic2.0\Titanic-Project\libs" />
@@ -60,6 +78,82 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\vince\Java Projects\Titanic2.0\Titanic-Project\src\main\resources" />
     </key>
+  </component>
+  <component name="RunManager" selected="Application.BrowseRoomPage">
+    <configuration name="BrowseRoomPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.ui.roomDetails.BrowseRoomPage" />
+      <module name="Titanic-Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.ui.roomDetails.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ChangeBedTypePage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.ui.modifyRoom.ChangeBedTypePage" />
+      <module name="Titanic-Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.ui.modifyRoom.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ChangeNumberOfBedsPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.ui.modifyRoom.ChangeNumberOfBedsPage" />
+      <module name="Titanic-Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.ui.modifyRoom.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ChangeSmokingAvailabilityPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.ui.modifyRoom.ChangeSmokingAvailabilityPage" />
+      <module name="Titanic-Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.ui.modifyRoom.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DetailOptionsLandingPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.ui.modifyRoom.DetailOptionsLandingPage" />
+      <module name="Titanic-Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.ui.modifyRoom.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.BrowseRoomPage" />
+        <item itemvalue="Application.DetailOptionsLandingPage" />
+        <item itemvalue="Application.ChangeBedTypePage" />
+        <item itemvalue="Application.ChangeNumberOfBedsPage" />
+        <item itemvalue="Application.ChangeSmokingAvailabilityPage" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

@@ -1,6 +1,11 @@
 package edu.databaseAccessors;
+import edu.core.reservation.Reservation;
 import edu.core.users.*;
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.*;
 import java.lang.*;
 
@@ -145,12 +150,32 @@ public class AccountDatabase {
     }
 
 
+    public static void removeUser(User userToRemove) {
+        try (Connection connection = DriverManager.getConnection(fileName)) {
+            String select = "DELETE FROM Accounts WHERE username = ?";
+            try (PreparedStatement statement = connection.prepareStatement(select)) {
+                statement.setString(1, userToRemove.getUsername());
+
+                int deleted;
+                deleted = statement.executeUpdate();
+
+                if (deleted <= 0) {
+                    System.out.println("Failed to delete data");
+                }
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+
+            System.err.println("Failed to connect to database.");
+        }
+    }
+
     /**
      * operation to remove an account within the account database
      *
      * @param userToRemove The specified user to remove
      */
-    public static void removeUser(User userToRemove) {
+    /*public static void removeUser(User userToRemove) {
         accountDatabase.remove(userToRemove);
 
         ArrayList<String> newFileLines = new ArrayList<>();
@@ -187,7 +212,7 @@ public class AccountDatabase {
         writer.close();
         reader.close();
     }
-
+*/
     /**
      * Operation to get the type an account belongs to
      *
@@ -308,7 +333,7 @@ public class AccountDatabase {
         }
 
         //change account database to match new password
-        modifyFileLine(counter,1,newPass);
+        //modifyFileLine(counter,1,newPass);
     }
 
 

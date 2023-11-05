@@ -13,7 +13,7 @@ public class EditProfileController {
     public static void editAccount(User account, String email, String password) {
         //Need some function to incorporate editing both email and password. If only one was changed it wouldn't affect
         //the other so updating both is acceptable
-        AccountDatabase.updateAccount(account, email, password);
+        //AccountDatabase.updateAccount(account, email, password);
     }
 
     public static void deleteAccount(User account) {

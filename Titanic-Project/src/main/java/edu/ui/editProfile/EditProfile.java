@@ -7,6 +7,7 @@ import edu.databaseAccessors.RoomDatabase;
 import edu.ui.editReservation.EditReservationController;
 import edu.ui.landingPage.LandingPage;
 import edu.ui.landingPage.TravelAgentLandingPage;
+import edu.ui.modifyRoom.DetailOptionsLandingPage;
 import edu.uniqueID.UniqueID;
 
 import javax.swing.*;
@@ -34,6 +35,7 @@ public class EditProfile {
     private JLabel paymentLabel;
     private JButton paymentButton;
     private LandingPage previousPage;
+
 
     public EditProfile(User account, TravelAgentLandingPage prevPage) {
         this.previousPage = prevPage;
