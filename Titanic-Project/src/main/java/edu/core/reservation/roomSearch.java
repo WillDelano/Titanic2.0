@@ -18,15 +18,15 @@ import java.util.List;
 public class roomSearch {
     List<Room> allRooms;
     boolean price;
-    enum priceSortType {NONE, ASCENDING, DESCENDING}
+    public enum priceSortType {NONE, ASCENDING, DESCENDING}
     enum bedPreferenceType {ALL, SINGLE, TWIN, FULL, QUEEN, KING}
-    enum bedCountType {ALL, ONE, TWO, THREE, FOUR}
+    public enum bedCountType {ALL, ONE, TWO, THREE, FOUR}
 
-    enum smokingSortType {ALL, NON_SMOKING, SMOKING}
-    priceSortType priceSort = priceSortType.NONE;
-    smokingSortType smokeType = smokingSortType.ALL;
-    bedPreferenceType bedType = bedPreferenceType.ALL;
-    bedCountType bedCount = bedCountType.ALL;
+    public enum smokingSortType {ALL, NON_SMOKING, SMOKING}
+    priceSortType priceSort;
+    smokingSortType smokeType;
+    bedPreferenceType bedType;
+    bedCountType bedCount;
 
     enum roomSortType{/* add room types here */};
 
@@ -36,9 +36,27 @@ public class roomSearch {
      * @param cruise - cruise object to retrieve rooms from.
      */
 
-    roomSearch(Cruise cruise){
+    public roomSearch(Cruise cruise){
         allRooms = cruise.getRoomList();
+        priceSort = priceSortType.NONE;
+        smokeType = smokingSortType.ALL;
+        bedType = bedPreferenceType.ALL;
+        bedCount = bedCountType.ALL;
     }
+
+    /**
+     * RoomSearch Constructor
+     *
+     * @param rooms - list to retrieve rooms from.
+     */
+    public roomSearch(List<Room> rooms){
+        allRooms = rooms;
+        priceSort = priceSortType.NONE;
+        smokeType = smokingSortType.ALL;
+        bedType = bedPreferenceType.ALL;
+        bedCount = bedCountType.ALL;
+    }
+
     public List<Room> findRooms(String line){
         String[] traits = line.split( " ");
         List<Room> relevantRooms = new ArrayList<>();
@@ -105,7 +123,7 @@ public class roomSearch {
      *
      * //@param type of price sorting
      */
-    void setPriceSorting(priceSortType type){
+    public void setPriceSorting(priceSortType type){
         switch (type){
             case NONE:
                 priceSort = priceSortType.NONE;
@@ -139,7 +157,7 @@ public class roomSearch {
      *
      * //@param smoking choice
      */
-    void setSmokingType(smokingSortType type){
+    public void setSmokingType(smokingSortType type){
         switch (type){
             case ALL:
                 smokeType = smokingSortType.ALL;
@@ -157,7 +175,7 @@ public class roomSearch {
      *
      * //@param list of rooms to sort
      */
-    void filterBySmokingType(List<Room> roomList){
+    public void filterBySmokingType(List<Room> roomList){
         switch(smokeType){
             case NON_SMOKING:
                 for(Room obj: roomList){
@@ -180,7 +198,7 @@ public class roomSearch {
      *
      * //@param bed preference
      */
-    void setBedType(bedPreferenceType type){
+    public void setBedType(bedPreferenceType type){
         switch (type){
             case ALL:
                 bedType = bedPreferenceType.ALL;
@@ -252,7 +270,7 @@ public class roomSearch {
      *
      * //@param bedtype choice
      */
-    void setBedCount(bedCountType type){
+    public void setBedCount(bedCountType type){
         switch (type){
             case ALL:
                 bedCount = bedCountType.ALL;

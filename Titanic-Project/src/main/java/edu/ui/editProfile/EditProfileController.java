@@ -1,6 +1,5 @@
 package edu.ui.editProfile;
 
-import edu.core.reservation.Room;
 import edu.core.users.User;
 import edu.databaseAccessors.AccountDatabase;
 import edu.databaseAccessors.CruiseDatabase;
