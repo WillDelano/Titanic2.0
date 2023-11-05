@@ -1,5 +1,7 @@
 package edu.core.reservation;
 
+import edu.core.cruise.Cruise;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -14,7 +16,7 @@ import java.util.List;
  * @author Chas Doughtry
  */
 public class roomSearch {
-    ArrayList<Room> allRooms;
+    List<Room> allRooms;
     boolean price;
     enum priceSortType {NONE, ASCENDING, DESCENDING};
     enum bedCountSortType {NONE, ASCENDING, DESCENDING};
@@ -31,15 +33,9 @@ public class roomSearch {
      * //@param database of cruise objects
      */
 
-    /*roomSearch(CruiseDatabase cruises){
-        // foreach cruise,c, in cruises
-        // for each room in c
-        // add c to allRooms
-
-        allRooms = cruises.getRoomListfromCSV()
-
-
-    }*/
+    roomSearch(Cruise cruise){
+        allRooms = cruise.getRoomList();
+    }
     public List<Room> findRooms(String line){
         String[] traits = line.split( " ");
         List<Room> relevantRooms = new ArrayList<>();
@@ -58,25 +54,23 @@ public class roomSearch {
                 }
             }
         }
-
         return relevantRooms;
     }
 
-    ArrayList<Room> sortAndFilterRooms (){
-        ArrayList<Room> list = allRooms;
+    List<Room> sortAndFilterRooms (){
+        List<Room> sortedRooms = allRooms;
 
         // filter rooms
         if(smokeType != smokingSortType.ALL) {
-            filterBySmokingType(list);
+            filterBySmokingType(sortedRooms);
         }
 
         // sort rooms
         if(priceSort != priceSortType.NONE){
-            sortRoomsByPrice(list);
+            sortRoomsByPrice(sortedRooms);
         }
 
-
-        return allRooms;
+        return sortedRooms;
     }
 
     void setPriceSorting(priceSortType type){
@@ -93,7 +87,7 @@ public class roomSearch {
         }
     }
 
-    void sortRoomsByPrice(ArrayList<Room> roomList){
+    void sortRoomsByPrice(List<Room> roomList){
         switch(priceSort){
             case ASCENDING:
                 Collections.sort(roomList, new ByPriceASCENDING());
@@ -116,7 +110,7 @@ public class roomSearch {
         }
     }
 
-    void filterBySmokingType(ArrayList<Room> roomList){
+    void filterBySmokingType(List<Room> roomList){
         switch(smokeType){
             case NON_SMOKING:
                 for(Room obj: roomList){
