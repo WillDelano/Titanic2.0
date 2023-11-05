@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import java.util.regex.*;
 import edu.core.users.*;
 
+
 /**
  * UI display for the registration page
  *

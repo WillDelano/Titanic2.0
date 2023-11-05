@@ -43,24 +43,4 @@ public class TravelAgent extends User {
         }
     }
 
-    /**
-     * Allows the travel agent to check in the guest
-     *
-     * @param guest the guest being checked in is provided by the cruise manager. Similar to how a
-     *              hotel would give the keys to a guest and then notify the travel agent that the guest
-     *              was given their room keys and are now checked in.
-     */
-    public void checkInGuest(Guest guest){
-        guest.checkIn();
-    }
-
-    /**
-     * Allows the travel agent to check in the guest
-     *
-     * @param guest the guest being checked out by the cruise management staff. The guest has now returned their
-     *              key and the travel agent is being notified of this information.
-     */
-    public void checkOutGuest(Guest guest){
-        guest.checkOut();
-    }
 }

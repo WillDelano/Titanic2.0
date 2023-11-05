@@ -117,23 +117,7 @@ public class Guest extends User {
     public void requestModifyReservation(int reservationID) {
         //TODO Implement method
     }
-    /**
-     * User gets checked in
-     *
-     * @return none
-     */
-    public void checkIn(){
-        this.checkIn = true;
-    }
 
-    /**
-     * User gets checked out
-     *
-     * @return none
-     */
-    public void checkOut(){
-        this.checkIn = false;
-    }
     /**
      * Requests cancellation of an existing reservation.
      *

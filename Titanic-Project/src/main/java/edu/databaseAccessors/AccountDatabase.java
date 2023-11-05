@@ -154,7 +154,7 @@ public class AccountDatabase {
      *
      * @param userToRemove The specified user to remove
      */
-    public void removeUser(Guest userToRemove) throws IOException {
+    public static void removeUser(User userToRemove) {
         accountDatabase.remove(userToRemove);
 
         ArrayList<String> newFileLines = new ArrayList<>();
@@ -307,7 +307,7 @@ public class AccountDatabase {
      * @param oldPass  User's old password to change
      * @param newPass  A given password to change into
      */
-    public void modifyPassword(String username, String oldPass, String newPass) throws IOException {
+    public static void modifyPassword(String username, String oldPass, String newPass) throws IOException {
         int counter = 0;
 
         //find account, then change data structure to match new password
