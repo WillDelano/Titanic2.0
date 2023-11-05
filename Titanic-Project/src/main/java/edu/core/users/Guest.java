@@ -28,6 +28,9 @@ public class Guest extends User {
     private PaymentInfo paymentInfo;
     private boolean isDeclined = false;
 
+    private boolean checkIn = false;
+
+
     /**
      * Constructor for creating a new Guest.
      *
@@ -114,7 +117,23 @@ public class Guest extends User {
     public void requestModifyReservation(int reservationID) {
         //TODO Implement method
     }
+    /**
+     * User gets checked in
+     *
+     * @return none
+     */
+    public void checkIn(){
+        this.checkIn = true;
+    }
 
+    /**
+     * User gets checked out
+     *
+     * @return none
+     */
+    public void checkOut(){
+        this.checkIn = false;
+    }
     /**
      * Requests cancellation of an existing reservation.
      *

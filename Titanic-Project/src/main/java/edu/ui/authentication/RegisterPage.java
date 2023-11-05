@@ -163,7 +163,7 @@ public class RegisterPage {
         }
 
         RegisterPageController.createAccount(username, password, firstName, lastName, email);
-        
+
 
         mainFrame.setVisible(false);
         LoginPage loginPage = new LoginPage();

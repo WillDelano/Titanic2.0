@@ -17,18 +17,15 @@ import java.lang.*;
  */
 public class AccountDatabase {
     private static Set<User> accountDatabase;
-<<<<<<< HEAD:Titanic-Project/src/main/java/edu/database/AccountDatabase.java
+
 
     private User person;
-    private static String fileName = "C:\\Users\\Colet\\Documents\\GIT\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\accountList.csv";
-
-=======
-    //private String fileName = getClass().getClassLoader().getResource("accountList.csv").getFile();
-    private static String fileName = "C:\\Users\\vince\\Java Projects\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\accountList.csv";
->>>>>>> 7d1521485f6b487929a2e1275f9c74a737f369bb:Titanic-Project/src/main/java/edu/databaseAccessors/AccountDatabase.java
+    private static String fileName = "C:/Users/Colet/Documents/GIT/Titanic2.0/Titanic-Project/src/main/resources/accountList.csv";
 
 
-    /**
+
+
+    /*
      * Constructor for creating an instance of AccountDatabase
      *
      */
@@ -232,18 +229,28 @@ public class AccountDatabase {
     public static boolean accountExists(String username) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            String line;
+            String line = null;
+            boolean fileAccessed = false;
             line = reader.readLine();
-
+            if (line != null) {
+                fileAccessed = true; // Set the flag to true when the file is accessed
+            }
+            int count = 0;
             while (line != null) {
+                count ++;
                 String[] split = line.split(",");
 
                 //if the username exists in the file return true
                 if (split[1].equals(username)) {
                     return true;
                 }
-                line = reader.readLine();
+                line = null;
+                if(reader.ready()) {
+                    line = reader.readLine();
+                }
+
             }
+            System.out.println("does not exist");
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();

@@ -5,33 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fc14b32d-70fe-4d06-8946-f4a8359f9ce0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/73220af7-872d-48ed-a1fd-ee272dbf41cb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73220af7-872d-48ed-a1fd-ee272dbf41cb.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< HEAD
-<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/derby.log" beforeDir="false" afterPath="$PROJECT_DIR$/derby.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/db.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/users/Guest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/users/Guest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/AccountDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/CountryDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/CountryDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/CruiseDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/CruiseDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/users/TravelAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/users/TravelAgent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/ReservationDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/ReservationDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/RoomDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/RoomDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/AccountDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CountryDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CountryDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CruiseDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CruiseDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/RoomDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/RoomDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/RegisterPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/RegisterPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/accountList.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/accountList.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/reserved_rooms.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/reserved_rooms.csv" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/ReservationDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/database/ReservationDatabase.java" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/AccountDatabase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/CountryDatabase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/CruiseDatabase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/database/RoomDatabase.java" beforeDir="false" />
->>>>>>> 7d1521485f6b487929a2e1275f9c74a737f369bb
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/LoginPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/accountList.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/accountList.csv" afterDir="false" />
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/src/main/resources/reservationList.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/reservationList.csv" afterDir="false" />
->>>>>>> e27029fa6f9002cf0c4b91d61e4c2711b50d6e89
-      <change beforePath="$PROJECT_DIR$/src/main/resources/room.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/room.csv" afterDir="false" />
-=======
->>>>>>> 7d1521485f6b487929a2e1275f9c74a737f369bb
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,65 +36,26 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-<<<<<<< HEAD
-  <component name="GithubPullRequestsUISettings">
-    <option name="recentNewPullRequestHead">
-      <RepoCoordinatesHolder>
-        <option name="owner" value="eeggssyy" />
-        <option name="repository" value="Titanic2.0" />
-      </RepoCoordinatesHolder>
-    </option>
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="0d066de5-cdbe-4c3b-bd96-697ef47aff3c" />
-        <option name="url" value="https://github.com/eeggssyy/Titanic2.0" />
-      </UrlAndAccount>
-    </option>
-  </component>
   <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 3
-}</component>
-  <component name="ProjectId" id="2XHmk8yhhDnMtuRV9Lmwv0921tL" />
-=======
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 5
-}</component>
+        &quot;customColor&quot;: &quot;&quot;,
+        &quot;associatedIndex&quot;: 5
+        }</component>
   <component name="ProjectId" id="2XQ6Zh8cx2s9nDtpFvH7eKKH80z" />
->>>>>>> 7d1521485f6b487929a2e1275f9c74a737f369bb
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-<<<<<<< HEAD
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;workbench&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-=======
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "authentication",
+    "git-widget-placeholder": "workbench",
     "jdk.selected.JAVA_MODULE": "20",
     "last_opened_file_path": "C:/Users/Owner/Desktop/Titanic2.0/Titanic-Project/libs2/derbytools.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
-<<<<<<< HEAD
-    "node.js.selected.package.tslint": "(autodetect)"
->>>>>>> e27029fa6f9002cf0c4b91d61e4c2711b50d6e89
-=======
     "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
@@ -117,9 +66,8 @@
     "RunConfigurationTargetLRU": [
       "73220af7-872d-48ed-a1fd-ee272dbf41cb/schema/\"APP\""
     ]
->>>>>>> 7d1521485f6b487929a2e1275f9c74a737f369bb
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Owner\Desktop\Titanic2.0\Titanic-Project\libs2" />
@@ -129,26 +77,6 @@
       <recent name="C:\Users\vince\Java Projects\Titanic2.0\Titanic-Project\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="AddRoomPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="edu.ui.addRoom.AddRoomPage" />
-      <module name="Titanic-Project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.ui.addRoom.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.AddRoomPage" />
-      </list>
-    </recent_temporary>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -157,15 +85,10 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1698294520800</updated>
-<<<<<<< HEAD
-      <workItem from="1698554545738" duration="40000" />
-      <workItem from="1698554713327" duration="5335000" />
-=======
       <workItem from="1698689114613" duration="1632000" />
       <workItem from="1698690766907" duration="7614000" />
       <workItem from="1698699691349" duration="567000" />
       <workItem from="1698700265025" duration="1762000" />
->>>>>>> 7d1521485f6b487929a2e1275f9c74a737f369bb
     </task>
     <servers />
   </component>

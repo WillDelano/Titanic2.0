@@ -6,6 +6,8 @@ import edu.core.reservation.Reservation;
 import edu.core.users.Guest;
 import edu.core.reservation.Room;
 import edu.core.users.User;
+import edu.databaseAccessors.CountryDatabase;
+import edu.databaseAccessors.RoomDatabase;
 
 import java.io.*;
 import java.time.LocalDate;

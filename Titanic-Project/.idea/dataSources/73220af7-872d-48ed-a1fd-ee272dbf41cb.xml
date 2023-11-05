@@ -6,7 +6,7 @@
     </root>
     <schema id="2" parent="1" name="APP">
       <Current>1</Current>
-      <LocalIntrospectionTimestamp>2023-10-30.22:39:27</LocalIntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2023-11-03.21:11:13</LocalIntrospectionTimestamp>
     </schema>
     <schema id="3" parent="1" name="NULLID"/>
     <schema id="4" parent="1" name="SQLJ"/>
@@ -18,5 +18,58 @@
     <schema id="10" parent="1" name="SYSIBM"/>
     <schema id="11" parent="1" name="SYSPROC"/>
     <schema id="12" parent="1" name="SYSSTAT"/>
+    <table id="13" parent="2" name="RESERVATION"/>
+    <column id="14" parent="13" name="ID">
+      <DasType>INTEGER|4s</DasType>
+      <DefaultExpression>AUTOINCREMENT: start 1 increment 1</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="15" parent="13" name="USERNAME">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="16" parent="13" name="DURATION">
+      <DasType>INTEGER|4s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="17" parent="13" name="STARTCOUNTRY">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="18" parent="13" name="ENDCOUNTRY">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="19" parent="13" name="ROOMNUM">
+      <DasType>INTEGER|4s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="20" parent="13" name="STARTDATE">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+    </column>
+    <column id="21" parent="13" name="ENDDATE">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+    </column>
+    <index id="22" parent="13" name="SQL0000000000-582f8014-018b-81d3-a518-000007300358">
+      <ColNames>ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Unique>1</Unique>
+    </index>
+    <key id="23" parent="13" name="SQL0000000000-582f8014-018b-81d3-a518-000007300358">
+      <ColNames>ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
   </database-model>
 </dataSource>
