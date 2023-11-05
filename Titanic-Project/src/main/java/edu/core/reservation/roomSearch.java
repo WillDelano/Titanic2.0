@@ -18,10 +18,10 @@ import java.util.List;
 public class roomSearch {
     List<Room> allRooms;
     boolean price;
-    enum priceSortType {NONE, ASCENDING, DESCENDING};
-    enum bedCountSortType {NONE, ASCENDING, DESCENDING};
+    enum priceSortType {NONE, ASCENDING, DESCENDING}
+    enum bedCountSortType {NONE, ASCENDING, DESCENDING}
     //enum bedSortType {  };
-    enum smokingSortType {ALL, NON_SMOKING, SMOKING};
+    enum smokingSortType {ALL, NON_SMOKING, SMOKING}
     priceSortType priceSort = priceSortType.NONE;
     smokingSortType smokeType = smokingSortType.ALL;
 
@@ -30,7 +30,7 @@ public class roomSearch {
     /**
      * RoomSearch Constructor
      *
-     * //@param database of cruise objects
+     * @param cruise - cruise object to retrieve rooms from.
      */
 
     roomSearch(Cruise cruise){
@@ -54,11 +54,19 @@ public class roomSearch {
                 }
             }
         }
+        sortAndFilterRooms(relevantRooms);
+
         return relevantRooms;
     }
 
-    List<Room> sortAndFilterRooms (){
-        List<Room> sortedRooms = allRooms;
+    /**
+     * filters allRooms by the enabled filters and sorting type
+     *
+     * @param rooms list of rooms to be sorted
+     * @return filtered and sorted list of rooms
+     */
+    List<Room> sortAndFilterRooms (List<Room> rooms){
+        List<Room> sortedRooms = rooms;
 
         // filter rooms
         if(smokeType != smokingSortType.ALL) {
@@ -73,6 +81,11 @@ public class roomSearch {
         return sortedRooms;
     }
 
+    /**
+     * setter for type of price sorting
+     *
+     * //@param type of price sorting
+     */
     void setPriceSorting(priceSortType type){
         switch (type){
             case NONE:
@@ -87,6 +100,11 @@ public class roomSearch {
         }
     }
 
+    /**
+     * sorts rooms by price
+     *
+     * //@param list of rooms to sort
+     */
     void sortRoomsByPrice(List<Room> roomList){
         switch(priceSort){
             case ASCENDING:
@@ -97,6 +115,11 @@ public class roomSearch {
         }
     }
 
+    /**
+     * setter for smoking option
+     *
+     * //@param smoking choice
+     */
     void setSmokingType(smokingSortType type){
         switch (type){
             case ALL:
@@ -110,6 +133,11 @@ public class roomSearch {
         }
     }
 
+    /**
+     * sorts rooms if a smoking preference is enabled
+     *
+     * //@param list of rooms to sort
+     */
     void filterBySmokingType(List<Room> roomList){
         switch(smokeType){
             case NON_SMOKING:
@@ -127,9 +155,17 @@ public class roomSearch {
                 }
         }
     }
-
-
 }
+
+
+/**
+ * Comparator class to sort rooms
+ *
+ * This class sorts rooms by price in ascending order
+ *
+ * @author Chas Doughtry
+ * @version 1.0
+ */
 class ByPriceASCENDING implements Comparator<Room> {
     public int compare (Room a, Room b){
         double epsilon = 0.000001d;
@@ -141,6 +177,15 @@ class ByPriceASCENDING implements Comparator<Room> {
         return 0;
     }
 }
+
+/**
+ * Comparator class to sort rooms
+ *
+ * This class sorts rooms by price in descending order
+ *
+ * @author Chas Doughtry
+ * @version 1.0
+ */
 class ByPriceDESCENDING implements Comparator<Room> {
     public int compare (Room a, Room b){
         double epsilon = 0.000001d;
