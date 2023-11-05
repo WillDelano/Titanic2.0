@@ -5,14 +5,13 @@ import edu.core.billingmanagement.PaymentInfo;
 import edu.core.cruise.Country;
 import edu.core.reservation.Reservation;
 
-import java.lang.reflect.AccessibleObject;
 import java.time.LocalDate;
 import java.util.*;
 
 import edu.core.reservation.Room;
-import edu.database.AccountDatabase;
-import edu.database.CountryDatabase;
-import edu.database.ReservationDatabase;
+import edu.databaseAccessors.AccountDatabase;
+import edu.databaseAccessors.CountryDatabase;
+import edu.databaseAccessors.ReservationDatabase;
 
 /**
  * Representation of a guest user in the cruise reservation system.

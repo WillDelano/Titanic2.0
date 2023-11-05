@@ -1,8 +1,6 @@
-package edu.database;
+package edu.databaseAccessors;
 
 import edu.core.cruise.Country;
-import edu.core.reservation.Reservation;
-import edu.core.reservation.Room;
 
 import java.io.*;
 import java.time.LocalDate;
@@ -17,10 +15,14 @@ import java.util.Objects;
  * @version 1.0
  */
 public class CountryDatabase {
+<<<<<<< HEAD:Titanic-Project/src/main/java/edu/database/CountryDatabase.java
     //private static String fileName = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\countries.csv";
     private static String fileName = "C:\\Users\\Chas\\Soft.Eng\\Group project\\Titanic4\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\countries.csv";
 
 
+=======
+    private static String fileName = "C:\\Users\\vince\\Java Projects\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\countries.csv";
+>>>>>>> main:Titanic-Project/src/main/java/edu/databaseAccessors/CountryDatabase.java
     public static Country getCountry(String name) {
         //look through database to find country with matching name
         try {

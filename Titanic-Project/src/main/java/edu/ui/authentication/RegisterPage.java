@@ -2,15 +2,8 @@ package edu.ui.authentication;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import edu.authentication.Authentication;
-import edu.core.cruise.Cruise;
-import edu.core.users.User;
-import edu.database.AccountDatabase;
-import edu.ui.cruiseDetails.SelectCruiseController;
-import edu.ui.landingPage.LandingPage;
+import java.util.regex.Pattern;
+import java.util.regex.*;
 
 /**
  * UI display for the registration page
@@ -18,7 +11,7 @@ import edu.ui.landingPage.LandingPage;
  * This class creates the registration page and allows a user to register for an account
  *
  * @author Gabriel Choi
- * @version 1.0
+ * @version 1.2
  * @see LoginPage
  */
 public class RegisterPage {
@@ -29,9 +22,16 @@ public class RegisterPage {
     private JTextField lastNameField;
     private JTextField emailField;
 
-
+    /**
+     * This is the constructor for the Register page. It calls createGUI.
+     *
+     */
     public RegisterPage() { createGUI(); }
 
+    /**
+     * This creates the GUI for the Register Page.
+     *
+     */
     public void createGUI(){
         mainFrame = new JFrame("Create an Account Page");
         mainFrame.setSize(1000, 700);
@@ -45,6 +45,7 @@ public class RegisterPage {
         c.fill = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(10, 0, 0, 0);
 
+        //adding text fields for account information
         c.gridx = 0;
         c.gridy = 0;
         informationPanel.add(new JLabel("First Name: ", JLabel.CENTER), c);
@@ -89,6 +90,21 @@ public class RegisterPage {
         c.insets = new Insets(20, 0, 0, 0);
         informationPanel.add(registerButton, c);
 
+        c.gridy = 6;
+        informationPanel.add(new JLabel(), c);
+
+        JButton backButton = new JButton("Back");
+        c.gridx = 0;
+        c.gridy = 7;
+        c.gridwidth = 2;
+        c.anchor = GridBagConstraints.CENTER;
+        c.insets = new Insets(20,0,0,0);
+        backButton.addActionListener(e -> {
+            mainFrame.dispose();
+            LoginPage loginPage = new LoginPage();
+        });
+        informationPanel.add(backButton, c);
+
         mainFrame.add(new JLabel(), BorderLayout.LINE_START);
         mainFrame.add(informationPanel, BorderLayout.CENTER);
         mainFrame.add(new JLabel(), BorderLayout.LINE_END);
@@ -96,18 +112,25 @@ public class RegisterPage {
         mainFrame.setVisible(true);
     }
 
+    /**
+     * This checks if the username exists or not in the database.
+     *
+     * @return Returns true if the account does not exist.
+     */
     public boolean validateUsername() {
-        AccountDatabase d = new AccountDatabase();
         String username = usernameField.getText();
 
-        if (AccountDatabase.accountExists(username)) {
+        if (RegisterPageController.accountExists(username)) {
             JOptionPane.showMessageDialog(mainFrame, "A user with that name already exists", "Sorry!", JOptionPane.WARNING_MESSAGE);
-
             return true;
         }
         return false;
     }
 
+    /**
+     * This registers the Guest into the system.
+     *
+     */
     public void registerAccount() {
         //if username exists, start over
         if (validateUsername()) {
@@ -122,10 +145,16 @@ public class RegisterPage {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        AccountDatabase d = new AccountDatabase();
-        Authentication a = new Authentication();
+        //Checking email format
+        String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        if(!matcher.matches()){
+            JOptionPane.showMessageDialog(mainFrame, "Invalid email format", "Oops!", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
-        a.createAccount(username, password, firstName, lastName, email);
+        RegisterPageController.createAccount(username, password, firstName, lastName, email);
 
         mainFrame.setVisible(false);
         LoginPage loginPage = new LoginPage();

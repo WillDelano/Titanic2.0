@@ -1,6 +1,5 @@
-package edu.database;
+package edu.databaseAccessors;
 
-import com.opencsv.CSVWriter;
 import edu.core.cruise.Country;
 import edu.core.reservation.Reservation;
 import edu.core.users.Guest;

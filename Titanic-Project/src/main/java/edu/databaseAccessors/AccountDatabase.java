@@ -1,4 +1,4 @@
-package edu.database;
+package edu.databaseAccessors;
 import edu.core.users.*;
 import java.io.*;
 import java.util.*;
@@ -18,8 +18,13 @@ import java.lang.*;
 public class AccountDatabase {
     private static Set<User> accountDatabase;
     //private String fileName = getClass().getClassLoader().getResource("accountList.csv").getFile();
+<<<<<<< HEAD:Titanic-Project/src/main/java/edu/database/AccountDatabase.java
     //private static String fileName = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\accountList.csv";
     private static String fileName = "C:\\Users\\Chas\\Soft.Eng\\Group project\\Titanic4\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\accountList.csv";
+=======
+    private static String fileName = "C:\\Users\\vince\\Java Projects\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\accountList.csv";
+
+>>>>>>> main:Titanic-Project/src/main/java/edu/databaseAccessors/AccountDatabase.java
 
     /**
      * Constructor for creating an instance of AccountDatabase
@@ -150,7 +155,7 @@ public class AccountDatabase {
      *
      * @param userToRemove The specified user to remove
      */
-    public void removeUser(Guest userToRemove) throws IOException {
+    public static void removeUser(User userToRemove) throws IOException {
         accountDatabase.remove(userToRemove);
 
         ArrayList<String> newFileLines = new ArrayList<>();
@@ -163,7 +168,7 @@ public class AccountDatabase {
         String line;
 
 
-        InputStream in = getClass().getClassLoader().getResourceAsStream("accountList.csv");
+        InputStream in = AccountDatabase.class.getClassLoader().getResourceAsStream("accountList.csv");
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
         while ((line = reader.readLine()) != null) {
             newFileLines.add(line);
@@ -293,7 +298,7 @@ public class AccountDatabase {
      * @param oldPass  User's old password to change
      * @param newPass  A given password to change into
      */
-    public void modifyPassword(String username, String oldPass, String newPass) throws IOException {
+    public static void modifyPassword(String username, String oldPass, String newPass) throws IOException {
         int counter = 0;
 
         //find account, then change data structure to match new password
@@ -371,11 +376,11 @@ public class AccountDatabase {
      * @param newData   the newData to replace old data in file database
      *
      */
-    public void modifyFileLine(int lineIndex,int dataToChange, String newData) throws IOException {
+    public static void modifyFileLine(int lineIndex, int dataToChange, String newData) throws IOException {
         String line;
         ArrayList<String> fileList = new ArrayList<>();
 
-        InputStream in = getClass().getClassLoader().getResourceAsStream("accountList.csv");
+        InputStream in = AccountDatabase.class.getClassLoader().getResourceAsStream("accountList.csv");
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 
         //copy lines into arraylist
