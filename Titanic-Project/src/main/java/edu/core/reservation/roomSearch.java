@@ -39,6 +39,16 @@ public class roomSearch {
     roomSearch(Cruise cruise){
         allRooms = cruise.getRoomList();
     }
+
+    /**
+     * RoomSearch Constructor
+     *
+     * @param rooms - List of rooms to retrieve rooms from.
+     */
+    roomSearch(List<Room> rooms){
+        allRooms = rooms;
+    }
+
     public List<Room> findRooms(String line){
         String[] traits = line.split( " ");
         List<Room> relevantRooms = new ArrayList<>();

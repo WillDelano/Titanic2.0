@@ -1,8 +1,10 @@
 package edu.ui.roomDetails;
 
 import edu.core.reservation.Room;
+import edu.core.reservation.roomSearch;
 import edu.core.users.CurrentGuest;
 import edu.databaseAccessors.RoomDatabase;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,6 +21,7 @@ import java.util.List;
  */
 public class BrowseRoomPage {
 
+    private roomSearch cruiseSearch;
     private JFrame roomFrame;
     private JLabel titleLabel;
     private JList<Room> roomList;

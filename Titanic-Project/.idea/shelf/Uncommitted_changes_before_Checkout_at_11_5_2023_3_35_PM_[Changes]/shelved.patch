@@ -1,0 +1,244 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"fb1b58f9-9b4d-4d74-a260-a3753ac83a2c\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/dataSources/73220af7-872d-48ed-a1fd-ee272dbf41cb.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/dataSources/73220af7-872d-48ed-a1fd-ee272dbf41cb.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_5_2023_10_55_AM__Changes_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_5_2023_10_55_AM__Changes_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n<<<<<<< HEAD\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/edu/ui/roomDetails/BrowseRoomPage.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/edu/ui/roomDetails/BrowseRoomPage.java\" afterDir=\"false\" />\r\n=======\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/edu/core/reservation/roomSearch.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/edu/core/reservation/roomSearch.java\" afterDir=\"false\" />\r\n>>>>>>> main\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n<<<<<<< HEAD\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2XHmk8yhhDnMtuRV9Lmwv0921tL\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"git-widget-placeholder\": \"roomSearchUI\",\r\n    \"last_opened_file_path\": \"C:/Users/Chas/Soft.Eng/Lab7\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\"\r\n=======\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;git-widget-placeholder&quot;: &quot;roomSearch&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;\r\n>>>>>>> main\r\n  }\r\n}</component>\r\n  <component name=\"TaskManager\">\r\n    <servers />\r\n  </component>\r\n<<<<<<< HEAD\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.lang.NullPointerException\" package=\"java.lang\" />\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </breakpoint>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.lang.ArrayIndexOutOfBoundsException\" package=\"java.lang\" />\r\n          <option name=\"timeStamp\" value=\"5\" />\r\n        </breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java</url>\r\n          <line>33</line>\r\n          <option name=\"timeStamp\" value=\"2\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java</url>\r\n          <line>35</line>\r\n          <option name=\"timeStamp\" value=\"4\" />\r\n        </line-breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/edu/database/AccountDatabase.java</url>\r\n          <line>234</line>\r\n          <option name=\"timeStamp\" value=\"6\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n=======\r\n>>>>>>> main\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 45915194089297725e3bfb0a7db5f7340eff7546)
++++ b/.idea/workspace.xml	(date 1699219746779)
+@@ -4,69 +4,39 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="fb1b58f9-9b4d-4d74-a260-a3753ac83a2c" name="Changes" comment="">
+-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/73220af7-872d-48ed-a1fd-ee272dbf41cb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73220af7-872d-48ed-a1fd-ee272dbf41cb.xml" afterDir="false" />
++    <list default="true" id="1bf9b761-011a-42e7-9e89-56097599806b" name="Changes" comment="">
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_5_2023_10_55_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_5_2023_10_55_AM__Changes_.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-<<<<<<< HEAD
++      <change beforePath="$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/users/Guest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/users/Guest.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/LoginPage.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/roomDetails/BrowseRoomPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/roomDetails/BrowseRoomPage.java" afterDir="false" />
+-=======
+-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/reservation/roomSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/reservation/roomSearch.java" afterDir="false" />
+->>>>>>> main
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
+   </component>
+-<<<<<<< HEAD
+-  <component name="FileTemplateManagerImpl">
+-    <option name="RECENT_TEMPLATES">
+-      <list>
+-        <option value="Class" />
+-      </list>
+-    </option>
+-  </component>
+-  <component name="Git.Settings">
+-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+-  </component>
+-  <component name="ProjectId" id="2XHmk8yhhDnMtuRV9Lmwv0921tL" />
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+   <component name="PropertiesComponent"><![CDATA[{
+   "keyToString": {
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+     "git-widget-placeholder": "roomSearchUI",
+-    "last_opened_file_path": "C:/Users/Chas/Soft.Eng/Lab7",
+     "node.js.detected.package.eslint": "true",
+     "node.js.detected.package.tslint": "true",
+     "node.js.selected.package.eslint": "(autodetect)",
+     "node.js.selected.package.tslint": "(autodetect)"
+-=======
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;git-widget-placeholder&quot;: &quot;roomSearch&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
+->>>>>>> main
+   }
+-}</component>
++}]]></component>
++  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+     <servers />
+   </component>
+-<<<<<<< HEAD
+-  <component name="Vcs.Log.Tabs.Properties">
+-    <option name="TAB_STATES">
+-      <map>
+-        <entry key="MAIN">
+-          <value>
+-            <State />
+-          </value>
+-        </entry>
+-      </map>
+-    </option>
++  <component name="TypeScriptGeneratedFilesManager">
++    <option name="version" value="3" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+@@ -79,24 +49,7 @@
+           <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
+           <option name="timeStamp" value="5" />
+         </breakpoint>
+-        <line-breakpoint enabled="true" type="java-line">
+-          <url>file://$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java</url>
+-          <line>33</line>
+-          <option name="timeStamp" value="2" />
+-        </line-breakpoint>
+-        <line-breakpoint enabled="true" type="java-line">
+-          <url>file://$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java</url>
+-          <line>35</line>
+-          <option name="timeStamp" value="4" />
+-        </line-breakpoint>
+-        <line-breakpoint enabled="true" type="java-line">
+-          <url>file://$PROJECT_DIR$/src/main/java/edu/database/AccountDatabase.java</url>
+-          <line>234</line>
+-          <option name="timeStamp" value="6" />
+-        </line-breakpoint>
+       </breakpoints>
+     </breakpoint-manager>
+   </component>
+-=======
+->>>>>>> main
+ </project>
+\ No newline at end of file
+Index: src/main/java/edu/core/reservation/roomSearch.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.core.reservation;\r\n\r\nimport edu.core.cruise.Cruise;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.Collections;\r\nimport java.util.Comparator;\r\nimport java.util.List;\r\n\r\n\r\n/**\r\n * Used to search for rooms and filter room searches\r\n *\r\n * More detailed description of the class, including its purpose, usage, and any other relevant information.\r\n *\r\n * @author Chas Doughtry\r\n */\r\npublic class roomSearch {\r\n    List<Room> allRooms;\r\n    boolean price;\r\n    enum priceSortType {NONE, ASCENDING, DESCENDING}\r\n    enum bedPreferenceType {ALL, SINGLE, TWIN, FULL, QUEEN, KING}\r\n    enum bedCountType {ALL, ONE, TWO, THREE, FOUR}\r\n\r\n    enum smokingSortType {ALL, NON_SMOKING, SMOKING}\r\n    priceSortType priceSort = priceSortType.NONE;\r\n    smokingSortType smokeType = smokingSortType.ALL;\r\n    bedPreferenceType bedType = bedPreferenceType.ALL;\r\n    bedCountType bedCount = bedCountType.ALL;\r\n\r\n    enum roomSortType{/* add room types here */};\r\n\r\n    /**\r\n     * RoomSearch Constructor\r\n     *\r\n     * @param cruise - cruise object to retrieve rooms from.\r\n     */\r\n\r\n    roomSearch(Cruise cruise){\r\n        allRooms = cruise.getRoomList();\r\n    }\r\n    public List<Room> findRooms(String line){\r\n        String[] traits = line.split( \" \");\r\n        List<Room> relevantRooms = new ArrayList<>();\r\n\r\n        // iterate through rooms and add relevant rooms to new list\r\n        for(Room obj : allRooms){\r\n\r\n            if(!obj.isBooked()) {\r\n\r\n                // iterate through traits to find in room's attributes\r\n                for (String s : traits) {\r\n                    if (s.toLowerCase().contains(obj.getBedType().toLowerCase())) { //bed type\r\n                        relevantRooms.add(obj);\r\n                    } else if (s.toLowerCase().contains( // searching for beds\r\n                            (obj.getNumberOfBeds() + \" beds\").toLowerCase())) {\r\n                        relevantRooms.add(obj);\r\n                    } else if (s.contains(String.valueOf(obj.getRoomNumber()))) {\r\n                        relevantRooms.add(obj);\r\n                    } else if (s.contains(String.valueOf(obj.getRoomPrice()))) {\r\n                        relevantRooms.add(obj);\r\n                    }\r\n                }\r\n            }\r\n        }\r\n        sortAndFilterRooms(relevantRooms);\r\n\r\n        return relevantRooms;\r\n    }\r\n\r\n    /**\r\n     * filters allRooms by the enabled filters and sorting type\r\n     *\r\n     * @param rooms list of rooms to be sorted\r\n     * @return filtered and sorted list of rooms\r\n     */\r\n    List<Room> sortAndFilterRooms (List<Room> rooms){\r\n        List<Room> sortedRooms = rooms;\r\n\r\n        // filter rooms\r\n        if(smokeType != smokingSortType.ALL) {\r\n            filterBySmokingType(sortedRooms);\r\n        }\r\n\r\n        // filter by bed type\r\n        if(bedType != bedPreferenceType.ALL){\r\n            filterByBedType(sortedRooms);\r\n        }\r\n\r\n        // filter by bed Count\r\n        if(bedCount != bedCountType.ALL){\r\n            filterByBedCount(sortedRooms);\r\n        }\r\n\r\n        // sort rooms\r\n        if(priceSort != priceSortType.NONE){\r\n            sortRoomsByPrice(sortedRooms);\r\n        }\r\n\r\n        return sortedRooms;\r\n    }\r\n\r\n    /**\r\n     * setter for type of price sorting\r\n     *\r\n     * //@param type of price sorting\r\n     */\r\n    void setPriceSorting(priceSortType type){\r\n        switch (type){\r\n            case NONE:\r\n                priceSort = priceSortType.NONE;\r\n\r\n            case ASCENDING:\r\n                priceSort = priceSortType.ASCENDING;\r\n\r\n            case DESCENDING:\r\n                priceSort = priceSortType.DESCENDING;\r\n\r\n        }\r\n    }\r\n\r\n    /**\r\n     * sorts rooms by price\r\n     *\r\n     * //@param list of rooms to sort\r\n     */\r\n    void sortRoomsByPrice(List<Room> roomList){\r\n        switch(priceSort){\r\n            case ASCENDING:\r\n                Collections.sort(roomList, new ByPriceASCENDING());\r\n\r\n            case DESCENDING:\r\n                Collections.sort(roomList, new ByPriceDESCENDING());\r\n        }\r\n    }\r\n\r\n    /**\r\n     * setter for smoking option\r\n     *\r\n     * //@param smoking choice\r\n     */\r\n    void setSmokingType(smokingSortType type){\r\n        switch (type){\r\n            case ALL:\r\n                smokeType = smokingSortType.ALL;\r\n\r\n            case NON_SMOKING:\r\n                smokeType = smokingSortType.NON_SMOKING;\r\n\r\n            case SMOKING:\r\n                smokeType = smokingSortType.SMOKING;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * sorts rooms if a smoking preference is enabled\r\n     *\r\n     * //@param list of rooms to sort\r\n     */\r\n    void filterBySmokingType(List<Room> roomList){\r\n        switch(smokeType){\r\n            case NON_SMOKING:\r\n                for(Room obj: roomList){\r\n                    if(!obj.getSmokingAvailable()){\r\n                        roomList.add(obj);\r\n                    }\r\n                }\r\n\r\n            case SMOKING:\r\n                for(Room obj: roomList){\r\n                    if(obj.getSmokingAvailable()){\r\n                        roomList.add(obj);\r\n                    }\r\n                }\r\n        }\r\n    }\r\n\r\n    /**\r\n     * setter for bed type preference option\r\n     *\r\n     * //@param bed preference\r\n     */\r\n    void setBedType(bedPreferenceType type){\r\n        switch (type){\r\n            case ALL:\r\n                bedType = bedPreferenceType.ALL;\r\n\r\n            case SINGLE:\r\n                bedType = bedPreferenceType.SINGLE;\r\n\r\n            case TWIN:\r\n                bedType = bedPreferenceType.TWIN;\r\n\r\n            case FULL:\r\n                bedType = bedPreferenceType.FULL;\r\n\r\n            case QUEEN:\r\n                bedType = bedPreferenceType.QUEEN;\r\n\r\n            case KING:\r\n                bedType = bedPreferenceType.KING;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * sorts rooms if a bed type preference is enabled\r\n     *\r\n     * //@param list of rooms to sort\r\n     */\r\n    void filterByBedType(List<Room> roomList){\r\n\r\n        switch(bedType){\r\n            case SINGLE:\r\n                for(Room obj: roomList){\r\n                    if(obj.getBedType().equalsIgnoreCase(\"single\")){\r\n                        roomList.add(obj);\r\n                    }\r\n                }\r\n\r\n            case TWIN:\r\n                for(Room obj: roomList){\r\n                    if(obj.getBedType().equalsIgnoreCase(\"twin\")){\r\n                        roomList.add(obj);\r\n                    }\r\n                }\r\n\r\n            case FULL:\r\n                for(Room obj: roomList){\r\n                    if(obj.getBedType().equalsIgnoreCase(\"full\")){\r\n                        roomList.add(obj);\r\n                    }\r\n                }\r\n\r\n            case QUEEN:\r\n                for(Room obj: roomList){\r\n                    if(obj.getBedType().equalsIgnoreCase(\"queen\")){\r\n                        roomList.add(obj);\r\n                    }\r\n                }\r\n\r\n            case KING:\r\n                for(Room obj: roomList){\r\n                    if(obj.getBedType().equalsIgnoreCase(\"king\")){\r\n                        roomList.add(obj);\r\n                    }\r\n                }\r\n        }\r\n    }\r\n\r\n    /**\r\n     * setter for bed count preference option\r\n     *\r\n     * //@param bedtype choice\r\n     */\r\n    void setBedCount(bedCountType type){\r\n        switch (type){\r\n            case ALL:\r\n                bedCount = bedCountType.ALL;\r\n\r\n            case ONE:\r\n                bedCount = bedCountType.ONE;\r\n\r\n            case TWO:\r\n                bedCount = bedCountType.TWO;\r\n\r\n            case THREE:\r\n                bedCount = bedCountType.THREE;\r\n\r\n            case FOUR:\r\n                bedCount = bedCountType.FOUR;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * sorts rooms if a bed count preference is enabled\r\n     *\r\n     * //@param list of rooms to sort\r\n     */\r\n    void filterByBedCount(List<Room> roomList){\r\n        int preferredBedCount = 0;\r\n\r\n        switch(bedCount){\r\n            case ONE:\r\n                preferredBedCount = 1;\r\n\r\n            case TWO:\r\n                preferredBedCount = 2;\r\n\r\n            case THREE:\r\n                preferredBedCount = 3;\r\n\r\n            case FOUR:\r\n                preferredBedCount = 4;\r\n        }\r\n\r\n        for(Room obj: roomList){\r\n            if(obj.getNumberOfBeds() == preferredBedCount){\r\n                roomList.add(obj);\r\n            }\r\n        }\r\n    }\r\n\r\n}\r\n\r\n\r\n/**\r\n * Comparator class to sort rooms\r\n *\r\n * This class sorts rooms by price in ascending order\r\n *\r\n * @author Chas Doughtry\r\n * @version 1.0\r\n */\r\nclass ByPriceASCENDING implements Comparator<Room> {\r\n    public int compare (Room a, Room b){\r\n        double epsilon = 0.000001d;\r\n\r\n        if((a.getRoomPrice() - b.getRoomPrice()) < epsilon){\r\n            return 1;\r\n        }\r\n\r\n        return 0;\r\n    }\r\n}\r\n\r\n/**\r\n * Comparator class to sort rooms\r\n *\r\n * This class sorts rooms by price in descending order\r\n *\r\n * @author Chas Doughtry\r\n * @version 1.0\r\n */\r\nclass ByPriceDESCENDING implements Comparator<Room> {\r\n    public int compare (Room a, Room b){\r\n        double epsilon = 0.000001d;\r\n\r\n        if((b.getRoomPrice() - a.getRoomPrice()) < epsilon){\r\n            return 1;\r\n        }\r\n\r\n        return 0;\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/edu/core/reservation/roomSearch.java b/src/main/java/edu/core/reservation/roomSearch.java
+--- a/src/main/java/edu/core/reservation/roomSearch.java	(revision 45915194089297725e3bfb0a7db5f7340eff7546)
++++ b/src/main/java/edu/core/reservation/roomSearch.java	(date 1699220125486)
+@@ -39,6 +39,15 @@
+     roomSearch(Cruise cruise){
+         allRooms = cruise.getRoomList();
+     }
++
++    /**
++     * RoomSearch Constructor
++     *
++     * @param rooms - List of rooms to retrieve rooms from.
++     */
++    roomSearch(List<Room> rooms){
++        allRooms = rooms;
++    }
+     public List<Room> findRooms(String line){
+         String[] traits = line.split( " ");
+         List<Room> relevantRooms = new ArrayList<>();
+Index: src/main/java/edu/core/users/Guest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.core.users;\r\n\r\nimport edu.core.billingmanagement.Billing;\r\nimport edu.core.billingmanagement.PaymentInfo;\r\nimport edu.core.cruise.Country;\r\nimport edu.core.reservation.Reservation;\r\n\r\nimport java.time.LocalDate;\r\nimport java.util.*;\r\n\r\nimport edu.core.reservation.Room;\r\nimport edu.databaseAccessors.AccountDatabase;\r\nimport edu.databaseAccessors.CountryDatabase;\r\nimport edu.databaseAccessors.ReservationDatabase;\r\n\r\n/**\r\n * Representation of a guest user in the cruise reservation system.\r\n *\r\n * This class provides specific functionalities and attributes related to a guest user.\r\n *\r\n * @author Vincent Dinh\r\n * @version 1.2\r\n * @see User\r\n */\r\npublic class Guest extends User {\r\n    private int rewardPoints;\r\n    private List<Reservation> reservations;\r\n    private PaymentInfo paymentInfo;\r\n    private boolean isDeclined = false;\r\n\r\n    /**\r\n     * Constructor for creating a new Guest.\r\n     *\r\n     * @param username   The username of the guest.\r\n     * @param password   The password of the guest.\r\n     * @param id         The unique ID of the guest.\r\n     * @param firstName  The first name of the guest.\r\n     * @param lastName   The last name of the guest.\r\n     * @param rewardPoints Initial reward points of the guest.\r\n     * @param email      The email of the guest.\r\n     */\r\n    public Guest(String username, String password, int id, String firstName, String lastName, int rewardPoints, String email) {\r\n        super(username, password, id, firstName, lastName, email);\r\n        this.rewardPoints = rewardPoints;\r\n    }\r\n\r\n    public PaymentInfo getPaymentInfo() {\r\n        return paymentInfo;\r\n    }\r\n\r\n    public void setPaymentInfo(PaymentInfo paymentInfo) {\r\n        this.paymentInfo = paymentInfo;\r\n    }\r\n\r\n    public void setRewardPoints(int rewardPoints) {\r\n        this.rewardPoints = rewardPoints;\r\n    }\r\n\r\n    public int getRewardPoints() {\r\n        return rewardPoints;\r\n    }\r\n\r\n    /**\r\n     * Makes a reservation for a specific room.\r\n     *\r\n     * @param room Room to be reserved.\r\n     *\r\n     * @return Returns reservation for testing purposes\r\n     */\r\n    public Reservation makeReservation(Room room, LocalDate startDate, LocalDate endDate, String startCountry, String endCountry) {\r\n        AccountDatabase database = new AccountDatabase();\r\n        ReservationDatabase resDatabase = new ReservationDatabase();\r\n\r\n        // if end date is before or equal to start date, throw error message\r\n        if (endDate.isBefore(startDate) || startDate.equals(endDate)) {\r\n            throw new RuntimeException(\"Invalid Date Range. Please make sure start date is before end date.\");\r\n        }\r\n\r\n        //getting country objects based on the strings given\r\n        Country startCountryObject = CountryDatabase.getCountry(startCountry);\r\n        Country endCountryObject = CountryDatabase.getCountry(endCountry);\r\n\r\n        Reservation reservation = new Reservation(this, room, startDate, endDate, startCountryObject, endCountryObject);\r\n\r\n        //add their reservation to database if it's not a duplicate\r\n        if (!ReservationDatabase.hasReservation(reservation)) {\r\n            ReservationDatabase.addReservation(reservation);\r\n            room.bookRoom();\r\n        }\r\n        else {\r\n            System.err.println(\"Attempting to add duplicate reservation - Cancelled.\");\r\n        }\r\n\r\n        System.err.println(\"Res: \" + reservation.getRoom());\r\n        return reservation;\r\n    }\r\n\r\n    /**\r\n     * Returns the reservations for a guest\r\n     *\r\n     * @return Set of reservations associated with a guest.\r\n     */\r\n    public Set<Reservation> getReservations() {\r\n        return ReservationDatabase.getReservations(this);\r\n    }\r\n\r\n    /**\r\n     * Requests modification to an existing reservation.\r\n     *\r\n     * @param reservationID The ID of the reservation to be modified.\r\n     */\r\n    public void requestModifyReservation(int reservationID) {\r\n        //TODO Implement method\r\n    }\r\n\r\n    /**\r\n     * Requests cancellation of an existing reservation.\r\n     *\r\n     * @param reservationID The ID of the reservation to be canceled.\r\n     */\r\n    public void requestCancelReservation(int reservationID) {\r\n        //TODO Implement method\r\n    }\r\n\r\n\r\n\r\n    /**\r\n     * Method that allows for the guest to make a payment for their cruise\r\n     *\r\n     * @param bill The bill that the guest is making a payment towards\r\n     */\r\n\r\n    public void makePayment(Billing bill) {\r\n\r\n        PaymentInfo pInfo = this.getPaymentInfo();\r\n\r\n        if (pInfo == null || isDeclined) {\r\n            System.out.println(\"Payment did not go through, exiting the system.\");\r\n            return;\r\n        }\r\n\r\n        double amountToPay = bill.getTotalAmount();\r\n        System.out.println(\"Payment of $\" + amountToPay + \" was successful using \" + pInfo.getCardType()\r\n                + \" ending in \" + pInfo.getCardNumber().substring(pInfo.getCardNumber().length() - 4));\r\n\r\n        String receipt = bill.generateReceipt();\r\n        System.out.println(receipt);\r\n\r\n    }\r\n\r\n    /**\r\n     * Allows the guest to raise a dispute against a specific bill.\r\n     *\r\n     * @param bill The bill that the guest is disputing.\r\n     * @param reason The reason the guest is raising the dispute.\r\n     */\r\n    public void raiseDispute(Billing bill, String reason) {\r\n        bill.disputeCharge(reason);\r\n    }\r\n\r\n    /**\r\n     * Allows the guest to request an invoice for their bill\r\n     *\r\n     * @param bill The bill that the guest is requesting an invoice\r\n     */\r\n    public void requestInvoice(Billing bill) {\r\n        //TODO\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/edu/core/users/Guest.java b/src/main/java/edu/core/users/Guest.java
+--- a/src/main/java/edu/core/users/Guest.java	(revision 45915194089297725e3bfb0a7db5f7340eff7546)
++++ b/src/main/java/edu/core/users/Guest.java	(date 1699218624718)
+@@ -20,7 +20,7 @@
+  *
+  * @author Vincent Dinh
+  * @version 1.2
+- * @see User
++ * @see "User"
+  */
+ public class Guest extends User {
+     private int rewardPoints;
+Index: src/main/java/edu/ui/roomDetails/BrowseRoomPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.ui.roomDetails;\r\n\r\nimport edu.core.reservation.Room;\r\nimport edu.core.users.CurrentGuest;\r\nimport edu.databaseAccessors.RoomDatabase;\r\n\r\nimport javax.swing.*;\r\nimport java.awt.*;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\n/**\r\n * UI for displaying all rooms on a cruise\r\n *\r\n * This class displays all the rooms of a selected cruise to a user\r\n *\r\n * @author Vincent Dinh\r\n * @version 1.0\r\n * @see RoomDatabase , Room, BrowseRoomController\r\n */\r\npublic class BrowseRoomPage {\r\n\r\n    private JFrame roomFrame;\r\n    private JLabel titleLabel, bedCount, sortBy;\r\n    private JPanel northPanel, filterPanel;\r\n    private JMenuBar searchMenu;\r\n    private JList<Room> roomList;\r\n    private JTextField searchTextField;\r\n    private JButton backButton, selectRoomButton, optionsButton, searchButton;\r\n    private JButton applyButton;\r\n    private JCheckBox smokingBox, nonSmokingBox;\r\n    private boolean optionVisible = false;//, smokingRooms = true, nonSmokingRooms = true;\r\n\r\n    public BrowseRoomPage(String selectedCruise) {\r\n        prepareGUI(selectedCruise);\r\n    }\r\n\r\n    private void prepareGUI(String selectedCruise) {\r\n        BrowseRoomController controller = new BrowseRoomController();\r\n        roomFrame = new JFrame(\"Rooms for Cruise: \" + selectedCruise);\r\n        roomFrame.setSize(1000, 700);\r\n        roomFrame.setLayout(new BorderLayout());\r\n\r\n        titleLabel = new JLabel(\"Available Rooms for \" + selectedCruise, JLabel.CENTER);\r\n        JPanel titlePanel = new JPanel();\r\n        titlePanel.add(titleLabel);\r\n\r\n        northPanel = new JPanel();\r\n        northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));\r\n\r\n        northPanel.add(titlePanel, BorderLayout.NORTH);\r\n        //roomFrame.add(titleLabel, BorderLayout.NORTH);\r\n\r\n        generateSearchMenu();\r\n        generateFilterPanel();\r\n\r\n        List<Room> sampleRooms = BrowseRoomController.getRooms(selectedCruise);\r\n        roomList = new JList<>(sampleRooms.toArray(new Room[0]));\r\n\r\n        JScrollPane listScrollPane = new JScrollPane(roomList);\r\n        roomFrame.add(listScrollPane, BorderLayout.CENTER);\r\n\r\n        backButton = new JButton(\"Back to Cruise Details\");\r\n        backButton.addActionListener(e -> {\r\n            roomFrame.dispose(); // close the RoomPage\r\n        });\r\n\r\n        selectRoomButton = new JButton(\"Select Room\");\r\n        selectRoomButton.addActionListener(e -> {\r\n            Room selectedRoom = roomList.getSelectedValue();\r\n            if (selectedRoom != null) {\r\n                int dialogResult = JOptionPane.showConfirmDialog(\r\n                        roomFrame,\r\n                        \"Reserve Room \" + selectedRoom.getRoomNumber() + \"?\",\r\n                        \"Confirmation\",\r\n                        JOptionPane.OK_CANCEL_OPTION\r\n                );\r\n                if (dialogResult == JOptionPane.OK_OPTION) {\r\n                    // Perform room reservation logic here\r\n                    JOptionPane.showMessageDialog(roomFrame, \"Room \" + selectedRoom.getRoomNumber() + \" reserved.\");\r\n                    controller.reserveRoom(CurrentGuest.getCurrentGuest(), selectedRoom);\r\n\r\n                    // Notify the MyReservationsPage to refresh its data\r\n                    new edu.ui.reservationDetails.MyReservationsPage().refreshReservations();  // Make sure refreshReservations() is public\r\n                }\r\n            } else {\r\n                JOptionPane.showMessageDialog(roomFrame, \"Please select a room first.\");\r\n            }\r\n        });\r\n\r\n        JPanel buttonPanel = new JPanel();\r\n        buttonPanel.add(backButton);\r\n        buttonPanel.add(selectRoomButton);\r\n\r\n        //roomFrame.add(searchPanel, BorderLayout.NORTH);\r\n        roomFrame.add(northPanel, BorderLayout.NORTH);\r\n        roomFrame.setJMenuBar(searchMenu);\r\n        roomFrame.add(buttonPanel, BorderLayout.SOUTH);\r\n        roomFrame.setVisible(true);\r\n    }\r\n\r\n    private void generateSearchMenu(){\r\n        searchMenu = new JMenuBar();\r\n        searchMenu.setPreferredSize(new Dimension(1000, 30));\r\n        searchTextField = new JTextField();\r\n        searchButton = new JButton(\"search\");\r\n        optionsButton = new JButton(\"options\");\r\n\r\n        optionsButton.addActionListener(e -> {\r\n            filterPanelVisiblity();\r\n        });\r\n\r\n        searchMenu.add(searchTextField);\r\n        searchMenu.add(searchButton);\r\n        searchMenu.add(optionsButton);\r\n    }\r\n    private void generateFilterPanel(){\r\n        filterPanel = new JPanel();\r\n        smokingBox = new JCheckBox(\"Smoking\");\r\n        smokingBox.setSelected(true);\r\n        nonSmokingBox = new JCheckBox(\"Non-Smoking  \");\r\n        nonSmokingBox.setSelected(true);\r\n        applyButton = new JButton(\"apply\");\r\n\r\n        bedCount = new JLabel(\"number of beds  \");\r\n        sortBy = new JLabel(\"sortBy  \");\r\n\r\n        JComboBox<String> bedCountOption, sortTypeOption;\r\n        String bedCounts[] = { \"All\",\"1\", \"2\", \"3\", \"4\"};\r\n        bedCountOption = new JComboBox<>(bedCounts);\r\n\r\n        String sortTypes[] = { \"None\",\"Price: Ascending\", \"Price: Descending\"};\r\n        sortTypeOption = new JComboBox<>(sortTypes);\r\n\r\n        applyButton.addActionListener( e->{\r\n            applyFilters();\r\n        });\r\n\r\n        filterPanel.add(smokingBox, BorderLayout.SOUTH);\r\n        filterPanel.add(nonSmokingBox);\r\n        filterPanel.add(bedCountOption);\r\n        filterPanel.add(bedCount);\r\n        filterPanel.add(sortTypeOption);\r\n        filterPanel.add(sortBy);\r\n\r\n        filterPanel.add(applyButton);\r\n    }\r\n\r\n    private void filterPanelVisiblity(){\r\n        if(!optionVisible) {\r\n            northPanel.add(filterPanel, BorderLayout.CENTER);\r\n            optionVisible = true;\r\n            //roomFrame.add(filterPanel, BorderLayout.NORTH);\r\n            roomFrame.revalidate();\r\n        } else {\r\n            optionVisible = false;\r\n            //roomFrame.remove(filterPanel);\r\n            northPanel.remove(filterPanel);\r\n            roomFrame.revalidate();\r\n        }\r\n    }\r\n\r\n    private void applyFilters(){\r\n\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/edu/ui/roomDetails/BrowseRoomPage.java b/src/main/java/edu/ui/roomDetails/BrowseRoomPage.java
+--- a/src/main/java/edu/ui/roomDetails/BrowseRoomPage.java	(revision 45915194089297725e3bfb0a7db5f7340eff7546)
++++ b/src/main/java/edu/ui/roomDetails/BrowseRoomPage.java	(date 1699220125494)
+@@ -1,9 +1,11 @@
+ package edu.ui.roomDetails;
+ 
+ import edu.core.reservation.Room;
++import edu.core.reservation.roomSearch;
+ import edu.core.users.CurrentGuest;
+ import edu.databaseAccessors.RoomDatabase;
+ 
++
+ import javax.swing.*;
+ import java.awt.*;
+ import java.util.ArrayList;
+@@ -20,6 +22,7 @@
+  */
+ public class BrowseRoomPage {
+ 
++    private roomSearch cruiseSearch;
+     private JFrame roomFrame;
+     private JLabel titleLabel, bedCount, sortBy;
+     private JPanel northPanel, filterPanel;
+Index: src/main/java/edu/authentication/Authentication.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.authentication;\r\n\r\nimport edu.core.users.CurrentGuest;\r\nimport edu.databaseAccessors.AccountDatabase;\r\nimport edu.uniqueID.UniqueID;\r\nimport edu.core.users.Guest;\r\n\r\nimport java.lang.*;\r\nimport java.util.Objects;\r\n\r\n/**\r\n * Interface for any authentication features\r\n *\r\n * <p>\r\n * Contains all the Authentication methods each user class must implement.\r\n * </p>\r\n *\r\n * @author Gabriel Choi\r\n * @version 1.1\r\n */\r\npublic class Authentication {\r\n\r\n\r\n    /**\r\n     * creates the account of the user.\r\n     *\r\n     * @param username   The username of the user.\r\n     * @param password   The password of the user.\r\n     * @param firstName  The first name of the user.\r\n     * @param lastName   The last name of the user.\r\n     * @param email      The email of the user.\r\n     */\r\n    public void createAccount(String username, String password, String firstName, String lastName, String email){\r\n\r\n        AccountDatabase d = new AccountDatabase();\r\n\r\n        if(!d.accountExists(username)){\r\n            Guest guest = new Guest(username,password,new UniqueID().getId(),firstName,lastName,0, email);\r\n            d.addUser(guest);\r\n        }\r\n\r\n\r\n    }\r\n\r\n\r\n\r\n    /**\r\n     * operation to validate login information from input\r\n     *\r\n     * @param username   The given username for potential user account.\r\n     * @param password   The given password for potential user account.\r\n     */\r\n    public boolean login(String username, String password){\r\n        AccountDatabase loginList = new AccountDatabase();\r\n        boolean validLogin = false;\r\n\r\n        //first check if username and pw are valid  and connected\r\n        if(loginList.isValidLogin(username,password)){\r\n            System.out.println(\"Success\");\r\n            validLogin=true;\r\n\r\n            if (Objects.equals(AccountDatabase.getAccountType(username), \"Guest\")) {\r\n                System.err.println(\"HERE\");\r\n                CurrentGuest.setCurrentGuest((Guest) AccountDatabase.getUser(username));\r\n                CurrentGuest.getCurrentGuest().setId(AccountDatabase.getUser(username).getId());\r\n            }\r\n        }\r\n        return validLogin;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/edu/authentication/Authentication.java b/src/main/java/edu/authentication/Authentication.java
+--- a/src/main/java/edu/authentication/Authentication.java	(revision 45915194089297725e3bfb0a7db5f7340eff7546)
++++ b/src/main/java/edu/authentication/Authentication.java	(date 1699220125490)
+@@ -3,7 +3,10 @@
+ import edu.core.users.CurrentGuest;
+ import edu.databaseAccessors.AccountDatabase;
+ import edu.uniqueID.UniqueID;
++
+ import edu.core.users.Guest;
++import edu.core.users.*;
++
+ 
+ import java.lang.*;
+ import java.util.Objects;
+Index: src/main/java/edu/ui/authentication/LoginPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.ui.authentication;\r\n\r\nimport javax.swing.*;\r\nimport java.awt.*;\r\nimport java.util.Objects;\r\n\r\nimport edu.authentication.Authentication;\r\nimport edu.databaseAccessors.AccountDatabase;\r\nimport edu.ui.landingPage.GuestLandingPage;\r\nimport edu.ui.landingPage.TravelAgentLandingPage;\r\n\r\n/**\r\n * UI display for the login page\r\n *\r\n * This class creates the login page and allows access to the RegisterPage\r\n *\r\n * @author Gabriel Choi\r\n * @version 1.0\r\n * @see RegisterPage\r\n */\r\npublic class LoginPage {\r\n    private JFrame mainFrame;\r\n    private JTextField usernameField;\r\n    private JTextField passwordField;\r\n\r\n    /**\r\n     * This is the constructor for the Login page. It calls createGUI.\r\n     *\r\n     */\r\n    public LoginPage(){createGUI();}\r\n\r\n    /**\r\n     * This creates the GUI for the Login Page.\r\n     *\r\n     */\r\n    private void createGUI(){\r\n        mainFrame = new JFrame(\"Login Page\");\r\n        mainFrame.setSize(1000, 700);\r\n        mainFrame.setLayout(null);\r\n\r\n        JPanel headerPanel = new JPanel();\r\n        JLabel headerLabel = new JLabel(\"Login Page\", JLabel.CENTER);\r\n        headerPanel.add(headerLabel);\r\n        headerPanel.setBounds(400, 0, 200, 30);\r\n\r\n        JPanel loginPanel = new JPanel();\r\n        loginPanel.setBounds(400,300,200,100);\r\n        loginPanel.setLayout(new GridLayout(3, 2));\r\n\r\n        JPanel registerPanel = new JPanel();\r\n        registerPanel.setBounds(400, 500, 200, 100);\r\n        registerPanel.setLayout(new GridLayout(2,1));\r\n        JLabel registerLabel = new JLabel(\"Don't have an account?\", JLabel.CENTER);\r\n        JButton registerButton = new JButton(\"Create an account\");\r\n        registerPanel.add(registerLabel);\r\n        registerPanel.add(registerButton);\r\n\r\n        JLabel usernameLabel = new JLabel(\"Username: \");\r\n        usernameField = new JTextField(20);\r\n\r\n        JLabel passwordLabel = new JLabel(\"Password: \");\r\n        passwordField = new JPasswordField(20);\r\n\r\n        JButton loginButton = new JButton(\"Login\");\r\n\r\n        loginPanel.add(usernameLabel);\r\n        loginPanel.add(usernameField);\r\n        loginPanel.add(passwordLabel);\r\n        loginPanel.add(passwordField);\r\n        loginPanel.add(new JLabel());\r\n        loginPanel.add(loginButton);\r\n\r\n        mainFrame.add(headerPanel);\r\n        mainFrame.add(loginPanel);\r\n        mainFrame.add(registerPanel);\r\n\r\n        loginButton.addActionListener(e -> loginToSystem());\r\n        registerButton.addActionListener(e -> registerAccount());\r\n\r\n        mainFrame.setVisible(true);\r\n    }\r\n\r\n    /**\r\n     * This logs the Guest into the system.\r\n     *\r\n     */\r\n    private void loginToSystem() {\r\n        String username = usernameField.getText();\r\n        String password = passwordField.getText();\r\n\r\n        //Takes user to landing page if login successful\r\n        if(LoginPageController.loginUser(username, password)){\r\n            mainFrame.setVisible(false);\r\n        }\r\n        //Outputs error message if login fails\r\n        else{\r\n            JOptionPane.showMessageDialog(mainFrame, \"Username or Password Incorrect\", \"Oops!\", JOptionPane.WARNING_MESSAGE);\r\n            usernameField.setText(\"\");\r\n            passwordField.setText(\"\");\r\n        }\r\n\r\n    }\r\n\r\n    /**\r\n     * This calls the Register Page.\r\n     *\r\n     */\r\n    private void registerAccount(){\r\n        mainFrame.setVisible(false);\r\n        RegisterPage registerPage = new RegisterPage();\r\n    }\r\n\r\n    /**\r\n     * This sends the User to the Login Page.\r\n     *\r\n     * @param args  The console arguments.\r\n     *\r\n     */\r\n    public static void main(String[] args) {\r\n        new LoginPage();\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/edu/ui/authentication/LoginPage.java b/src/main/java/edu/ui/authentication/LoginPage.java
+--- a/src/main/java/edu/ui/authentication/LoginPage.java	(revision 45915194089297725e3bfb0a7db5f7340eff7546)
++++ b/src/main/java/edu/ui/authentication/LoginPage.java	(date 1699219534611)
+@@ -22,6 +22,7 @@
+     private JFrame mainFrame;
+     private JTextField usernameField;
+     private JTextField passwordField;
++    private roomSearch
+ 
+     /**
+      * This is the constructor for the Login page. It calls createGUI.
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"MavenProjectsManager\">\r\n    <option name=\"originalFiles\">\r\n      <list>\r\n        <option value=\"$PROJECT_DIR$/pom.xml\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_20\" project-jdk-name=\"20\" project-jdk-type=\"JavaSDK\" />\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 45915194089297725e3bfb0a7db5f7340eff7546)
++++ b/.idea/misc.xml	(date 1699218057503)
+@@ -1,4 +1,3 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ExternalStorageConfigurationManager" enabled="true" />
+   <component name="MavenProjectsManager">

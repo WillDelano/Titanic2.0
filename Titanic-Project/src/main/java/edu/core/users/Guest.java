@@ -20,7 +20,7 @@ import edu.databaseAccessors.ReservationDatabase;
  *
  * @author Vincent Dinh
  * @version 1.2
- * @see User
+ * @see "User"
  */
 public class Guest extends User {
     private int rewardPoints;

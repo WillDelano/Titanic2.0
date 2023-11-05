@@ -22,6 +22,7 @@ public class LoginPage {
     private JFrame mainFrame;
     private JTextField usernameField;
     private JTextField passwordField;
+    private roomSearch
 
     /**
      * This is the constructor for the Login page. It calls createGUI.
