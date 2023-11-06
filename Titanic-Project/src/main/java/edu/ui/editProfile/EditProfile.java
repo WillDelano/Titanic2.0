@@ -7,7 +7,7 @@ import edu.databaseAccessors.RoomDatabase;
 import edu.ui.editReservation.EditReservationController;
 import edu.ui.landingPage.LandingPage;
 import edu.ui.landingPage.TravelAgentLandingPage;
-import edu.ui.modifyRoom.DetailOptionsLandingPage;
+
 import edu.uniqueID.UniqueID;
 
 import javax.swing.*;
@@ -44,7 +44,7 @@ public class EditProfile {
     }
 
     private void createGUI() {
-        frame = new JFrame("Add Room");
+        frame = new JFrame("Edit Profile");
         frame.setSize(400, 300);
 
         mainPanel = new JPanel();
@@ -137,7 +137,6 @@ public class EditProfile {
 
                 //if no changes were made, remind the user
                 if (Objects.equals(newEmail, account.getEmail()) && Objects.equals(newPassword, account.getPassword())) {
-
                     noChangesDecision();
                 }
                 //if there is a non-duplicate value, update the account

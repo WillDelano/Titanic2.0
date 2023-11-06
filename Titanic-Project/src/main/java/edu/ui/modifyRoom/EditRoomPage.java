@@ -7,7 +7,6 @@ import edu.databaseAccessors.RoomDatabase;
 import edu.ui.editReservation.EditReservationController;
 import edu.ui.landingPage.LandingPage;
 import edu.ui.landingPage.TravelAgentLandingPage;
-import edu.ui.modifyRoom.DetailOptionsLandingPage;
 import edu.uniqueID.UniqueID;
 
 import javax.swing.*;
@@ -41,22 +40,24 @@ public class EditRoomPage {
 
     private JButton submitButton;
     private User account;
-    private LandingPage previousPage;
-    private Room room;
+    private static LandingPage previousPage;
+    private static Room room;
 
 
-    public EditRoomPage(Room room/*TravelAgentLandingPage prevPage*/) {
-      //  this.previousPage = prevPage;
+    public EditRoomPage(Room room,LandingPage prevPage) {
+        this.previousPage = prevPage;
         this.room = room;
         createGUI();
     }
 
-    public static void main(String[]args){
+ public static void main(String[]args){
         boolean tester = true;
-        EditRoomPage testing = new EditRoomPage(new Room(123,3,"Twin",true,21.21,"USA"));
+
+
+        EditRoomPage testing = new EditRoomPage(room,previousPage);
     }
     private void createGUI() {
-        frame = new JFrame("Add Room");
+        frame = new JFrame("Edit Room");
         frame.setSize(400, 300);
 
         mainPanel = new JPanel();
@@ -154,90 +155,63 @@ public class EditRoomPage {
         submitButton.addActionListener(e -> {
 
             //get new number
-            String newRoomNumber = (String) roomNumberField.getText();
+            int newRoomNumber = Integer.parseInt(roomNumberField.getText());
 
             //get bed type
             String newBedType = (String) bedTypeCombo.getSelectedItem();
 
             //get Number of beds
-            String newNumberOfBeds = (String) numOfBedsCombo.getSelectedItem();
+            int newNumberOfBeds = Integer.parseInt((String) numOfBedsCombo.getSelectedItem());
+            boolean newSmokingAvailability = room.getSmokingAvailable();
+            if(smokingYes.isSelected()){
+                newSmokingAvailability= true;
 
+            }
+            else if(smokingNo.isSelected()){
+                newSmokingAvailability= false;
+            }
 
             //get Smoking availibility
             ButtonModel selected  = smokingChoiceGroup.getSelection();
-            String newSmokingChoice = null;
-            if (selected != null) {
-                newSmokingChoice = selected.getActionCommand();
-            }
+
 
             //get price
-            String newPrice = (String) priceField.getText();
+            double newPrice = Double.parseDouble(priceField.getText());
 
 
-            room.setRoomNumber(Integer.parseInt(newRoomNumber));
-            room.setBedType(newBedType);
-            room.setNumberOfBeds(Integer.parseInt(newNumberOfBeds));
-
-
-            if(selected  != null){
-                if(newSmokingChoice.equals("Yes")){
-                    room.setSmokingAvailable(true);
-                }
-                else{
-                    room.setSmokingAvailable(false);
-                }
+            //now that you have all the new input, check if inputs are valid(if room number is valid)
+            //if roomNumber was not valid, start over
+            if (!isValidRoom(newRoomNumber) || newRoomNumber < 0 || newPrice < 0) {
+                invalidDecision();
+                frame.dispose();
+                createGUI();
+                return;
             }
 
-            room.setRoomPrice(Double.parseDouble(newPrice));
+            //if no changes were made, remind the agent
+            if (Objects.equals(newRoomNumber, room.getRoomNumber()) && Objects.equals(newBedType, room.getBedType()) &&
+                    Objects.equals(newNumberOfBeds, room.getNumberOfBeds()) &&
+                    Objects.equals(newSmokingAvailability, room.getSmokingAvailable()) &&
+                    Objects.equals(newPrice, room.getRoomPrice())) {
+                noChangesDecision();
+            }
+            //if there is a non-duplicate value, update the room
+            else{
 
-            /*//get delete account choice
-            boolean deleteAccount = deleteAccountYes.isSelected();
-
-            //if the choice was not to delete the account
-            if (!deleteAccount) {
-
-                //if email was not valid, start over
-                if (!validateEmail(newEmail)) {
+                //if the user confirms their decision, update and go back to landing page
+                if (validateDecision(newRoomNumber,newBedType,newNumberOfBeds,newSmokingAvailability,newPrice)) {
+                    updateRoom(newRoomNumber,newBedType,newNumberOfBeds,newSmokingAvailability,newPrice);
                     frame.dispose();
-                    createGUI();
-                    return;
+                    previousPage.show(); // Go back to the landing page
                 }
-
-                //if no changes were made, remind the user
-                if (Objects.equals(newEmail, account.getEmail()) && Objects.equals(newPassword, account.getPassword())) {
-
-                    noChangesDecision();
-                }
-                //if there is a non-duplicate value, update the account
+                //otherwise restart the edit frame
                 else {
-
-                    //if the user confirms their decision, update and go back to landing page
-                    if (validateDecision(newEmail, newPassword)) {
-                        updateAccount(newEmail, newPassword);
-                        frame.dispose();
-                        previousPage.show(); // Go back to the landing page
-                    }
-                    //otherwise restart the edit frame
-                    else {
-                        frame.dispose();
-                        createGUI();
-                    }
-                }
-            }
-            //ask for confirmation before deleting the account
-            else {
-
-                //if they decided not to delete their account, restart
-                if (!deleteAccount()) {
                     frame.dispose();
                     createGUI();
                 }
-                //if they did delete, return to landing page
-                else {
-                    frame.dispose();
-                    previousPage.show();
-                }
-            }*/
+            }
+
+
         });
     }
 
@@ -245,74 +219,57 @@ public class EditRoomPage {
         frame.setVisible(true);
     }
 
-    /*private void updateAccount(String email, String password) {
-        EditProfileController.editAccount(account, email, password);
+    private void updateRoom(int roomNumber, String bedType, int numOfBeds, boolean smokingChoice, double price) {
+        //Fixme: Fully implement this in roomDatabase
+        EditRoomController.editRoom(room,roomNumber,bedType,numOfBeds,smokingChoice,price);
     }
 
-    public boolean deleteAccount() {
+
+    public boolean validateDecision(int roomNumber, String bedType, int numOfBeds, boolean smokingChoice, double price) {
         UIManager.put("OptionPane.yesButtonText", "Confirm");
         UIManager.put("OptionPane.noButtonText", "Cancel");
 
-        int dialogResult = JOptionPane.showConfirmDialog(mainPanel, "Are you sure you want to delete your account?",
-                "This action cannot be undone!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-        if (dialogResult == JOptionPane.YES_OPTION) {
-            EditProfileController.deleteAccount(account);
-            return true;
+        String smokingString = "No";
+        if(smokingChoice==true){
+            smokingString= "Yes";
         }
-        return false;
+
+        int dialogResult = JOptionPane.showConfirmDialog(mainPanel,"You are changing your room details to: " +
+                "Number- "+roomNumber+"\nBed Type- "+bedType+"\nBed #- "+numOfBeds+"\nSmoking Status"+smokingString
+        +"\nPrice- "+price,"Review Changes", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+        return dialogResult == JOptionPane.YES_OPTION;
     }
 
-    public boolean validateDecision(String email, String password) {
-        UIManager.put("OptionPane.yesButtonText", "Confirm");
-        UIManager.put("OptionPane.noButtonText", "Cancel");
 
-        //if both values to be changed are different
-        if (!Objects.equals(account.getEmail(), email) && !Objects.equals(account.getPassword(), password)) {
-            int dialogResult = JOptionPane.showConfirmDialog(mainPanel, "You are changing your email to: "
-                    + email + " and your password to " + password, "Review Changes", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-            return dialogResult == JOptionPane.YES_OPTION;
-        }
-        //if only the email was changed
-        else if (!Objects.equals(account.getEmail(), email)) {
-            int dialogResult = JOptionPane.showConfirmDialog(mainPanel, "You are changing your email to: "
-                    + email,"Review Changes", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-            return dialogResult == JOptionPane.YES_OPTION;
-        }
-        //only the password was changed
-        else {
-            int dialogResult = JOptionPane.showConfirmDialog(mainPanel, "You are changing your password to: "
-                    + password, "Review Changes", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
-            return dialogResult == JOptionPane.YES_OPTION;
-        }
+    public void invalidDecision(){
+        JOptionPane.showMessageDialog(mainPanel, "Invalid Input for Room Modification", "Error!", JOptionPane.OK_OPTION);
     }
 
-    public boolean validateEmail(String email) {
-        //Checking email format
-        String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(email);
 
-        if (!matcher.matches()) {
-            JOptionPane.showMessageDialog(frame, "Invalid email format", "Oops!", JOptionPane.WARNING_MESSAGE);
-        }
 
-        return matcher.matches();
+
+    public boolean isValidRoom(int roomNumber) {
+      /*  RoomDatabase roomList = new RoomDatabase();
+
+
+        //FIXME : add isValidRoom to room database
+        return roomList.isValidRoom(roomNumber);*/
+
+        return true;
     }
+
+
 
     public boolean noChangesDecision() {
         UIManager.put("OptionPane.yesButtonText", "Yes, quit");
         UIManager.put("OptionPane.noButtonText", "No, continue");
 
         int dialogResult = JOptionPane.showConfirmDialog(mainPanel, "No changes have been made. Would you like to quit?",
-                "Reservation is unchanged", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                "Room details are unchanged", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         if (dialogResult == JOptionPane.YES_OPTION) {
             frame.dispose(); //close this frame
-            previousPage.show(); // Go back to the landingPage
+            previousPage.show(); // Go back to the previous page
             return true;
         }
         else {
@@ -320,5 +277,5 @@ public class EditRoomPage {
             createGUI(); //restart the frame
             return false;
         }
-    }*/
+    }
 }
