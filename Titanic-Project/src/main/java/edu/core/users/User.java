@@ -19,6 +19,7 @@ public abstract class User  {
     private String lastName;
 
     private String email;
+    private int rewardPoints;
 
     //private AccountDatabase accountList = new AccountDatabase();
 
@@ -100,5 +101,9 @@ public abstract class User  {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
         return Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(id, user.id) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName);
+    }
+
+    public int getRewardPoints() {
+        return rewardPoints;
     }
 }
