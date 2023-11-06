@@ -11,7 +11,9 @@ import edu.uniqueID.UniqueID;
 
 import javax.swing.*;
 import java.awt.*;
+
 import java.io.IOException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.List;
@@ -184,7 +186,9 @@ public class EditProfile {
         EditProfileController.editAccount(account, email, password);
     }
 
+
     public boolean deleteAccount() throws IOException {
+
         UIManager.put("OptionPane.yesButtonText", "Confirm");
         UIManager.put("OptionPane.noButtonText", "Cancel");
 
