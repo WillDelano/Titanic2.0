@@ -1,8 +1,10 @@
 package edu.ui.landingPage;
 
+import edu.core.users.TravelAgent;
 import edu.core.users.User;
 import edu.databaseAccessors.AccountDatabase;
 import edu.ui.addRoom.AddRoomPage;
+import edu.ui.editProfile.EditProfile;
 import edu.ui.editReservation.GuestsWithReservationPage;
 
 import javax.swing.*;
@@ -24,6 +26,7 @@ public class TravelAgentLandingPage extends LandingPage {
     private JFrame mainFrame;
     private JPanel headerPanel;
     private JLabel headerLabel;
+    private User account;
 
     /**
      * Constructor for the landing page that creates the GUI
@@ -76,6 +79,8 @@ public class TravelAgentLandingPage extends LandingPage {
      * @param account The user who is logged in
      */
     public void showLandingPage(User account) {
+        this.account = account;
+
         String name = account.getFirstName() + " " + account.getLastName();
         int count = AccountDatabase.getUserCount();
 
@@ -111,16 +116,20 @@ public class TravelAgentLandingPage extends LandingPage {
     }
 
     private void navigateToAddRooms() {
-        //TODO new AddRoomsPage(this).show()
-        new AddRoomPage().show();
+        //does not pass the landing page instance because it is a pop-up
+        new AddRoomPage();
     }
 
     private void navigateToEditProfile() {
-        //TODO new EditProfilePage(this).show()
-        new edu.ui.reservationDetails.MyReservationsPage().show();
+        mainFrame.setVisible(false);   // hide the current landing page
+        new EditProfile(account, this);
     }
 
     public void show() {
         mainFrame.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new TravelAgentLandingPage();
     }
 }

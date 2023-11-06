@@ -4,7 +4,7 @@
     <root id="1"/>
     <schema id="2" parent="1" name="APP">
       <Current>1</Current>
-      <LocalIntrospectionTimestamp>2023-10-30.20:26:55</LocalIntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2023-11-04.23:57:31</LocalIntrospectionTimestamp>
     </schema>
     <schema id="3" parent="1" name="NULLID"/>
     <schema id="4" parent="1" name="SQLJ"/>
@@ -16,55 +16,418 @@
     <schema id="10" parent="1" name="SYSIBM"/>
     <schema id="11" parent="1" name="SYSPROC"/>
     <schema id="12" parent="1" name="SYSSTAT"/>
-    <table id="13" parent="2" name="RESERVATION"/>
-    <column id="14" parent="13" name="ID">
+    <schema id="13" parent="1" name="APP">
+      <Current>1</Current>
+      <LocalIntrospectionTimestamp>2023-11-04.23:57:31</LocalIntrospectionTimestamp>
+    </schema>
+    <schema id="14" parent="1" name="NULLID"/>
+    <schema id="15" parent="1" name="SQLJ"/>
+    <schema id="16" parent="1" name="SYS"/>
+    <schema id="17" parent="1" name="SYSCAT"/>
+    <schema id="18" parent="1" name="SYSCS_DIAG"/>
+    <schema id="19" parent="1" name="SYSCS_UTIL"/>
+    <schema id="20" parent="1" name="SYSFUN"/>
+    <schema id="21" parent="1" name="SYSIBM"/>
+    <schema id="22" parent="1" name="SYSPROC"/>
+    <schema id="23" parent="1" name="SYSSTAT"/>
+    <table id="24" parent="2" name="COUNTRIES"/>
+    <table id="25" parent="2" name="CRUISES"/>
+    <table id="26" parent="2" name="RESERVATION"/>
+    <table id="27" parent="2" name="ROOMS"/>
+    <table id="28" parent="2" name="USERS"/>
+    <table id="29" parent="13" name="COUNTRIES"/>
+    <table id="30" parent="13" name="CRUISES"/>
+    <table id="31" parent="13" name="RESERVATION"/>
+    <table id="32" parent="13" name="ROOMS"/>
+    <table id="33" parent="13" name="USERS"/>
+    <column id="34" parent="24" name="NAME">
+      <DasType>VARCHAR(100)|12s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="35" parent="24" name="ARRIVALTIME">
+      <DasType>DATE|91s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="36" parent="24" name="DEPARTURETIME">
+      <DasType>DATE|91s</DasType>
+      <Position>3</Position>
+    </column>
+    <index id="37" parent="24" name="SQL0000000001-e26d4047-018b-87d4-1e11-0000073811d8">
+      <ColNames>NAME</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Unique>1</Unique>
+    </index>
+    <key id="38" parent="24" name="SQL0000000001-e26d4047-018b-87d4-1e11-0000073811d8">
+      <ColNames>NAME</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="39" parent="25" name="ID">
+      <DasType>INTEGER|4s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="40" parent="25" name="NAME">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="41" parent="25" name="DEPARTURE">
+      <DasType>DATE|91s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="42" parent="25" name="TRAVELPATH">
+      <DasType>VARCHAR(2048)|12s</DasType>
+      <Position>4</Position>
+    </column>
+    <column id="43" parent="25" name="ROOMLIST">
+      <DasType>VARCHAR(2048)|12s</DasType>
+      <Position>5</Position>
+    </column>
+    <column id="44" parent="25" name="MAXCAPACITY">
+      <DasType>INTEGER|4s</DasType>
+      <Position>6</Position>
+    </column>
+    <column id="45" parent="25" name="CURRENTOCCUPANCY">
+      <DasType>INTEGER|4s</DasType>
+      <Position>7</Position>
+    </column>
+    <index id="46" parent="25" name="SQL0000000002-12564092-018b-87d4-1e11-0000073811d8">
+      <ColNames>ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Unique>1</Unique>
+    </index>
+    <key id="47" parent="25" name="SQL0000000002-12564092-018b-87d4-1e11-0000073811d8">
+      <ColNames>ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="48" parent="26" name="ID">
       <DasType>INTEGER|4s</DasType>
       <DefaultExpression>AUTOINCREMENT: start 1 increment 1</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="15" parent="13" name="USERNAME">
+    <column id="49" parent="26" name="USERNAME">
       <DasType>VARCHAR(255)|12s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="16" parent="13" name="DURATION">
+    <column id="50" parent="26" name="DURATION">
       <DasType>INTEGER|4s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="17" parent="13" name="STARTCOUNTRY">
+    <column id="51" parent="26" name="STARTCOUNTRY">
       <DasType>VARCHAR(255)|12s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="18" parent="13" name="ENDCOUNTRY">
+    <column id="52" parent="26" name="ENDCOUNTRY">
       <DasType>VARCHAR(255)|12s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="19" parent="13" name="ROOMNUM">
+    <column id="53" parent="26" name="ROOMNUM">
       <DasType>INTEGER|4s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="20" parent="13" name="STARTDATE">
+    <column id="54" parent="26" name="STARTDATE">
       <DasType>VARCHAR(255)|12s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="21" parent="13" name="ENDDATE">
+    <column id="55" parent="26" name="ENDDATE">
       <DasType>VARCHAR(255)|12s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <index id="22" parent="13" name="SQL0000000000-582f8014-018b-81d3-a518-000007300358">
+    <index id="56" parent="26" name="SQL0000000000-582f8014-018b-81d3-a518-000007300358">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="23" parent="13" name="SQL0000000000-582f8014-018b-81d3-a518-000007300358">
+    <key id="57" parent="26" name="SQL0000000000-582f8014-018b-81d3-a518-000007300358">
+      <ColNames>ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="58" parent="27" name="ROOMNUMBER">
+      <DasType>INTEGER|4s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="59" parent="27" name="NUMBEROFBEDS">
+      <DasType>INTEGER|4s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="60" parent="27" name="BEDTYPE">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="61" parent="27" name="SMOKINGAVAILABLE">
+      <DasType>BOOLEAN|16s</DasType>
+      <Position>4</Position>
+    </column>
+    <column id="62" parent="27" name="ROOMPRICE">
+      <DasType>DOUBLE|8s</DasType>
+      <Position>5</Position>
+    </column>
+    <column id="63" parent="27" name="ISBOOKED">
+      <DasType>BOOLEAN|16s</DasType>
+      <Position>6</Position>
+    </column>
+    <column id="64" parent="27" name="CRUISE">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <Position>7</Position>
+    </column>
+    <index id="65" parent="27" name="SQL0000000003-3988c0be-018b-87d4-1e11-0000073811d8">
+      <ColNames>ROOMNUMBER</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Unique>1</Unique>
+    </index>
+    <key id="66" parent="27" name="SQL0000000003-3988c0be-018b-87d4-1e11-0000073811d8">
+      <ColNames>ROOMNUMBER</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="67" parent="28" name="ID">
+      <DasType>INTEGER|4s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="68" parent="28" name="TYPE">
+      <DasType>VARCHAR(20)|12s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="69" parent="28" name="USERNAME">
+      <DasType>VARCHAR(50)|12s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="70" parent="28" name="PASSWORD">
+      <DasType>VARCHAR(50)|12s</DasType>
+      <Position>4</Position>
+    </column>
+    <column id="71" parent="28" name="FIRSTNAME">
+      <DasType>VARCHAR(50)|12s</DasType>
+      <Position>5</Position>
+    </column>
+    <column id="72" parent="28" name="LASTNAME">
+      <DasType>VARCHAR(50)|12s</DasType>
+      <Position>6</Position>
+    </column>
+    <column id="73" parent="28" name="EMAIL">
+      <DasType>VARCHAR(100)|12s</DasType>
+      <Position>7</Position>
+    </column>
+    <column id="74" parent="28" name="REWARDPOINTS">
+      <DasType>INTEGER|4s</DasType>
+      <Position>8</Position>
+    </column>
+    <index id="75" parent="28" name="SQL0000000000-a02ac013-018b-87d4-1e11-0000073811d8">
+      <ColNames>ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Unique>1</Unique>
+    </index>
+    <key id="76" parent="28" name="SQL0000000000-a02ac013-018b-87d4-1e11-0000073811d8">
+      <ColNames>ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="77" parent="29" name="NAME">
+      <DasType>VARCHAR(100)|12s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="78" parent="29" name="ARRIVALTIME">
+      <DasType>DATE|91s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="79" parent="29" name="DEPARTURETIME">
+      <DasType>DATE|91s</DasType>
+      <Position>3</Position>
+    </column>
+    <index id="80" parent="29" name="SQL0000000001-e26d4047-018b-87d4-1e11-0000073811d8">
+      <ColNames>NAME</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Unique>1</Unique>
+    </index>
+    <key id="81" parent="29" name="SQL0000000001-e26d4047-018b-87d4-1e11-0000073811d8">
+      <ColNames>NAME</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="82" parent="30" name="ID">
+      <DasType>INTEGER|4s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="83" parent="30" name="NAME">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="84" parent="30" name="DEPARTURE">
+      <DasType>DATE|91s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="85" parent="30" name="TRAVELPATH">
+      <DasType>VARCHAR(2048)|12s</DasType>
+      <Position>4</Position>
+    </column>
+    <column id="86" parent="30" name="ROOMLIST">
+      <DasType>VARCHAR(2048)|12s</DasType>
+      <Position>5</Position>
+    </column>
+    <column id="87" parent="30" name="MAXCAPACITY">
+      <DasType>INTEGER|4s</DasType>
+      <Position>6</Position>
+    </column>
+    <column id="88" parent="30" name="CURRENTOCCUPANCY">
+      <DasType>INTEGER|4s</DasType>
+      <Position>7</Position>
+    </column>
+    <index id="89" parent="30" name="SQL0000000002-12564092-018b-87d4-1e11-0000073811d8">
+      <ColNames>ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Unique>1</Unique>
+    </index>
+    <key id="90" parent="30" name="SQL0000000002-12564092-018b-87d4-1e11-0000073811d8">
+      <ColNames>ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="91" parent="31" name="ID">
+      <DasType>INTEGER|4s</DasType>
+      <DefaultExpression>AUTOINCREMENT: start 1 increment 1</DefaultExpression>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="92" parent="31" name="USERNAME">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="93" parent="31" name="DURATION">
+      <DasType>INTEGER|4s</DasType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="94" parent="31" name="STARTCOUNTRY">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="95" parent="31" name="ENDCOUNTRY">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <column id="96" parent="31" name="ROOMNUM">
+      <DasType>INTEGER|4s</DasType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="97" parent="31" name="STARTDATE">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+    </column>
+    <column id="98" parent="31" name="ENDDATE">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+    </column>
+    <index id="99" parent="31" name="SQL0000000000-582f8014-018b-81d3-a518-000007300358">
+      <ColNames>ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Unique>1</Unique>
+    </index>
+    <key id="100" parent="31" name="SQL0000000000-582f8014-018b-81d3-a518-000007300358">
+      <ColNames>ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="101" parent="32" name="ROOMNUMBER">
+      <DasType>INTEGER|4s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="102" parent="32" name="NUMBEROFBEDS">
+      <DasType>INTEGER|4s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="103" parent="32" name="BEDTYPE">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="104" parent="32" name="SMOKINGAVAILABLE">
+      <DasType>BOOLEAN|16s</DasType>
+      <Position>4</Position>
+    </column>
+    <column id="105" parent="32" name="ROOMPRICE">
+      <DasType>DOUBLE|8s</DasType>
+      <Position>5</Position>
+    </column>
+    <column id="106" parent="32" name="ISBOOKED">
+      <DasType>BOOLEAN|16s</DasType>
+      <Position>6</Position>
+    </column>
+    <column id="107" parent="32" name="CRUISE">
+      <DasType>VARCHAR(255)|12s</DasType>
+      <Position>7</Position>
+    </column>
+    <index id="108" parent="32" name="SQL0000000003-3988c0be-018b-87d4-1e11-0000073811d8">
+      <ColNames>ROOMNUMBER</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Unique>1</Unique>
+    </index>
+    <key id="109" parent="32" name="SQL0000000003-3988c0be-018b-87d4-1e11-0000073811d8">
+      <ColNames>ROOMNUMBER</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+    </key>
+    <column id="110" parent="33" name="ID">
+      <DasType>INTEGER|4s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="111" parent="33" name="TYPE">
+      <DasType>VARCHAR(20)|12s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="112" parent="33" name="USERNAME">
+      <DasType>VARCHAR(50)|12s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="113" parent="33" name="PASSWORD">
+      <DasType>VARCHAR(50)|12s</DasType>
+      <Position>4</Position>
+    </column>
+    <column id="114" parent="33" name="FIRSTNAME">
+      <DasType>VARCHAR(50)|12s</DasType>
+      <Position>5</Position>
+    </column>
+    <column id="115" parent="33" name="LASTNAME">
+      <DasType>VARCHAR(50)|12s</DasType>
+      <Position>6</Position>
+    </column>
+    <column id="116" parent="33" name="EMAIL">
+      <DasType>VARCHAR(100)|12s</DasType>
+      <Position>7</Position>
+    </column>
+    <column id="117" parent="33" name="REWARDPOINTS">
+      <DasType>INTEGER|4s</DasType>
+      <Position>8</Position>
+    </column>
+    <index id="118" parent="33" name="SQL0000000000-a02ac013-018b-87d4-1e11-0000073811d8">
+      <ColNames>ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Unique>1</Unique>
+    </index>
+    <key id="119" parent="33" name="SQL0000000000-a02ac013-018b-87d4-1e11-0000073811d8">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
