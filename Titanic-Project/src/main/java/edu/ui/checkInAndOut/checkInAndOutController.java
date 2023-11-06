@@ -1,2 +1,4 @@
-package edu.ui.checkInAndOut;public class checkInAndOutController {
+package edu.ui.checkInAndOut;
+
+public class checkInAndOutController {
 }

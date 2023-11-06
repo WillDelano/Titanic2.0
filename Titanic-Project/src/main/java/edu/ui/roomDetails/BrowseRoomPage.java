@@ -6,6 +6,7 @@ import edu.databaseAccessors.RoomDatabase;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -62,10 +63,18 @@ public class BrowseRoomPage {
                 if (dialogResult == JOptionPane.OK_OPTION) {
                     // Perform room reservation logic here
                     JOptionPane.showMessageDialog(roomFrame, "Room " + selectedRoom.getRoomNumber() + " reserved.");
-                    controller.reserveRoom(CurrentGuest.getCurrentGuest(), selectedRoom);
+                    try {
+                        controller.reserveRoom(CurrentGuest.getCurrentGuest(), selectedRoom);
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
 
                     // Notify the MyReservationsPage to refresh its data
-                    new edu.ui.reservationDetails.MyReservationsPage().refreshReservations();  // Make sure refreshReservations() is public
+                    try {
+                        new edu.ui.reservationDetails.MyReservationsPage().refreshReservations();  // Make sure refreshReservations() is public
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             } else {
                 JOptionPane.showMessageDialog(roomFrame, "Please select a room first.");

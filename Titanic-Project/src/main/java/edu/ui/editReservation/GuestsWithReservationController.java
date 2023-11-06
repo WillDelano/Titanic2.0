@@ -5,12 +5,13 @@ import edu.core.users.User;
 import edu.databaseAccessors.AccountDatabase;
 import edu.databaseAccessors.ReservationDatabase;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 public class GuestsWithReservationController {
-    public static List<Guest> getGuestsWithReservations() {
+    public static List<Guest> getGuestsWithReservations() throws SQLException {
         new AccountDatabase();
         new ReservationDatabase();
 

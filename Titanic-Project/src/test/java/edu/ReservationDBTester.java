@@ -22,10 +22,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ReservationDBTester {
-    private String url = "jdbc:derby:C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
+    private String url = "jdbc:derby:C:\\Users\\Colet\\Documents\\GIT\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\database";
     private Guest u = new Guest("wdelano", "baylor", new UniqueID().getId(), "Will", "Delano", 0, "wdelano2002@gmail.com");
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws SQLException {
         new ReservationDatabase();
 
         try (Connection connection = DriverManager.getConnection(url)) {
@@ -126,7 +126,7 @@ public class ReservationDBTester {
     }
 
     @Test
-    public void getReservationsTest() {
+    public void getReservationsTest() throws SQLException {
         LocalDate date = LocalDate.now();
         Room room = new Room(0, 0, "", false, 0, "test");
         Country c = new Country("Test", date, date);

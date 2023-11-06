@@ -5,6 +5,7 @@ import edu.core.billingmanagement.PaymentInfo;
 import edu.core.cruise.Country;
 import edu.core.reservation.Reservation;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -72,7 +73,7 @@ public class Guest extends User {
      *
      * @return Returns reservation for testing purposes
      */
-    public Reservation makeReservation(Room room, LocalDate startDate, LocalDate endDate, String startCountry, String endCountry) {
+    public Reservation makeReservation(Room room, LocalDate startDate, LocalDate endDate, String startCountry, String endCountry) throws SQLException {
         AccountDatabase database = new AccountDatabase();
         ReservationDatabase resDatabase = new ReservationDatabase();
 
@@ -105,7 +106,7 @@ public class Guest extends User {
      *
      * @return Set of reservations associated with a guest.
      */
-    public Set<Reservation> getReservations() {
+    public Set<Reservation> getReservations() throws SQLException {
         return ReservationDatabase.getReservations(this);
     }
 

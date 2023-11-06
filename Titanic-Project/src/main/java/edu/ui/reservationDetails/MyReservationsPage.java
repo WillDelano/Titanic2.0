@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.Set;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -30,12 +31,12 @@ public class MyReservationsPage {
     private JTable reservationsTable;
     private Timer refreshTimer;
 
-    public MyReservationsPage() {
+    public MyReservationsPage() throws SQLException {
         prepareUI();
         setUpRefreshMechanism();
     }
 
-    private void prepareUI() {
+    private void prepareUI() throws SQLException {
         frame = new JFrame("My Reservations");
         frame.setSize(800, 600);
         frame.setLayout(new BorderLayout());
@@ -53,7 +54,7 @@ public class MyReservationsPage {
         refreshReservations();
     }
 
-    public void refreshReservations() {
+    public void refreshReservations() throws SQLException {
         Set<Reservation> reservationSet = CurrentGuest.getCurrentGuest().getReservations();
         System.err.println("Reservations: ");
 
@@ -82,7 +83,11 @@ public class MyReservationsPage {
         int delay = 10000; // 10 seconds
         ActionListener taskPerformer = new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                refreshReservations();
+                try {
+                    refreshReservations();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
             }
         };
         refreshTimer = new Timer(delay, taskPerformer);  // Initialize the Timer instance variable
@@ -92,7 +97,11 @@ public class MyReservationsPage {
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowActivated(WindowEvent e) {
-                refreshReservations();
+                try {
+                    refreshReservations();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
     }
@@ -104,7 +113,7 @@ public class MyReservationsPage {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         new MyReservationsPage().show();
     }
 }

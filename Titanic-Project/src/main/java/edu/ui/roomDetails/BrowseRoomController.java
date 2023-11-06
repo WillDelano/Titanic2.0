@@ -4,6 +4,7 @@ import edu.core.reservation.Room;
 import edu.core.users.Guest;
 import edu.databaseAccessors.RoomDatabase;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class BrowseRoomController {
         return RoomDatabase.getAllRooms(cruise);
     }
 
-    public void reserveRoom(Guest guest, Room room) {
+    public void reserveRoom(Guest guest, Room room) throws SQLException {
         //adding hard coded values of the guest's reservation dates and countries because we haven't added that ui feature
         LocalDate testTime = LocalDate.of(2020, 2, 1);
         LocalDate laterTestTime = LocalDate.of(2020, 2, 2);
