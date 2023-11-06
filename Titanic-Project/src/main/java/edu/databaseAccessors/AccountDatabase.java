@@ -154,7 +154,7 @@ public class AccountDatabase {
      *
      * @param userToRemove The specified user to remove
      */
-    public static void removeUser(User userToRemove) {
+    public static void removeUser(User userToRemove) throws IOException {
         accountDatabase.remove(userToRemove);
 
         ArrayList<String> newFileLines = new ArrayList<>();
@@ -167,7 +167,7 @@ public class AccountDatabase {
         String line;
 
 
-        InputStream in = getClass().getClassLoader().getResourceAsStream("accountList.csv");
+        InputStream in = AccountDatabase.class.getClassLoader().getResourceAsStream("accountList.csv");
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
         while ((line = reader.readLine()) != null) {
             newFileLines.add(line);
@@ -385,11 +385,11 @@ public class AccountDatabase {
      * @param newData   the newData to replace old data in file database
      *
      */
-    public void modifyFileLine(int lineIndex,int dataToChange, String newData) throws IOException {
+    public static void modifyFileLine(int lineIndex, int dataToChange, String newData) throws IOException {
         String line;
         ArrayList<String> fileList = new ArrayList<>();
 
-        InputStream in = getClass().getClassLoader().getResourceAsStream("accountList.csv");
+        InputStream in = AccountDatabase.class.getClassLoader().getResourceAsStream("accountList.csv");
         BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 
         //copy lines into arraylist
