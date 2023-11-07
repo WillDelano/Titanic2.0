@@ -99,6 +99,130 @@
     </task>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;modifyRoomUI&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;20&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Owner/Desktop/Titanic2.0/Titanic-Project/libs2/derbytools.jar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;RunConfigurationTargetLRU&quot;: [
+      &quot;73220af7-872d-48ed-a1fd-ee272dbf41cb/schema/\&quot;APP\&quot;&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="edu.ui.modifyRoom" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Owner\Desktop\Titanic2.0\Titanic-Project\libs2" />
+      <recent name="C:\Users\Owner\Desktop\Titanic2.0\Titanic-Project\libs" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\vince\Java Projects\Titanic2.0\Titanic-Project\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.TravelAgentLandingPage">
+    <configuration name="BrowseRoomPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.ui.roomDetails.BrowseRoomPage" />
+      <module name="Titanic-Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.ui.roomDetails.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ChangeRoomNumberPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.ui.modifyRoom.ChangeRoomNumberPage" />
+      <module name="Titanic-Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.ui.modifyRoom.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DetailOptionsLandingPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.ui.modifyRoom.DetailOptionsLandingPage" />
+      <module name="Titanic-Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.ui.modifyRoom.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EditRoomPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.ui.modifyRoom.EditRoomPage" />
+      <module name="Titanic-Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.ui.modifyRoom.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TravelAgentLandingPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.ui.landingPage.TravelAgentLandingPage" />
+      <module name="Titanic-Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.ui.landingPage.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.TravelAgentLandingPage" />
+        <item itemvalue="Application.EditRoomPage" />
+        <item itemvalue="Application.ChangeRoomNumberPage" />
+        <item itemvalue="Application.BrowseRoomPage" />
+        <item itemvalue="Application.DetailOptionsLandingPage" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fc14b32d-70fe-4d06-8946-f4a8359f9ce0" name="Changes" comment="" />
+      <created>1698294520800</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1698294520800</updated>
+      <workItem from="1698689114613" duration="1632000" />
+      <workItem from="1698690766907" duration="7614000" />
+      <workItem from="1698699691349" duration="567000" />
+      <workItem from="1698700265025" duration="1762000" />
+      <workItem from="1699166482771" duration="4526000" />
+    </task>
     &quot;git-widget-placeholder&quot;: &quot;roomSearch&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
   }

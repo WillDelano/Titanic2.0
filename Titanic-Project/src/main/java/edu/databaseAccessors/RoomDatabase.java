@@ -1,6 +1,7 @@
 package edu.databaseAccessors;
 
 import edu.core.reservation.Room;
+import edu.core.users.User;
 
 import java.io.*;
 import java.util.*;
@@ -134,4 +135,10 @@ public class RoomDatabase {
         System.err.println("Rooms do not exist for the cruise. Creating null values.");
         return rooms;
     }
+
+    public static void editAccount(User account, String email, String password) {
+        //SQL STUFF TO ALTER ROOM
+    }
+
+
 }
