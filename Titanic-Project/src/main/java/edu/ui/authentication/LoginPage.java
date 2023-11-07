@@ -34,6 +34,11 @@ public class LoginPage {
      *
      */
     private void createGUI(){
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         mainFrame = new JFrame("Login Page");
         mainFrame.setSize(1000, 700);
         mainFrame.setLayout(null);
@@ -90,7 +95,7 @@ public class LoginPage {
 
         //Takes user to landing page if login successful
         if(LoginPageController.loginUser(username, password)){
-            mainFrame.setVisible(false);
+            mainFrame.dispose();
         }
         //Outputs error message if login fails
         else{

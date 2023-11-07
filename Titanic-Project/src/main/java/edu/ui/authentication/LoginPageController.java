@@ -2,6 +2,7 @@ package edu.ui.authentication;
 
 import edu.authentication.Authentication;
 import edu.databaseAccessors.AccountDatabase;
+import edu.ui.landingPage.AdminLandingPage;
 import edu.ui.landingPage.GuestLandingPage;
 import edu.ui.landingPage.TravelAgentLandingPage;
 
@@ -38,6 +39,10 @@ public class LoginPageController {
             }
             else if (Objects.equals(AccountDatabase.getAccountType(username), "Agent")) {
                 TravelAgentLandingPage landingPage = new TravelAgentLandingPage();
+                landingPage.showLandingPage(AccountDatabase.getUser(username));
+            }
+            else if (Objects.equals(AccountDatabase.getAccountType(username), "Admin")) {
+                AdminLandingPage landingPage = new AdminLandingPage();
                 landingPage.showLandingPage(AccountDatabase.getUser(username));
             }
         }

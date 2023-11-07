@@ -39,27 +39,22 @@ public class AdminLandingPage extends LandingPage{
         mainFrame.setLayout(new BorderLayout());
 
         headerLabel = new JLabel("", JLabel.CENTER);
-        headerPanel = new JPanel(new GridLayout(2, 4));
+        headerPanel = new JPanel(new GridLayout(2, 2));
 
         JPanel topPanel = new JPanel(new BorderLayout());
-        //topPanel.add(new JLabel("SPPP"), BorderLayout.CENTER);
-        JPanel middlePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        //topPanel.add(new JLabel("yuh", JLabel.CENTER), BorderLayout.CENTER);
 
         JButton accountManagementButton = new JButton("Manage Users");
-        //browseCruisesButton.addActionListener(e -> navigateToSelectCruisePage());
+        accountManagementButton.addActionListener(e -> navigateToManageUsers());
 
-        JButton myReservationsButton = new JButton("My Reservations");
-        //myReservationsButton.addActionListener(e -> openMyReservationsPage());
-
-        JButton supportButton = new JButton("Support");
+        JButton tbaButton = new JButton("TBA");
+        //tbaButton.addActionListener(e -> openMyReservationsPage());
 
         headerPanel.add(topPanel);
         headerPanel.add(new JPanel());
-        headerPanel.add(middlePanel);
 
         headerPanel.add(accountManagementButton);
-        headerPanel.add(myReservationsButton);
-        headerPanel.add(supportButton, BorderLayout.EAST);
+        headerPanel.add(tbaButton);
 
         mainFrame.add(headerLabel, BorderLayout.CENTER);
         mainFrame.add(headerPanel, BorderLayout.NORTH);
@@ -75,6 +70,10 @@ public class AdminLandingPage extends LandingPage{
                 "<div style='text-align: center;'>%s</div></html>", name, account.getEmail()));
 
         mainFrame.setVisible(true);
+    }
+
+    public void navigateToManageUsers(){
+        mainFrame.setVisible(false);
     }
 
     public static void main(String[] args){
