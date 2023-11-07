@@ -1,13 +1,19 @@
 ----------------------------------------------------------------
-Sat Nov 04 23:57:30 UTC 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018b-9cc5-30b9-000007300000 
-on database directory C:\Users\Owner\Desktop\Titanic2.0\Titanic-Project\src\main\java\edu\Database with class loader com.intellij.database.remote.jdbc.impl.JdbcClassLoader$JdbcClassLoaderImpl@2d209079 
-Loaded from file:/C:/Users/Owner/AppData/Roaming/JetBrains/IntelliJIdea2023.2/jdbc-drivers/Apache%20Derby/10.16.1.1/org/apache/derby/derby/10.16.1.1/derby-10.16.1.1.jar
-java.vendor=JetBrains s.r.o.
-java.runtime.version=17.0.8.1+7-b1000.32
-user.dir=C:\Users\Owner\Desktop\Titanic2.0\Titanic-Project
-os.name=Windows 10
-os.arch=amd64
-os.version=10.0
+Mon Nov 06 18:16:33 CST 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018b-a723-5887-0000077023a0 
+on database directory /Users/willdelano/Desktop/Software1/Titanic2.0/Titanic-Project/src/main/java/edu/Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@4e0e2f2a 
+Loaded from file:/Users/willdelano/Desktop/Software1/Titanic2.0/Titanic-Project/libs/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=21+35-2513
+user.dir=/Users/willdelano/Desktop/Software1/Titanic2.0/Titanic-Project
+os.name=Mac OS X
+os.arch=x86_64
+os.version=12.2.1
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Mon Nov 06 18:16:34 CST 2023: Shutting down Derby engine
+----------------------------------------------------------------
+Mon Nov 06 18:16:34 CST 2023:
+Shutting down instance a816c00e-018b-a723-5887-0000077023a0 on database directory /Users/willdelano/Desktop/Software1/Titanic2.0/Titanic-Project/src/main/java/edu/Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@4e0e2f2a 
+----------------------------------------------------------------
