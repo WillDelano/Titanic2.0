@@ -12,6 +12,9 @@ import edu.uniqueID.UniqueID;
 
 import javax.swing.*;
 import java.awt.*;
+
+import java.io.IOException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.List;
@@ -159,14 +162,18 @@ public class EditProfile {
             else {
 
                 //if they decided not to delete their account, restart
-                if (!deleteAccount()) {
-                    frame.dispose();
-                    createGUI();
-                }
-                //if they did delete, return to landing page
-                else {
-                    frame.dispose();
-                    previousPage.show();
+                try {
+                    if (!deleteAccount()) {
+                        frame.dispose();
+                        createGUI();
+                    }
+                    //if they did delete, return to landing page
+                    else {
+                        frame.dispose();
+                        previousPage.show();
+                    }
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
                 }
             }
         });
@@ -180,7 +187,9 @@ public class EditProfile {
         EditProfileController.editAccount(account, email, password);
     }
 
-    public boolean deleteAccount() {
+
+    public boolean deleteAccount() throws IOException {
+
         UIManager.put("OptionPane.yesButtonText", "Confirm");
         UIManager.put("OptionPane.noButtonText", "Cancel");
 
