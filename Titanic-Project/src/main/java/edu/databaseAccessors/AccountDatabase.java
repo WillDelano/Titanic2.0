@@ -2,10 +2,7 @@ package edu.databaseAccessors;
 import edu.core.reservation.Reservation;
 import edu.core.users.*;
 import java.io.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.*;
 import java.lang.*;
 
@@ -150,25 +147,7 @@ public class AccountDatabase {
     }
 
 
-    public static void removeUser(User userToRemove) {
-        try (Connection connection = DriverManager.getConnection(fileName)) {
-            String select = "DELETE FROM Accounts WHERE username = ?";
-            try (PreparedStatement statement = connection.prepareStatement(select)) {
-                statement.setString(1, userToRemove.getUsername());
 
-                int deleted;
-                deleted = statement.executeUpdate();
-
-                if (deleted <= 0) {
-                    System.out.println("Failed to delete data");
-                }
-            }
-        } catch (SQLException exception) {
-            exception.printStackTrace();
-
-            System.err.println("Failed to connect to database.");
-        }
-    }
 
     /**
      * operation to remove an account within the account database
@@ -176,7 +155,7 @@ public class AccountDatabase {
      * @param userToRemove The specified user to remove
      */
 
-    public static void removeUser(User userToRemove) throws IOException {
+    /*public static void removeUserFile(User userToRemove) throws IOException {
         accountDatabase.remove(userToRemove);
 
         ArrayList<String> newFileLines = new ArrayList<>();
@@ -212,8 +191,8 @@ public class AccountDatabase {
 
         writer.close();
         reader.close();
-    }
-*/
+    }*/
+
     /**
      * Operation to get the type an account belongs to
      *
@@ -456,4 +435,91 @@ public class AccountDatabase {
         }
         return null;
     }
+
+
+
+    /**
+     * Operation to update account details for user on SQL database
+     *
+     * @param account the specified account to update details
+     * @param email the specified email details to change into
+     * @param password the specified password details to change into
+     *
+     */
+    public static void updateAccount(User account,String email,String password) throws SQLException {
+        Connection dbConnection = null;
+        Statement statement = null;
+        String updatePasswordSQL = "UPDATE USERS" + " SET PASSWORD = ? " + " WHERE USERNAME = ?";
+        String updateEmailSQL = "UPDATE USERS" + " SET EMAIL = ? " + " WHERE USERNAME = ?";
+        try {
+            dbConnection = DriverManager.getConnection(fileName);
+            statement = dbConnection.createStatement();
+
+            // execute update SQL stetement
+            PreparedStatement preparedStatement = dbConnection.prepareStatement(updatePasswordSQL);
+            PreparedStatement preparedStatement2 = dbConnection.prepareStatement(updateEmailSQL);
+
+            //assigns query to specified user and their password
+            preparedStatement.setString(1,password);
+            preparedStatement.setString(2,account.getUsername());
+
+            //assigns query to specified user and their email
+            preparedStatement2.setString(1,email);
+            preparedStatement2.setString(2,account.getUsername());
+
+            //execute update
+            int passwordUpdated = preparedStatement.executeUpdate();
+            int emailUpdated = preparedStatement2.executeUpdate();
+
+            //check if updates were made for each
+            if(passwordUpdated > 0){
+                System.out.println("Password updated!");
+            }
+
+            if(emailUpdated > 0){
+                System.out.println("Email updated!");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (statement != null) {
+                statement.close();
+            }
+            if (dbConnection != null) {
+                dbConnection.close();
+            }
+        }
+    }
+
+
+    /**
+     * Operation to delete account from SQL database
+     *
+     * @param userToRemove the specified user to remove
+     *
+     */
+    public static void removeUser(User userToRemove) {
+        try (Connection connection = DriverManager.getConnection(fileName)) {
+            String select = "DELETE FROM USERS WHERE USERNAME = ?";
+            try (PreparedStatement statement = connection.prepareStatement(select)) {
+                statement.setString(1, userToRemove.getUsername());
+
+                int deleted;
+                deleted = statement.executeUpdate();
+
+                if (deleted <= 0) {
+                    System.out.println("Failed to delete data");
+                }
+                else{
+                    System.out.println("Succesfuly removed user!");
+                }
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+
+            System.err.println("Failed to connect to database.");
+        }
+    }
+
 }

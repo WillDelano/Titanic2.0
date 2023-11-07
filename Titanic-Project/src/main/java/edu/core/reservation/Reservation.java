@@ -32,6 +32,8 @@ public class Reservation {
 
     private LocalDate endDate;
 
+    private boolean checkedIn = false;
+
     private ReservationDatabase reservations;
 
 
@@ -54,6 +56,12 @@ public class Reservation {
         room.bookRoom();
     }
 
+    public void setCheckedIn(){
+        checkedIn = true;
+    }
+    public boolean getCheckedIn(){
+        return checkedIn;
+    }
     public int getId() {
         return id;
     }
