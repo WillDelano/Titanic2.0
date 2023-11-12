@@ -140,5 +140,14 @@ public class RoomDatabase {
         //SQL STUFF TO ALTER ROOM
     }
 
+    public boolean isValidRoom(int roomChoice) {
+
+        for (Room roomNum : getAllRooms(this.toString())) {
+            if (roomNum.getRoomNumber() == roomChoice) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
