@@ -18,6 +18,12 @@ import java.util.*;
 public class RoomDatabase {
     private static String fileName = "C:\\Users\\gabec\\SoftwareEngineeringI\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\room.csv";
 
+    /**
+     * Operation to add a reservation
+     *
+     * @param room specified room to add
+     *
+     */
     public static void addRoom(Room room) {
         /*
          * CSV style
@@ -52,6 +58,12 @@ public class RoomDatabase {
         }
     }
 
+    /**
+     * Operation to get a room
+     *
+     * @param roomNumber specified room to get
+     *
+     */
     public static Room getRoom(int roomNumber) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\vince\\Java Projects\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\room.csv"));
@@ -87,13 +99,12 @@ public class RoomDatabase {
 
 
     /**
-     * Operation to give access to a list of all rooms of a specific cruise
+     * Operation to get all rooms of a specific cruise
      *
-     * @param cruise cruise name to parse all rooms
+     * @param cruise cruise name containing the rooms
      *
-     * @return list of rooms for a specific cruise
+     * @return list of rooms for the specific cruise
      */
-    //TODO: Add a parameter to get all the rooms of a certain cruise
     public static List<Room> getAllRooms(String cruise) {
         List<Room> rooms = new LinkedList<>();
         try {
@@ -135,10 +146,4 @@ public class RoomDatabase {
         System.err.println("Rooms do not exist for the cruise. Creating null values.");
         return rooms;
     }
-
-    public static void editAccount(User account, String email, String password) {
-        //SQL STUFF TO ALTER ROOM
-    }
-
-
 }
