@@ -117,29 +117,42 @@ public class AccountDatabase {
         }
         return false;
     }
+    /**
+     * Method to add users to the 'Users' Database
+     */
+    public static void addSampleUsers() {
+        if (getUserCount() == 0) { // Check if there are already users in the database
+            addUser("wdelano", "baylor", 0, "Will", "Delano", 0, "wdelano2002@gmail.com", "Guest");
+            addUser("wdelano2", "baylor", 1, "Will", "Delano", 0, "wdelano2002@gmail.com", "Guest");
+            addUser("wdelanoagent", "baylor", 2, "Will", "Delano", 0, "wdelano2002@gmail.com", "Agent");
+        }
+    }
 
-    //FIXME: Will have to use "User" type for parameter. Will be used for when admin wants to create a travel agent account
     /**
      * Operation to register a new account within account database
      *
-     * @param u The new user to add to account database
+     * @param username The new user to add to account database
      */
-    public void addUser(Guest u) {
-        try (Connection connection = DriverManager.getConnection(url)) {
-            String insert = "INSERT INTO Users (username, password, id, firstName, lastName, rewardPoints, email, userType) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-            try (PreparedStatement statement = connection.prepareStatement(insert)) {
-                statement.setString(1, u.getUsername());
-                statement.setString(2, u.getPassword());
-                statement.setInt(3, u.getId());
-                statement.setString(4, u.getFirstName());
-                statement.setString(5, u.getLastName());
-                statement.setInt(6, u.getRewardPoints());
-                statement.setString(7, u.getEmail());
-                statement.setString(8, "Guest"); // Assuming you have a column to differentiate user types
-                int inserted = statement.executeUpdate();
-                if (inserted <= 0) {
-                    System.out.println("Failed to insert data");
-                }
+    public static void addUser(String username, String password, int id, String firstName, String lastName, int rewardPoints, String email, String userType) {
+        String insertSQL = "INSERT INTO Users (username, password, id, firstName, lastName, rewardPoints, email, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection connection = DriverManager.getConnection(url);
+             PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
+
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            preparedStatement.setInt(3, id);
+            preparedStatement.setString(4, firstName);
+            preparedStatement.setString(5, lastName);
+            preparedStatement.setInt(6, rewardPoints);
+            preparedStatement.setString(7, email);
+            preparedStatement.setString(8, userType);
+
+            int affectedRows = preparedStatement.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("User added successfully: " + username);
+            } else {
+                System.out.println("Failed to add user: " + username);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -202,12 +215,12 @@ public class AccountDatabase {
     public static String getAccountType(String username) {
         String accountType = "";
         try (Connection connection = DriverManager.getConnection(url)) {
-            String query = "SELECT userType FROM Users WHERE username = ?";
+            String query = "SELECT type FROM Users WHERE username = ?";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setString(1, username);
                 try (ResultSet resultSet = statement.executeQuery()) {
                     if (resultSet.next()) {
-                        accountType = resultSet.getString("userType");
+                        accountType = resultSet.getString("type");
                     } else {
                         System.err.println("No account found, returning empty account type.");
                     }
@@ -440,6 +453,16 @@ public class AccountDatabase {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void shutdown() throws SQLException {
+        try {
+            DriverManager.getConnection("jdbc:derby:;shutdown=true");
+        } catch (SQLException se) {
+            if (!se.getSQLState().equals("XJ015")) {
+                throw se;
+            }
         }
     }
 

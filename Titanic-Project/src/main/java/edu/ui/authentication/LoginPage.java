@@ -2,6 +2,7 @@ package edu.ui.authentication;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 import java.util.Objects;
 
 import edu.authentication.Authentication;
@@ -116,8 +117,10 @@ public class LoginPage {
      * @param args  The console arguments.
      *
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
+        AccountDatabase.addSampleUsers();
         new LoginPage();
+        AccountDatabase.shutdown();
     }
 }
 
