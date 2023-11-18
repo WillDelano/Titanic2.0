@@ -20,7 +20,7 @@ import java.lang.*;
 public class AccountDatabase {
     private static Set<User> accountDatabase;
     //private String fileName = getClass().getClassLoader().getResource("accountList.csv").getFile();
-    private static String url = "jdbc:derby:C:\\Users\\vince\\Downloads\\Titanic2\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
+    private static String url = "jdbc:derby:C:\\Users\\vince\\IdeaProjects\\titanic2\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
 
 
     /**
