@@ -107,9 +107,6 @@ public class AccountDatabase {
         try (Connection connection = DriverManager.getConnection(url)) {
             String select = "SELECT * FROM Users WHERE username = ? AND password = ?";
 
-            System.out.println("Executing query: " + select);
-            System.out.println("Username: " + username + ", Password: " + pass);
-
             try (PreparedStatement statement = connection.prepareStatement(select)) {
                 statement.setString(1, username);
                 statement.setString(2, pass);
