@@ -20,66 +20,67 @@ import java.lang.*;
 public class AccountDatabase {
     private static Set<User> accountDatabase;
     //private String fileName = getClass().getClassLoader().getResource("accountList.csv").getFile();
-    private static String url = "jdbc:derby:C:\\Users\\vince\\IdeaProjects\\titanic2\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
+    private static final String url = "jdbc:derby:C:/Users/vince/IdeaProjects/titanic2/Titanic2.0/Titanic-Project/src/main/java/edu/Database";
 
 
+
+    static {
+        accountDatabase = new HashSet<>();
+        initializeDatabase(); // Static initialization of the database
+    }
     /**
      * Constructor for creating an instance of AccountDatabase
      *
      */
+
     public AccountDatabase() {
-//        accountDatabase = new LinkedHashSet<>();
-//        //the way the GUEST account will be put in file is String type, ...
-//        //...String username,String password,int id, String firstName, String lastName,int rewardPoints, String email
-//
-//        // admin and agent are the same except no reward points
-//        try {
-//            BufferedReader reader = new BufferedReader(new FileReader(fileName));
-//            String line;
-//            line = reader.readLine();
-//
-//            while (line != null) {
-//                String[] split = line.split(",");
-//                if (split[0].equals("Guest")) {
-//                    //guest has extra parameter for reward points
-//
-//                    //make guest instance then add to account list
-//
-//                    Guest guest = new Guest(split[1], split[2], Integer.parseInt(split[3]), split[4], split[5],
-//                            Integer.parseInt(split[6]), split[7]);
-//                    accountDatabase.add(guest);
-//
-//
-//                } else {
-//                    //normal parameters
-//                    if (split[0].equals("Agent")) {
-//                        //make agent instance based on file readings and add to list
-//                        TravelAgent agent = new TravelAgent(split[1], split[2], Integer.parseInt(split[3]), split[4], split[5],
-//                                split[6]);
-//                        accountDatabase.add(agent);
-//                    } else if (split[0].equals("Admin")) {
-//                        //make admin instance based on file readings and add to list
-//                        Admin admin = new Admin(split[1], split[2], Integer.parseInt(split[3]), split[4], split[5],
-//                                split[6]);
-//                        accountDatabase.add(admin);
-//
-//                    }
-//                }
-//                line = reader.readLine();
-//            }
-//
-//            reader.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        //parse in everything into*/
     }
 
+    private static void initializeDatabase() {
+        try (Connection connection = DriverManager.getConnection(url)) {
+            String query = "SELECT * FROM Users";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        User user = createUserFromResultSet(resultSet);
+                        if (user != null) {
+                            accountDatabase.add(user);
+                        }
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private static User createUserFromResultSet(ResultSet resultSet) throws SQLException {
+        // Extract data from resultSet
+        String username = resultSet.getString("username");
+        String password = resultSet.getString("password");
+        int id = resultSet.getInt("id");
+        String firstName = resultSet.getString("firstName");
+        String lastName = resultSet.getString("lastName");
+        String email = resultSet.getString("email");
+        int rewardPoints = resultSet.getInt("rewardPoints"); // Assuming you have this column in your database
+        String userType = resultSet.getString("type");
+
+        // Determine the type of user and instantiate accordingly
+        switch (userType) {
+            case "Guest":
+                return new Guest(username, password, id, firstName, lastName, rewardPoints, email); // Now passing rewardPoints
+            // Add cases for other user types (Admin, TravelAgent, etc.)
+            default:
+                return null; // or throw an exception if an unknown type is encountered
+        }
+    }
     /**
      * operation to get the count of users in the database
      *
      * @return amount of users in the database
      */
+
     public static int getUserCount() {
         int count = 0;
         try (Connection connection = DriverManager.getConnection(url)) {
@@ -105,17 +106,25 @@ public class AccountDatabase {
     public boolean isValidLogin(String username, String pass) {
         try (Connection connection = DriverManager.getConnection(url)) {
             String select = "SELECT * FROM Users WHERE username = ? AND password = ?";
+
+            System.out.println("Executing query: " + select);
+            System.out.println("Username: " + username + ", Password: " + pass);
+
             try (PreparedStatement statement = connection.prepareStatement(select)) {
                 statement.setString(1, username);
                 statement.setString(2, pass);
                 try (ResultSet resultSet = statement.executeQuery()) {
-                    return resultSet.next();
+                    boolean validLogin = resultSet.next();
+
+                    // Log the result of the query
+                    System.out.println("Login valid: " + validLogin);
+                    return validLogin;
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
-        return false;
     }
     /**
      * Method to add users to the 'Users' Database
