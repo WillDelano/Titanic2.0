@@ -140,5 +140,25 @@ public class RoomDatabase {
         //SQL STUFF TO ALTER ROOM
     }
 
+    public boolean isValidRoom(int roomChoice) {
+        if (roomChoice < 0) {
+            System.out.println("Please enter a valid room choice.");
+            return false;
+        }
+
+        List<Room> rooms = getAllRooms(this.toString());
+
+        if (rooms == null || rooms.isEmpty()) {
+            System.out.println("There are currently no rooms to choose from!");
+            return false;
+        }
+
+        for (Room room : rooms) {
+            if (room.getRoomNumber() == roomChoice) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
