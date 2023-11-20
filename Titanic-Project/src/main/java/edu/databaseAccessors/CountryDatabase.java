@@ -3,8 +3,24 @@ package edu.databaseAccessors;
 import edu.core.cruise.Country;
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Objects;
+import edu.core.reservation.Room;
+import edu.core.users.User;
+
+import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.*;
+import edu.core.reservation.Room;
+import java.sql.*;
+import java.util.*;
+
 
 /**
  * Database to record all the countries
@@ -15,38 +31,59 @@ import java.util.Objects;
  * @version 1.0
  */
 public class CountryDatabase {
-    private static String fileName = "C:\\Users\\vince\\Java Projects\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\countries.csv";
-    public static Country getCountry(String name) {
-        //look through database to find country with matching name
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            String line;
+    private static final String url = "jdbc:derby:C:/Users/vince/IdeaProjects/titanic2/Titanic2.0/Titanic-Project/src/main/java/edu/Database";
+    public static void addCountry(Country country) {
+        String insertSQL = "INSERT INTO Countries (name, arrivalDate, departureDate) VALUES (?, ?, ?)";
+        try (Connection connection = DriverManager.getConnection(url);
+             PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
 
-            /*
-             * CSV style
-             * split[0] = country name
-             * split[1] = date cruise arrives at country
-             * split[2] = date cruise departs from country
-             */
-            while((line = reader.readLine()) != null) {
-                String[] split = line.split(",");
+            preparedStatement.setString(1, country.getName());
+            preparedStatement.setDate(2, Date.valueOf(country.getArrivalTime()));
+            preparedStatement.setDate(3, Date.valueOf(country.getDepartureTime()));
 
-                //if the country name matches the csv name
-                if (Objects.equals(name, split[0])) {
-
-                    LocalDate arrival = LocalDate.parse(split[1]);
-                    LocalDate departure = LocalDate.parse(split[2]);
-
-                    Country country = new Country(name, arrival, departure);
-
-                    return country;
-                }
-            }
-            reader.close();
-        } catch(IOException e){
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.err.println("Country does not exist. Creating null values.");
-        return new Country(null, null, null);
     }
+
+    public static Country getCountry(String name) {
+        String query = "SELECT * FROM Countries WHERE name = ?";
+        try (Connection connection = DriverManager.getConnection(url);
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, name);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return new Country(resultSet.getString("name"),
+                            resultSet.getDate("arrivalDate").toLocalDate(),
+                            resultSet.getDate("departureDate").toLocalDate());
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static List<Country> getAllCountries() {
+        List<Country> countries = new ArrayList<>();
+        String query = "SELECT * FROM Countries";
+        try (Connection connection = DriverManager.getConnection(url);
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Country country = new Country(resultSet.getString("name"),
+                            resultSet.getDate("arrivalDate").toLocalDate(),
+                            resultSet.getDate("departureDate").toLocalDate());
+                    countries.add(country);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return countries;
+    }
+
 }
