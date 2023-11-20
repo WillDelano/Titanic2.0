@@ -20,66 +20,67 @@ import java.lang.*;
 public class AccountDatabase {
     private static Set<User> accountDatabase;
     //private String fileName = getClass().getClassLoader().getResource("accountList.csv").getFile();
-    private static String url = "jdbc:derby:C:\\Users\\vince\\Downloads\\Titanic2\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
+    private static final String url = "jdbc:derby:C:/Users/vince/IdeaProjects/titanic2/Titanic2.0/Titanic-Project/src/main/java/edu/Database";
 
 
+
+    static {
+        accountDatabase = new HashSet<>();
+        initializeDatabase(); // Static initialization of the database
+    }
     /**
      * Constructor for creating an instance of AccountDatabase
      *
      */
+
     public AccountDatabase() {
-//        accountDatabase = new LinkedHashSet<>();
-//        //the way the GUEST account will be put in file is String type, ...
-//        //...String username,String password,int id, String firstName, String lastName,int rewardPoints, String email
-//
-//        // admin and agent are the same except no reward points
-//        try {
-//            BufferedReader reader = new BufferedReader(new FileReader(fileName));
-//            String line;
-//            line = reader.readLine();
-//
-//            while (line != null) {
-//                String[] split = line.split(",");
-//                if (split[0].equals("Guest")) {
-//                    //guest has extra parameter for reward points
-//
-//                    //make guest instance then add to account list
-//
-//                    Guest guest = new Guest(split[1], split[2], Integer.parseInt(split[3]), split[4], split[5],
-//                            Integer.parseInt(split[6]), split[7]);
-//                    accountDatabase.add(guest);
-//
-//
-//                } else {
-//                    //normal parameters
-//                    if (split[0].equals("Agent")) {
-//                        //make agent instance based on file readings and add to list
-//                        TravelAgent agent = new TravelAgent(split[1], split[2], Integer.parseInt(split[3]), split[4], split[5],
-//                                split[6]);
-//                        accountDatabase.add(agent);
-//                    } else if (split[0].equals("Admin")) {
-//                        //make admin instance based on file readings and add to list
-//                        Admin admin = new Admin(split[1], split[2], Integer.parseInt(split[3]), split[4], split[5],
-//                                split[6]);
-//                        accountDatabase.add(admin);
-//
-//                    }
-//                }
-//                line = reader.readLine();
-//            }
-//
-//            reader.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        //parse in everything into*/
     }
 
+    private static void initializeDatabase() {
+        try (Connection connection = DriverManager.getConnection(url)) {
+            String query = "SELECT * FROM Users";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        User user = createUserFromResultSet(resultSet);
+                        if (user != null) {
+                            accountDatabase.add(user);
+                        }
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private static User createUserFromResultSet(ResultSet resultSet) throws SQLException {
+        // Extract data from resultSet
+        String username = resultSet.getString("username");
+        String password = resultSet.getString("password");
+        int id = resultSet.getInt("id");
+        String firstName = resultSet.getString("firstName");
+        String lastName = resultSet.getString("lastName");
+        String email = resultSet.getString("email");
+        int rewardPoints = resultSet.getInt("rewardPoints"); // Assuming you have this column in your database
+        String userType = resultSet.getString("type");
+
+        // Determine the type of user and instantiate accordingly
+        switch (userType) {
+            case "Guest":
+                return new Guest(username, password, id, firstName, lastName, rewardPoints, email); // Now passing rewardPoints
+            // Add cases for other user types (Admin, TravelAgent, etc.)
+            default:
+                return null; // or throw an exception if an unknown type is encountered
+        }
+    }
     /**
      * operation to get the count of users in the database
      *
      * @return amount of users in the database
      */
+
     public static int getUserCount() {
         int count = 0;
         try (Connection connection = DriverManager.getConnection(url)) {
@@ -105,41 +106,59 @@ public class AccountDatabase {
     public boolean isValidLogin(String username, String pass) {
         try (Connection connection = DriverManager.getConnection(url)) {
             String select = "SELECT * FROM Users WHERE username = ? AND password = ?";
+
             try (PreparedStatement statement = connection.prepareStatement(select)) {
                 statement.setString(1, username);
                 statement.setString(2, pass);
                 try (ResultSet resultSet = statement.executeQuery()) {
-                    return resultSet.next();
+                    boolean validLogin = resultSet.next();
+
+                    // Log the result of the query
+                    System.out.println("Login valid: " + validLogin);
+                    return validLogin;
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
-        return false;
+    }
+    /**
+     * Method to add users to the 'Users' Database
+     */
+    public static void addSampleUsers() {
+        if (getUserCount() == 0) { // Check if there are already users in the database
+            addUser("wdelano", "baylor", 0, "Will", "Delano", 0, "wdelano2002@gmail.com", "Guest");
+            addUser("wdelano2", "baylor", 1, "Will", "Delano", 0, "wdelano2002@gmail.com", "Guest");
+            addUser("wdelanoagent", "baylor", 2, "Will", "Delano", 0, "wdelano2002@gmail.com", "Agent");
+        }
     }
 
-    //FIXME: Will have to use "User" type for parameter. Will be used for when admin wants to create a travel agent account
     /**
      * Operation to register a new account within account database
      *
-     * @param u The new user to add to account database
+     * @param username The new user to add to account database
      */
-    public void addUser(Guest u) {
-        try (Connection connection = DriverManager.getConnection(url)) {
-            String insert = "INSERT INTO Users (username, password, id, firstName, lastName, rewardPoints, email, userType) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-            try (PreparedStatement statement = connection.prepareStatement(insert)) {
-                statement.setString(1, u.getUsername());
-                statement.setString(2, u.getPassword());
-                statement.setInt(3, u.getId());
-                statement.setString(4, u.getFirstName());
-                statement.setString(5, u.getLastName());
-                statement.setInt(6, u.getRewardPoints());
-                statement.setString(7, u.getEmail());
-                statement.setString(8, "Guest"); // Assuming you have a column to differentiate user types
-                int inserted = statement.executeUpdate();
-                if (inserted <= 0) {
-                    System.out.println("Failed to insert data");
-                }
+    public static void addUser(String username, String password, int id, String firstName, String lastName, int rewardPoints, String email, String userType) {
+        String insertSQL = "INSERT INTO Users (username, password, id, firstName, lastName, rewardPoints, email, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection connection = DriverManager.getConnection(url);
+             PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
+
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            preparedStatement.setInt(3, id);
+            preparedStatement.setString(4, firstName);
+            preparedStatement.setString(5, lastName);
+            preparedStatement.setInt(6, rewardPoints);
+            preparedStatement.setString(7, email);
+            preparedStatement.setString(8, userType);
+
+            int affectedRows = preparedStatement.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("User added successfully: " + username);
+            } else {
+                System.out.println("Failed to add user: " + username);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -202,12 +221,12 @@ public class AccountDatabase {
     public static String getAccountType(String username) {
         String accountType = "";
         try (Connection connection = DriverManager.getConnection(url)) {
-            String query = "SELECT userType FROM Users WHERE username = ?";
+            String query = "SELECT type FROM Users WHERE username = ?";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setString(1, username);
                 try (ResultSet resultSet = statement.executeQuery()) {
                     if (resultSet.next()) {
-                        accountType = resultSet.getString("userType");
+                        accountType = resultSet.getString("type");
                     } else {
                         System.err.println("No account found, returning empty account type.");
                     }
@@ -440,6 +459,16 @@ public class AccountDatabase {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void shutdown() throws SQLException {
+        try {
+            DriverManager.getConnection("jdbc:derby:;shutdown=true");
+        } catch (SQLException se) {
+            if (!se.getSQLState().equals("XJ015")) {
+                throw se;
+            }
         }
     }
 
