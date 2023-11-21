@@ -105,10 +105,7 @@ public class CruiseDatabase {
                 new Country("Country2", LocalDate.now().plusDays(2), LocalDate.now().plusDays(3))
         );
 
-        List<Room> roomList = Arrays.asList(
-                new Room(101, 2, "Double", false, 100.0, name),
-                new Room(102, 1, "Single", true, 80.0, name)
-        );
+        List<Room> roomList = RoomDatabase.getRoomsForCruise(name);
 
         return new Cruise(name, departure, maxCapacity, travelPath, roomList);
     }

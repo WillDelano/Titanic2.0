@@ -45,6 +45,68 @@ public class RoomDatabase {
         }
     }
 
+    private static boolean roomExists(int roomNumber, String cruise) {
+        String query = "SELECT COUNT(*) FROM Rooms WHERE roomnumber = ? AND cruise = ?";
+        try (Connection connection = DriverManager.getConnection(url);
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setInt(1, roomNumber);
+            statement.setString(2, cruise);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt(1) > 0;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static List<Room> getRoomsForCruise(String cruiseName) {
+        List<Room> rooms = new ArrayList<>();
+        String query = "SELECT * FROM Rooms WHERE cruise = ?";
+        try (Connection connection = DriverManager.getConnection(url);
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, cruiseName);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Room room = new Room(resultSet.getInt("roomnumber"),
+                            resultSet.getInt("numberofbeds"),
+                            resultSet.getString("bedtype"),
+                            resultSet.getBoolean("smokingavailable"),
+                            resultSet.getDouble("roomprice"),
+                            resultSet.getString("cruise"));
+                    rooms.add(room);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rooms;
+    }
+
+    public static void initializeRooms() {
+        List<Room> predefinedRooms = Arrays.asList(
+                new Room(101, 2, "Queen", false, 250, "Caribbean Adventure"),
+                new Room(102, 4, "King", true, 400, "Caribbean Adventure"),
+                new Room(103, 1, "Twin", false, 200, "Caribbean Adventure"),
+                new Room(104, 2, "Queen", false, 250, "Mediterranean Escape"),
+                new Room(105, 2, "King", true, 400, "Mediterranean Escape"),
+                new Room(106, 2, "Twin", false, 200, "Mediterranean Escape"),
+                new Room(107, 2, "Queen", false, 250, "Alaskan"),
+                new Room(108, 2, "King", true, 400, "Alaskan"),
+                new Room(109, 2, "Twin", false, 200, "Alaskan")
+        );
+
+        for (Room room : predefinedRooms) {
+            if (!roomExists(room.getRoomNumber(), room.getCruise())) {
+                addRoom(room);
+            }
+        }
+    }
+
     public static Room getRoom(int roomNumber) {
         String query = "SELECT * FROM Rooms WHERE roomnumber = ?";
         try (Connection connection = DriverManager.getConnection(url);

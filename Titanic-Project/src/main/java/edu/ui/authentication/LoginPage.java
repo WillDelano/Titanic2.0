@@ -8,6 +8,7 @@ import java.util.Objects;
 import edu.authentication.Authentication;
 import edu.databaseAccessors.AccountDatabase;
 import edu.databaseAccessors.CruiseDatabase;
+import edu.databaseAccessors.RoomDatabase;
 import edu.ui.landingPage.GuestLandingPage;
 import edu.ui.landingPage.TravelAgentLandingPage;
 
@@ -127,6 +128,7 @@ public class LoginPage {
     public static void main(String[] args) throws SQLException {
         AccountDatabase.addSampleUsers();
         CruiseDatabase.initializeCruises();
+        RoomDatabase.initializeRooms();
         new LoginPage();
     }
 }
