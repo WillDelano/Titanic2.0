@@ -189,4 +189,16 @@ public class RoomDatabase {
         return false;
     }
 
+    public static void bookRoom(int roomNumber) {
+        String updateSQL = "UPDATE Rooms SET isbooked = true WHERE roomnumber = ?";
+        try (Connection connection = DriverManager.getConnection(url);
+             PreparedStatement preparedStatement = connection.prepareStatement(updateSQL)) {
+
+            preparedStatement.setInt(1, roomNumber);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

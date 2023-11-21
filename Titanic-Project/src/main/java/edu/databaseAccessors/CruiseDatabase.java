@@ -100,10 +100,8 @@ public class CruiseDatabase {
         LocalDate departure = resultSet.getDate("departure").toLocalDate();
         int maxCapacity = resultSet.getInt("maxCapacity");
 
-        List<Country> travelPath = Arrays.asList(
-                new Country("Country1", LocalDate.now(), LocalDate.now().plusDays(1)),
-                new Country("Country2", LocalDate.now().plusDays(2), LocalDate.now().plusDays(3))
-        );
+        // Retrieve the list of countries associated with the cruise
+        List<Country> travelPath = getTravelPathForCruise(name);
 
         List<Room> roomList = RoomDatabase.getRoomsForCruise(name);
 
@@ -198,6 +196,31 @@ public class CruiseDatabase {
                 new Room(102, 1, "Single", true, 100.0, "Alaskan")
 
         );
+    }
+
+    public static List<Country> getTravelPathForCruise(String cruiseName) {
+        List<Country> travelPath = new ArrayList<>();
+        String query = "SELECT c.* FROM Countries c JOIN Cruises cr ON c.cruise_id = cr.id WHERE cr.name = ?";
+
+        try (Connection connection = DriverManager.getConnection(url);
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, cruiseName);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    String countryName = resultSet.getString("name");
+                    LocalDate arrivalDate = resultSet.getDate("arrivalTime").toLocalDate();
+                    LocalDate departureDate = resultSet.getDate("departureTime").toLocalDate();
+                    travelPath.add(new Country(countryName, arrivalDate, departureDate));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("Error retrieving travel path for cruise: " + cruiseName);
+        }
+
+        return travelPath;
     }
 
 }

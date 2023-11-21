@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import edu.authentication.Authentication;
 import edu.databaseAccessors.AccountDatabase;
+import edu.databaseAccessors.CountryDatabase;
 import edu.databaseAccessors.CruiseDatabase;
 import edu.databaseAccessors.RoomDatabase;
 import edu.ui.landingPage.GuestLandingPage;
@@ -129,6 +130,7 @@ public class LoginPage {
         AccountDatabase.addSampleUsers();
         CruiseDatabase.initializeCruises();
         RoomDatabase.initializeRooms();
+        CountryDatabase.initializeCountries();
         new LoginPage();
     }
 }
