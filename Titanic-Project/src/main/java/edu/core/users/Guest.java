@@ -90,8 +90,7 @@ public class Guest extends User {
             ReservationDatabase.addReservation(reservation);
             room.bookRoom();
             this.reservations.add(reservation);
-
-
+            
             RoomDatabase.bookRoom(room.getRoomNumber());
         } else {
             System.err.println("Attempting to add duplicate reservation - Cancelled.");

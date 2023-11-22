@@ -110,7 +110,6 @@ public class CountryDatabase {
     }
 
     public static Country getCountry(String name) {
-        System.out.println("Querying for country: " + name); // Log the country name being queried
 
         String query = "SELECT * FROM Countries WHERE name = ?";
         try (Connection connection = DriverManager.getConnection(url);

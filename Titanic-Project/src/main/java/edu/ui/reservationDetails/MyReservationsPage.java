@@ -55,6 +55,7 @@ public class MyReservationsPage {
 
     public void refreshReservations() {
         Set<Reservation> reservationSet = CurrentGuest.getCurrentGuest().getReservations();
+        System.out.println(CurrentGuest.getCurrentGuest().getReservations());
         System.err.println("Reservations: ");
 
         for (Reservation q : reservationSet) {
