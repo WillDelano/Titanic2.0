@@ -15,9 +15,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c490.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c490.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c4a1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c4a1.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c520.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c520.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/reservation/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/reservation/Reservation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/users/Guest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/users/Guest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/ReservationDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/ReservationDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/LoginPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/reservationDetails/MyReservationsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/reservationDetails/MyReservationsPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -231,6 +229,14 @@
       <workItem from="1700613734883" duration="504000" />
       <workItem from="1700614245433" duration="107000" />
       <workItem from="1700614358538" duration="694000" />
+      <workItem from="1700615059867" duration="260000" />
+      <workItem from="1700615326161" duration="262000" />
+      <workItem from="1700683603718" duration="110000" />
+      <workItem from="1700683719978" duration="276000" />
+      <workItem from="1700684002480" duration="73000" />
+      <workItem from="1700684082373" duration="49000" />
+      <workItem from="1700684138791" duration="23000" />
+      <workItem from="1700684168512" duration="500000" />
     </task>
     <servers />
   </component>
