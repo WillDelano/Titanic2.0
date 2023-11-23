@@ -12,6 +12,7 @@ import edu.core.reservation.Room;
 import edu.databaseAccessors.AccountDatabase;
 import edu.databaseAccessors.CountryDatabase;
 import edu.databaseAccessors.ReservationDatabase;
+import edu.databaseAccessors.RoomDatabase;
 
 /**
  * Representation of a guest user in the cruise reservation system.
@@ -42,6 +43,7 @@ public class Guest extends User {
     public Guest(String username, String password, int id, String firstName, String lastName, int rewardPoints, String email) {
         super(username, password, id, firstName, lastName, email);
         this.rewardPoints = rewardPoints;
+        this.reservations = new ArrayList<>();
     }
 
     public PaymentInfo getPaymentInfo() {
@@ -63,35 +65,37 @@ public class Guest extends User {
     /**
      * Makes a reservation for a specific room.
      *
-     * @param room Room to be reserved.
-     *
-     * @return Returns reservation for testing purposes
+     * @param room          Room to be reserved.
+     * @param startDate     Start date of the reservation.
+     * @param endDate       End date of the reservation.
+     * @param startCountry  Starting country of the cruise.
+     * @param endCountry    Ending country of the cruise.
+     * @return              The created reservation.
      */
     public Reservation makeReservation(Room room, LocalDate startDate, LocalDate endDate, String startCountry, String endCountry) {
-        AccountDatabase database = new AccountDatabase();
-        ReservationDatabase resDatabase = new ReservationDatabase();
-
-        // if end date is before or equal to start date, throw error message
         if (endDate.isBefore(startDate) || startDate.equals(endDate)) {
             throw new RuntimeException("Invalid Date Range. Please make sure start date is before end date.");
         }
 
-        //getting country objects based on the strings given
         Country startCountryObject = CountryDatabase.getCountry(startCountry);
+        System.out.println("Start Country Object: " + startCountryObject);
+
         Country endCountryObject = CountryDatabase.getCountry(endCountry);
+        System.out.println("End Country Object: " + endCountryObject);
 
         Reservation reservation = new Reservation(this, room, startDate, endDate, startCountryObject, endCountryObject);
 
-        //add their reservation to database if it's not a duplicate
+
         if (!ReservationDatabase.hasReservation(reservation)) {
             ReservationDatabase.addReservation(reservation);
             room.bookRoom();
-        }
-        else {
+            this.reservations.add(reservation);
+            
+            RoomDatabase.bookRoom(room.getRoomNumber());
+        } else {
             System.err.println("Attempting to add duplicate reservation - Cancelled.");
         }
 
-        System.err.println("Res: " + reservation.getRoom());
         return reservation;
     }
 

@@ -42,86 +42,53 @@ public class SelectCruisePage {
         titleLabel = new JLabel("Available Cruises", JLabel.CENTER);
         cruiseFrame.add(titleLabel, BorderLayout.NORTH);
 
-        List<String> cruisesFromDatabase = SelectCruiseController.getCruiseNames();
-        String[] cruiseArray = cruisesFromDatabase.toArray(new String[0]);
-        cruiseList = new JList<>(cruiseArray);
+        List<Cruise> cruisesFromDatabase = CruiseDatabase.getAllCruises();
+        DefaultListModel<String> model = new DefaultListModel<>();
+        for (Cruise cruise : cruisesFromDatabase) {
+            if (!model.contains(cruise.getName())) {
+                model.addElement(cruise.getName());
+            }
+        }
+        cruiseList = new JList<>(model);
         JScrollPane listScrollPane = new JScrollPane(cruiseList);
         cruiseFrame.add(listScrollPane, BorderLayout.CENTER);
 
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BorderLayout());
 
-        JPanel detailsPanel = new JPanel();
-        detailsPanel.setLayout(new BoxLayout(detailsPanel, BoxLayout.Y_AXIS));
-
-        for (int i = 0; i < cruisesFromDatabase.size(); i++) {
-            // get a cruise from the database list
-            Cruise cruise = CruiseDatabase.getCruise(cruisesFromDatabase.get(i));
-
-            StringBuilder travelPath = new StringBuilder();
-            for (int j = 0; j < cruise.getTravelPath().size(); j++) {
-                travelPath.append(cruise.getTravelPath().get(j).getName());
-                if (j < cruise.getTravelPath().size() - 1) {
-                    travelPath.append(", ");
-                }
-            }
-
-            String actualDetails = "Cruise Name: " + cruise.getName() + "\n" +
-                    "Departure Date: " + cruise.getDeparture().toString() + "\n" +
-                    "Travel Path: " + travelPath.toString() + "\n" +
-                    "Max Capacity: " + cruise.getMaxCapacity() + " passengers\n" +
-                    "Current Occupancy: " + cruise.getCurrentOccupancy() + " passengers\n";
-
-            JTextArea detailsTextArea = new JTextArea(actualDetails);
-            detailsTextArea.setEditable(false);
-            JScrollPane textScrollPane = new JScrollPane(detailsTextArea);
-            detailsPanel.add(textScrollPane);
-
-            JButton selectButton = new JButton("Select " + cruise.getName());
-            selectButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-            selectButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    handleCruiseSelection(cruise);
-                }
-            });
-            detailsPanel.add(selectButton);
-        }
-
-        mainPanel.add(detailsPanel, BorderLayout.CENTER);
-
+        selectButton = new JButton("View Details");
+        selectButton.addActionListener(this::handleCruiseSelection);
         backButton = new JButton("Back");
         backButton.addActionListener(e -> {
-            cruiseFrame.dispose(); // Close the Select Cruise page
-            landingPage.show(); // Go back to the landingPage
+            cruiseFrame.dispose();
+            if (landingPage != null) landingPage.show();
         });
 
         JPanel buttonPanel = new JPanel();
+        buttonPanel.add(selectButton);
         buttonPanel.add(backButton);
 
-        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
-
-        cruiseFrame.add(mainPanel);
+        cruiseFrame.add(buttonPanel, BorderLayout.SOUTH);
         cruiseFrame.setVisible(true);
     }
 
-    private void handleCruiseSelection(Cruise cruise) {
-        String selectedCruiseName = cruise.getName();
 
-        if (selectedCruiseName == null) {
-            showMessage("Please select a cruise first.");
+    private void handleCruiseSelection(ActionEvent e) {
+        String selectedCruiseName = cruiseList.getSelectedValue();
+        if (selectedCruiseName != null) {
+            Cruise selectedCruise = CruiseDatabase.getCruise(selectedCruiseName);
+            if (selectedCruise != null) {
+                new BrowseRoomPage(selectedCruise.getName()); // Assuming BrowseRoomPage takes a Cruise name
+            } else {
+                JOptionPane.showMessageDialog(cruiseFrame, "Cruise details not found.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(cruiseFrame, "Please select a cruise first.", "Warning", JOptionPane.WARNING_MESSAGE);
         }
-
-        Cruise selectedCruise = SelectCruiseController.getCruiseDetails(selectedCruiseName);
-        new BrowseRoomPage(selectedCruise.getName());
     }
-
     private void showMessage(String message) {
         JOptionPane.showMessageDialog(cruiseFrame, message);
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new SelectCruisePage(null); // Pass your LandingPage instance here
-        });
+        SwingUtilities.invokeLater(() -> new SelectCruisePage(null));
     }
 }
