@@ -145,7 +145,7 @@ public class ReservationDatabase {
     }
 
     /**
-     * Operation to check if reservation is valid
+     * Operation to add a reservation
      *
      * @param newReservation specified reservation to add
      *
@@ -188,7 +188,7 @@ public class ReservationDatabase {
     /**
      * Operation to check if a User has reservations
      *
-     * @param user user to check database for
+     * @param user user to check for in database
      *
      */
     public static boolean hasUser(User user) {
@@ -218,9 +218,9 @@ public class ReservationDatabase {
 
 
     /**
-     * Operation to check if a specific room is in reservation
+     * Operation to check if a specific room is reserved
      *
-     * @param roomNumber room number to check database for
+     * @param roomNumber room number to check
      *
      */
     public static boolean hasRoom(int roomNumber) {
@@ -319,6 +319,8 @@ public class ReservationDatabase {
      * Operation to update the reservation in the database
      *
      * @param reservation specified reservation to update
+     * @param endDate end date to update in the reservation
+     * @param roomNumber room number to update in the reservation
      *
      */
     public static void updateReservation(Reservation reservation, String endDate, String roomNumber) {
@@ -344,5 +346,3 @@ public class ReservationDatabase {
         }
     }
 }
-
-

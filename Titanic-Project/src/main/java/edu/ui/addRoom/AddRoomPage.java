@@ -9,6 +9,14 @@ import java.awt.*;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * The class for the add room ui
+ *
+ * This class creates the add room page and calls the controller to implement functionality
+ *
+ * @author William Delano
+ * @version 1.1
+ */
 public class AddRoomPage {
     private JFrame frame;
     private JLabel titleLabel;
@@ -26,10 +34,18 @@ public class AddRoomPage {
     private JTextField priceField;
     private JButton submitButton;
 
+    /**
+     * Operation to call the creation of the GUI
+     *
+     */
     public AddRoomPage() {
         createGUI();
     }
 
+    /**
+     * Operation to create the GUI, list the available data, and implement functionality
+     *
+     */
     private void createGUI() {
         frame = new JFrame("Add Room");
         frame.setSize(400, 300);
@@ -120,17 +136,33 @@ public class AddRoomPage {
         });
     }
 
+    /**
+     * Operation to call the controller for adding a room
+     *
+     * @param room Room to add to the database
+     *
+     */
     private void addRoomToSystem(Room room) {
         new AddRoomController();
 
         AddRoomController.addRoomToSystem(room);
     }
+
+    /**
+     * The function that sets the frame to visible
+     *
+     */
     public void show() {
         frame.setVisible(true);
     }
 
+    /**
+     * Main function to allow testability of the page on its own
+     *
+     * @param args *Not to be used*
+     *
+     */
     public static void main(String[] args) {
         new AddRoomPage();
     }
-
 }

@@ -132,6 +132,7 @@ public class Reservation {
         this.room = room;
         alterReservationList(oldReservation);
     }
+
     /**
      * Operation to alter reservation database based on specified user changes
      *
@@ -153,8 +154,11 @@ public class Reservation {
         }*/
     }
 
-
-
+    /**
+     * Overrides the built-in equals function of an object
+     *
+     * @return true if the objects are equal in value
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -181,11 +185,13 @@ public class Reservation {
         return false;
     }
 
+    /**
+     * Overrides the built-in hashing function of an object
+     *
+     * @return the hashed value
+     */
     @Override
     public int hashCode() {
         return Objects.hash(id, user, room, roomNumber, days, startCountry, endCountry);
     }
 };
-
-
-//getter and setter for Room will be added later.

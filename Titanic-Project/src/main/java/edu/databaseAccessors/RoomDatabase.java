@@ -26,6 +26,12 @@ public class RoomDatabase {
 
     private static final String url = "jdbc:derby:C:/Users/vince/IdeaProjects/titanic2/Titanic2.0/Titanic-Project/src/main/java/edu/Database";
 
+    /**
+     * Operation to add a reservation
+     *
+     * @param room specified room to add
+     *
+     */
     public static void addRoom(Room room) {
         String insertSQL = "INSERT INTO Rooms (roomnumber, numberofbeds, bedtype, smokingavailable, roomprice, isbooked, cruise) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection connection = DriverManager.getConnection(url);
@@ -107,6 +113,12 @@ public class RoomDatabase {
         }
     }
 
+    /**
+     * Operation to get a room
+     *
+     * @param roomNumber specified room to get
+     *
+     */
     public static Room getRoom(int roomNumber) {
         String query = "SELECT * FROM Rooms WHERE roomnumber = ?";
         try (Connection connection = DriverManager.getConnection(url);
@@ -131,13 +143,12 @@ public class RoomDatabase {
 
 
     /**
-     * Operation to give access to a list of all rooms of a specific cruise
+     * Operation to get all rooms of a specific cruise
      *
-     * @param cruise cruise name to parse all rooms
+     * @param cruise cruise name containing the rooms
      *
-     * @return list of rooms for a specific cruise
+     * @return list of rooms for the specific cruise
      */
-    //TODO: Add a parameter to get all the rooms of a certain cruise
     public static List<Room> getAllRooms(String cruise) {
         List<Room> rooms = new ArrayList<>();
         String query = "SELECT * FROM Rooms WHERE cruise = ?";

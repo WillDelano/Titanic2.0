@@ -67,6 +67,11 @@ public class Country {
                 Objects.equals(departureTime, that.departureTime);
     }
 
+    /**
+     * This function overrides the built-in hashing for an object
+     *
+     * @return The hashed value
+     */
     @Override
     public int hashCode() {
         int result = 31; // A prime number as the initial value
