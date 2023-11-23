@@ -6,7 +6,7 @@
     </root>
     <schema id="2" parent="1" name="APP">
       <Current>1</Current>
-      <LocalIntrospectionTimestamp>2023-11-07.00:24:17</LocalIntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2023-11-23.09:08:56</LocalIntrospectionTimestamp>
     </schema>
     <schema id="3" parent="1" name="NULLID"/>
     <schema id="4" parent="1" name="SQLJ"/>
@@ -182,43 +182,45 @@
     </key>
     <column id="51" parent="17" name="ID">
       <DasType>INTEGER|4s</DasType>
+      <DefaultExpression>AUTOINCREMENT: start 1 increment 1</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
+      <SequenceIdentity>null</SequenceIdentity>
     </column>
     <column id="52" parent="17" name="TYPE">
-      <DasType>VARCHAR(20)|12s</DasType>
+      <DasType>VARCHAR(255)|12s</DasType>
       <Position>2</Position>
     </column>
     <column id="53" parent="17" name="USERNAME">
-      <DasType>VARCHAR(50)|12s</DasType>
+      <DasType>VARCHAR(255)|12s</DasType>
       <Position>3</Position>
     </column>
     <column id="54" parent="17" name="PASSWORD">
-      <DasType>VARCHAR(50)|12s</DasType>
+      <DasType>VARCHAR(255)|12s</DasType>
       <Position>4</Position>
     </column>
     <column id="55" parent="17" name="FIRSTNAME">
-      <DasType>VARCHAR(50)|12s</DasType>
+      <DasType>VARCHAR(255)|12s</DasType>
       <Position>5</Position>
     </column>
     <column id="56" parent="17" name="LASTNAME">
-      <DasType>VARCHAR(50)|12s</DasType>
+      <DasType>VARCHAR(255)|12s</DasType>
       <Position>6</Position>
     </column>
     <column id="57" parent="17" name="EMAIL">
-      <DasType>VARCHAR(100)|12s</DasType>
+      <DasType>VARCHAR(255)|12s</DasType>
       <Position>7</Position>
     </column>
     <column id="58" parent="17" name="REWARDPOINTS">
       <DasType>INTEGER|4s</DasType>
       <Position>8</Position>
     </column>
-    <index id="59" parent="17" name="SQL0000000000-a02ac013-018b-87d4-1e11-0000073811d8">
+    <index id="59" parent="17" name="SQL0000000002-dcd58064-018b-fb54-c77d-0000073796b8">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="60" parent="17" name="SQL0000000000-a02ac013-018b-87d4-1e11-0000073811d8">
+    <key id="60" parent="17" name="SQL0000000002-dcd58064-018b-fb54-c77d-0000073796b8">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>

@@ -5,9 +5,11 @@ import edu.core.users.TravelAgent;
 import edu.core.users.User;
 import edu.databaseAccessors.RoomDatabase;
 import edu.ui.editReservation.EditReservationController;
+import edu.ui.editReservation.ReservationListPage;
 import edu.ui.landingPage.LandingPage;
 import edu.ui.landingPage.TravelAgentLandingPage;
 
+import edu.ui.resetPassword.ResetPasswordListPage;
 import edu.uniqueID.UniqueID;
 
 import javax.swing.*;
@@ -37,21 +39,28 @@ public class EditProfile {
     private JTextField emailField;
     private JLabel paymentLabel;
     private JButton paymentButton;
-    private LandingPage previousPage;
 
+    /* Two previous pages are used to represent the two potential previous pages that can reach this page*/
+    private LandingPage previousLandingPage;
+    private ResetPasswordListPage prevListPage;
+    private JButton backButton;
+    boolean comingFromTravelAgentPage;
 
-    public EditProfile(User account, TravelAgentLandingPage prevPage) {
-        this.previousPage = prevPage;
+    public EditProfile(User account, LandingPage prevLandingPage, ResetPasswordListPage prevListPage, boolean ta) {
+        this.previousLandingPage = prevLandingPage;
+        this.prevListPage = prevListPage;
         this.account = account;
+        this.comingFromTravelAgentPage = ta;
+
         createGUI();
     }
 
     private void createGUI() {
         frame = new JFrame("Edit Profile");
-        frame.setSize(400, 300);
+        frame.setSize(600, 400);
 
         mainPanel = new JPanel();
-        mainPanel.setLayout(new GridLayout(6, 3, 15, 20));
+        mainPanel.setLayout(new GridLayout(7, 3, 15, 20));
 
         String firstName = account.getFirstName();
         String lastName = account.getLastName();
@@ -74,6 +83,8 @@ public class EditProfile {
         deleteAccountGroup.add(deleteAccountNo);
 
         submitButton = new JButton("Submit");
+
+        backButton = new JButton("Back");
 
         //first row
         mainPanel.add(new JLabel());
@@ -115,8 +126,24 @@ public class EditProfile {
         mainPanel.add(submitButton);
         mainPanel.add(new JLabel());
 
+        //seventh row
+        mainPanel.add(new JLabel());
+        mainPanel.add(backButton);
+        mainPanel.add(new JLabel());
+
         frame.add(mainPanel);
         frame.setVisible(true);
+
+        backButton.addActionListener(e -> {
+            frame.dispose();
+
+            if (comingFromTravelAgentPage) {
+                previousLandingPage.show(); // Go back to the landing page
+            }
+            else {
+                prevListPage.show(); // Go back to list page
+            }
+        });
 
         submitButton.addActionListener(e -> {
             //get the new email
@@ -149,7 +176,13 @@ public class EditProfile {
                     if (validateDecision(newEmail, newPassword)) {
                         updateAccount(newEmail, newPassword);
                         frame.dispose();
-                        previousPage.show(); // Go back to the landing page
+
+                        if (comingFromTravelAgentPage) {
+                            previousLandingPage.show(); // Go back to the landing page
+                        }
+                        else {
+                            prevListPage.show(); // Go back to list page
+                        }
                     }
                     //otherwise restart the edit frame
                     else {
@@ -170,7 +203,13 @@ public class EditProfile {
                     //if they did delete, return to landing page
                     else {
                         frame.dispose();
-                        previousPage.show();
+
+                        if (comingFromTravelAgentPage) {
+                            previousLandingPage.show(); // Go back to the landing page
+                        }
+                        else {
+                            prevListPage.show(); // Go back to list page
+                        }
                     }
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
@@ -248,11 +287,17 @@ public class EditProfile {
         UIManager.put("OptionPane.noButtonText", "No, continue");
 
         int dialogResult = JOptionPane.showConfirmDialog(mainPanel, "No changes have been made. Would you like to quit?",
-                "Reservation is unchanged", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                "Alert", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         if (dialogResult == JOptionPane.YES_OPTION) {
             frame.dispose(); //close this frame
-            previousPage.show(); // Go back to the landingPage
+
+            if (comingFromTravelAgentPage) {
+                previousLandingPage.show(); // Go back to the landing page
+            }
+            else {
+                prevListPage.show(); // Go back to list page
+            }
             return true;
         }
         else {
