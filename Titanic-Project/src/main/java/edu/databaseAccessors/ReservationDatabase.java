@@ -23,7 +23,13 @@ import java.util.Set;
  * @version 1.0
  */
 public class ReservationDatabase {
-    private static String url = "jdbc:derby:C:\\Users\\vince\\Downloads\\Titanic2\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
+    private static final String url = "jdbc:derby:C:/Users/vince/IdeaProjects/titanic2/Titanic2.0/Titanic-Project/src/main/java/edu/Database";
+    /**
+     * TODO
+     *
+     */
+    public ReservationDatabase() {
+    }
 
     /**
      * Returns the reservation database size
@@ -71,16 +77,16 @@ public class ReservationDatabase {
 
         //create the connection to the db
         try (Connection connection = DriverManager.getConnection(url)) {
-            //command to select all rows from db matching the guest id
-            String selectAll = "SELECT * FROM Reservation WHERE id = ?";
+            //command to select all rows from db matching the guest username
+            String selectAll = "SELECT * FROM Reservation WHERE username = ?";
             //preparing the statement
             try (PreparedStatement statement = connection.prepareStatement(selectAll)) {
                 //set the first parameter to search for (id) to the guest's id
-                statement.setInt(1, guest.getId());
+                statement.setString(1, guest.getUsername());
                 //executing the statement (executeQuery returns a ResultSet)
                 try (ResultSet resultSet = statement.executeQuery()) {
                     //get the values in the set and create reservations for them
-                    if (resultSet.next()) {
+                    while (resultSet.next()) {
                         User user = AccountDatabase.getUser(resultSet.getString("username"));
                         Room room = RoomDatabase.getRoom(resultSet.getInt("roomNum"));
                         LocalDate startDate = LocalDate.parse(resultSet.getString("startDate"));

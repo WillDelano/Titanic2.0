@@ -55,6 +55,7 @@ public class Country {
      */
     public LocalDate getDepartureTime() { return departureTime; }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

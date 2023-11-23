@@ -85,10 +85,10 @@ public class MyReservationsPage {
                 refreshReservations();
             }
         };
-        refreshTimer = new Timer(delay, taskPerformer);  // Initialize the Timer instance variable
+        refreshTimer = new Timer(delay, taskPerformer);
         refreshTimer.start();
 
-        // Add a WindowListener to refresh reservations every time the window is activated.
+
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowActivated(WindowEvent e) {

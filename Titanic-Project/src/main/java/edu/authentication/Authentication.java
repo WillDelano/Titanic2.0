@@ -34,9 +34,10 @@ public class Authentication {
 
         AccountDatabase d = new AccountDatabase();
 
-        if(!d.accountExists(username)){
-            Guest guest = new Guest(username,password,new UniqueID().getId(),firstName,lastName,0, email);
-            d.addUser(guest);
+        if (!d.accountExists(username)) {
+            int id = new UniqueID().getId(); // Assuming this generates a unique ID
+            Guest guest = new Guest(username, password, id, firstName, lastName, 0, email);
+            d.addUser(username, password, id, firstName, lastName, 0, email, "Guest"); // Add user attributes here
         }
 
 
