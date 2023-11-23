@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="Database">
   <database-model serializer="dbm" dbms="DERBY" family-id="DERBY" format-version="4.49">
-    <root id="1"/>
+    <root id="1">
+      <ServerVersion>10.16.1.1</ServerVersion>
+    </root>
     <schema id="2" parent="1" name="APP">
       <Current>1</Current>
+<<<<<<< HEAD
       <LocalIntrospectionTimestamp>2023-10-30.20:26:55</LocalIntrospectionTimestamp>
+=======
+      <LocalIntrospectionTimestamp>2023-11-06.23:38:39</LocalIntrospectionTimestamp>
+>>>>>>> main
     </schema>
     <schema id="3" parent="1" name="NULLID"/>
     <schema id="4" parent="1" name="SQLJ"/>
@@ -16,6 +22,7 @@
     <schema id="10" parent="1" name="SYSIBM"/>
     <schema id="11" parent="1" name="SYSPROC"/>
     <schema id="12" parent="1" name="SYSSTAT"/>
+<<<<<<< HEAD
     <table id="13" parent="2" name="RESERVATION"/>
     <column id="14" parent="13" name="ID">
       <DasType>INTEGER|4s</DasType>
@@ -69,5 +76,7 @@
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
+=======
+>>>>>>> main
   </database-model>
 </dataSource>
