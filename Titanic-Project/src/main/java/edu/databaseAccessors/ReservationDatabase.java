@@ -86,7 +86,7 @@ public class ReservationDatabase {
                 //executing the statement (executeQuery returns a ResultSet)
                 try (ResultSet resultSet = statement.executeQuery()) {
                     //get the values in the set and create reservations for them
-                    if (resultSet.next()) {
+                    while (resultSet.next()) {
                         User user = AccountDatabase.getUser(resultSet.getString("username"));
                         Room room = RoomDatabase.getRoom(resultSet.getInt("roomNum"));
                         LocalDate startDate = LocalDate.parse(resultSet.getString("startDate"));

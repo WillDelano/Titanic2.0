@@ -2,6 +2,9 @@ package edu.ui.authentication;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Objects;
 
@@ -77,6 +80,20 @@ public class LoginPage {
         mainFrame.add(headerPanel);
         mainFrame.add(loginPanel);
         mainFrame.add(registerPanel);
+
+        mainFrame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                try {
+                    DriverManager.getConnection("jdbc:derby:;shutdown=true");
+                    System.out.println("Hi");
+                } catch (SQLException ex) {
+                    if (!ex.getSQLState().equals("XJ015")) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        });
 
         loginButton.addActionListener(e -> {
             try {
