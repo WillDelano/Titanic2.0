@@ -15,11 +15,7 @@ import java.util.*;
  * @version 1.0
  */
 public class RoomDatabase {
-<<<<<<< HEAD:Titanic-Project/src/main/java/edu/database/RoomDatabase.java
     private static String fileName = "C:\\Users\\Chas\\Soft.Eng\\Group project\\Titanic4\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\room.csv";
-=======
-    private static String fileName = "C:\\Users\\gabec\\SoftwareEngineeringI\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\room.csv";
->>>>>>> main:Titanic-Project/src/main/java/edu/databaseAccessors/RoomDatabase.java
 
     public static void addRoom(Room room) {
         /*
@@ -100,12 +96,7 @@ public class RoomDatabase {
     public static List<Room> getAllRooms(String cruise) {
         List<Room> rooms = new LinkedList<>();
         try {
-<<<<<<< HEAD:Titanic-Project/src/main/java/edu/database/RoomDatabase.java
             BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\Chas\\Soft.Eng\\Group project\\Titanic4\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\room.csv"));
-=======
-            BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\vince\\Java Projects\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\room.csv"));
-
->>>>>>> main:Titanic-Project/src/main/java/edu/databaseAccessors/RoomDatabase.java
             String line;
             /*
              * CSV style

@@ -4,6 +4,7 @@ import edu.core.reservation.Room;
 import edu.core.reservation.roomSearch;
 import edu.core.users.CurrentGuest;
 import edu.databaseAccessors.RoomDatabase;
+import edu.ui.authentication.LoginPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,6 +24,7 @@ public class BrowseRoomPage {
 
     private roomSearch cruiseSearch;
     private JFrame roomFrame;
+    JScrollPane listScrollPane;
     private JLabel titleLabel, bedCount, sortBy;
     private JPanel northPanel, filterPanel;
     private JMenuBar searchMenu;
@@ -60,7 +62,7 @@ public class BrowseRoomPage {
         cruiseSearch = new roomSearch(sampleRooms);
         roomList = new JList<>(sampleRooms.toArray(new Room[0]));
 
-        JScrollPane listScrollPane = new JScrollPane(roomList);
+        listScrollPane = new JScrollPane(roomList);
         roomFrame.add(listScrollPane, BorderLayout.CENTER);
 
         backButton = new JButton("Back to Cruise Details");
@@ -148,7 +150,16 @@ public class BrowseRoomPage {
         sortTypeOption = new JComboBox<>(sortTypes);
 
         applyButton.addActionListener( e->{
+            //listScrollPane.remove(roomList);
             applyFilters();
+            //listScrollPane.add(roomList);
+
+            //roomFrame.remove(listScrollPane);
+            //listScrollPane = new JScrollPane(roomList);
+            //roomFrame.add(listScrollPane, BorderLayout.CENTER);
+
+            //listScrollPane.revalidate();
+            roomFrame.revalidate();
         });
 
         filterPanel.add(smokingBox, BorderLayout.SOUTH);
@@ -221,8 +232,24 @@ public class BrowseRoomPage {
 
         }else if (sortTypeOption.getSelectedItem().equals("Price: Descending")) {
             cruiseSearch.setPriceSorting(roomSearch.priceSortType.DESCENDING);
-
         }
+
+        //listScrollPane.remove(roomList);
+        //listScrollPane.add(roomList);
+        //listScrollPane.revalidate();
+
+        List<Room> list = cruiseSearch.sortAndFilterRooms(roomList.getSelectedValuesList());
+        roomList = new JList<>(list.toArray(new Room[0]));
+
+        //roomFrame.remove(listScrollPane);
+        listScrollPane.revalidate();
+        //roomFrame.add(listScrollPane, BorderLayout.CENTER);
+        //roomFrame.revalidate();;
+
+        //listScrollPane.setOpaque(true);
+        //listScrollPane.setBackground(Color.red);
+    }
+    void updateList (){
 
     }
 

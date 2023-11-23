@@ -18,13 +18,8 @@ import java.lang.*;
 public class AccountDatabase {
     private static Set<User> accountDatabase;
     //private String fileName = getClass().getClassLoader().getResource("accountList.csv").getFile();
-<<<<<<< HEAD:Titanic-Project/src/main/java/edu/database/AccountDatabase.java
     //private static String fileName = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\accountList.csv";
-    private static String fileName = "C:\\Users\\Chas\\Soft.Eng\\Group project\\Titanic4\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\accountList.csv";
-=======
-    private static String fileName = "C:\\Users\\vince\\Java Projects\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\accountList.csv";
-
->>>>>>> main:Titanic-Project/src/main/java/edu/databaseAccessors/AccountDatabase.java
+    private static String fileName = "C:\\Users\\Chas\\Soft.Eng\\Group project\\Titanic5\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\accountList.csv";
 
     /**
      * Constructor for creating an instance of AccountDatabase

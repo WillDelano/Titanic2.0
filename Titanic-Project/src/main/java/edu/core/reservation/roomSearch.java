@@ -92,7 +92,7 @@ public class roomSearch {
      * @param rooms list of rooms to be sorted
      * @return filtered and sorted list of rooms
      */
-    List<Room> sortAndFilterRooms (List<Room> rooms){
+    public List<Room> sortAndFilterRooms (List<Room> rooms){
         List<Room> sortedRooms = rooms;
 
         // filter rooms
@@ -179,15 +179,15 @@ public class roomSearch {
         switch(smokeType){
             case NON_SMOKING:
                 for(Room obj: roomList){
-                    if(!obj.getSmokingAvailable()){
-                        roomList.add(obj);
+                    if(obj.getSmokingAvailable()){
+                        roomList.remove(obj);
                     }
                 }
 
             case SMOKING:
                 for(Room obj: roomList){
-                    if(obj.getSmokingAvailable()){
-                        roomList.add(obj);
+                    if(!obj.getSmokingAvailable()){
+                        roomList.remove(obj);
                     }
                 }
         }

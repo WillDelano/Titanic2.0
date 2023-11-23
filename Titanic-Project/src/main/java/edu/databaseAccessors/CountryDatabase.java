@@ -15,14 +15,9 @@ import java.util.Objects;
  * @version 1.0
  */
 public class CountryDatabase {
-<<<<<<< HEAD:Titanic-Project/src/main/java/edu/database/CountryDatabase.java
     //private static String fileName = "C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\countries.csv";
     private static String fileName = "C:\\Users\\Chas\\Soft.Eng\\Group project\\Titanic4\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\countries.csv";
 
-
-=======
-    private static String fileName = "C:\\Users\\vince\\Java Projects\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\countries.csv";
->>>>>>> main:Titanic-Project/src/main/java/edu/databaseAccessors/CountryDatabase.java
     public static Country getCountry(String name) {
         //look through database to find country with matching name
         try {
