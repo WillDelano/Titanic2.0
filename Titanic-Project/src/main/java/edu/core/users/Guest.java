@@ -34,14 +34,13 @@ public class Guest extends User {
      *
      * @param username   The username of the guest.
      * @param password   The password of the guest.
-     * @param id         The unique ID of the guest.
      * @param firstName  The first name of the guest.
      * @param lastName   The last name of the guest.
      * @param rewardPoints Initial reward points of the guest.
      * @param email      The email of the guest.
      */
-    public Guest(String username, String password, int id, String firstName, String lastName, int rewardPoints, String email) {
-        super(username, password, id, firstName, lastName, email);
+    public Guest(String username, String password, String firstName, String lastName, int rewardPoints, String email) {
+        super(username, password, firstName, lastName, email);
         this.rewardPoints = rewardPoints;
         this.reservations = new ArrayList<>();
     }

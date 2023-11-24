@@ -53,10 +53,10 @@ public class Authentication {
         //first check if username and pw are valid  and connected
         if(loginList.isValidLogin(username,password)){
             System.out.println("Success");
-            validLogin=true;
+            validLogin = true;
 
             if (Objects.equals(AccountDatabase.getAccountType(username), "Guest")) {
-                System.err.println("HERE");
+                Guest guest = (Guest) AccountDatabase.getUser(username);
                 CurrentGuest.setCurrentGuest((Guest) AccountDatabase.getUser(username));
                 CurrentGuest.getCurrentGuest().setId(AccountDatabase.getUser(username).getId());
             }

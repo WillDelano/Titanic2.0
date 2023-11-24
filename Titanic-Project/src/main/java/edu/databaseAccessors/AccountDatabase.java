@@ -64,11 +64,11 @@ public class AccountDatabase {
         // Determine the type of user and instantiate accordingly
         switch (userType) {
             case "Guest":
-                return new Guest(username, password, id, firstName, lastName, rewardPoints, email); // Now passing rewardPoints
+                return new Guest(username, password, firstName, lastName, rewardPoints, email); // Now passing rewardPoints
             case "Agent":
-                return new TravelAgent(username, password, id, firstName, lastName, email);
+                return new TravelAgent(username, password, firstName, lastName, email);
             case "Admin":
-                return new Admin(username, password, id, firstName, lastName, email);
+                return new Admin(username, password, firstName, lastName, email);
             default:
                 throw new NoMatchingClassException("No class matches the user type!");
         }
@@ -185,6 +185,16 @@ public class AccountDatabase {
             preparedStatement.setString(6, email);
             preparedStatement.setString(7, userType);
 
+            if (Objects.equals(userType, "Guest")) {
+                accountDatabase.add(new Guest(username, password , firstName, lastName, rewardPoints, email));
+            }
+            else if (Objects.equals(userType, "Agent")) {
+                accountDatabase.add(new TravelAgent(username, password, firstName, lastName, email));
+            }
+            else {
+                accountDatabase.add(new Admin(username, password, firstName, lastName, email));
+            }
+
             int affectedRows = preparedStatement.executeUpdate();
             if (affectedRows > 0) {
                 System.out.println("User added successfully: " + username);
@@ -203,25 +213,25 @@ public class AccountDatabase {
      */
 
     public static String getAccountType(String username) {
-        String accountType = "";
+
+    String accountType = "";
         try (Connection connection = DriverManager.getConnection(url)) {
-            String query = "SELECT type FROM Users WHERE username = ?";
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
-                statement.setString(1, username);
-                try (ResultSet resultSet = statement.executeQuery()) {
-                    if (resultSet.next()) {
-                        accountType = resultSet.getString("type");
-                    } else {
-                        System.err.println("No account found, returning empty account type.");
-                    }
+        String query = "SELECT type FROM Users WHERE username = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, username);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    accountType = resultSet.getString("type");
+                } else {
+                    System.err.println("No account found, returning empty account type.");
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
-        return accountType;
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
-
+        return accountType;
+}
 
     /**
      * Operation to validate the existence of a given username.
