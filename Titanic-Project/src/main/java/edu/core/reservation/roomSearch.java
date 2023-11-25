@@ -60,6 +60,14 @@ public class roomSearch {
     public List<Room> findRooms(String line){
         String[] traits = line.split( " ");
         List<Room> relevantRooms = new ArrayList<>();
+        boolean checkSmoking = false, smoking = true;
+
+        if(line.toLowerCase().contains("smoking")) {
+            checkSmoking = true;
+            if (line.toLowerCase().contains("no")) { // checks for "no" in non smoking || no smoking || non-smoking
+                smoking = false;
+            }
+        }
 
         // iterate through rooms and add relevant rooms to new list
         for(Room obj : allRooms){
@@ -68,14 +76,22 @@ public class roomSearch {
 
                 // iterate through traits to find in room's attributes
                 for (String s : traits) {
-                    if (s.toLowerCase().contains(obj.getBedType().toLowerCase())) { //bed type
+                    if (obj.getBedType().toLowerCase().contains(s.toLowerCase())) { //bed type
                         relevantRooms.add(obj);
-                    } else if (s.toLowerCase().contains( // searching for beds
-                            (obj.getNumberOfBeds() + " beds").toLowerCase())) {
+                    } else if (s.toLowerCase().equals( // searching for beds
+                                (Integer.toString( obj.getNumberOfBeds())))) {
+                            relevantRooms.add(obj);
+                    } else if (s.equals(String.valueOf(obj.getRoomNumber()))) {
                         relevantRooms.add(obj);
-                    } else if (s.contains(String.valueOf(obj.getRoomNumber()))) {
+                    } else if (s.contains(String.valueOf((int)obj.getRoomPrice()))) {
                         relevantRooms.add(obj);
-                    } else if (s.contains(String.valueOf(obj.getRoomPrice()))) {
+                    }
+                }
+
+                if(checkSmoking) {
+                    if (!obj.getSmokingAvailable() && !smoking) {
+                        relevantRooms.add(obj);
+                    } else if (obj.getSmokingAvailable() && smoking) {
                         relevantRooms.add(obj);
                     }
                 }

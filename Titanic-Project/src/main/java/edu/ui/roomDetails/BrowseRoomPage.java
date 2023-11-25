@@ -118,9 +118,20 @@ public class BrowseRoomPage {
             filterPanelVisiblity();
         });
         searchButton.addActionListener(e -> {
+
             List<Room> list = cruiseSearch.findRooms(searchTextField.getText());
+            roomFrame.remove(listScrollPane);
+
             roomList = new JList<>(list.toArray(new Room[0]));
+            listScrollPane = new JScrollPane(roomList);
+            //System.out.println(searchTextField.getText());
+            //System.out.println(list.size());
+            listScrollPane.getViewport().revalidate();
+            listScrollPane.getViewport().repaint();
+            roomFrame.add(listScrollPane, BorderLayout.CENTER);
+
             roomFrame.revalidate();
+            roomFrame.repaint();
         });
 
         searchMenu.add(searchTextField);
