@@ -34,6 +34,7 @@ public class BrowseRoomPage {
     private JButton applyButton;
     private JCheckBox smokingBox, nonSmokingBox;
     JComboBox<String> bedCountOption, sortTypeOption;
+    List<Room> currentRooms;
     private boolean optionVisible = false;//, smokingRooms = true, nonSmokingRooms = true;
 
     public BrowseRoomPage(String selectedCruise) {
@@ -59,8 +60,10 @@ public class BrowseRoomPage {
         generateFilterPanel();
 
         List<Room> sampleRooms = BrowseRoomController.getRooms(selectedCruise);
+        //currentRooms = sampleRooms;
         cruiseSearch = new roomSearch(sampleRooms);
         roomList = new JList<>(sampleRooms.toArray(new Room[0]));
+        currentRooms = new ArrayList<>(sampleRooms);
 
         listScrollPane = new JScrollPane(roomList);
         roomFrame.add(listScrollPane, BorderLayout.CENTER);
@@ -115,17 +118,16 @@ public class BrowseRoomPage {
         optionsButton = new JButton("options");
 
         optionsButton.addActionListener(e -> {
-            filterPanelVisiblity();
+            filterPanelVisibility();
         });
         searchButton.addActionListener(e -> {
 
-            List<Room> list = cruiseSearch.findRooms(searchTextField.getText());
+            List <Room> list = cruiseSearch.findRooms(searchTextField.getText());
+            currentRooms = new ArrayList<>(list);
             roomFrame.remove(listScrollPane);
 
             roomList = new JList<>(list.toArray(new Room[0]));
             listScrollPane = new JScrollPane(roomList);
-            //System.out.println(searchTextField.getText());
-            //System.out.println(list.size());
             listScrollPane.getViewport().revalidate();
             listScrollPane.getViewport().repaint();
             roomFrame.add(listScrollPane, BorderLayout.CENTER);
@@ -161,16 +163,7 @@ public class BrowseRoomPage {
         sortTypeOption = new JComboBox<>(sortTypes);
 
         applyButton.addActionListener( e->{
-            //listScrollPane.remove(roomList);
             applyFilters();
-            //listScrollPane.add(roomList);
-
-            //roomFrame.remove(listScrollPane);
-            //listScrollPane = new JScrollPane(roomList);
-            //roomFrame.add(listScrollPane, BorderLayout.CENTER);
-
-            //listScrollPane.revalidate();
-            roomFrame.revalidate();
         });
 
         filterPanel.add(smokingBox, BorderLayout.SOUTH);
@@ -187,7 +180,7 @@ public class BrowseRoomPage {
      * Allows panel for filters option to be open and closed
      *
      */
-    private void filterPanelVisiblity(){
+    private void filterPanelVisibility(){
         if(!optionVisible) {
             northPanel.add(filterPanel, BorderLayout.CENTER);
             optionVisible = true;
@@ -215,6 +208,8 @@ public class BrowseRoomPage {
             cruiseSearch.setSmokingType(roomSearch.smokingSortType.SMOKING);
         } else if (!smokingBox.isSelected() && nonSmokingBox.isSelected()){
             cruiseSearch.setSmokingType(roomSearch.smokingSortType.NON_SMOKING);
+        } else {
+            cruiseSearch.setSmokingType(roomSearch.smokingSortType.ALL);
         }
 
         //bed count options
@@ -240,25 +235,29 @@ public class BrowseRoomPage {
 
         } else if (sortTypeOption.getSelectedItem().equals("Price: Ascending")) {
             cruiseSearch.setPriceSorting(roomSearch.priceSortType.ASCENDING);
+            System.out.println("heere");
 
         }else if (sortTypeOption.getSelectedItem().equals("Price: Descending")) {
             cruiseSearch.setPriceSorting(roomSearch.priceSortType.DESCENDING);
         }
 
-        //listScrollPane.remove(roomList);
-        //listScrollPane.add(roomList);
-        //listScrollPane.revalidate();
 
-        List<Room> list = cruiseSearch.sortAndFilterRooms(roomList.getSelectedValuesList());
+        roomFrame.remove(listScrollPane);
+
+        //list = cruiseSearch.sortAndFilterRooms(list);
+
+        List<Room> list = new ArrayList<>(currentRooms);
+        list = cruiseSearch.sortAndFilterRooms(list);
+        //list = cruiseSearch.filterBySmokingType(list);
         roomList = new JList<>(list.toArray(new Room[0]));
 
-        //roomFrame.remove(listScrollPane);
-        listScrollPane.revalidate();
-        //roomFrame.add(listScrollPane, BorderLayout.CENTER);
-        //roomFrame.revalidate();;
+        listScrollPane = new JScrollPane(roomList);
+        listScrollPane.getViewport().revalidate();
+        listScrollPane.getViewport().repaint();
+        roomFrame.add(listScrollPane, BorderLayout.CENTER);
 
-        //listScrollPane.setOpaque(true);
-        //listScrollPane.setBackground(Color.red);
+        roomFrame.revalidate();
+        roomFrame.repaint();
     }
     void updateList (){
 

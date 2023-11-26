@@ -24,7 +24,7 @@ public class roomSearch {
 
     public enum smokingSortType {ALL, NON_SMOKING, SMOKING}
     priceSortType priceSort;
-    smokingSortType smokeType;
+    public smokingSortType smokeType;
     bedPreferenceType bedType;
     bedCountType bedCount;
 
@@ -97,7 +97,8 @@ public class roomSearch {
                 }
             }
         }
-        sortAndFilterRooms(relevantRooms);
+        //sortAndFilterRooms(relevantRooms);
+        //relevantRooms = sortAndFilterRooms(relevantRooms);
 
         return relevantRooms;
     }
@@ -109,11 +110,11 @@ public class roomSearch {
      * @return filtered and sorted list of rooms
      */
     public List<Room> sortAndFilterRooms (List<Room> rooms){
-        List<Room> sortedRooms = rooms;
+        List<Room> sortedRooms = new ArrayList<Room>(rooms);
 
         // filter rooms
         if(smokeType != smokingSortType.ALL) {
-            filterBySmokingType(sortedRooms);
+            sortedRooms = filterBySmokingType(sortedRooms);
         }
 
         // filter by bed type
@@ -143,13 +144,13 @@ public class roomSearch {
         switch (type){
             case NONE:
                 priceSort = priceSortType.NONE;
-
+                break;
             case ASCENDING:
                 priceSort = priceSortType.ASCENDING;
-
+                break;
             case DESCENDING:
                 priceSort = priceSortType.DESCENDING;
-
+                break;
         }
     }
 
@@ -162,9 +163,10 @@ public class roomSearch {
         switch(priceSort){
             case ASCENDING:
                 Collections.sort(roomList, new ByPriceASCENDING());
-
+                break;
             case DESCENDING:
                 Collections.sort(roomList, new ByPriceDESCENDING());
+                break;
         }
     }
 
@@ -177,12 +179,13 @@ public class roomSearch {
         switch (type){
             case ALL:
                 smokeType = smokingSortType.ALL;
-
+                break;
             case NON_SMOKING:
                 smokeType = smokingSortType.NON_SMOKING;
-
+                break;
             case SMOKING:
                 smokeType = smokingSortType.SMOKING;
+                break;
         }
     }
 
@@ -191,22 +194,19 @@ public class roomSearch {
      *
      * //@param list of rooms to sort
      */
-    public void filterBySmokingType(List<Room> roomList){
+    public List<Room> filterBySmokingType(List<Room> roomList){
+        List<Room> ogRooms = new ArrayList<Room>(roomList);
+        List<Room> updatedRooms = new ArrayList<Room>();
         switch(smokeType){
             case NON_SMOKING:
-                for(Room obj: roomList){
-                    if(obj.getSmokingAvailable()){
-                        roomList.remove(obj);
-                    }
-                }
+                ogRooms.removeIf(obj -> obj.getSmokingAvailable());
+                break;
 
             case SMOKING:
-                for(Room obj: roomList){
-                    if(!obj.getSmokingAvailable()){
-                        roomList.remove(obj);
-                    }
-                }
+                ogRooms.removeIf(obj -> !obj.getSmokingAvailable());
+                break;
         }
+        return ogRooms;
     }
 
     /**
@@ -218,22 +218,36 @@ public class roomSearch {
         switch (type){
             case ALL:
                 bedType = bedPreferenceType.ALL;
-
+                break;
             case SINGLE:
                 bedType = bedPreferenceType.SINGLE;
-
+                break;
             case TWIN:
                 bedType = bedPreferenceType.TWIN;
-
+                break;
             case FULL:
                 bedType = bedPreferenceType.FULL;
-
+                break;
             case QUEEN:
                 bedType = bedPreferenceType.QUEEN;
-
+                break;
             case KING:
                 bedType = bedPreferenceType.KING;
+                break;
         }
+    }
+    public String getSmokeType(){
+        String smokingType = "";
+
+        if(smokeType == smokingSortType.SMOKING){
+            smokingType = "smoking";
+        }else if (smokeType == smokingSortType.NON_SMOKING){
+            smokingType = "Nonsmoking";
+        } else if (smokeType == smokingSortType.ALL){
+            smokingType = "All";
+        }
+
+        return smokingType;
     }
 
     /**
@@ -250,34 +264,35 @@ public class roomSearch {
                         roomList.add(obj);
                     }
                 }
-
+                break;
             case TWIN:
                 for(Room obj: roomList){
                     if(obj.getBedType().equalsIgnoreCase("twin")){
                         roomList.add(obj);
                     }
                 }
-
+                break;
             case FULL:
                 for(Room obj: roomList){
                     if(obj.getBedType().equalsIgnoreCase("full")){
                         roomList.add(obj);
                     }
                 }
-
+                break;
             case QUEEN:
                 for(Room obj: roomList){
                     if(obj.getBedType().equalsIgnoreCase("queen")){
                         roomList.add(obj);
                     }
                 }
-
+                break;
             case KING:
                 for(Room obj: roomList){
                     if(obj.getBedType().equalsIgnoreCase("king")){
                         roomList.add(obj);
                     }
                 }
+                break;
         }
     }
 
@@ -290,18 +305,20 @@ public class roomSearch {
         switch (type){
             case ALL:
                 bedCount = bedCountType.ALL;
-
+                break;
             case ONE:
                 bedCount = bedCountType.ONE;
-
+                break;
             case TWO:
                 bedCount = bedCountType.TWO;
+                break;
 
             case THREE:
                 bedCount = bedCountType.THREE;
-
+                break;
             case FOUR:
                 bedCount = bedCountType.FOUR;
+                break;
         }
     }
 
@@ -316,15 +333,16 @@ public class roomSearch {
         switch(bedCount){
             case ONE:
                 preferredBedCount = 1;
-
+                break;
             case TWO:
                 preferredBedCount = 2;
-
+                break;
             case THREE:
                 preferredBedCount = 3;
-
+                break;
             case FOUR:
                 preferredBedCount = 4;
+                break;
         }
 
         for(Room obj: roomList){
