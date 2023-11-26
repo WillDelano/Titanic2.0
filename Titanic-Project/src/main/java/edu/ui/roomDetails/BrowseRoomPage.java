@@ -121,7 +121,7 @@ public class BrowseRoomPage {
             filterPanelVisibility();
         });
         searchButton.addActionListener(e -> {
-
+            applyFilters();
             List <Room> list = cruiseSearch.findRooms(searchTextField.getText());
             currentRooms = new ArrayList<>(list);
             roomFrame.remove(listScrollPane);
@@ -164,6 +164,19 @@ public class BrowseRoomPage {
 
         applyButton.addActionListener( e->{
             applyFilters();
+            roomFrame.remove(listScrollPane);
+
+            List<Room> list = new ArrayList<>(currentRooms);
+            list = cruiseSearch.sortAndFilterRooms(list);
+            roomList = new JList<>(list.toArray(new Room[0]));
+
+            listScrollPane = new JScrollPane(roomList);
+            listScrollPane.getViewport().revalidate();
+            listScrollPane.getViewport().repaint();
+            roomFrame.add(listScrollPane, BorderLayout.CENTER);
+
+            roomFrame.revalidate();
+            roomFrame.repaint();
         });
 
         filterPanel.add(smokingBox, BorderLayout.SOUTH);
@@ -239,23 +252,5 @@ public class BrowseRoomPage {
         }else if (sortTypeOption.getSelectedItem().equals("Price: Descending")) {
             cruiseSearch.setPriceSorting(roomSearch.priceSortType.DESCENDING);
         }
-
-        roomFrame.remove(listScrollPane);
-
-        List<Room> list = new ArrayList<>(currentRooms);
-        list = cruiseSearch.sortAndFilterRooms(list);
-        roomList = new JList<>(list.toArray(new Room[0]));
-
-        listScrollPane = new JScrollPane(roomList);
-        listScrollPane.getViewport().revalidate();
-        listScrollPane.getViewport().repaint();
-        roomFrame.add(listScrollPane, BorderLayout.CENTER);
-
-        roomFrame.revalidate();
-        roomFrame.repaint();
     }
-    void updateList (){
-
-    }
-
 }

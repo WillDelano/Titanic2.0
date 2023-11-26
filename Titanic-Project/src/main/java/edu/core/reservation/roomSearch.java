@@ -97,7 +97,6 @@ public class roomSearch {
                 }
             }
         }
-        //sortAndFilterRooms(relevantRooms);
         relevantRooms = sortAndFilterRooms(relevantRooms);
 
         return relevantRooms;
