@@ -213,7 +213,7 @@ public class BrowseRoomPage {
         }
 
         //bed count options
-        if(bedCountOption.getSelectedItem().equals("ALL")){
+        if(bedCountOption.getSelectedItem().equals("All")){
             cruiseSearch.setBedCount(roomSearch.bedCountType.ALL);
 
         } else if (bedCountOption.getSelectedItem().equals("1")) {

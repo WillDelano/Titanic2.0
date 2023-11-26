@@ -98,7 +98,7 @@ public class roomSearch {
             }
         }
         //sortAndFilterRooms(relevantRooms);
-        //relevantRooms = sortAndFilterRooms(relevantRooms);
+        relevantRooms = sortAndFilterRooms(relevantRooms);
 
         return relevantRooms;
     }
@@ -124,7 +124,7 @@ public class roomSearch {
 
         // filter by bed Count
         if(bedCount != bedCountType.ALL){
-            filterByBedCount(sortedRooms);
+            sortedRooms = filterByBedCount(sortedRooms);
         }
 
         // sort rooms
@@ -314,7 +314,6 @@ public class roomSearch {
             case TWO:
                 bedCount = bedCountType.TWO;
                 break;
-
             case THREE:
                 bedCount = bedCountType.THREE;
                 break;
@@ -329,8 +328,8 @@ public class roomSearch {
      *
      * //@param list of rooms to sort
      */
-    void filterByBedCount(List<Room> roomList){
-        int preferredBedCount = 0;
+    List<Room> filterByBedCount(List<Room> roomList){
+        int preferredBedCount;
 
         switch(bedCount){
             case ONE:
@@ -345,13 +344,13 @@ public class roomSearch {
             case FOUR:
                 preferredBedCount = 4;
                 break;
-        }
 
-        for(Room obj: roomList){
-            if(obj.getNumberOfBeds() == preferredBedCount){
-                roomList.add(obj);
-            }
+            default:
+                preferredBedCount = 0;
         }
+        roomList.removeIf(obj -> obj.getNumberOfBeds() != preferredBedCount);
+
+        return roomList;
     }
 
 }
