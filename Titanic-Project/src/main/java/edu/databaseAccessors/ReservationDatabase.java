@@ -23,7 +23,7 @@ import java.util.Set;
  * @version 1.0
  */
 public class ReservationDatabase {
-    private static String url = "jdbc:derby:C:\\Users\\vince\\Downloads\\Titanic2\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
+    private static final String url = "jdbc:derby:C:/Users/vince/IdeaProjects/titanic2/Titanic2.0/Titanic-Project/src/main/java/edu/Database";
     /**
      * TODO
      *
@@ -77,16 +77,16 @@ public class ReservationDatabase {
 
         //create the connection to the db
         try (Connection connection = DriverManager.getConnection(url)) {
-            //command to select all rows from db matching the guest id
-            String selectAll = "SELECT * FROM Reservation WHERE id = ?";
+            //command to select all rows from db matching the guest username
+            String selectAll = "SELECT * FROM Reservation WHERE username = ?";
             //preparing the statement
             try (PreparedStatement statement = connection.prepareStatement(selectAll)) {
                 //set the first parameter to search for (id) to the guest's id
-                statement.setInt(1, guest.getId());
+                statement.setString(1, guest.getUsername());
                 //executing the statement (executeQuery returns a ResultSet)
                 try (ResultSet resultSet = statement.executeQuery()) {
                     //get the values in the set and create reservations for them
-                    if (resultSet.next()) {
+                    while (resultSet.next()) {
                         User user = AccountDatabase.getUser(resultSet.getString("username"));
                         Room room = RoomDatabase.getRoom(resultSet.getInt("roomNum"));
                         LocalDate startDate = LocalDate.parse(resultSet.getString("startDate"));
@@ -145,7 +145,7 @@ public class ReservationDatabase {
     }
 
     /**
-     * Operation to check if reservation is valid
+     * Operation to add a reservation
      *
      * @param newReservation specified reservation to add
      *
@@ -188,7 +188,7 @@ public class ReservationDatabase {
     /**
      * Operation to check if a User has reservations
      *
-     * @param user user to check database for
+     * @param user user to check for in database
      *
      */
     public static boolean hasUser(User user) {
@@ -218,9 +218,9 @@ public class ReservationDatabase {
 
 
     /**
-     * Operation to check if a specific room is in reservation
+     * Operation to check if a specific room is reserved
      *
-     * @param roomNumber room number to check database for
+     * @param roomNumber room number to check
      *
      */
     public static boolean hasRoom(int roomNumber) {
@@ -319,6 +319,8 @@ public class ReservationDatabase {
      * Operation to update the reservation in the database
      *
      * @param reservation specified reservation to update
+     * @param endDate end date to update in the reservation
+     * @param roomNumber room number to update in the reservation
      *
      */
     public static void updateReservation(Reservation reservation, String endDate, String roomNumber) {
@@ -344,5 +346,3 @@ public class ReservationDatabase {
         }
     }
 }
-
-

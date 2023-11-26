@@ -1,9 +1,14 @@
 package edu.ui.roomDetails;
 
+import edu.core.cruise.Country;
+import edu.core.cruise.Cruise;
+import edu.core.reservation.Reservation;
 import edu.core.reservation.Room;
 import edu.core.users.Guest;
+import edu.databaseAccessors.CruiseDatabase;
 import edu.databaseAccessors.RoomDatabase;
 
+import javax.swing.*;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -22,9 +27,32 @@ public class BrowseRoomController {
     }
 
     public void reserveRoom(Guest guest, Room room) {
-        //adding hard coded values of the guest's reservation dates and countries because we haven't added that ui feature
-        LocalDate testTime = LocalDate.of(2020, 2, 1);
-        LocalDate laterTestTime = LocalDate.of(2020, 2, 2);
-        guest.makeReservation(room, testTime, laterTestTime, "Iceland", "Norway");
+        // Fetch the cruise name from the room
+        String cruiseName = room.getCruise();
+
+        // Retrieve all cruises and find the matching one
+        List<Cruise> cruises = CruiseDatabase.getAllCruises();
+        Cruise matchingCruise = cruises.stream()
+                .filter(cruise -> cruise.getName().equals(cruiseName))
+                .findFirst()
+                .orElse(null);
+
+        if (matchingCruise == null || matchingCruise.getTravelPath().size() < 2) {
+            // Handle the case where the cruise is not found or doesn't have enough countries
+            JOptionPane.showMessageDialog(null, "Error: Cruise data is not properly set up.");
+            return;
+        }
+
+        // Use the first and last countries from the cruise's travel path
+        List<Country> travelPath = matchingCruise.getTravelPath();
+        Country startCountry = travelPath.get(0);
+        Country endCountry = travelPath.get(travelPath.size() - 1);
+
+        LocalDate startDate = LocalDate.now(); // Use current date as start date for reservation
+        LocalDate endDate = startDate.plusDays(1); // Example end date (one day after start date)
+
+        // Make the reservation
+        guest.makeReservation(room, startDate, endDate, startCountry.getName(), endCountry.getName());
     }
+
 }

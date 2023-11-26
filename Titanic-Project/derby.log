@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Sun Nov 26 16:56:48 CST 2023 Thread[#34,AWT-EventQueue-0,6,main] Cleanup action starting
 java.sql.SQLException: Database 'C:\Users\vince\Downloads\Titanic2\Titanic2.0\Titanic-Project\src\main\java\edu\Database' not found.
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(SQLExceptionFactory.java:115)
@@ -1248,3 +1249,18 @@ ERROR XJ004: Database 'C:\Users\vince\Downloads\Titanic2\Titanic2.0\Titanic-Proj
 	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
 ============= end nested exception, level (1) ===========
 Cleanup action completed
+=======
+----------------------------------------------------------------
+Wed Nov 22 14:26:39 CST 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018b-f8b6-9c62-00001e983a08 
+on database directory C:\Users\vince\IdeaProjects\titanic2\Titanic2.0\Titanic-Project\src\main\java\edu\Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1d44bcfa 
+Loaded from file:/C:/Users/vince/.m2/repository/org/apache/derby/derby/10.16.1.1/derby-10.16.1.1.jar
+java.vendor=Amazon.com Inc.
+java.runtime.version=17.0.8+7-LTS
+user.dir=C:\Users\vince\IdeaProjects\titanic2\Titanic2.0\Titanic-Project
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+>>>>>>> main

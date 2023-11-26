@@ -7,10 +7,14 @@ import edu.databaseAccessors.RoomDatabase;
 import edu.ui.editReservation.EditReservationController;
 import edu.ui.landingPage.LandingPage;
 import edu.ui.landingPage.TravelAgentLandingPage;
+
 import edu.uniqueID.UniqueID;
 
 import javax.swing.*;
 import java.awt.*;
+
+import java.io.IOException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.List;
@@ -35,6 +39,7 @@ public class EditProfile {
     private JButton paymentButton;
     private LandingPage previousPage;
 
+
     public EditProfile(User account, TravelAgentLandingPage prevPage) {
         this.previousPage = prevPage;
         this.account = account;
@@ -42,7 +47,7 @@ public class EditProfile {
     }
 
     private void createGUI() {
-        frame = new JFrame("Add Room");
+        frame = new JFrame("Edit Profile");
         frame.setSize(400, 300);
 
         mainPanel = new JPanel();
@@ -135,7 +140,6 @@ public class EditProfile {
 
                 //if no changes were made, remind the user
                 if (Objects.equals(newEmail, account.getEmail()) && Objects.equals(newPassword, account.getPassword())) {
-
                     noChangesDecision();
                 }
                 //if there is a non-duplicate value, update the account
@@ -158,14 +162,18 @@ public class EditProfile {
             else {
 
                 //if they decided not to delete their account, restart
-                if (!deleteAccount()) {
-                    frame.dispose();
-                    createGUI();
-                }
-                //if they did delete, return to landing page
-                else {
-                    frame.dispose();
-                    previousPage.show();
+                try {
+                    if (!deleteAccount()) {
+                        frame.dispose();
+                        createGUI();
+                    }
+                    //if they did delete, return to landing page
+                    else {
+                        frame.dispose();
+                        previousPage.show();
+                    }
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
                 }
             }
         });
@@ -179,7 +187,9 @@ public class EditProfile {
         EditProfileController.editAccount(account, email, password);
     }
 
-    public boolean deleteAccount() {
+
+    public boolean deleteAccount() throws IOException {
+
         UIManager.put("OptionPane.yesButtonText", "Confirm");
         UIManager.put("OptionPane.noButtonText", "Cancel");
 

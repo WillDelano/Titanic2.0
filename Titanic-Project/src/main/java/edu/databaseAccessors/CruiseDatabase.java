@@ -3,8 +3,11 @@ package edu.databaseAccessors;
 import edu.core.cruise.Cruise;
 import edu.core.cruise.Country;
 import edu.core.reservation.Room;
+import edu.core.users.User;
 
 import java.io.*;
+import java.sql.*;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -17,141 +20,209 @@ import java.util.*;
  * @version 1.0
  */
 public class CruiseDatabase {
-    public static String filepath = "C:\\Users\\Chas\\Soft.Eng\\Group project\\Titanic4\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\cruises.csv";
+    //public static String filepath = "C:\\Users\\Chas\\Soft.Eng\\Group project\\Titanic4\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\cruises.csv";
+    private static Set<Cruise> cruiseDatabase;
+    //private static final String url = "jdbc:derby:C:/Users/vince/IdeaProjects/titanic2/Titanic2.0/Titanic-Project/src/main/java/edu/Database";
+    private static final String url = "jdbc:derby: C:\\Users\\Chas\\Soft.Eng\\Group project\\Titanic7\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
 
-    public static Room getRoom(int roomNumber) {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(filepath));
-            String line;
+    static {
+        cruiseDatabase = new HashSet<>();
+        initializeDatabase(); // Static initialization of the database
+    }
 
-            /*
-             * CSV style
-             * split[0] = room number
-             * split[1] = room price
-             * split[2] = bedType
-             * split[3] = number of beds
-             * split[4] = smoking status
-             * split[5] = booked status
-             */
-            while((line = reader.readLine()) != null) {
-                String[] split = line.split(",");
+    public CruiseDatabase() {
+    }
 
-                //if the room id matches the room to be retrieved
-                if (Objects.equals(roomNumber, Integer.parseInt(split[0]))) {
+    public static void addCruise(Cruise cruise) {
+        String insertSQL = "INSERT INTO Cruises (name, departure, maxCapacity) VALUES (?, ?, ?)";
+        try (Connection connection = DriverManager.getConnection(url);
+             PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
 
-                    Room room = new Room(roomNumber, Integer.parseInt(split[3]), split[2], Boolean.parseBoolean(split[4]), Double.parseDouble(split[1]), split[6]);
+            preparedStatement.setString(1, cruise.getName());
+            preparedStatement.setDate(2, Date.valueOf(cruise.getDeparture()));
+            preparedStatement.setInt(3, cruise.getMaxCapacity());
 
-                    System.err.println(split[4]);
-
-                    return room;
-                }
-            }
-            reader.close();
-        } catch(IOException e){
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.err.println("Room does not exist. Creating null values.");
-        return new Room(0, 0, null, false, 0, null);
     }
-    public static Cruise getCruise(String searchName) {
-        List<Country> travelPath = new ArrayList<>();
-        List<Room> roomList = new ArrayList<>();
-        LocalDate departure = null;
-        int maxCapacity = 0;
 
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(filepath));
-            String line;
-
-            line = reader.readLine();
-            while (line != null) {
-                String[] split = line.split(",");
-
-                /*
-                * CSV Style
-                * split[0] = cruise id
-                * split[1] = cruise name
-                * split[2] = departure date
-                * split[3] = country
-                * split[4] = country arrival date
-                * split[5] = country departure date
-                * split[6] =
-                */
-
-                String cruiseName = split[1];
-                if (Objects.equals(searchName, cruiseName)) {
-                    departure = LocalDate.parse(split[2]);
-                    travelPath.add(new Country(split[3], LocalDate.parse(split[4]), LocalDate.parse(split[5])));
-                    roomList.addAll(getRoomListFromCSV(split[6], split[1]));
-                    maxCapacity = Integer.parseInt(split[7]);
+    private static void initializeDatabase() {
+        try (Connection connection = DriverManager.getConnection(url)) {
+            String query = "SELECT * FROM Cruises";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        Cruise cruise = createCruiseFromResultSet(resultSet);
+                        if (cruise != null) {
+                            cruiseDatabase.add(cruise);
+                        }
+                    }
                 }
-                line = reader.readLine();
             }
-            reader.close();
-        } catch (IOException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        if (departure != null) {
-            return new Cruise(searchName, departure, maxCapacity, travelPath);
-        } else {
-            System.err.println("Cruise with name " + searchName + " does not exist. Returning null.");
-            return null;
-        }
     }
+
+//    private static Cruise createCruiseFromResultSet(ResultSet resultSet) throws SQLException {
+//        // Extract cruise data from resultSet
+//        int id = resultSet.getInt("id");
+//        String name = resultSet.getString("name");
+//        LocalDate departure = resultSet.getDate("departure").toLocalDate();
+//        int maxCapacity = resultSet.getInt("maxCapacity");
+//        // Assuming travelPath and roomList are stored in a format that needs processing
+//        // List<Country> travelPath = processTravelPath(resultSet.getString("travelPath"));
+//        // List<Room> roomList = processRoomList(resultSet.getString("roomList"));
+//        // return new Cruise(name, departure, maxCapacity, travelPath);
+//        // Set id and roomList as needed
+//        // ...
+//    }
+
+    public static Cruise getCruise(String cruiseName) {
+        String query = "SELECT * FROM Cruises WHERE name = ?";
+        try (Connection connection = DriverManager.getConnection(url);
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, cruiseName);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return createCruiseFromResultSet(resultSet);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private static Cruise createCruiseFromResultSet(ResultSet resultSet) throws SQLException {
+        String name = resultSet.getString("name");
+        LocalDate departure = resultSet.getDate("departure").toLocalDate();
+        int maxCapacity = resultSet.getInt("maxCapacity");
+
+        // Retrieve the list of countries associated with the cruise
+        List<Country> travelPath = getTravelPathForCruise(name);
+
+        List<Room> roomList = RoomDatabase.getRoomsForCruise(name);
+
+        return new Cruise(name, departure, maxCapacity, travelPath, roomList);
+    }
+
+    public static List<Cruise> getAllCruises() {
+        List<Cruise> cruises = new ArrayList<>();
+        String query = "SELECT * FROM Cruises";
+        try (Connection connection = DriverManager.getConnection(url);
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    cruises.add(createCruiseFromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cruises;
+    }
+
 
     public static List<String> getAllCruiseNames() {
         List<String> cruiseNames = new ArrayList<>();
+        String query = "SELECT name FROM Cruises";
+        try (Connection connection = DriverManager.getConnection(url);
+             PreparedStatement statement = connection.prepareStatement(query)) {
 
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(filepath));
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                String[] split = line.split(",");
-                String cruiseName = split[1];
-                cruiseNames.add(cruiseName);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    cruiseNames.add(resultSet.getString("name"));
+                }
             }
-            reader.close();
-        } catch (IOException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        //sort to alphabetical order
-        Collections.sort(cruiseNames);
-
         return cruiseNames;
     }
 
-    private static List<Country> getCountryListFromCSV(String csv) {
-        List<Country> countryList = new ArrayList<>();
-        String[] countryEntries = csv.split("\\|");
+    public static void initializeCruises() {
+        List<Cruise> predefinedCruises = Arrays.asList(
+                new Cruise("Caribbean Adventure", LocalDate.now().plusDays(10), 200, createCaribbeanTravelPath(), createSampleRoomList()),
+                new Cruise("Mediterranean Escape", LocalDate.now().plusDays(20), 150, createMediterraneanTravelPath(), createSampleRoomList()),
+                new Cruise("Alaskan", LocalDate.now().plusDays(15), 250, createAlaskanTravelPath(), createSampleRoomList())
+        );
 
-        for (String entry : countryEntries) {
-            String[] parts = entry.split(",");
-            if (parts.length == 3) {
-                String name = parts[0];
-                LocalDate arrivalDate = LocalDate.parse(parts[1]);
-                LocalDate departureDate = LocalDate.parse(parts[2]);
-                countryList.add(new Country(name, arrivalDate, departureDate));
+        for (Cruise cruise : predefinedCruises) {
+            if (!cruiseExists(cruise.getName())) {
+                addCruise(cruise);
             }
         }
+    }
 
-        return countryList;
+    private static boolean cruiseExists(String cruiseName) {
+        return getAllCruiseNames().contains(cruiseName);
+    }
+
+    private static List<Country> createCaribbeanTravelPath() {
+        return Arrays.asList(
+                new Country("Jamaica", LocalDate.now(), LocalDate.now().plusDays(1)),
+                new Country("Bahamas", LocalDate.now().plusDays(2), LocalDate.now().plusDays(3)),
+                new Country("Barbados", LocalDate.now().plusDays(4), LocalDate.now().plusDays(5))
+        );
+    }
+
+    private static List<Country> createMediterraneanTravelPath() {
+        return Arrays.asList(
+                new Country("Italy", LocalDate.now(), LocalDate.now().plusDays(1)),
+                new Country("Greece", LocalDate.now().plusDays(2), LocalDate.now().plusDays(3)),
+                new Country("Spain", LocalDate.now().plusDays(4), LocalDate.now().plusDays(5))
+        );
+    }
+
+    private static List<Country> createAlaskanTravelPath() {
+        return Arrays.asList(
+                new Country("Juneau", LocalDate.now(), LocalDate.now().plusDays(1)),
+                new Country("Skagway", LocalDate.now().plusDays(2), LocalDate.now().plusDays(3)),
+                new Country("Ketchikan", LocalDate.now().plusDays(4), LocalDate.now().plusDays(5))
+        );
     }
 
 
-    private static List<Room> getRoomListFromCSV(String csv, String cruiseName) {
-        List<Room> roomList = new ArrayList<>();
-        String[] roomNumbers = csv.split("\\|");
+    private static List<Room> createSampleRoomList() {
+        return Arrays.asList(
+                new Room(101, 2, "Double", false, 150.0, "Caribbean Adventure"),
+                new Room(102, 1, "Single", true, 100.0, "Caribbean Adventure"),
+                new Room(101, 2, "Double", false, 150.0, "Mediterranean Escape"),
+                new Room(102, 1, "Single", true, 100.0, "Mediterranean Escape"),
+                new Room(101, 2, "Double", false, 150.0, "Alaskan"),
+                new Room(102, 1, "Single", true, 100.0, "Alaskan")
 
-        for (String roomNum : roomNumbers) {
-            if (!roomNum.isEmpty()) {
-                Room room = new Room(Integer.parseInt(roomNum.trim()), 2, "Double", false, 100.0, cruiseName);
-                roomList.add(room);
+        );
+    }
+
+    public static List<Country> getTravelPathForCruise(String cruiseName) {
+        List<Country> travelPath = new ArrayList<>();
+        String query = "SELECT c.* FROM Countries c JOIN Cruises cr ON c.cruise_id = cr.id WHERE cr.name = ?";
+
+        try (Connection connection = DriverManager.getConnection(url);
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, cruiseName);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    String countryName = resultSet.getString("name");
+                    LocalDate arrivalDate = resultSet.getDate("arrivalTime").toLocalDate();
+                    LocalDate departureDate = resultSet.getDate("departureTime").toLocalDate();
+                    travelPath.add(new Country(countryName, arrivalDate, departureDate));
+                }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("Error retrieving travel path for cruise: " + cruiseName);
         }
-        return roomList;
+
+        return travelPath;
     }
 
 }

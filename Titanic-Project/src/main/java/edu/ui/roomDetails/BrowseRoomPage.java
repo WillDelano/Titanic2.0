@@ -66,31 +66,18 @@ public class BrowseRoomPage {
         currentRooms = new ArrayList<>(sampleRooms);
 
         listScrollPane = new JScrollPane(roomList);
+
         roomFrame.add(listScrollPane, BorderLayout.CENTER);
 
         backButton = new JButton("Back to Cruise Details");
-        backButton.addActionListener(e -> {
-            roomFrame.dispose(); // close the RoomPage
-        });
+        backButton.addActionListener(e -> roomFrame.dispose());
 
         selectRoomButton = new JButton("Select Room");
         selectRoomButton.addActionListener(e -> {
             Room selectedRoom = roomList.getSelectedValue();
             if (selectedRoom != null) {
-                int dialogResult = JOptionPane.showConfirmDialog(
-                        roomFrame,
-                        "Reserve Room " + selectedRoom.getRoomNumber() + "?",
-                        "Confirmation",
-                        JOptionPane.OK_CANCEL_OPTION
-                );
-                if (dialogResult == JOptionPane.OK_OPTION) {
-                    // Perform room reservation logic here
-                    JOptionPane.showMessageDialog(roomFrame, "Room " + selectedRoom.getRoomNumber() + " reserved.");
-                    controller.reserveRoom(CurrentGuest.getCurrentGuest(), selectedRoom);
-
-                    // Notify the MyReservationsPage to refresh its data
-                    new edu.ui.reservationDetails.MyReservationsPage().refreshReservations();  // Make sure refreshReservations() is public
-                }
+                controller.reserveRoom(CurrentGuest.getCurrentGuest(), selectedRoom);
+                JOptionPane.showMessageDialog(roomFrame, "Room " + selectedRoom.getRoomNumber() + " reserved.");
             } else {
                 JOptionPane.showMessageDialog(roomFrame, "Please select a room first.");
             }
