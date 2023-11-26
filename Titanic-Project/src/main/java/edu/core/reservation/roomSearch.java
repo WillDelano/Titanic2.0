@@ -28,7 +28,7 @@ public class roomSearch {
     bedPreferenceType bedType;
     bedCountType bedCount;
 
-    enum roomSortType{/* add room types here */};
+    enum roomSortType{/* add room types here */}
 
     /**
      * RoomSearch Constructor
@@ -129,7 +129,7 @@ public class roomSearch {
 
         // sort rooms
         if(priceSort != priceSortType.NONE){
-            sortRoomsByPrice(sortedRooms);
+            sortedRooms = sortRoomsByPrice(sortedRooms);
         }
 
         return sortedRooms;
@@ -159,15 +159,18 @@ public class roomSearch {
      *
      * //@param list of rooms to sort
      */
-    void sortRoomsByPrice(List<Room> roomList){
+    List<Room> sortRoomsByPrice(List<Room> roomList){
+        Comparator<Room> myComparator = Comparator.comparingDouble(Room::getRoomPrice);
         switch(priceSort){
             case ASCENDING:
-                Collections.sort(roomList, new ByPriceASCENDING());
+                myComparator = Comparator.comparingDouble(Room::getRoomPrice);
                 break;
             case DESCENDING:
-                Collections.sort(roomList, new ByPriceDESCENDING());
+                myComparator = Comparator.comparingDouble(Room::getRoomPrice).reversed();
                 break;
         }
+        Collections.sort(roomList, myComparator);
+        return roomList;
     }
 
     /**
@@ -196,7 +199,6 @@ public class roomSearch {
      */
     public List<Room> filterBySmokingType(List<Room> roomList){
         List<Room> ogRooms = new ArrayList<Room>(roomList);
-        List<Room> updatedRooms = new ArrayList<Room>();
         switch(smokeType){
             case NON_SMOKING:
                 ogRooms.removeIf(obj -> obj.getSmokingAvailable());
@@ -236,15 +238,15 @@ public class roomSearch {
                 break;
         }
     }
-    public String getSmokeType(){
+    public String getSortType(){
         String smokingType = "";
 
-        if(smokeType == smokingSortType.SMOKING){
-            smokingType = "smoking";
-        }else if (smokeType == smokingSortType.NON_SMOKING){
-            smokingType = "Nonsmoking";
-        } else if (smokeType == smokingSortType.ALL){
-            smokingType = "All";
+        if(priceSort == priceSortType.ASCENDING){
+            smokingType = "ascending";
+        }else if (priceSort == priceSortType.DESCENDING){
+            smokingType = "descending";
+        } else if (priceSort == priceSortType.NONE){
+            smokingType = "None";
         }
 
         return smokingType;
@@ -363,6 +365,7 @@ public class roomSearch {
  * @author Chas Doughtry
  * @version 1.0
  */
+
 class ByPriceASCENDING implements Comparator<Room> {
     public int compare (Room a, Room b){
         double epsilon = 0.000001d;
@@ -383,6 +386,7 @@ class ByPriceASCENDING implements Comparator<Room> {
  * @author Chas Doughtry
  * @version 1.0
  */
+
 class ByPriceDESCENDING implements Comparator<Room> {
     public int compare (Room a, Room b){
         double epsilon = 0.000001d;

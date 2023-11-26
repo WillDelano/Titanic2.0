@@ -230,25 +230,20 @@ public class BrowseRoomPage {
         }
 
         //sort option
-        if(sortTypeOption.getSelectedItem().equals("NONE")){
+        if(sortTypeOption.getSelectedItem().equals("None")){
             cruiseSearch.setPriceSorting(roomSearch.priceSortType.NONE);
 
         } else if (sortTypeOption.getSelectedItem().equals("Price: Ascending")) {
             cruiseSearch.setPriceSorting(roomSearch.priceSortType.ASCENDING);
-            System.out.println("heere");
 
         }else if (sortTypeOption.getSelectedItem().equals("Price: Descending")) {
             cruiseSearch.setPriceSorting(roomSearch.priceSortType.DESCENDING);
         }
 
-
         roomFrame.remove(listScrollPane);
-
-        //list = cruiseSearch.sortAndFilterRooms(list);
 
         List<Room> list = new ArrayList<>(currentRooms);
         list = cruiseSearch.sortAndFilterRooms(list);
-        //list = cruiseSearch.filterBySmokingType(list);
         roomList = new JList<>(list.toArray(new Room[0]));
 
         listScrollPane = new JScrollPane(roomList);
