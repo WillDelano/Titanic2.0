@@ -32,14 +32,6 @@ public class EditProfileController {
     public static void editAccount(User account, String email, String password) {
         //Need some function to incorporate editing both email and password. If only one was changed it wouldn't affect
         //the other so updating both is acceptable
-<<<<<<< HEAD
-        //AccountDatabase.updateAccount(account, email, password);
-    }
-
-    public static void deleteAccount(User account) {
-        //AccountDatabase.removeUser(account);
-=======
-
         //AccountDatabase.updateAccount(account, email, password);
     }
 
@@ -52,6 +44,5 @@ public class EditProfileController {
     public static void deleteAccount(User account) throws IOException {
 
         AccountDatabase.removeUser(account);
->>>>>>> main
     }
 }

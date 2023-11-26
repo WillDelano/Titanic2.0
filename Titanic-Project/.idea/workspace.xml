@@ -4,11 +4,6 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="fb1b58f9-9b4d-4d74-a260-a3753ac83a2c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/reservation/roomSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/reservation/roomSearch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/roomDetails/BrowseRoomPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/roomDetails/BrowseRoomPage.java" afterDir="false" />
-=======
     <list default="true" id="fc14b32d-70fe-4d06-8946-f4a8359f9ce0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/derby.log" beforeDir="false" afterPath="$PROJECT_DIR$/derby.log" afterDir="false" />
@@ -22,7 +17,6 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c520.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c520.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/LoginPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/reservationDetails/MyReservationsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/reservationDetails/MyReservationsPage.java" afterDir="false" />
->>>>>>> main
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,57 +31,6 @@
     </option>
   </component>
   <component name="Git.Settings">
-<<<<<<< HEAD
-    <favorite-branches>
-      <branch-storage>
-        <map>
-          <entry type="LOCAL">
-            <value>
-              <list>
-                <branch-info repo="$PROJECT_DIR$/.." source="roomSearchUI" />
-              </list>
-            </value>
-          </entry>
-        </map>
-      </branch-storage>
-    </favorite-branches>
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$/.." value="main" />
-      </map>
-    </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 7
-}</component>
-  <component name="ProjectId" id="2Xp1JV1XehG6iKIxwPxVaH6Evxv" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "roomSearchUI",
-    "last_opened_file_path": "C:/Users/Chas/Soft.Eng/Lab4",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
-  }
-}]]></component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="fb1b58f9-9b4d-4d74-a260-a3753ac83a2c" name="Changes" comment="" />
-      <created>1699223264929</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1699223264929</updated>
-      <workItem from="1699223265953" duration="3758000" />
-      <workItem from="1700083453251" duration="634000" />
-=======
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectColorInfo">{
@@ -141,7 +84,7 @@
       <recent name="C:\Users\vince\Java Projects\Titanic2.0\Titanic-Project\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.LoginPage">
+  <component name="RunManager">
     <configuration name="DerbyShutdown" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="edu.core.DerbyShutdown" />
       <module name="Titanic-Project" />
@@ -294,14 +237,12 @@
       <workItem from="1700684082373" duration="49000" />
       <workItem from="1700684138791" duration="23000" />
       <workItem from="1700684168512" duration="500000" />
->>>>>>> main
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-<<<<<<< HEAD
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -316,6 +257,4 @@
       </breakpoints>
     </breakpoint-manager>
   </component>
-=======
->>>>>>> main
 </project>
