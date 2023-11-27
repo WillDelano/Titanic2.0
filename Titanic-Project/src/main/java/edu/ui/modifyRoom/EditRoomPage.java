@@ -115,8 +115,6 @@ public class EditRoomPage {
         mainPanel.add(smokingYes);
         mainPanel.add(smokingNo);
 
-
-
         //sixth row
         mainPanel.add(priceLabel);
         mainPanel.add(priceField);
