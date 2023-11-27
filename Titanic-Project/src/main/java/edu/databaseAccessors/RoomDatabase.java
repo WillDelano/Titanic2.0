@@ -4,6 +4,12 @@ import edu.core.reservation.Room;
 import edu.core.users.User;
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.*;
+import edu.core.reservation.Room;
+import java.sql.*;
 import java.util.*;
 
 
@@ -16,125 +22,154 @@ import java.util.*;
  * @version 1.0
  */
 public class RoomDatabase {
+    private static Set<Room> roomDatabase;
 
-    private static String fileName = "C:\\Users\\Colet\\Documents\\GIT\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\room.csv";
+    private static final String url = "jdbc:derby:C:/Users/vince/IdeaProjects/titanic2/Titanic2.0/Titanic-Project/src/main/java/edu/Database";
+
+    /**
+     * Operation to add a reservation
+     *
+     * @param room specified room to add
+     *
+     */
     public static void addRoom(Room room) {
-        /*
-         * CSV style
-         * split[0] = room number
-         * split[1] = room price
-         * split[2] = bedType
-         * split[3] = number of beds
-         * split[4] = smoking status
-         * split[5] = booked status
-         */
+        String insertSQL = "INSERT INTO Rooms (roomnumber, numberofbeds, bedtype, smokingavailable, roomprice, isbooked, cruise) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try (Connection connection = DriverManager.getConnection(url);
+             PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
 
-        //write to csv
-        String toWrite = room.getRoomNumber() + "," + room.getRoomPrice() + "," +
-                room.getBedTypeStr() + "," + room.getNumberOfBeds() + ","
-                + room.getSmokingAvailable() + "," + room.isBooked() + "," + room.getCruise() + "\n";
+            preparedStatement.setInt(1, room.getRoomNumber());
+            preparedStatement.setInt(2, room.getNumberOfBeds());
+            preparedStatement.setString(3, room.getBedTypeStr());
+            preparedStatement.setBoolean(4, room.getSmokingAvailable());
+            preparedStatement.setDouble(5, room.getRoomPrice());
+            preparedStatement.setBoolean(6, room.isBooked());
+            preparedStatement.setString(7, room.getCruise());
 
-        BufferedWriter writer = null;
-        try {
-            writer = new BufferedWriter(new FileWriter(fileName, true));
-            writer.write(toWrite);
-            writer.flush();
-        } catch (IOException e) {
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (writer != null) {
-                    writer.close(); // Closing the BufferedWriter
+        }
+    }
+
+    private static boolean roomExists(int roomNumber, String cruise) {
+        String query = "SELECT COUNT(*) FROM Rooms WHERE roomnumber = ? AND cruise = ?";
+        try (Connection connection = driver.getDBConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setInt(1, roomNumber);
+            statement.setString(2, cruise);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt(1) > 0;
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static List<Room> getRoomsForCruise(String cruiseName) {
+        List<Room> rooms = new ArrayList<>();
+        String query = "SELECT * FROM Rooms WHERE cruise = ?";
+        try (Connection connection = driver.getDBConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, cruiseName);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Room room = new Room(resultSet.getInt("roomnumber"),
+                            resultSet.getInt("numberofbeds"),
+                            resultSet.getString("bedtype"),
+                            resultSet.getBoolean("smokingavailable"),
+                            resultSet.getDouble("roomprice"),
+                            resultSet.getString("cruise"));
+                    rooms.add(room);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rooms;
+    }
+
+    public static void initializeRooms() {
+        List<Room> predefinedRooms = Arrays.asList(
+                new Room(101, 2, "Queen", false, 250, "Caribbean Adventure"),
+                new Room(102, 4, "King", true, 400, "Caribbean Adventure"),
+                new Room(103, 1, "Twin", false, 200, "Caribbean Adventure"),
+                new Room(104, 2, "Queen", false, 250, "Mediterranean Escape"),
+                new Room(105, 2, "King", true, 400, "Mediterranean Escape"),
+                new Room(106, 2, "Twin", false, 200, "Mediterranean Escape"),
+                new Room(107, 2, "Queen", false, 250, "Alaskan"),
+                new Room(108, 2, "King", true, 400, "Alaskan"),
+                new Room(109, 2, "Twin", false, 200, "Alaskan")
+        );
+
+        for (Room room : predefinedRooms) {
+            if (!roomExists(room.getRoomNumber(), room.getCruise())) {
+                addRoom(room);
             }
         }
     }
 
+    /**
+     * Operation to get a room
+     *
+     * @param roomNumber specified room to get
+     *
+     */
     public static Room getRoom(int roomNumber) {
-        try {
+        String query = "SELECT * FROM Rooms WHERE roomnumber = ?";
+        try (Connection connection = driver.getDBConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
 
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            String line;
-
-            /*
-             * CSV style
-             * split[0] = room number
-             * split[1] = room price
-             * split[2] = bedType
-             * split[3] = number of beds
-             * split[4] = smoking status
-             * split[5] = booked status
-             */
-            while((line = reader.readLine()) != null) {
-                String[] split = line.split(",");
-
-                //if the room id matches the room to be retrieved
-                if (Objects.equals(roomNumber, Integer.parseInt(split[0]))) {
-
-                    Room room = new Room(roomNumber, Integer.parseInt(split[3]), split[2], Boolean.parseBoolean(split[4]), Double.parseDouble(split[1]), split[6]);
-
-                    return room;
+            statement.setInt(1, roomNumber);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return new Room(resultSet.getInt("roomnumber"),
+                            resultSet.getInt("numberofbeds"),
+                            resultSet.getString("bedtype"),
+                            resultSet.getBoolean("smokingavailable"),
+                            resultSet.getDouble("roomprice"),
+                            resultSet.getString("cruise"));
                 }
             }
-            reader.close();
-        } catch(IOException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.err.println("Room does not exist. Creating null values. If you are creating a room you can ignore this error.");
-        return new Room(-1, 0, null, false, 0, null);
+        return null;
     }
 
 
     /**
-     * Operation to give access to a list of all rooms of a specific cruise
+     * Operation to get all rooms of a specific cruise
      *
-     * @param cruise cruise name to parse all rooms
+     * @param cruise cruise name containing the rooms
      *
-     * @return list of rooms for a specific cruise
+     * @return list of rooms for the specific cruise
      */
-    //TODO: Add a parameter to get all the rooms of a certain cruise
     public static List<Room> getAllRooms(String cruise) {
-        List<Room> rooms = new LinkedList<>();
-        try {
+        List<Room> rooms = new ArrayList<>();
+        String query = "SELECT * FROM Rooms WHERE cruise = ?";
+        try (Connection connection = driver.getDBConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
 
-            BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\Colet\\Documents\\GIT\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\room.csv"));
-
-            String line;
-            /*
-             * CSV style
-             * split[0] = room number
-             * split[1] = room price
-             * split[2] = bedType
-             * split[3] = number of beds
-             * split[4] = smoking status
-             * split[5] = booked status
-             * split[6] = cruise name
-             */
-
-            line = reader.readLine();
-
-            while(line != null) {
-                String[] split = line.split(",");
-
-                //if the room is on the correct cruise
-                if (Objects.equals(split[6], cruise)) {
-                    Room room = new Room(Integer.parseInt(split[0]), Integer.parseInt(split[3]), split[2], Boolean.parseBoolean(split[4]), Double.parseDouble(split[1]), split[6]);
-
-                    if (!ReservationDatabase.hasRoom(room.getRoomNumber())) {
-                        rooms.add(room);
-                    }
+            statement.setString(1, cruise);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Room room = new Room(resultSet.getInt("roomnumber"),
+                            resultSet.getInt("numberofbeds"),
+                            resultSet.getString("bedtype"),
+                            resultSet.getBoolean("smokingavailable"),
+                            resultSet.getDouble("roomprice"),
+                            resultSet.getString("cruise"));
+                    rooms.add(room);
                 }
-                line = reader.readLine();
             }
-            reader.close();
-            return rooms;
-
-        } catch(IOException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.err.println("Rooms do not exist for the cruise. Creating null values.");
         return rooms;
     }
 
@@ -148,19 +183,33 @@ public class RoomDatabase {
             return false;
         }
 
-        List<Room> rooms = getAllRooms(this.toString());
+        String query = "SELECT COUNT(*) FROM Rooms WHERE roomnumber = ?";
+        try (Connection connection = driver.getDBConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
 
-        if (rooms == null || rooms.isEmpty()) {
-            System.out.println("There are currently no rooms to choose from!");
-            return false;
-        }
-
-        for (Room room : rooms) {
-            if (room.getRoomNumber() == roomChoice) {
-                return true;
+            statement.setInt(1, roomChoice);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next() && resultSet.getInt(1) > 0) {
+                    return true;
+                }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        System.out.println("Room not found.");
         return false;
+    }
+
+    public static void bookRoom(int roomNumber) {
+        String updateSQL = "UPDATE Rooms SET isbooked = true WHERE roomnumber = ?";
+        try (Connection connection = driver.getDBConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(updateSQL)) {
+
+            preparedStatement.setInt(1, roomNumber);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

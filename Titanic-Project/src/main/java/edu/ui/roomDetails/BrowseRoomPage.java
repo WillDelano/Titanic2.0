@@ -6,7 +6,6 @@ import edu.databaseAccessors.RoomDatabase;
 
 import javax.swing.*;
 import java.awt.*;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -41,41 +40,18 @@ public class BrowseRoomPage {
 
         List<Room> sampleRooms = BrowseRoomController.getRooms(selectedCruise);
         roomList = new JList<>(sampleRooms.toArray(new Room[0]));
-
         JScrollPane listScrollPane = new JScrollPane(roomList);
         roomFrame.add(listScrollPane, BorderLayout.CENTER);
 
         backButton = new JButton("Back to Cruise Details");
-        backButton.addActionListener(e -> {
-            roomFrame.dispose(); // close the RoomPage
-        });
+        backButton.addActionListener(e -> roomFrame.dispose());
 
         selectRoomButton = new JButton("Select Room");
         selectRoomButton.addActionListener(e -> {
             Room selectedRoom = roomList.getSelectedValue();
             if (selectedRoom != null) {
-                int dialogResult = JOptionPane.showConfirmDialog(
-                        roomFrame,
-                        "Reserve Room " + selectedRoom.getRoomNumber() + "?",
-                        "Confirmation",
-                        JOptionPane.OK_CANCEL_OPTION
-                );
-                if (dialogResult == JOptionPane.OK_OPTION) {
-                    // Perform room reservation logic here
-                    JOptionPane.showMessageDialog(roomFrame, "Room " + selectedRoom.getRoomNumber() + " reserved.");
-                    try {
-                        controller.reserveRoom(CurrentGuest.getCurrentGuest(), selectedRoom);
-                    } catch (SQLException ex) {
-                        throw new RuntimeException(ex);
-                    }
-
-                    // Notify the MyReservationsPage to refresh its data
-                    try {
-                        new edu.ui.reservationDetails.MyReservationsPage().refreshReservations();  // Make sure refreshReservations() is public
-                    } catch (SQLException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                }
+                controller.reserveRoom(CurrentGuest.getCurrentGuest(), selectedRoom);
+                JOptionPane.showMessageDialog(roomFrame, "Room " + selectedRoom.getRoomNumber() + " reserved.");
             } else {
                 JOptionPane.showMessageDialog(roomFrame, "Please select a room first.");
             }

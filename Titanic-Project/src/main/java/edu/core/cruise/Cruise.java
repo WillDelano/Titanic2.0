@@ -30,17 +30,19 @@ public class Cruise {
     /**
      * This function creates a Cruise object with given values
      *
-     * @param name The user to add to the wait-list
-     * @param departure The date the cruise will depart
+     * @param name        The user to add to the wait-list
+     * @param departure   The date the cruise will depart
      * @param maxCapacity The maximum amount of passengers
-     * @param path The in-order list of countries the cruise will travel to
+     * @param path        The in-order list of countries the cruise will travel to
+     * @param roomList
      */
-    public Cruise(String name, LocalDate departure, int maxCapacity, List<Country> path) {
+    public Cruise(String name, LocalDate departure, int maxCapacity, List<Country> path, List<Room> roomList) {
         this.id = new UniqueID().getId();
         this.travelPath = path;
         this.name = name;
         this.departure = departure;
         this.maxCapacity = maxCapacity;
+        this.roomList = roomList;
         currentOccupancy = 0;
     }
     /**

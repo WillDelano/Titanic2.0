@@ -4,6 +4,7 @@ import edu.core.cruise.Cruise;
 import edu.databaseAccessors.CruiseDatabase;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Controller for the cruise ui
@@ -15,13 +16,12 @@ import java.util.List;
  * @see Cruise, CruiseDatabase, SelectCruisePage
  */
 public class SelectCruiseController {
-    // Fetches the names of all cruises in the database
     public static List<String> getCruiseNames() {
-        return CruiseDatabase.getAllCruiseNames();
+        return CruiseDatabase.getAllCruises().stream()
+                .map(Cruise::getName)
+                .collect(Collectors.toList());
     }
 
-
-    // Fetches detailed information of a cruise by its name
     public static Cruise getCruiseDetails(String cruiseName) {
         return CruiseDatabase.getCruise(cruiseName);
     }

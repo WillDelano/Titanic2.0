@@ -22,6 +22,7 @@ import java.util.Set;
  * @author William Delano
  * @version 1.0
  */
+
 public class ReservationDatabase implements driver{
     //private static String url = "jdbc:derby:C:/Users/Colet/Documents/GIT/Titanic2.0/Titanic-Project/src/main/java/edu/Database";
     /**
@@ -83,6 +84,7 @@ public class ReservationDatabase implements driver{
         Set<Reservation> guestReservations = new HashSet<>();
 
         //create the connection to the db
+
         try (Connection connection = driver.getDBConnection()) {
             //command to select all rows from db matching the guest id
             String selectAll = "SELECT * FROM Reservation WHERE Username = ?";
@@ -93,7 +95,7 @@ public class ReservationDatabase implements driver{
                 //executing the statement (executeQuery returns a ResultSet)
                 try (ResultSet resultSet = statement.executeQuery()) {
                     //get the values in the set and create reservations for them
-                    if (resultSet.next()) {
+                    while (resultSet.next()) {
                         User user = AccountDatabase.getUser(resultSet.getString("username"));
                         Room room = RoomDatabase.getRoom(resultSet.getInt("roomNum"));
                         LocalDate startDate = LocalDate.parse(resultSet.getString("startDate"));
@@ -152,7 +154,7 @@ public class ReservationDatabase implements driver{
     }
 
     /**
-     * Operation to check if reservation is valid
+     * Operation to add a reservation
      *
      * @param newReservation specified reservation to add
      *
@@ -195,7 +197,7 @@ public class ReservationDatabase implements driver{
     /**
      * Operation to check if a User has reservations
      *
-     * @param user user to check database for
+     * @param user user to check for in database
      *
      */
     public static boolean hasUser(User user) {
@@ -225,9 +227,9 @@ public class ReservationDatabase implements driver{
 
 
     /**
-     * Operation to check if a specific room is in reservation
+     * Operation to check if a specific room is reserved
      *
-     * @param roomNumber room number to check database for
+     * @param roomNumber room number to check
      *
      */
     public static boolean hasRoom(int roomNumber) {
@@ -326,6 +328,8 @@ public class ReservationDatabase implements driver{
      * Operation to update the reservation in the database
      *
      * @param reservation specified reservation to update
+     * @param endDate end date to update in the reservation
+     * @param roomNumber room number to update in the reservation
      *
      */
     public static void updateReservation(Reservation reservation, String endDate, String roomNumber) {
@@ -351,5 +355,3 @@ public class ReservationDatabase implements driver{
         }
     }
 }
-
-

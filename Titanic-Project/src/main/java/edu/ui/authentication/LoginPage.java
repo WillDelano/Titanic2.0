@@ -2,11 +2,17 @@ package edu.ui.authentication;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Objects;
 
 import edu.authentication.Authentication;
 import edu.databaseAccessors.AccountDatabase;
+import edu.databaseAccessors.CountryDatabase;
+import edu.databaseAccessors.CruiseDatabase;
+import edu.databaseAccessors.RoomDatabase;
 import edu.ui.landingPage.GuestLandingPage;
 import edu.ui.landingPage.TravelAgentLandingPage;
 
@@ -75,6 +81,20 @@ public class LoginPage {
         mainFrame.add(loginPanel);
         mainFrame.add(registerPanel);
 
+        mainFrame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                try {
+                    DriverManager.getConnection("jdbc:derby:;shutdown=true");
+                    System.out.println("Hi");
+                } catch (SQLException ex) {
+                    if (!ex.getSQLState().equals("XJ015")) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        });
+
         loginButton.addActionListener(e -> {
             try {
                 loginToSystem();
@@ -125,6 +145,9 @@ public class LoginPage {
      */
     public static void main(String[] args) throws SQLException {
         AccountDatabase.addSampleUsers();
+        CruiseDatabase.initializeCruises();
+        RoomDatabase.initializeRooms();
+        CountryDatabase.initializeCountries();
         new LoginPage();
     }
 }

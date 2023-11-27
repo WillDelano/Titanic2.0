@@ -1,6 +1,7 @@
 package edu.databaseAccessors;
 
 import edu.core.reservation.Reservation;
+import edu.core.reservation.Room;
 import edu.core.users.Guest;
 
 import java.sql.Connection;
@@ -10,6 +11,19 @@ import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
+
+/**
+ * Modifies the Reservation database to Check in and checkout users
+ *
+ * <p>
+ * The User will look for a reservation that a user has, select the reservation, which will be
+ * passed into this class, and will check in that user.
+ * </p>
+ *
+ * @author Cole Hogan
+ * @version 1.1
+ * @see Room
+ */
 public class CheckInDatabase {
 
 
@@ -36,6 +50,9 @@ public class CheckInDatabase {
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
+
+        //When the user checks in the room is booked
+        RoomDatabase.bookRoom(reservation.getRoom().getRoomNumber());
         return true;
     }
 
