@@ -5,6 +5,7 @@ import edu.core.billingmanagement.PaymentInfo;
 import edu.core.cruise.Country;
 import edu.core.reservation.Reservation;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -29,6 +30,9 @@ public class Guest extends User {
     private PaymentInfo paymentInfo;
     private boolean isDeclined = false;
 
+    private boolean checkIn = false;
+
+
     /**
      * Constructor for creating a new Guest.
      *
@@ -45,6 +49,8 @@ public class Guest extends User {
         this.rewardPoints = rewardPoints;
         this.reservations = new ArrayList<>();
     }
+
+
 
     public PaymentInfo getPaymentInfo() {
         return paymentInfo;
@@ -72,7 +78,15 @@ public class Guest extends User {
      * @param endCountry    Ending country of the cruise.
      * @return              The created reservation.
      */
+<<<<<<< HEAD
     public Reservation makeReservation(Room room, LocalDate startDate, LocalDate endDate, String startCountry, String endCountry) {
+=======
+    public Reservation makeReservation(Room room, LocalDate startDate, LocalDate endDate, String startCountry, String endCountry) throws SQLException {
+        AccountDatabase database = new AccountDatabase();
+        ReservationDatabase resDatabase = new ReservationDatabase();
+
+        // if end date is before or equal to start date, throw error message
+>>>>>>> checkin
         if (endDate.isBefore(startDate) || startDate.equals(endDate)) {
             throw new RuntimeException("Invalid Date Range. Please make sure start date is before end date.");
         }
@@ -87,7 +101,7 @@ public class Guest extends User {
 
 
         if (!ReservationDatabase.hasReservation(reservation)) {
-            ReservationDatabase.addReservation(reservation);
+            ReservationDatabase.addReservation( reservation);
             room.bookRoom();
             this.reservations.add(reservation);
             
@@ -104,7 +118,7 @@ public class Guest extends User {
      *
      * @return Set of reservations associated with a guest.
      */
-    public Set<Reservation> getReservations() {
+    public Set<Reservation> getReservations() throws SQLException {
         return ReservationDatabase.getReservations(this);
     }
 

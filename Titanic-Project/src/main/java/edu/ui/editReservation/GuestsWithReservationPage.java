@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -29,12 +30,12 @@ public class GuestsWithReservationPage {
     private JButton backButton;
     private JTextArea detailsTextArea;
 
-    public GuestsWithReservationPage(TravelAgentLandingPage landingPage) {
+    public GuestsWithReservationPage(TravelAgentLandingPage landingPage) throws SQLException {
         this.landingPage = landingPage;
         prepareGUI();
     }
 
-    private void prepareGUI() {
+    private void prepareGUI() throws SQLException {
         mainFrame = new JFrame("Select a Cruise");
         mainFrame.setSize(1000, 700);
         mainFrame.setLayout(new BorderLayout());
@@ -73,7 +74,11 @@ public class GuestsWithReservationPage {
             selectButton.setAlignmentX(Component.CENTER_ALIGNMENT);
             selectButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    handleReservationList(guest);
+                    try {
+                        handleReservationList(guest);
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             });
             detailsPanel.add(selectButton);
@@ -96,7 +101,7 @@ public class GuestsWithReservationPage {
         mainFrame.setVisible(true);
     }
 
-    private void handleReservationList(Guest guest) {
+    private void handleReservationList(Guest guest) throws SQLException {
         mainFrame.setVisible(false);
         new ReservationListPage(this, guest);
     }

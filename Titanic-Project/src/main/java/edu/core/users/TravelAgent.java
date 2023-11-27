@@ -42,4 +42,5 @@ public class TravelAgent extends User {
             bill.resolveDispute(resolutionNotes);
         }
     }
+
 }

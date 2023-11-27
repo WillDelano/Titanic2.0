@@ -39,7 +39,7 @@ public class RoomDatabase {
 
             preparedStatement.setInt(1, room.getRoomNumber());
             preparedStatement.setInt(2, room.getNumberOfBeds());
-            preparedStatement.setString(3, room.getBedType());
+            preparedStatement.setString(3, room.getBedTypeStr());
             preparedStatement.setBoolean(4, room.getSmokingAvailable());
             preparedStatement.setDouble(5, room.getRoomPrice());
             preparedStatement.setBoolean(6, room.isBooked());

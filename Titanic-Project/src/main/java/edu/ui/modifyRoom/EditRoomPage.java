@@ -189,7 +189,7 @@ public class EditRoomPage {
             }
 
             //if no changes were made, remind the agent
-            if (Objects.equals(newRoomNumber, room.getRoomNumber()) && Objects.equals(newBedType, room.getBedType()) &&
+            if (Objects.equals(newRoomNumber, room.getRoomNumber()) && Objects.equals(newBedType, room.getBedTypeStr()) &&
                     Objects.equals(newNumberOfBeds, room.getNumberOfBeds()) &&
                     Objects.equals(newSmokingAvailability, room.getSmokingAvailable()) &&
                     Objects.equals(newPrice, room.getRoomPrice())) {

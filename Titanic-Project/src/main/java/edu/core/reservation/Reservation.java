@@ -37,6 +37,8 @@ public class Reservation {
 
     private ReservationDatabase reservations;
 
+    private boolean checkIn = false;
+
 
     public Reservation(User user, Room room, LocalDate startDate, LocalDate endDate, Country startCountry, Country endCountry) {
         // if room is already booked, throw error
@@ -159,6 +161,7 @@ public class Reservation {
      *
      * @return true if the objects are equal in value
      */
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
