@@ -89,7 +89,7 @@
       <recent name="C:\Users\vince\Java Projects\Titanic2.0\Titanic-Project\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DerbyShutdown">
+  <component name="RunManager">
     <configuration name="DerbyShutdown" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="edu.core.DerbyShutdown" />
       <module name="Titanic-Project" />
