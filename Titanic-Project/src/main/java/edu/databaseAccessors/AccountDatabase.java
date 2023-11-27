@@ -37,7 +37,7 @@ public class AccountDatabase {
     }
 
     private static void initializeDatabase() {
-        try (Connection connection = DriverManager.getConnection(url)) {
+        try (Connection connection = driver.getDBConnection()) {
             String query = "SELECT * FROM Users";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 try (ResultSet resultSet = statement.executeQuery()) {

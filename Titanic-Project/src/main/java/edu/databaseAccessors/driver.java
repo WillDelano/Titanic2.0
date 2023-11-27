@@ -10,12 +10,8 @@ public interface driver {
         String DB_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
         String url = "jdbc:derby:C:\\Users\\Colet\\Documents\\GIT\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\database";
         Connection dbConnection = null;
-//        try {
-//            //Class.forName(DB_DRIVER);
-//            System.out.println("got the driver");
-//        } catch (ClassNotFoundException e) {
-//            System.out.println(e.getMessage());
-//        }
+        //Class.forName(DB_DRIVER);
+        System.out.println("got the driver");
         try {
             dbConnection = DriverManager.getConnection(url);
             return dbConnection;

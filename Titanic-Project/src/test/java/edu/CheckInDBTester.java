@@ -19,6 +19,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+import static org.junit.Assert.*;
+
 public class CheckInDBTester implements driver {
     CheckInDatabase checkInDB = null;
 
@@ -27,63 +29,61 @@ public class CheckInDBTester implements driver {
     LocalDate date = null;
     Room room = null;
     Country c = null;
-    Reservation r = null;
+    public static Reservation r;
     @BeforeEach
     public void setUp() throws SQLException {
-        new ReservationDatabase();
-         checkInDB = new CheckInDatabase();
-
-        try (Connection connection = driver.getDBConnection()) {
-            String insertQuery = "INSERT INTO Reservation (username, duration, startCountry, endCountry, roomNum, startDate, endDate)" +
-                    " VALUES (?, ?, ?, ?, ?, ?, ?)";
-
-            try (PreparedStatement statement = connection.prepareStatement(insertQuery)) {
-                statement.setString(1, "wdelano");
-                statement.setInt(2, 10);
-                statement.setString(3, "Cambodia");
-                statement.setString(4, "Kyrgyzstan");
-                statement.setInt(5, 4327);
-                statement.setString(6, "2002-29-09");
-                statement.setString(7, "2002-30-09");
-
-                int result = statement.executeUpdate();
-
-                if (result <= 0) {
-                    System.out.println("Failed to insert test data");
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         LocalDate date = LocalDate.now();
         Room room = new Room(0, 0, "", false, 0, "test");
         Country c = new Country("Test", date, date);
-        Reservation r = new Reservation(u, room, date, date, c, c);
+        r = new Reservation(u, room, date, date, c, c);
     }
 
     @AfterEach
     public void tearDown() {
-        try (Connection connection = DriverManager.getConnection(url)) {
-            //clear the table
-            String deleteQuery = "DELETE FROM Reservation";
-            try (PreparedStatement statement = connection.prepareStatement(deleteQuery)) {
-                statement.executeUpdate();
-            }
-
-            //reset the id incrementer to 1
-            String resetId = "ALTER TABLE Reservation ALTER COLUMN id RESTART WITH 1";
-            try (PreparedStatement statement = connection.prepareStatement(resetId)) {
-                statement.executeUpdate();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try (Connection connection =driver.getDBConnection()) {
+//            //clear the table
+//            String deleteQuery = "DELETE FROM Reservation";
+//            try (PreparedStatement statement = connection.prepareStatement(deleteQuery)) {
+//                statement.executeUpdate();
+//            }
+//
+//            //reset the id incrementer to 1
+//            String resetId = "ALTER TABLE Reservation ALTER COLUMN id RESTART WITH 1";
+//            try (PreparedStatement statement = connection.prepareStatement(resetId)) {
+//                statement.executeUpdate();
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Test
     public void checkInTest() throws SQLException {
         ReservationDatabase.addReservation(r);
         CheckInDatabase.checkInGuest(r);
+        assertEquals(CheckInDatabase.guestIsCheckedIn(u),true);
+    }
+    @Test
+    public void checkInTestFail() throws SQLException {
+        ReservationDatabase.addReservation(r);
+        CheckInDatabase.checkInGuest(r);
+        LocalDate date = LocalDate.now();
+        Room room = new Room(2, 6, "", false, 0, "test");
+        Country c = new Country("Test", date, date);
+        Guest dan = new Guest("ricky", "taylorswift", new UniqueID().getId(), "Will", "Delano", 0, "wdelano2002@gmail.com");
+        Reservation r2 = new Reservation(dan,room,date,date,c,c);
+        ReservationDatabase.addReservation(r2);
+        assertNotEquals(CheckInDatabase.guestIsCheckedIn(dan),true);
+    }
+
+    @Test public void CheckOutTest() throws SQLException{
+        ReservationDatabase.addReservation(r);
+        CheckInDatabase.checkInGuest(r);
+        CheckInDatabase.checkOutGuest(r);
+        assertNotEquals(CheckInDatabase.guestIsCheckedIn(u),true);
+    }
+    @Test
+    public void DoesNotHaveReservation(){
 
     }
 

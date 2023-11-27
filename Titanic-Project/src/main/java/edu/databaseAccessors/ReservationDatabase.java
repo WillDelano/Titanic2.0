@@ -85,11 +85,11 @@ public class ReservationDatabase implements driver{
         //create the connection to the db
         try (Connection connection = driver.getDBConnection()) {
             //command to select all rows from db matching the guest id
-            String selectAll = "SELECT * FROM Reservation WHERE id = ?";
+            String selectAll = "SELECT * FROM Reservation WHERE Username = ?";
             //preparing the statement
             try (PreparedStatement statement = connection.prepareStatement(selectAll)) {
                 //set the first parameter to search for (id) to the guest's id
-                statement.setInt(1, guest.getId());
+                statement.setString(1, guest.getUsername());
                 //executing the statement (executeQuery returns a ResultSet)
                 try (ResultSet resultSet = statement.executeQuery()) {
                     //get the values in the set and create reservations for them
