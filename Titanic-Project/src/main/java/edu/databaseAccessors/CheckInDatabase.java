@@ -29,8 +29,14 @@ public class CheckInDatabase {
 
     public CheckInDatabase() throws SQLException {
     }
+    /**
+     * this method checks in a user to a Reservation
+     *
+     * @param reservation the reservation being booked
+     *
+     */
 
-    public static boolean checkInGuest(Reservation reservation) {
+    public static void checkInGuest(Reservation reservation) {
         //connecting to the table
         String updateTableSQL = "UPDATE Reservation SET Checkedin = ? WHERE id = ?";
 
@@ -53,9 +59,14 @@ public class CheckInDatabase {
 
         //When the user checks in the room is booked
         RoomDatabase.bookRoom(reservation.getRoom().getRoomNumber());
-        return true;
     }
-
+    /**
+     * Checks if a guest is checked in or not
+     *
+     * @param g: the guest being checked
+     * @return Returns true or false whether the guest is checked in or not
+     *
+     */
     public static boolean guestIsCheckedIn(Guest g) throws SQLException {
         Set<Reservation> guestReservations = new HashSet<>();
         boolean checkedIn = false;
@@ -87,7 +98,12 @@ public class CheckInDatabase {
     }
 
 
-
+    /**
+     * Checking out a guest from a room
+     *
+     * @param reservation: the reservation the room is booked under
+     *
+     */
     public static void checkOutGuest(Reservation reservation){
         //connecting to the table
         String updateTableSQL = "UPDATE Reservation SET Checkedin = ? WHERE id = ?";
