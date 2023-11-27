@@ -34,7 +34,7 @@ public class CountryDatabase {
     private static final String url = "jdbc:derby:C:/Users/vince/IdeaProjects/titanic2/Titanic2.0/Titanic-Project/src/main/java/edu/Database";
     public static void addCountry(Country country, int cruiseId) {
         String insertSQL = "INSERT INTO Countries (name, arrivalTime, departureTime, cruise_id) VALUES (?, ?, ?, ?)";
-        try (Connection connection = DriverManager.getConnection(url);
+        try (Connection connection = driver.getDBConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
 
             preparedStatement.setString(1, country.getName());
@@ -49,7 +49,7 @@ public class CountryDatabase {
     }
     private static boolean countryExists(String countryName) {
         String query = "SELECT COUNT(*) FROM Countries WHERE name = ?";
-        try (Connection connection = DriverManager.getConnection(url);
+        try (Connection connection = driver.getDBConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, countryName);
@@ -112,7 +112,7 @@ public class CountryDatabase {
     public static Country getCountry(String name) {
 
         String query = "SELECT * FROM Countries WHERE name = ?";
-        try (Connection connection = DriverManager.getConnection(url);
+        try (Connection connection = driver.getDBConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, name);
@@ -137,7 +137,7 @@ public class CountryDatabase {
     public static List<Country> getAllCountries() {
         List<Country> countries = new ArrayList<>();
         String query = "SELECT * FROM Countries";
-        try (Connection connection = DriverManager.getConnection(url);
+        try (Connection connection = driver.getDBConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             try (ResultSet resultSet = statement.executeQuery()) {

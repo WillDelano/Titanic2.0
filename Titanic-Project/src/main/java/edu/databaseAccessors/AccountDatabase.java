@@ -142,7 +142,7 @@ public class AccountDatabase {
     public static void addUser(String username, String password, int id, String firstName, String lastName, int rewardPoints, String email, String userType) {
         String insertSQL = "INSERT INTO Users (username, password, id, firstName, lastName, rewardPoints, email, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-        try (Connection connection = DriverManager.getConnection(url);
+        try (Connection connection = driver.getDBConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
 
             preparedStatement.setString(1, username);

@@ -19,7 +19,7 @@ import java.util.*;
  * @author Vincent Dinh
  * @version 1.0
  */
-public class CruiseDatabase {
+public class CruiseDatabase implements driver {
     private static Set<Cruise> cruiseDatabase;
     private static final String url = "jdbc:derby:C:/Users/vince/IdeaProjects/titanic2/Titanic2.0/Titanic-Project/src/main/java/edu/Database";
 
@@ -33,7 +33,7 @@ public class CruiseDatabase {
 
     public static void addCruise(Cruise cruise) {
         String insertSQL = "INSERT INTO Cruises (name, departure, maxCapacity) VALUES (?, ?, ?)";
-        try (Connection connection = DriverManager.getConnection(url);
+        try (Connection connection = driver.getDBConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
 
             preparedStatement.setString(1, cruise.getName());
@@ -80,7 +80,7 @@ public class CruiseDatabase {
 
     public static Cruise getCruise(String cruiseName) {
         String query = "SELECT * FROM Cruises WHERE name = ?";
-        try (Connection connection = DriverManager.getConnection(url);
+        try (Connection connection = driver.getDBConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, cruiseName);
@@ -111,7 +111,7 @@ public class CruiseDatabase {
     public static List<Cruise> getAllCruises() {
         List<Cruise> cruises = new ArrayList<>();
         String query = "SELECT * FROM Cruises";
-        try (Connection connection = DriverManager.getConnection(url);
+        try (Connection connection = driver.getDBConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -129,7 +129,7 @@ public class CruiseDatabase {
     public static List<String> getAllCruiseNames() {
         List<String> cruiseNames = new ArrayList<>();
         String query = "SELECT name FROM Cruises";
-        try (Connection connection = DriverManager.getConnection(url);
+        try (Connection connection = driver.getDBConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -202,7 +202,7 @@ public class CruiseDatabase {
         List<Country> travelPath = new ArrayList<>();
         String query = "SELECT c.* FROM Countries c JOIN Cruises cr ON c.cruise_id = cr.id WHERE cr.name = ?";
 
-        try (Connection connection = DriverManager.getConnection(url);
+        try (Connection connection = driver.getDBConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, cruiseName);
