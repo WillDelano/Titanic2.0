@@ -51,7 +51,7 @@ public class RoomDatabase {
         }
     }
 
-    private static boolean roomExists(int roomNumber, String cruise) {
+    public static boolean roomExists(int roomNumber, String cruise) {
         String query = "SELECT COUNT(*) FROM Rooms WHERE roomnumber = ? AND cruise = ?";
         try (Connection connection = DriverManager.getConnection(url);
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -193,7 +193,8 @@ public class RoomDatabase {
                     return true;
                 }
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             e.printStackTrace();
         }
         System.out.println("Room not found.");
@@ -207,6 +208,28 @@ public class RoomDatabase {
 
             preparedStatement.setInt(1, roomNumber);
             preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateRoom(Room room, String bedType, int numOfBeds, boolean smokingStatus, double price) {
+        //fixme: actually updating sql(bed type, number of beds, status, and price all at once even if some are same)
+        //fixme: finds room based on roomNumber
+        int roomNum = room.getRoomNumber();
+        try (Connection connection = DriverManager.getConnection(url)) {
+            String update = "UPDATE ROOMS SET BEDTYPE = ?, NUMBEROFBEDS = ?,SMOKINGAVAILABLE = ?, ROOMPRICE = ? WHERE ROOMNUMBER = ?";
+            try (PreparedStatement statement = connection.prepareStatement(update)) {
+                statement.setString(1, bedType);
+                statement.setInt(2, numOfBeds);
+                statement.setBoolean(3, smokingStatus);
+                statement.setDouble(4,price);
+                statement.setInt(5,roomNum);
+                int updated = statement.executeUpdate();
+                if (updated <= 0) {
+                    System.out.println("Failed to update data");
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

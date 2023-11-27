@@ -63,8 +63,10 @@ public class TravelAgentLandingPage extends LandingPage {
         myReservationsButton.addActionListener(e -> navigateToAddRooms());
 
         JButton editRoomButton = new JButton("Edit Rooms");
-        myReservationsButton.addActionListener(e ->
-                 askRoom());
+        editRoomButton.addActionListener(e -> {
+            askRoom();
+        });
+        //testing
 
         JButton supportButton = new JButton("Edit Profile");
         supportButton.addActionListener(e -> navigateToEditProfile());
@@ -150,6 +152,7 @@ public class TravelAgentLandingPage extends LandingPage {
         RoomDatabase roomList = new RoomDatabase();
         JTextField roomConfirmation = new JTextField();
 
+
         int option = JOptionPane.showConfirmDialog(mainFrame,roomConfirmation,"Room Number",
                 JOptionPane.OK_CANCEL_OPTION);
 
@@ -167,7 +170,6 @@ public class TravelAgentLandingPage extends LandingPage {
             }
             else{
                 //get room from database then use this to pass to edit room page
-
                 //Fixme: make a functional getRoom that takes in a room number
                 room = roomList.getRoom(Integer.parseInt(roomChoice));
                 navigateToModifyRooms(room);
