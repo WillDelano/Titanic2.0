@@ -40,21 +40,21 @@ public class CheckInDBTester implements driver {
 
     @AfterEach
     public void tearDown() {
-//        try (Connection connection =driver.getDBConnection()) {
-//            //clear the table
-//            String deleteQuery = "DELETE FROM Reservation";
-//            try (PreparedStatement statement = connection.prepareStatement(deleteQuery)) {
-//                statement.executeUpdate();
-//            }
-//
-//            //reset the id incrementer to 1
-//            String resetId = "ALTER TABLE Reservation ALTER COLUMN id RESTART WITH 1";
-//            try (PreparedStatement statement = connection.prepareStatement(resetId)) {
-//                statement.executeUpdate();
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try (Connection connection =driver.getDBConnection()) {
+            //clear the table
+            String deleteQuery = "DELETE FROM Reservation";
+            try (PreparedStatement statement = connection.prepareStatement(deleteQuery)) {
+                statement.executeUpdate();
+            }
+
+            //reset the id incrementer to 1
+            String resetId = "ALTER TABLE Reservation ALTER COLUMN id RESTART WITH 1";
+            try (PreparedStatement statement = connection.prepareStatement(resetId)) {
+                statement.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
