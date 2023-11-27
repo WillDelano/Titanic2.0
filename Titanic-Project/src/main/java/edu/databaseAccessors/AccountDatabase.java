@@ -1,6 +1,8 @@
 package edu.databaseAccessors;
+import edu.core.reservation.Reservation;
 import edu.core.users.*;
 import java.io.*;
+import java.sql.*;
 import java.util.*;
 import java.lang.*;
 
@@ -18,84 +20,79 @@ import java.lang.*;
 public class AccountDatabase {
     private static Set<User> accountDatabase;
     //private String fileName = getClass().getClassLoader().getResource("accountList.csv").getFile();
-    private static String fileName = "C:\\Users\\Colet\\Documents\\GIT\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\accountList.csv";
+    private static final String url = "jdbc:derby:C:/Users/vince/IdeaProjects/titanic2/Titanic2.0/Titanic-Project/src/main/java/edu/Database";
 
 
+
+    static {
+        accountDatabase = new HashSet<>();
+        initializeDatabase(); // Static initialization of the database
+    }
     /**
      * Constructor for creating an instance of AccountDatabase
      *
      */
+
     public AccountDatabase() {
-        accountDatabase = new LinkedHashSet<>();
-        //the way the GUEST account will be put in file is String type, ...
-        //...String username,String password,int id, String firstName, String lastName,int rewardPoints, String email
-
-        // admin and agent are the same except no reward points
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            String line;
-            line = reader.readLine();
-
-            while (line != null) {
-                String[] split = line.split(",");
-                if (split[0].equals("Guest")) {
-                    //guest has extra parameter for reward points
-
-                    //make guest instance then add to account list
-
-                    Guest guest = new Guest(split[1], split[2], Integer.parseInt(split[3]), split[4], split[5],
-                            Integer.parseInt(split[6]), split[7]);
-                    accountDatabase.add(guest);
-
-
-                } else {
-                    //normal parameters
-                    if (split[0].equals("Agent")) {
-                        //make agent instance based on file readings and add to list
-                        TravelAgent agent = new TravelAgent(split[1], split[2], Integer.parseInt(split[3]), split[4], split[5],
-                                split[6]);
-                        accountDatabase.add(agent);
-                    } else if (split[0].equals("Admin")) {
-                        //make admin instance based on file readings and add to list
-                        Admin admin = new Admin(split[1], split[2], Integer.parseInt(split[3]), split[4], split[5],
-                                split[6]);
-                        accountDatabase.add(admin);
-
-                    }
-                }
-                line = reader.readLine();
-            }
-
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //parse in everything into*/
     }
 
+    private static void initializeDatabase() {
+        try (Connection connection = DriverManager.getConnection(url)) {
+            String query = "SELECT * FROM Users";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        User user = createUserFromResultSet(resultSet);
+                        if (user != null) {
+                            accountDatabase.add(user);
+                        }
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private static User createUserFromResultSet(ResultSet resultSet) throws SQLException {
+        // Extract data from resultSet
+        String username = resultSet.getString("username");
+        String password = resultSet.getString("password");
+        int id = resultSet.getInt("id");
+        String firstName = resultSet.getString("firstName");
+        String lastName = resultSet.getString("lastName");
+        String email = resultSet.getString("email");
+        int rewardPoints = resultSet.getInt("rewardPoints"); // Assuming you have this column in your database
+        String userType = resultSet.getString("type");
+
+        // Determine the type of user and instantiate accordingly
+        switch (userType) {
+            case "Guest":
+                return new Guest(username, password, id, firstName, lastName, rewardPoints, email); // Now passing rewardPoints
+            // Add cases for other user types (Admin, TravelAgent, etc.)
+            default:
+                return null; // or throw an exception if an unknown type is encountered
+        }
+    }
     /**
      * operation to get the count of users in the database
      *
      * @return amount of users in the database
      */
+
     public static int getUserCount() {
         int count = 0;
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            String line;
-            line = reader.readLine();
-
-            while (line != null) {
-                String[] split = line.split(",");
-
-                //if the username is found, return the account type
-                if (split[0].equals("Guest")) {
-                    count++;
+        try (Connection connection = DriverManager.getConnection(url)) {
+            String selectCount = "SELECT COUNT(*) FROM Users";
+            try (PreparedStatement statement = connection.prepareStatement(selectCount)) {
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        count = resultSet.getInt(1);
+                    }
                 }
-                line = reader.readLine();
             }
-            reader.close();
-        } catch (IOException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return count;
@@ -107,42 +104,68 @@ public class AccountDatabase {
      * @param username The username of the user.
      */
     public boolean isValidLogin(String username, String pass) {
-        boolean isValid = false;
-        for (User user : accountDatabase) {
-            if (user.getUsername().equals(username)) {
-                if (user.getPassword().equals(pass)) {
-                    isValid = true;
+        try (Connection connection = DriverManager.getConnection(url)) {
+            String select = "SELECT * FROM Users WHERE username = ? AND password = ?";
+
+            try (PreparedStatement statement = connection.prepareStatement(select)) {
+                statement.setString(1, username);
+                statement.setString(2, pass);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    boolean validLogin = resultSet.next();
+
+                    // Log the result of the query
+                    System.out.println("Login valid: " + validLogin);
+                    return validLogin;
                 }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
-
-        return isValid;
+    }
+    /**
+     * Method to add users to the 'Users' Database
+     */
+    public static void addSampleUsers() {
+        if (getUserCount() == 0) { // Check if there are already users in the database
+            addUser("wdelano", "baylor", 0, "Will", "Delano", 0, "wdelano2002@gmail.com", "Guest");
+            addUser("wdelano2", "baylor", 1, "Will", "Delano", 0, "wdelano2002@gmail.com", "Guest");
+            addUser("wdelanoagent", "baylor", 2, "Will", "Delano", 0, "wdelano2002@gmail.com", "Agent");
+        }
     }
 
-    //FIXME: Will have to use "User" type for parameter. Will be used for when admin wants to create a travel agent account
     /**
      * Operation to register a new account within account database
      *
-     * @param u The new user to add to account database
+     * @param username The new user to add to account database
      */
-    public void addUser(Guest u) {
-        accountDatabase.add(u);
+    public static void addUser(String username, String password, int id, String firstName, String lastName, int rewardPoints, String email, String userType) {
+        String insertSQL = "INSERT INTO Users (username, password, id, firstName, lastName, rewardPoints, email, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-        //now add the user to the file. YOU WILL ONLY ADD GUESTS.
-        //Agents and admins are hardcoded on the backend
-        try {
-            //BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-            //  String username,String password,int id, String firstName, String lastName,int rewardPoints, String email
-            System.err.println("HERE");
-            String toWrite = "Guest," + u.getUsername() + "," + u.getPassword() + "," + u.getId() + ","
-                    + u.getFirstName() + "," + u.getLastName() + "," + u.getRewardPoints() + "," + u.getEmail() + "\n";
-            FileWriter write = new FileWriter(fileName, true);
-            write.write(toWrite);
-            write.close();
-        } catch (IOException e) {
+        try (Connection connection = DriverManager.getConnection(url);
+             PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
+
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            preparedStatement.setInt(3, id);
+            preparedStatement.setString(4, firstName);
+            preparedStatement.setString(5, lastName);
+            preparedStatement.setInt(6, rewardPoints);
+            preparedStatement.setString(7, email);
+            preparedStatement.setString(8, userType);
+
+            int affectedRows = preparedStatement.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("User added successfully: " + username);
+            } else {
+                System.out.println("Failed to add user: " + username);
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+
 
 
     /**
@@ -150,7 +173,8 @@ public class AccountDatabase {
      *
      * @param userToRemove The specified user to remove
      */
-    public static void removeUser(User userToRemove) throws IOException {
+
+    /*public static void removeUserFile(User userToRemove) throws IOException {
         accountDatabase.remove(userToRemove);
 
         ArrayList<String> newFileLines = new ArrayList<>();
@@ -186,7 +210,7 @@ public class AccountDatabase {
 
         writer.close();
         reader.close();
-    }
+    }*/
 
     /**
      * Operation to get the type an account belongs to
@@ -195,27 +219,25 @@ public class AccountDatabase {
      */
 
     public static String getAccountType(String username) {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            String line;
-            line = reader.readLine();
-
-            while (line != null) {
-                String[] split = line.split(",");
-
-                //if the username is found, return the account type
-                if (split[1].equals(username)) {
-                    return split[0];
+        String accountType = "";
+        try (Connection connection = DriverManager.getConnection(url)) {
+            String query = "SELECT type FROM Users WHERE username = ?";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setString(1, username);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        accountType = resultSet.getString("type");
+                    } else {
+                        System.err.println("No account found, returning empty account type.");
+                    }
                 }
-                line = reader.readLine();
             }
-            reader.close();
-        } catch (IOException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.err.println("No account found, returning empty account type.");
-        return "";
+        return accountType;
     }
+
 
     /**
      * Operation to validate the existence of a given username.
@@ -223,38 +245,20 @@ public class AccountDatabase {
      * @param username A given username to validate
      */
     public static boolean accountExists(String username) {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            String line;
-            line = reader.readLine();
-
-            while (line != null) {
-                String[] split = line.split(",");
-
-                //if the username exists in the file return true
-                if (split[1].equals(username)) {
-                    return true;
+        try (Connection connection = DriverManager.getConnection(url)) {
+            String query = "SELECT COUNT(*) FROM Users WHERE username = ?";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setString(1, username);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        return resultSet.getInt(1) > 0;
+                    }
                 }
-                line = reader.readLine();
             }
-            reader.close();
-        } catch (IOException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
-
-        /*boolean accountFlag=false;
-
-        if(!accountDatabase.isEmpty()){
-            for(User u: accountDatabase){
-                if(u.getUsername().equals(username)){
-                    accountFlag= true;
-                    break;
-                }
-            }
-        }
-
-        return accountFlag;*/
     }
 
     /**
@@ -264,103 +268,81 @@ public class AccountDatabase {
      * @param newUser A given username to change into
      * @return the truth value of successfully modifying account
      */
-    public boolean modifyUsername(String oldUser, String newUser) throws IOException {
-        boolean changeSuccess = false;
-        int counter = 0;
-
-        if (accountExists(newUser)) {
-            for (User u : accountDatabase) {
-                //finding the correct account to change username
-                if (u.getUsername().equals(oldUser)) {
-                    u.setUsername(newUser);
-                    changeSuccess = true;
-                    break;
-                }
-                ++counter;
+    public boolean modifyUsername(String oldUser, String newUser) {
+        try (Connection connection = DriverManager.getConnection(url)) {
+            String update = "UPDATE Users SET username = ? WHERE username = ?";
+            try (PreparedStatement statement = connection.prepareStatement(update)) {
+                statement.setString(1, newUser);
+                statement.setString(2, oldUser);
+                int updated = statement.executeUpdate();
+                return updated > 0;
             }
-
-            //after changing on data structure, change on the file that stores accounts
-            //modifyFileLine(counter,0,newUser);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-        return changeSuccess;
+        return false;
     }
+
 
     /**
      * Operation to modify an account password.
      *
      * @param username User's username
-     * @param oldPass  User's old password to change
      * @param newPass  A given password to change into
      */
-    public static void modifyPassword(String username, String oldPass, String newPass) throws IOException {
-        int counter = 0;
-
-        //find account, then change data structure to match new password
-        for(User u: accountDatabase){
-            if(u.getUsername().equals(username)) {
-                if (u.getPassword().equals(oldPass)) {
-                    u.setPassword(newPass);
-                    break;
-                }
+    public static void modifyPassword(String username, String newPass) {
+        try (Connection connection = DriverManager.getConnection(url)) {
+            String update = "UPDATE Users SET password = ? WHERE username = ?";
+            try (PreparedStatement statement = connection.prepareStatement(update)) {
+                statement.setString(1, newPass);
+                statement.setString(2, username);
+                statement.executeUpdate();
             }
-            ++counter;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-        //change account database to match new password
-        modifyFileLine(counter,1,newPass);
     }
+
 
 
     /**
      * Operation to modify an account first name.
      *
      * @param username User's username
-     * @param oldFName User's old first name to change
      * @param newFName A given first name to change into
      */
-    public void modifyFirstName(String username, String oldFName, String newFName) throws IOException {
-        int counter = 0;
-
-        //update data structure
-        for(User u: accountDatabase){
-            if(u.getUsername().equals(username)) {
-                if (u.getFirstName().equals(oldFName)) {
-                    u.setFirstName(newFName);
-                    break;
-                }
-                ++counter;
+    public void modifyFirstName(String username, String newFName) {
+        try (Connection connection = DriverManager.getConnection(url)) {
+            String update = "UPDATE Users SET firstName = ? WHERE username = ?";
+            try (PreparedStatement statement = connection.prepareStatement(update)) {
+                statement.setString(1, newFName);
+                statement.setString(2, username);
+                statement.executeUpdate();
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-        //update file holding account list
-        modifyFileLine(counter,2,newFName);
     }
+
 
 
     /**
      * Operation to modify an account last name.
      *
      * @param username User's username
-     * @param oldLName User's old last name to change
      * @param newLName A given last name to change into
      */
-    public void modifyLastName(String username, String oldLName, String newLName) throws IOException {
-        int counter = 0;
-
-        //update lastName on data structure
-        for(User u: accountDatabase){
-            if(u.getUsername().equals(username)) {
-                if (u.getLastName().equals(oldLName)) {
-                    u.setLastName(newLName);
-                    break;
-                }
+    public void modifyLastName(String username, String newLName) {
+        try (Connection connection = DriverManager.getConnection(url)) {
+            String update = "UPDATE Users SET lastName = ? WHERE username = ?";
+            try (PreparedStatement statement = connection.prepareStatement(update)) {
+                statement.setString(1, newLName);
+                statement.setString(2, username);
+                statement.executeUpdate();
             }
-            ++counter;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-        //update file holding account list
-        modifyFileLine(counter,3,newLName);
     }
 
     /**
@@ -371,49 +353,49 @@ public class AccountDatabase {
      * @param newData   the newData to replace old data in file database
      *
      */
-    public static void modifyFileLine(int lineIndex, int dataToChange, String newData) throws IOException {
-        String line;
-        ArrayList<String> fileList = new ArrayList<>();
-
-        InputStream in = AccountDatabase.class.getClassLoader().getResourceAsStream("accountList.csv");
-        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-
-        //copy lines into arraylist
-        while ((line = reader.readLine()) != null) {
-            //find specified line to remove
-            fileList.add(line);
-
-        }
-        reader.close();
-
-
-        //modify specified line
-        String linetoModify = fileList.get(lineIndex);
-        //split line into pieces of data
-        String[]split = linetoModify.split(",");
-
-        //modify specific data you want
-        split[dataToChange] = newData;
-
-        //make a string builder to make new string
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i <= split.length; i++) {
-            sb.append(split[i]);
-        }
-
-        String lineToPut = sb.toString();
-
-        //put modified line back into ArrayList
-        fileList.set(lineIndex,lineToPut);
-
-        //overrides old file
-        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-        for (String newFileLine : fileList) {
-            writer.write(newFileLine);
-            writer.newLine();
-        }
-        writer.close();
-    }
+//    public static void modifyFileLine(int lineIndex, int dataToChange, String newData) throws IOException {
+//        String line;
+//        ArrayList<String> fileList = new ArrayList<>();
+//
+//        InputStream in = AccountDatabase.class.getClassLoader().getResourceAsStream("accountList.csv");
+//        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+//
+//        //copy lines into arraylist
+//        while ((line = reader.readLine()) != null) {
+//            //find specified line to remove
+//            fileList.add(line);
+//
+//        }
+//        reader.close();
+//
+//
+//        //modify specified line
+//        String linetoModify = fileList.get(lineIndex);
+//        //split line into pieces of data
+//        String[]split = linetoModify.split(",");
+//
+//        //modify specific data you want
+//        split[dataToChange] = newData;
+//
+//        //make a string builder to make new string
+//        StringBuilder sb = new StringBuilder();
+//        for (int i = 0; i <= split.length; i++) {
+//            sb.append(split[i]);
+//        }
+//
+//        String lineToPut = sb.toString();
+//
+//        //put modified line back into ArrayList
+//        fileList.set(lineIndex,lineToPut);
+//
+//        //overrides old file
+//        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+//        for (String newFileLine : fileList) {
+//            writer.write(newFileLine);
+//            writer.newLine();
+//        }
+//        writer.close();
+//    }
 
     /**
      * Operation to access specified user
@@ -430,4 +412,64 @@ public class AccountDatabase {
         }
         return null;
     }
+
+
+
+    /**
+     * Operation to update account details for user on SQL database
+     *
+     * @param account the specified account to update details
+     * @param email the specified email details to change into
+     * @param password the specified password details to change into
+     *
+     */
+    public static void updateAccount(User account, String email, String password) {
+        try (Connection connection = DriverManager.getConnection(url)) {
+            String update = "UPDATE Users SET email = ?, password = ? WHERE username = ?";
+            try (PreparedStatement statement = connection.prepareStatement(update)) {
+                statement.setString(1, email);
+                statement.setString(2, password);
+                statement.setString(3, account.getUsername());
+                int updated = statement.executeUpdate();
+                if (updated <= 0) {
+                    System.out.println("Failed to update data");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * Operation to delete account from SQL database
+     *
+     * @param userToRemove the specified user to remove
+     *
+     */
+    public static void removeUser(User userToRemove) {
+        try (Connection connection = DriverManager.getConnection(url)) {
+            String delete = "DELETE FROM Users WHERE username = ?";
+            try (PreparedStatement statement = connection.prepareStatement(delete)) {
+                statement.setString(1, userToRemove.getUsername());
+                int deleted = statement.executeUpdate();
+                if (deleted <= 0) {
+                    System.out.println("Failed to delete data");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void shutdown() throws SQLException {
+        try {
+            DriverManager.getConnection("jdbc:derby:;shutdown=true");
+        } catch (SQLException se) {
+            if (!se.getSQLState().equals("XJ015")) {
+                throw se;
+            }
+        }
+    }
+
 }

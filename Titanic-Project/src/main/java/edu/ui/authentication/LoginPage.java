@@ -2,6 +2,7 @@ package edu.ui.authentication;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 import java.util.Objects;
 
 import edu.authentication.Authentication;
@@ -74,7 +75,13 @@ public class LoginPage {
         mainFrame.add(loginPanel);
         mainFrame.add(registerPanel);
 
-        loginButton.addActionListener(e -> loginToSystem());
+        loginButton.addActionListener(e -> {
+            try {
+                loginToSystem();
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
         registerButton.addActionListener(e -> registerAccount());
 
         mainFrame.setVisible(true);
@@ -84,7 +91,7 @@ public class LoginPage {
      * This logs the Guest into the system.
      *
      */
-    private void loginToSystem() {
+    private void loginToSystem() throws ClassNotFoundException {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
@@ -116,7 +123,8 @@ public class LoginPage {
      * @param args  The console arguments.
      *
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
+        AccountDatabase.addSampleUsers();
         new LoginPage();
     }
 }
