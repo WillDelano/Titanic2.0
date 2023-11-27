@@ -6,6 +6,7 @@ import edu.core.users.User;
 import edu.databaseAccessors.AccountDatabase;
 import edu.databaseAccessors.RoomDatabase;
 import edu.ui.addRoom.AddRoomPage;
+import edu.ui.createTravelAgent.FinishTravelAgentPage;
 import edu.ui.editProfile.EditProfile;
 import edu.ui.editReservation.GuestsWithReservationPage;
 import edu.ui.modifyRoom.EditRoomPage;
@@ -14,6 +15,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Objects;
 
 /**
  * Creates the landing page
@@ -30,14 +32,13 @@ public class TravelAgentLandingPage extends LandingPage {
     private JPanel headerPanel;
     private JLabel headerLabel;
     private User account;
-
     private Room room;
-
     /**
      * Constructor for the landing page that creates the GUI
      *
      */
-    public TravelAgentLandingPage() {
+    public TravelAgentLandingPage(User account) {
+        this.account = account;
         prepareGUI();
     }
 
@@ -63,13 +64,13 @@ public class TravelAgentLandingPage extends LandingPage {
         myReservationsButton.addActionListener(e -> navigateToAddRooms());
 
         JButton editRoomButton = new JButton("Edit Rooms");
-        myReservationsButton.addActionListener(e ->
-                 askRoom());
+        editRoomButton.addActionListener(e -> {
+            askRoom();
+        });
+        //testing
 
         JButton supportButton = new JButton("Edit Profile");
         supportButton.addActionListener(e -> navigateToEditProfile());
-
-
 
         headerPanel.add(browseCruisesButton);
         headerPanel.add(myReservationsButton);
@@ -82,7 +83,6 @@ public class TravelAgentLandingPage extends LandingPage {
 
         mainFrame.add(headerLabel, BorderLayout.CENTER);
         mainFrame.add(headerPanel, BorderLayout.NORTH);
-        mainFrame.setVisible(true);
     }
 
     /**
@@ -101,7 +101,23 @@ public class TravelAgentLandingPage extends LandingPage {
                 "<div style='text-align: center; font-size: 11px;'>Logged in as travel agent %s</div>" +
                 "<div style='text-align: center;'>%s</div></html>", name, "Total Account Population is " + count));
 
-        mainFrame.setVisible(true);
+        /* If the travel agent has no name, it is because their account was just
+        created by an admin and needs to be finished */
+        if (Objects.equals(account.getFirstName(), "")) {
+            finishAccountCreation(account);
+        }
+        else {
+            mainFrame.setVisible(true);
+        }
+    }
+
+    /**
+     * Finishes the account creation of a travel agent
+     *
+     * @param account The account to finish creating
+     */
+    private void finishAccountCreation(User account) {
+        new FinishTravelAgentPage(this, account);
     }
 
     /**
@@ -132,23 +148,24 @@ public class TravelAgentLandingPage extends LandingPage {
         new AddRoomPage();
     }
 
-    private void navigateToModifyRooms(Room room){
+    private void navigateToModifyRooms(Room room) {
         //get specified room in room database then modify it if necessary
         mainFrame.setVisible(false);
         RoomDatabase roomList = new RoomDatabase();
-        //Fixme: when editroom page is fully implemeneted, error will go away
+        //Fixme: when editroom page is fully implemented, error will go away
         new EditRoomPage(room,this);
 
     }
 
     private void navigateToEditProfile() {
         mainFrame.setVisible(false);   // hide the current landing page
-        new EditProfile(account, this);
+        new EditProfile(account, this, null, true);
     }
 
-    private void askRoom(){
+    private void askRoom() {
         RoomDatabase roomList = new RoomDatabase();
         JTextField roomConfirmation = new JTextField();
+
 
         int option = JOptionPane.showConfirmDialog(mainFrame,roomConfirmation,"Room Number",
                 JOptionPane.OK_CANCEL_OPTION);
@@ -159,7 +176,7 @@ public class TravelAgentLandingPage extends LandingPage {
             //if room number is invalid
 
             //fixme: when isvalidRoom is created in Room Database then this will work
-            if(!roomList.isValidRoom(Integer.parseInt(roomChoice))){
+            if(!roomList.isValidRoom(Integer.parseInt(roomChoice))) {
                 invalidDecision();
                 mainFrame.dispose();
                 prepareGUI();
@@ -167,7 +184,6 @@ public class TravelAgentLandingPage extends LandingPage {
             }
             else{
                 //get room from database then use this to pass to edit room page
-
                 //Fixme: make a functional getRoom that takes in a room number
                 room = roomList.getRoom(Integer.parseInt(roomChoice));
                 navigateToModifyRooms(room);
@@ -188,9 +204,5 @@ public class TravelAgentLandingPage extends LandingPage {
 
     public void show() {
         mainFrame.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        new TravelAgentLandingPage();
     }
 }

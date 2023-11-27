@@ -31,10 +31,7 @@ import java.util.*;
  * @version 1.0
  */
 public class CountryDatabase {
-    //private static String fileName = "C:\\Users\\Chas\\Soft.Eng\\Group project\\Titanic4\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\countries.csv";
-    //private static final String url = "jdbc:derby:C:/Users/vince/IdeaProjects/titanic2/Titanic2.0/Titanic-Project/src/main/java/edu/Database";
-    private static final String url = "jdbc:derby: C:\\Users\\Chas\\Soft.Eng\\Group project\\Titanic7\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
-
+    private static final String url = "jdbc:derby:/Users/willdelano/Desktop/Software1/Titanic2.0/Titanic-Project/src/main/java/edu/Database";
     public static void addCountry(Country country, int cruiseId) {
         String insertSQL = "INSERT INTO Countries (name, arrivalTime, departureTime, cruise_id) VALUES (?, ?, ?, ?)";
         try (Connection connection = DriverManager.getConnection(url);

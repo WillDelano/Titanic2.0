@@ -18,13 +18,12 @@ public class TravelAgent extends User {
      *
      * @param username   The username of the travel agent.
      * @param password   The password of the travel agent.
-     * @param id         The unique ID of the travel agent.
      * @param firstName  The first name of the travel agent.
      * @param lastName   The last name of the travel agent.
      * @param email      The email of the travel agent.
      */
-    public TravelAgent(String username, String password, int id, String firstName, String lastName, String email) {
-        super(username, password, id, firstName, lastName, email);
+    public TravelAgent(String username, String password, String firstName, String lastName, String email) {
+        super(username, password, firstName, lastName, email);
     }
 
 

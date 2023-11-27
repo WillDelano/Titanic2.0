@@ -1,14 +1,20 @@
 package edu.ui.landingPage;
 
+import edu.core.reservation.Room;
 import edu.core.users.User;
-import edu.ui.createTravelAgent.FinishTravelAgentPage;
-import edu.ui.cruiseDetails.SelectCruisePage;
+import edu.databaseAccessors.AccountDatabase;
+import edu.databaseAccessors.RoomDatabase;
+import edu.ui.addRoom.AddRoomPage;
+import edu.ui.createTravelAgent.CreateTravelAgentPage;
+import edu.ui.editProfile.EditProfile;
+import edu.ui.editReservation.GuestsWithReservationPage;
+import edu.ui.modifyRoom.EditRoomPage;
+import edu.ui.resetPassword.ResetPasswordListPage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Objects;
 
 /**
  * Creates the landing page
@@ -19,17 +25,20 @@ import java.util.Objects;
  * @version 1.0
  * @see LandingPageController
  */
-public class GuestLandingPage extends LandingPage {
+public class AdminLandingPage extends LandingPage {
 
     private JFrame mainFrame;
     private JPanel headerPanel;
     private JLabel headerLabel;
+    private User account;
+
+    private Room room;
 
     /**
      * Constructor for the landing page that creates the GUI
      *
      */
-    public GuestLandingPage() {
+    public AdminLandingPage() {
         prepareGUI();
     }
 
@@ -38,39 +47,30 @@ public class GuestLandingPage extends LandingPage {
      *
      */
     private void prepareGUI() {
-        try {
-            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         mainFrame = new JFrame("Cruise Reservation Application");
         mainFrame.setSize(1000, 700);
         mainFrame.setLayout(new BorderLayout());
 
         headerLabel = new JLabel("", JLabel.CENTER);
-        headerPanel = new JPanel(new GridLayout(2, 4));
+        headerPanel = new JPanel(new GridLayout(2, 5));
 
         JPanel topPanel = new JPanel(new BorderLayout());
         JPanel middlePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
-        JButton browseCruisesButton = new JButton("Browse Cruises");
-        browseCruisesButton.addActionListener(e -> navigateToSelectCruisePage());
+        JButton resetPasswordButton = new JButton("Reset a Password");
+        resetPasswordButton.addActionListener(e -> navigateToResetPassword());
 
-        JButton myReservationsButton = new JButton("My Reservations");
-        myReservationsButton.addActionListener(e -> openMyReservationsPage());
+        JButton addTravelAgentButton = new JButton("Add Travel Agent");
+        addTravelAgentButton.addActionListener(e -> navigateToNewTravelAgent());
 
-        JButton supportButton = new JButton("Support");
-
-        headerPanel.add(browseCruisesButton);
-        headerPanel.add(myReservationsButton);
-        headerPanel.add(supportButton, BorderLayout.EAST);
+        headerPanel.add(resetPasswordButton);
+        headerPanel.add(new JPanel());
+        headerPanel.add(addTravelAgentButton);
 
         headerPanel.add(topPanel);
         headerPanel.add(new JPanel());
         headerPanel.add(middlePanel);
 
-        mainFrame.add(headerLabel, BorderLayout.CENTER);
         mainFrame.add(headerPanel, BorderLayout.NORTH);
         mainFrame.setVisible(true);
     }
@@ -81,16 +81,18 @@ public class GuestLandingPage extends LandingPage {
      * @param account The user who is logged in
      */
     public void showLandingPage(User account) {
+        this.account = account;
+
         String name = account.getFirstName() + " " + account.getLastName();
+        int count = AccountDatabase.getUserCount();
 
         headerLabel.setText(String.format("<html>" +
                 "<div style='text-align: center; font-size: 24px;'>Cruise Reservation</div>" +
-                "<div style='text-align: center; font-size: 11px;'>Logged in as %s</div>" +
-                "<div style='text-align: center;'>%s</div></html>", name, account.getEmail()));
+                "<div style='text-align: center; font-size: 11px;'>Logged in as admin %s</div>" +
+                "<div style='text-align: center;'>%s</div></html>", name, "Total Account Population is " + count));
 
         mainFrame.setVisible(true);
     }
-
 
     /**
      * Loads an image from the internet
@@ -110,16 +112,22 @@ public class GuestLandingPage extends LandingPage {
             return null;
         }
     }
-    private void navigateToSelectCruisePage() {
+
+    private void navigateToResetPassword() {
         mainFrame.setVisible(false);   // hide the current landing page
-        new SelectCruisePage(this);       // navigate to SelectCruisePage
+        new ResetPasswordListPage(this);
     }
 
-    private void openMyReservationsPage() {
-        new edu.ui.reservationDetails.MyReservationsPage().show();
+    private void navigateToNewTravelAgent() {
+        mainFrame.setVisible(false);   // hide the current landing page
+        new CreateTravelAgentPage(this);
     }
 
     public void show() {
         mainFrame.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new AdminLandingPage();
     }
 }

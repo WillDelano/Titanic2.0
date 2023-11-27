@@ -22,12 +22,6 @@ public class EditRoomPage {
     private JFrame frame;
     private JLabel titleLabel;
     private JPanel mainPanel;
-    private JLabel deleteAccountLabel;
-    private JRadioButton deleteAccountYes;
-    private JRadioButton deleteAccountNo;
-
-    private JLabel roomNumberLabel;
-    private JTextField roomNumberField;
     private JLabel bedTypeLabel;
     private JComboBox bedTypeCombo;
     private JLabel numOfBedsLabel;
@@ -50,11 +44,9 @@ public class EditRoomPage {
         createGUI();
     }
 
- public static void main(String[]args){
+    public static void main(String[]args){
         boolean tester = true;
-
-
-        EditRoomPage testing = new EditRoomPage(room,previousPage);
+        EditRoomPage testing = new EditRoomPage(new Room(101, 2, "Queen", false, 250, "Caribbean Adventure"),previousPage);
     }
     private void createGUI() {
         frame = new JFrame("Edit Room");
@@ -70,9 +62,6 @@ public class EditRoomPage {
         Integer i  = room.getRoomNumber();
         String roomNumber = i.toString();
         titleLabel = new JLabel("Room "+roomNumber+" Details:");
-        roomNumberLabel = new JLabel("New Number:");
-        roomNumberField = new JTextField();
-        roomNumberField.setText(roomNumber);
 
         bedTypeLabel = new JLabel("Bed Type: ");
         // Set data in the drop-down list
@@ -107,23 +96,13 @@ public class EditRoomPage {
         mainPanel.add(new JLabel());
 
         //second row
-        mainPanel.add(roomNumberLabel);
-        mainPanel.add(roomNumberField);
-
-        //prefill the correct account information to display
-        /*String email = account.getEmail();
-        roomNumberField.setText(email);
-*/
+        mainPanel.add(new JLabel());
+        mainPanel.add(new JLabel());
         mainPanel.add(new JLabel());
 
         //third row
         mainPanel.add(bedTypeLabel);
         mainPanel.add(bedTypeCombo);
-
-        //prefill the correct account information to display
-        /*String password = account.getPassword();
-        passwordField.setText(password);*/
-
         mainPanel.add(new JLabel());
 
         //fourth row
@@ -143,7 +122,7 @@ public class EditRoomPage {
         mainPanel.add(priceField);
         mainPanel.add(new JLabel());
 
-        //sixth row
+        //seventh row
         mainPanel.add(new JLabel());
         mainPanel.add(submitButton);
         mainPanel.add(new JLabel());
@@ -153,9 +132,6 @@ public class EditRoomPage {
 
 
         submitButton.addActionListener(e -> {
-
-            //get new number
-            int newRoomNumber = Integer.parseInt(roomNumberField.getText());
 
             //get bed type
             String newBedType = (String) bedTypeCombo.getSelectedItem();
@@ -180,8 +156,10 @@ public class EditRoomPage {
 
 
             //now that you have all the new input, check if inputs are valid(if room number is valid)
-            //if roomNumber was not valid, start over
-            if (!isValidRoom(newRoomNumber) || newRoomNumber < 0 || newPrice < 0) {
+            //if roomNumber was not valid, room already exists on a specified cruise, or price is invalid then
+            //specify to user that an invalid decision was made
+
+            if (newPrice < 0) {
                 invalidDecision();
                 frame.dispose();
                 createGUI();
@@ -189,18 +167,19 @@ public class EditRoomPage {
             }
 
             //if no changes were made, remind the agent
-            if (Objects.equals(newRoomNumber, room.getRoomNumber()) && Objects.equals(newBedType, room.getBedType()) &&
-                    Objects.equals(newNumberOfBeds, room.getNumberOfBeds()) &&
-                    Objects.equals(newSmokingAvailability, room.getSmokingAvailable()) &&
-                    Objects.equals(newPrice, room.getRoomPrice())) {
+            if (newBedType.equals(room.getBedType()) &&
+                    newNumberOfBeds == room.getNumberOfBeds() &&
+                    newSmokingAvailability == room.getSmokingAvailable()
+                    &&
+                    (Math.abs(newPrice-room.getRoomPrice()) < 0.0001)) {
                 noChangesDecision();
             }
             //if there is a non-duplicate value, update the room
             else{
 
                 //if the user confirms their decision, update and go back to landing page
-                if (validateDecision(newRoomNumber,newBedType,newNumberOfBeds,newSmokingAvailability,newPrice)) {
-                    updateRoom(newRoomNumber,newBedType,newNumberOfBeds,newSmokingAvailability,newPrice);
+                if (validateDecision(newBedType,newNumberOfBeds,newSmokingAvailability,newPrice)) {
+                    updateRoom(newBedType,newNumberOfBeds,newSmokingAvailability,newPrice);
                     frame.dispose();
                     previousPage.show(); // Go back to the landing page
                 }
@@ -219,13 +198,13 @@ public class EditRoomPage {
         frame.setVisible(true);
     }
 
-    private void updateRoom(int roomNumber, String bedType, int numOfBeds, boolean smokingChoice, double price) {
+    private void updateRoom( String bedType, int numOfBeds, boolean smokingChoice, double price) {
         //Fixme: Fully implement this in roomDatabase
-        EditRoomController.editRoom(room,roomNumber,bedType,numOfBeds,smokingChoice,price);
+        EditRoomController.editRoom(room,bedType,numOfBeds,smokingChoice,price);
     }
 
 
-    public boolean validateDecision(int roomNumber, String bedType, int numOfBeds, boolean smokingChoice, double price) {
+    public boolean validateDecision(String bedType, int numOfBeds, boolean smokingChoice, double price) {
         UIManager.put("OptionPane.yesButtonText", "Confirm");
         UIManager.put("OptionPane.noButtonText", "Cancel");
 
@@ -235,30 +214,20 @@ public class EditRoomPage {
         }
 
         int dialogResult = JOptionPane.showConfirmDialog(mainPanel,"You are changing your room details to: " +
-                "Number- "+roomNumber+"\nBed Type- "+bedType+"\nBed #- "+numOfBeds+"\nSmoking Status"+smokingString
-        +"\nPrice- "+price,"Review Changes", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+                "Bed Type- "+bedType+"\nBed #- "+numOfBeds+"\nSmoking Status"+smokingString
+                +"\nPrice- "+price,"Review Changes", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
         return dialogResult == JOptionPane.YES_OPTION;
     }
 
 
     public void invalidDecision(){
-        JOptionPane.showMessageDialog(mainPanel, "Invalid Input for Room Modification", "Error!", JOptionPane.OK_OPTION);
+        JOptionPane.showMessageDialog(mainPanel, "Invalid Input for Room Modification", "Error!", JOptionPane.PLAIN_MESSAGE);
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
-
-
-
-
-    public boolean isValidRoom(int roomNumber) {
-      /*  RoomDatabase roomList = new RoomDatabase();
-
-
-        //FIXME : add isValidRoom to room database
-        return roomList.isValidRoom(roomNumber);*/
-
-        return true;
-    }
-
-
 
     public boolean noChangesDecision() {
         UIManager.put("OptionPane.yesButtonText", "Yes, quit");

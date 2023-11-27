@@ -2,6 +2,7 @@ package edu.ui.authentication;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 import java.util.regex.Pattern;
 import java.util.regex.*;
 
@@ -122,9 +123,14 @@ public class RegisterPage {
 
         if (RegisterPageController.accountExists(username)) {
             JOptionPane.showMessageDialog(mainFrame, "A user with that name already exists", "Sorry!", JOptionPane.WARNING_MESSAGE);
-            return true;
+            return false;
         }
-        return false;
+        else if (Objects.equals(username, "NEW TRAVEL AGENT")) {
+            JOptionPane.showMessageDialog(mainFrame, "Reserved usernames can not be used", "Sorry!", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -133,7 +139,7 @@ public class RegisterPage {
      */
     public void registerAccount() {
         //if username exists, start over
-        if (validateUsername()) {
+        if (!validateUsername()) {
             mainFrame.dispose();
             createGUI();
             return;
