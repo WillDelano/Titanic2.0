@@ -158,39 +158,6 @@ public class TravelAgentLandingPage extends LandingPage {
         new EditProfile(account, this, null, true);
     }
 
-    private void askRoom() {
-        RoomDatabase roomList = new RoomDatabase();
-        JTextField roomConfirmation = new JTextField();
-
-
-        int option = JOptionPane.showConfirmDialog(mainFrame,roomConfirmation,"Room Number",
-                JOptionPane.OK_CANCEL_OPTION);
-
-        if(option == JOptionPane.OK_OPTION){
-            String roomChoice = roomConfirmation.getText();
-
-            //if room number is invalid
-
-            //fixme: when isvalidRoom is created in Room Database then this will work
-            if(!roomList.isValidRoom(Integer.parseInt(roomChoice))) {
-                invalidDecision();
-                mainFrame.dispose();
-                prepareGUI();
-                return;
-            }
-            else{
-                //get room from database then use this to pass to edit room page
-                //Fixme: make a functional getRoom that takes in a room number
-                room = roomList.getRoom(Integer.parseInt(roomChoice));
-                navigateToModifyRooms();
-            }
-        }
-        else{
-            //if cancel is selected then back to main page
-            return;
-        }
-    }
-
     public void invalidDecision(){
         JOptionPane.showMessageDialog(mainFrame
                 , "Invalid Input for Room Modification", "Error!", JOptionPane.OK_OPTION);

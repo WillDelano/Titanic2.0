@@ -57,7 +57,6 @@ public class ViewAllRoomsPage {
             prevPage.show();
         });
 
-
         JPanel buttonPanel = new JPanel(); // Create a new panel for buttons
         buttonPanel.add(select);
         buttonPanel.add(back);
