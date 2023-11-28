@@ -32,7 +32,6 @@ public class MyReservationsPage {
 
     public MyReservationsPage() {
         prepareUI();
-        setUpRefreshMechanism();
     }
 
     private void prepareUI() {
@@ -78,30 +77,8 @@ public class MyReservationsPage {
         reservationsTable.setModel(new DefaultTableModel(data, columnNames));
     }
 
-    private void setUpRefreshMechanism() {
-        int delay = 10000; // 10 seconds
-        ActionListener taskPerformer = new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                refreshReservations();
-            }
-        };
-        refreshTimer = new Timer(delay, taskPerformer);
-        refreshTimer.start();
-
-
-        frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowActivated(WindowEvent e) {
-                refreshReservations();
-            }
-        });
-    }
-
     public void show() {
         frame.setVisible(true);
-        if (!refreshTimer.isRunning()) {
-            refreshTimer.start();  // Ensure the timer starts running when the window is shown
-        }
     }
 
     public static void main(String[] args) {
