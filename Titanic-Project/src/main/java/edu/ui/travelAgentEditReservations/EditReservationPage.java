@@ -125,7 +125,6 @@ public class EditReservationPage {
             int firstCommaIndex = roomDetails.indexOf(',');
             String roomNumberWithWords = (firstCommaIndex != -1) ? roomDetails.substring(0, firstCommaIndex) : roomDetails;
             String selectedRoom = roomNumberWithWords.replaceAll("[^0-9]", "");
-
             String room;
 
             //if selected room is still the current reservation's room, the dropdown was not used

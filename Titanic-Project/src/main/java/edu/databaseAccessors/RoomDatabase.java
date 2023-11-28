@@ -24,7 +24,7 @@ import java.util.*;
 public class RoomDatabase {
     private static Set<Room> roomDatabase;
 
-    private static final String url = "jdbc:derby:/Users/willdelano/Desktop/Software1/Titanic2.0/Titanic-Project/src/main/java/edu/Database";
+    private static final String url = "jdbc:derby:C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
 
     /**
      * Operation to add a reservation
@@ -125,6 +125,7 @@ public class RoomDatabase {
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setInt(1, roomNumber);
+
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     return new Room(resultSet.getInt("roomnumber"),

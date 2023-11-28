@@ -24,7 +24,7 @@ import java.util.Set;
  * @version 1.0
  */
 public class ReservationDatabase {
-    private static final String url = "jdbc:derby:/Users/willdelano/Desktop/Software1/Titanic2.0/Titanic-Project/src/main/java/edu/Database";
+    private static final String url = "jdbc:derby:C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
 
     /**
      * Returns the reservation database size
@@ -186,7 +186,7 @@ public class ReservationDatabase {
      * @param newReservation specified reservation to add
      *
      */
-    public static void addReservation(Reservation newReservation) {
+    public static boolean addReservation(Reservation newReservation) {
         String startDate = String.valueOf(newReservation.getStartDate());
         String endDate = String.valueOf(newReservation.getEndDate());
 
@@ -211,13 +211,18 @@ public class ReservationDatabase {
                     if (inserted <= 0) {
                         System.out.println("Failed to insert data");
                     }
+                    else {
+                        return true;
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
 
                 System.err.println("Failed to connect to database.");
+                return false;
             }
         }
+        return false;
     }
 
 

@@ -2,6 +2,7 @@ package edu.databaseAccessors;
 import edu.core.reservation.Reservation;
 import edu.core.users.*;
 import edu.exceptions.NoMatchingClassException;
+import edu.exceptions.UserNotFoundException;
 
 import java.io.*;
 import java.sql.*;
@@ -22,7 +23,7 @@ import java.lang.*;
 public class AccountDatabase {
     private static Set<User> accountDatabase;
     //private String fileName = getClass().getClassLoader().getResource("accountList.csv").getFile();
-    private static final String url = "jdbc:derby:/Users/willdelano/Desktop/Software1/Titanic2.0/Titanic-Project/src/main/java/edu/Database";
+    private static final String url = "jdbc:derby:C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
 
     static {
         accountDatabase = new HashSet<>();
@@ -344,13 +345,13 @@ public class AccountDatabase {
      *
      * @return the specified user
      */
-    public static User getUser(String username){
+    public static User getUser(String username) throws UserNotFoundException {
         for(User u: accountDatabase){
             if(u.getUsername().equals(username)){
                 return u;
             }
         }
-        return null;
+        throw new UserNotFoundException("No user with username " + username + " exists.");
     }
 
 

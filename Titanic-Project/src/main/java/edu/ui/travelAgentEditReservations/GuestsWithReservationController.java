@@ -4,13 +4,14 @@ import edu.core.users.Guest;
 import edu.core.users.User;
 import edu.databaseAccessors.AccountDatabase;
 import edu.databaseAccessors.ReservationDatabase;
+import edu.exceptions.UserNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 public class GuestsWithReservationController {
-    public static List<Guest> getGuestsWithReservations() {
+    public static List<Guest> getGuestsWithReservations() throws UserNotFoundException {
         new AccountDatabase();
         new ReservationDatabase();
 

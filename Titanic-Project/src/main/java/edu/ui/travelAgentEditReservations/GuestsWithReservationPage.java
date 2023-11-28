@@ -2,6 +2,7 @@ package edu.ui.travelAgentEditReservations;
 
 import edu.core.cruise.Cruise;
 import edu.core.users.Guest;
+import edu.exceptions.UserNotFoundException;
 import edu.ui.landingPage.TravelAgentLandingPage;
 
 import javax.swing.*;
@@ -39,7 +40,13 @@ public class GuestsWithReservationPage {
         titleLabel = new JLabel("Guests with a Reservation", JLabel.CENTER);
         mainFrame.add(titleLabel, BorderLayout.NORTH);
 
-        List<Guest> guestsWithReservations = GuestsWithReservationController.getGuestsWithReservations();
+        List<Guest> guestsWithReservations = null;
+
+        try {
+            guestsWithReservations = GuestsWithReservationController.getGuestsWithReservations();
+        } catch (UserNotFoundException e) {
+            e.printStackTrace();
+        }
 
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
