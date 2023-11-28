@@ -9,6 +9,7 @@ import edu.ui.adminCreateTravelAgent.FinishTravelAgentPage;
 import edu.ui.editProfile.EditProfile;
 import edu.ui.travelAgentEditReservations.GuestsWithReservationPage;
 import edu.ui.travelAgentEditRooms.EditRoomPage;
+import edu.ui.travelAgentEditRooms.ViewAllRoomsPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -63,10 +64,7 @@ public class TravelAgentLandingPage extends LandingPage {
         myReservationsButton.addActionListener(e -> navigateToAddRooms());
 
         JButton editRoomButton = new JButton("Edit Rooms");
-        editRoomButton.addActionListener(e -> {
-            askRoom();
-        });
-        //testing
+        editRoomButton.addActionListener(e -> navigateToModifyRooms());
 
         JButton supportButton = new JButton("Edit Profile");
         supportButton.addActionListener(e -> navigateToEditProfile());
@@ -147,13 +145,12 @@ public class TravelAgentLandingPage extends LandingPage {
         new AddRoomPage();
     }
 
-    private void navigateToModifyRooms(Room room) {
+    private void navigateToModifyRooms() {
         //get specified room in room database then modify it if necessary
         mainFrame.setVisible(false);
         RoomDatabase roomList = new RoomDatabase();
-        //Fixme: when editroom page is fully implemented, error will go away
-        new EditRoomPage(room,this);
 
+        new ViewAllRoomsPage(this);
     }
 
     private void navigateToEditProfile() {
@@ -185,7 +182,7 @@ public class TravelAgentLandingPage extends LandingPage {
                 //get room from database then use this to pass to edit room page
                 //Fixme: make a functional getRoom that takes in a room number
                 room = roomList.getRoom(Integer.parseInt(roomChoice));
-                navigateToModifyRooms(room);
+                navigateToModifyRooms();
             }
         }
         else{

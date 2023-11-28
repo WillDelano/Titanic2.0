@@ -30,7 +30,7 @@ public class TravelAgentCreateReservationController {
     }
 
     public static List<Room> getAllRooms(Cruise cruise) {
-        return RoomDatabase.getAllRooms(cruise.getName());
+        return RoomDatabase.getRoomsForCruise(cruise.getName());
     }
 
     public static Cruise getCruise(String cruiseName) {

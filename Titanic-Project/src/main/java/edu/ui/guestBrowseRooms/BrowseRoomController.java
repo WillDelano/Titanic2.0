@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class BrowseRoomController {
     public static List<Room> getRooms(String cruise) {
-        return RoomDatabase.getAllRooms(cruise);
+        return RoomDatabase.getRoomsForCruise(cruise);
     }
 
     public void reserveRoom(Guest guest, Room room) {

@@ -7,7 +7,7 @@ import edu.ui.reservationListInterface.ReservationListInterface;
 import edu.ui.travelAgentEditReservations.EditReservationPage;
 
 public class MyReservationsPageController {
-    public static void selectReservation(ReservationListInterface prevPage, Reservation r) {
+    public static void editReservation(ReservationListInterface prevPage, Reservation r) {
         new EditReservationPage(prevPage, r.getRoom().getCruise(), r);
         System.out.println(r.getId());
     }

@@ -1,18 +1,16 @@
-package edu.ui.guestReservationList;
+package edu.ui.travelAgentEditRooms;
 
-import edu.core.users.CurrentGuest;
-import edu.core.reservation.Reservation;
-import edu.core.users.Guest;
+import edu.core.reservation.Room;
 import edu.databaseAccessors.ReservationDatabase;
 import edu.exceptions.NoMatchingReservationException;
-import edu.ui.reservationListInterface.ReservationListInterface;
+import edu.ui.landingPage.LandingPage;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
-import java.util.Set;
+import java.util.List;
 
 
 /**
@@ -24,18 +22,20 @@ import java.util.Set;
  * @version 1.0
  * @see ReservationDatabase , Reservation
  */
-public class MyReservationsPage implements ReservationListInterface {
+public class ViewAllRoomsPage {
     private JFrame frame;
     private JPanel contentPanel;
-    private JTable reservationsTable;
+    private JTable roomsTable;
     private Timer refreshTimer;
+    LandingPage prevPage;
 
-    public MyReservationsPage() {
+    public ViewAllRoomsPage(LandingPage prevPage) {
+        this.prevPage = prevPage;
         prepareUI();
     }
 
     private void prepareUI() {
-        frame = new JFrame("My Reservations");
+        frame = new JFrame("All Rooms");
         frame.setSize(800, 600);
         frame.setLayout(new BorderLayout());
 
@@ -45,22 +45,30 @@ public class MyReservationsPage implements ReservationListInterface {
         JButton select = new JButton("Select");
         select.addActionListener(e -> {
             try {
-                selectRow(reservationsTable);
+                selectRow(roomsTable);
             } catch (NoMatchingReservationException ex) {
                 ex.printStackTrace();
             }
         });
 
+        JButton back = new JButton("Back");
+        back.addActionListener(e -> {
+            frame.dispose();
+            prevPage.show();
+        });
+
+
         JPanel buttonPanel = new JPanel(); // Create a new panel for buttons
         buttonPanel.add(select);
+        buttonPanel.add(back);
 
         contentPanel.add(buttonPanel, BorderLayout.SOUTH); // Add the button panel to the content panel
 
-        reservationsTable = new JTable();
-        reservationsTable.setAutoCreateRowSorter(true);
-        reservationsTable.setFillsViewportHeight(true);
+        roomsTable = new JTable();
+        roomsTable.setAutoCreateRowSorter(true);
+        roomsTable.setFillsViewportHeight(true);
 
-        contentPanel.add(new JScrollPane(reservationsTable), BorderLayout.CENTER);
+        contentPanel.add(new JScrollPane(roomsTable), BorderLayout.CENTER);
 
         frame.add(contentPanel, BorderLayout.CENTER);
 
@@ -68,34 +76,29 @@ public class MyReservationsPage implements ReservationListInterface {
     }
 
     public void refreshReservations() {
-        Set<Reservation> reservationSet = CurrentGuest.getCurrentGuest().getReservations();
-        System.err.println("Reservations: ");
+        List<Room> roomList = ViewAllRoomsController.getAllRooms();
 
-        for (Reservation q : reservationSet) {
-            System.err.println("\t" + q.getRoom());
-        }
-
-        int numReservations = reservationSet.size();
+        int numReservations = roomList.size();
         String[][] data = new String[numReservations][7];
         int i = 0;
 
-        for (Reservation temp : reservationSet) {
-            data[i][0] = String.valueOf(i + 1);
-            data[i][1] = String.valueOf(temp.getRoom().getCruise());
-            data[i][2] = String.valueOf(temp.getRoom().getRoomNumber());
-            data[i][3] = String.valueOf(temp.getStartDate());
-            data[i][4] = String.valueOf(temp.getEndDate());
-            data[i][5] = String.valueOf(temp.getStartCountry().getName());
-            data[i][6] = String.valueOf(temp.getEndCountry().getName());
+        for (Room temp : roomList) {
+            data[i][0] = String.valueOf(temp.getRoomNumber());
+            data[i][1] = "$" + String.valueOf(temp.getRoomPrice());
+            data[i][2] = String.valueOf(temp.getNumberOfBeds());
+            data[i][3] = String.valueOf(temp.getBedType());
+            data[i][4] = String.valueOf(temp.getCruise());
+            data[i][5] = String.valueOf(temp.getSmokingAvailable());
+            data[i][6] = String.valueOf(temp.isBooked());
             i++;
         }
 
-        String[] columnNames = {"#", "Cruise", "Room Number", "Start Date", "End Date", "Start Country", "End Country"};
-        reservationsTable.setModel(new DefaultTableModel(data, columnNames));
+        String[] columnNames = {"#", "Price", "Number of Beds", "Bed Types", "Cruise", "Smoking", "Booked"};
+        roomsTable.setModel(new DefaultTableModel(data, columnNames));
 
-        TableColumnModel columnModel = reservationsTable.getColumnModel();
+        TableColumnModel columnModel = roomsTable.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(1);
-        columnModel.getColumn(1).setPreferredWidth(100);
+        columnModel.getColumn(4).setPreferredWidth(100);
     }
 
     public void show() {
@@ -104,7 +107,7 @@ public class MyReservationsPage implements ReservationListInterface {
     }
 
     private void selectRow(JTable table) throws NoMatchingReservationException {
-        Reservation r;
+        Room r;
         int selectedRow;
         selectedRow = table.getSelectedRow();
 
@@ -114,23 +117,20 @@ public class MyReservationsPage implements ReservationListInterface {
             DefaultTableModel model = (DefaultTableModel) table.getModel();
 
             //you can't cast the object to an int in case it's null, so you have to cast to string, then cast to int
-            String row = (String) model.getValueAt(modelRow, 1);
+            String row = (String) model.getValueAt(modelRow, 0);
             int intRow = Integer.parseInt(row);
 
-            r = MyReservationsPageController.getReservation(intRow);
+            r = ViewAllRoomsController.getRoom(intRow);
 
-            MyReservationsPageController.editReservation(this, r);
+            ViewAllRoomsController.editRoom(this, r);
             frame.setVisible(false);
         }
         else {
-            JOptionPane.showMessageDialog(null, "No reservation is selected.");
+            JOptionPane.showMessageDialog(null, "No room is selected.");
         }
     }
 
     public static void main(String[] args) {
-        Guest g = new Guest("wdelano", "baylor", "Will", "Delano", 0, "wdelano2002@gmail.com");
-
-        CurrentGuest.setCurrentGuest(g);
-        new MyReservationsPage().show();
+        new ViewAllRoomsPage(null).show();
     }
 }

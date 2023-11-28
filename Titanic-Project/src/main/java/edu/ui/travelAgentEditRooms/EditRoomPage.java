@@ -23,11 +23,10 @@ public class EditRoomPage {
 
     private JButton submitButton;
     private User account;
-    private static LandingPage previousPage;
+    private static ViewAllRoomsPage previousPage;
     private static Room room;
 
-
-    public EditRoomPage(Room room,LandingPage prevPage) {
+    public EditRoomPage(Room room, ViewAllRoomsPage prevPage) {
         this.previousPage = prevPage;
         this.room = room;
         createGUI();
@@ -39,7 +38,7 @@ public class EditRoomPage {
     }
     private void createGUI() {
         frame = new JFrame("Edit Room");
-        frame.setSize(400, 300);
+        frame.setSize(600, 400);
 
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayout(8, 3, 15, 20));
@@ -50,7 +49,7 @@ public class EditRoomPage {
 
         Integer i  = room.getRoomNumber();
         String roomNumber = i.toString();
-        titleLabel = new JLabel("Room "+roomNumber+" Details:");
+        titleLabel = new JLabel("Room "+roomNumber+" Details:", SwingConstants.CENTER);
 
         bedTypeLabel = new JLabel("Bed Type: ");
         // Set data in the drop-down list
@@ -78,6 +77,7 @@ public class EditRoomPage {
         priceField.setText(d.toString());
 
         submitButton = new JButton("Submit");
+        JButton backButton = new JButton("Back");
 
         //first row
         mainPanel.add(new JLabel());
@@ -110,16 +110,19 @@ public class EditRoomPage {
         mainPanel.add(new JLabel());
 
         //seventh row
-        mainPanel.add(new JLabel());
         mainPanel.add(submitButton);
         mainPanel.add(new JLabel());
+        mainPanel.add(backButton);
 
         frame.add(mainPanel);
         frame.setVisible(true);
 
+        backButton.addActionListener(e -> {
+            frame.dispose();
+            previousPage.show();
+        });
 
         submitButton.addActionListener(e -> {
-
             //get bed type
             String newBedType = (String) bedTypeCombo.getSelectedItem();
 
@@ -200,9 +203,9 @@ public class EditRoomPage {
             smokingString= "Yes";
         }
 
-        int dialogResult = JOptionPane.showConfirmDialog(mainPanel,"You are changing your room details to: " +
-                "Bed Type- "+bedType+"\nBed #- "+numOfBeds+"\nSmoking Status"+smokingString
-                +"\nPrice- "+price,"Review Changes", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+        int dialogResult = JOptionPane.showConfirmDialog(mainPanel,"You are changing your room details to: \n" +
+                "Bed Type: " + bedType + "\nNumber of beds: " + numOfBeds + "\nSmoking: "+ smokingString
+                + "\nPrice: " + price,"Review Changes", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
         return dialogResult == JOptionPane.YES_OPTION;
     }
 

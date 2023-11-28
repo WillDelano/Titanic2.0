@@ -9,7 +9,7 @@ import java.util.List;
 
 public class EditReservationController {
     public static List<Room> getAllRooms(String cruise) {
-        return RoomDatabase.getAllRooms(cruise);
+        return RoomDatabase.getRoomsForCruise(cruise);
     }
 
     public static void deleteReservation(Reservation reservation) {
