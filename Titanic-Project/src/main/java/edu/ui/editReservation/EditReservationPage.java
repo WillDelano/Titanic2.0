@@ -3,6 +3,7 @@ package edu.ui.editReservation;
 import edu.core.reservation.Reservation;
 import edu.core.reservation.Room;
 import edu.databaseAccessors.RoomDatabase;
+import edu.ui.reservationListInterface.ReservationListInterface;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,9 +30,9 @@ public class EditReservationPage {
     private JTextField roomNumberField;
     private JButton submitButton;
     private JButton backButton;
-    private ReservationListPage previousPage;
+    private ReservationListInterface previousPage;
 
-    public EditReservationPage(ReservationListPage previousPage, String cruise, Reservation reservation) {
+    public EditReservationPage(ReservationListInterface previousPage, String cruise, Reservation reservation) {
         this.reservation = reservation;
         this.cruise = cruise;
         this.previousPage = previousPage;
@@ -43,7 +44,7 @@ public class EditReservationPage {
         frame.setSize(1000, 600);
 
         mainPanel = new JPanel();
-        mainPanel.setLayout(new GridLayout(5, 3, 15, 20));
+        mainPanel.setLayout(new GridLayout(6, 3, 15, 20));
 
         titleLabel = new JLabel("Edit Reservation", JLabel.CENTER);
 
@@ -94,10 +95,13 @@ public class EditReservationPage {
         mainPanel.add(submitButton);
         mainPanel.add(new JLabel());
 
+        mainPanel.add(new JLabel());
+        mainPanel.add(backButton);
+        mainPanel.add(new JLabel());
+
         frame.add(mainPanel);
         frame.setVisible(true);
 
-        backButton = new JButton("Back");
         backButton.addActionListener(e -> {
             frame.dispose(); // Close the Edit Reservation page
             previousPage.show(); // Go back to the previous page

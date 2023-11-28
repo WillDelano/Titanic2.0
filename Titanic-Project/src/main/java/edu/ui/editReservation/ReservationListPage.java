@@ -3,6 +3,7 @@ package edu.ui.editReservation;
 import edu.core.cruise.Cruise;
 import edu.core.reservation.Reservation;
 import edu.core.users.Guest;
+import edu.ui.reservationListInterface.ReservationListInterface;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +20,7 @@ import java.util.Set;
  * @version 1.0
  * @see Cruise , CruiseDatabase, CruiseDetailsPage
  */
-public class ReservationListPage {
+public class ReservationListPage implements ReservationListInterface {
     private JFrame mainFrame;
     private JLabel titleLabel;
     private JButton selectButton;

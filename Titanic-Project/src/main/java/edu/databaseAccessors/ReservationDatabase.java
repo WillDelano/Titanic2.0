@@ -5,6 +5,7 @@ import edu.core.reservation.Reservation;
 import edu.core.users.Guest;
 import edu.core.reservation.Room;
 import edu.core.users.User;
+import edu.exceptions.NoMatchingReservationException;
 
 import java.io.*;
 import java.sql.*;
@@ -24,12 +25,6 @@ import java.util.Set;
  */
 public class ReservationDatabase {
     private static final String url = "jdbc:derby:C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
-    /**
-     * TODO
-     *
-     */
-    public ReservationDatabase() {
-    }
 
     /**
      * Returns the reservation database size
@@ -87,6 +82,7 @@ public class ReservationDatabase {
                 try (ResultSet resultSet = statement.executeQuery()) {
                     //get the values in the set and create reservations for them
                     while (resultSet.next()) {
+                        int id = resultSet.getInt("id");
                         User user = AccountDatabase.getUser(resultSet.getString("username"));
                         Room room = RoomDatabase.getRoom(resultSet.getInt("roomNum"));
                         LocalDate startDate = LocalDate.parse(resultSet.getString("startDate"));
@@ -94,7 +90,7 @@ public class ReservationDatabase {
                         Country startCountry = CountryDatabase.getCountry(resultSet.getString("startCountry"));
                         Country endCountry = CountryDatabase.getCountry(resultSet.getString("endCountry"));
 
-                        Reservation r = new Reservation(user, room, startDate, endDate, startCountry, endCountry);
+                        Reservation r = new Reservation(id, user, room, startDate, endDate, startCountry, endCountry);
 
                         guestReservations.add(r);
                     }
@@ -108,6 +104,46 @@ public class ReservationDatabase {
         }
 
         return guestReservations;
+    }
+
+    /**
+     * Returns the reservation associated with a room
+     *
+     * @return The reservation tied to a room
+     */
+    public static Reservation getReservationByRoom(int roomNum) throws NoMatchingReservationException {
+        //create the connection to the db
+        try (Connection connection = DriverManager.getConnection(url)) {
+            //command to select all rows from db matching the guest username
+            String selectAll = "SELECT * FROM Reservation WHERE roomNum = ?";
+            //preparing the statement
+            try (PreparedStatement statement = connection.prepareStatement(selectAll)) {
+                //set the first parameter to search for (id) to the guest's id
+                statement.setString(1, String.valueOf(roomNum));
+                //executing the statement (executeQuery returns a ResultSet)
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    //get the values in the set and create reservations for them
+                    if (resultSet.next()) {
+                        int id = resultSet.getInt("id");
+                        User user = AccountDatabase.getUser(resultSet.getString("username"));
+                        Room room = RoomDatabase.getRoom(resultSet.getInt("roomNum"));
+                        LocalDate startDate = LocalDate.parse(resultSet.getString("startDate"));
+                        LocalDate endDate = LocalDate.parse(resultSet.getString("endDate"));
+                        Country startCountry = CountryDatabase.getCountry(resultSet.getString("startCountry"));
+                        Country endCountry = CountryDatabase.getCountry(resultSet.getString("endCountry"));
+
+                        return new Reservation(id, user, room, startDate, endDate, startCountry, endCountry);
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            System.err.println("Failed to connect to database.");
+        }
+
+        throw new NoMatchingReservationException("No reservation is tied to room number: " + roomNum);
     }
 
     /**
@@ -296,6 +332,7 @@ public class ReservationDatabase {
      *
      */
     public static void deleteReservation(Reservation reservation) {
+        System.out.println("Deleting: " + reservation.getId());
         try (Connection connection = DriverManager.getConnection(url)) {
             String select = "DELETE FROM Reservation WHERE id = ?";
             try (PreparedStatement statement = connection.prepareStatement(select)) {

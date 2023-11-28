@@ -191,8 +191,6 @@ public class TravelAgentLandingPage extends LandingPage {
         }
         else{
             //if cancel is selected then back to main page
-            //mainFrame.dispose();
-            //prepareGUI();
             return;
         }
     }

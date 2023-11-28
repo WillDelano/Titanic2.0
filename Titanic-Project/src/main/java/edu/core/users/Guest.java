@@ -13,6 +13,7 @@ import edu.databaseAccessors.AccountDatabase;
 import edu.databaseAccessors.CountryDatabase;
 import edu.databaseAccessors.ReservationDatabase;
 import edu.databaseAccessors.RoomDatabase;
+import edu.exceptions.NoMatchingReservationException;
 
 /**
  * Representation of a guest user in the cruise reservation system.
@@ -82,12 +83,22 @@ public class Guest extends User {
         Country endCountryObject = CountryDatabase.getCountry(endCountry);
         System.out.println("End Country Object: " + endCountryObject);
 
-        Reservation reservation = new Reservation(this, room, startDate, endDate, startCountryObject, endCountryObject);
+        Reservation reservation = new Reservation(-1, this, room, startDate, endDate, startCountryObject, endCountryObject);
 
 
         if (!ReservationDatabase.hasReservation(reservation)) {
             ReservationDatabase.addReservation(reservation);
             room.bookRoom();
+
+
+            /* -1 was initially passed as the id so the DB could create its own, so now this is needed to update the reservation
+            variable to have the correct id */
+            try {
+                reservation = ReservationDatabase.getReservationByRoom(reservation.getRoom().getRoomNumber());
+            } catch (NoMatchingReservationException e) {
+                e.printStackTrace();
+            }
+
             this.reservations.add(reservation);
             
             RoomDatabase.bookRoom(room.getRoomNumber());
