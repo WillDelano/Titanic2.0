@@ -21,7 +21,7 @@ import java.util.*;
  */
 public class CruiseDatabase {
     private static Set<Cruise> cruiseDatabase;
-    private static final String url = "jdbc:derby:C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
+    private static final String url = "jdbc:derby:/Users/willdelano/Desktop/Software1/Titanic2.0/Titanic-Project/src/main/java/edu/Database";
 
     static {
         cruiseDatabase = new HashSet<>();
@@ -113,7 +113,6 @@ public class CruiseDatabase {
         String query = "SELECT * FROM Cruises";
         try (Connection connection = DriverManager.getConnection(url);
              PreparedStatement statement = connection.prepareStatement(query)) {
-
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     cruises.add(createCruiseFromResultSet(resultSet));

@@ -12,6 +12,8 @@ import edu.ui.travelAgentEditReservations.GuestsWithReservationPage;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.List;
@@ -27,9 +29,22 @@ public class TravelAgentCreateReservationPage {
     private JButton submitButton;
     private JButton backButton;
     private GuestsWithReservationPage previousPage;
+    JComboBox<String> checkoutDropdown;
+    JComboBox<String> roomNumberDropdown;
+    JComboBox<String> cruiseDropdown;
+    JTextField checkinField;
+    JLabel checkinLabel;
+    JLabel usernameLabel;
+    JTextField usernameField;
+
+    boolean test = false;
 
     public TravelAgentCreateReservationPage(GuestsWithReservationPage previousPage) {
         this.previousPage = previousPage;
+        this.checkoutDropdown = new JComboBox<>();
+        this.roomNumberDropdown = new JComboBox<>();
+        this.cruiseDropdown = new JComboBox<>();
+        this.checkinField = new JTextField();
         createGUI();
     }
 
@@ -38,43 +53,35 @@ public class TravelAgentCreateReservationPage {
         frame.setSize(1000, 600);
 
         mainPanel = new JPanel();
-        mainPanel.setLayout(new GridLayout(6, 3, 15, 20));
+        mainPanel.setLayout(new GridLayout(7, 3, 15, 20));
 
         titleLabel = new JLabel("Create Reservation", JLabel.CENTER);
 
-        JLabel usernameLabel = new JLabel("Guest username:");
-        JTextField usernameField = new JTextField();
+        usernameLabel = new JLabel("Guest username:");
+        usernameField = new JTextField();
 
         JLabel cruiseLabel = new JLabel("Cruises:");
         checkoutField = new JTextField();
-        List<Cruise> cruiseList = TravelAgentCreateReservationController.getAllCruises();
+        List<String> cruiseList = TravelAgentCreateReservationController.getAllCruises();
         String[] cruiseArray = cruiseList.stream().map(Object::toString).toArray(String[]::new);
-        JComboBox<String> cruiseDropdown = new JComboBox<>(cruiseArray);
+        cruiseDropdown = new JComboBox<>(cruiseArray);
         cruiseDropdown.setRenderer(new LineWrapRenderer());
 
-        JLabel checkinLabel = new JLabel("Check-in Date:");
-        JTextField checkinField = new JTextField();
+        checkinLabel = new JLabel("Check-in Date:");
+        checkinField = new JTextField();
         //a guest can only check-in the day the cruise is leaving, so it cannot be changed
         checkinField.setEditable(false);
 
         checkoutLabel = new JLabel("Check-out Dates:");
         checkoutField = new JTextField();
-        List<Cruise> checkoutList = TravelAgentCreateReservationController.getAllCheckoutDates();
-        String[] checkoutArray = checkoutList.stream().map(Object::toString).toArray(String[]::new);
-        JComboBox<String> checkoutDropdown = new JComboBox<>(checkoutArray);
-        checkoutDropdown.setRenderer(new LineWrapRenderer());
 
         roomNumberLabel = new JLabel("Rooms:");
         roomNumberField = new JTextField();
-        List<Room> roomList = TravelAgentCreateReservationController.getAllRooms(cruiseDropdown.getSelectedItem());
-        String[] roomNumberArray = roomList.stream().map(Object::toString).toArray(String[]::new);
-        JComboBox<String> roomNumberDropdown = new JComboBox<>(roomNumberArray);
-        roomNumberDropdown.setRenderer(new LineWrapRenderer());
 
         submitButton = new JButton("Submit");
         backButton = new JButton("Back");
 
-        //top row
+        //first row
         mainPanel.add(new JLabel());
         mainPanel.add(titleLabel);
         mainPanel.add(new JLabel());
@@ -86,32 +93,43 @@ public class TravelAgentCreateReservationPage {
 
         //third row
         mainPanel.add(cruiseLabel);
+        mainPanel.add(cruiseDropdown);
         mainPanel.add(new JLabel());
-        //mainPanel.add(cruiseDropdown);
 
         //fourth row
         mainPanel.add(checkinLabel);
         mainPanel.add(checkinField);
-        //TODO set text to selected cruise start date
-        checkoutField.setText("TODO // DATE THAT CRUISE LEAVES");
         mainPanel.add(new JLabel());
 
-        //last row
+        //fifth row
         mainPanel.add(checkoutLabel);
+        mainPanel.add(new JLabel());
         mainPanel.add(new JLabel());
         //mainPanel.add(checkoutDropdown);
 
-        //last row
+        //sixth row
         mainPanel.add(roomNumberLabel);
+        mainPanel.add(roomNumberDropdown);
         mainPanel.add(new JLabel());
-        //mainPanel.add(roomNumberDropdown);
 
-        mainPanel.add(submitButton);
-        mainPanel.add(new JLabel());
+        //seventh row
         mainPanel.add(backButton);
+        mainPanel.add(new JLabel());
+        mainPanel.add(submitButton);
+
+        //set values of checkout dates and rooms to initially selected cruise
+        refreshData((String) cruiseDropdown.getSelectedItem());
 
         frame.add(mainPanel);
         frame.setVisible(true);
+
+        cruiseDropdown.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                refreshData((String) cruiseDropdown.getSelectedItem());
+            }
+        });
+
 
         backButton.addActionListener(e -> {
             frame.dispose(); // Close the Edit Reservation page
@@ -162,6 +180,29 @@ public class TravelAgentCreateReservationPage {
                 }
             }
         });*/
+    }
+
+    private void refreshData(String cruiseName) {
+        Cruise cruise = CruiseDatabase.getCruise(cruiseName);
+
+        usernameField.setText(cruise.getDeparture().toString());
+        checkinField.setText(cruise.getDeparture().toString());
+
+        List<Cruise> checkoutList = TravelAgentCreateReservationController.getAllCheckoutDates(cruise);
+        String[] checkoutArray = checkoutList.stream().map(Object::toString).toArray(String[]::new);
+
+        //update the model of the existing checkoutDropdown
+        checkoutDropdown.setModel(new DefaultComboBoxModel<>(checkoutArray));
+        checkoutDropdown.setRenderer(new LineWrapRenderer());
+
+        List<Room> roomList = TravelAgentCreateReservationController.getAllRooms(cruise);
+        String[] roomNumberArray = roomList.stream().map(Object::toString).toArray(String[]::new);
+
+        //update the model of the existing roomNumberDropdown
+        roomNumberDropdown.setModel(new DefaultComboBoxModel<>(roomNumberArray));
+        roomNumberDropdown.setRenderer(new LineWrapRenderer());
+
+        System.out.println(cruise.getDeparture().toString());
     }
 
     //TODO
