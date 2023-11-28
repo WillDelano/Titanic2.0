@@ -1,4 +1,4 @@
-package edu.ui.editReservation;
+package edu.ui.travelAgentEditReservations;
 
 import edu.core.reservation.Reservation;
 import edu.core.reservation.Room;

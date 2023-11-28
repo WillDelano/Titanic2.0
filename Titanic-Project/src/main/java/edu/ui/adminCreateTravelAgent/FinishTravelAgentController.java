@@ -1,4 +1,4 @@
-package edu.ui.createTravelAgent;
+package edu.ui.adminCreateTravelAgent;
 
 import edu.core.users.User;
 import edu.databaseAccessors.AccountDatabase;

@@ -1,22 +1,11 @@
-package edu.ui.modifyRoom;
+package edu.ui.travelAgentEditRooms;
 
 import edu.core.reservation.Room;
-import edu.core.users.TravelAgent;
 import edu.core.users.User;
-import edu.databaseAccessors.RoomDatabase;
-import edu.ui.editReservation.EditReservationController;
 import edu.ui.landingPage.LandingPage;
-import edu.ui.landingPage.TravelAgentLandingPage;
-import edu.uniqueID.UniqueID;
 
 import javax.swing.*;
 import java.awt.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-import java.util.List;
-import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class EditRoomPage {
     private JFrame frame;

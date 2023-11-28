@@ -1,14 +1,13 @@
-package edu.ui.cruiseDetails;
+package edu.ui.guestSelectCruise;
 
 import edu.core.cruise.Cruise;
 import edu.databaseAccessors.CruiseDatabase;
 import edu.ui.landingPage.LandingPage;
-import edu.ui.roomDetails.BrowseRoomPage;
+import edu.ui.guestBrowseRooms.BrowseRoomPage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 
 /**

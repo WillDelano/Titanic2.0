@@ -1,4 +1,4 @@
-package edu.ui.cruiseDetails;
+package edu.ui.guestSelectCruise;
 
 import edu.core.cruise.Cruise;
 import edu.databaseAccessors.CruiseDatabase;

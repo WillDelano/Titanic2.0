@@ -1,10 +1,6 @@
-package edu.ui.createTravelAgent;
+package edu.ui.adminCreateTravelAgent;
 
 import edu.databaseAccessors.AccountDatabase;
-import edu.ui.authentication.RegisterPageController;
-
-import javax.swing.*;
-import java.util.Objects;
 
 public class CreateTravelAgentController {
 

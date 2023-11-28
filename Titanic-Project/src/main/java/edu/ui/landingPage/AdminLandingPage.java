@@ -3,13 +3,8 @@ package edu.ui.landingPage;
 import edu.core.reservation.Room;
 import edu.core.users.User;
 import edu.databaseAccessors.AccountDatabase;
-import edu.databaseAccessors.RoomDatabase;
-import edu.ui.addRoom.AddRoomPage;
-import edu.ui.createTravelAgent.CreateTravelAgentPage;
-import edu.ui.editProfile.EditProfile;
-import edu.ui.editReservation.GuestsWithReservationPage;
-import edu.ui.modifyRoom.EditRoomPage;
-import edu.ui.resetPassword.ResetPasswordListPage;
+import edu.ui.adminCreateTravelAgent.CreateTravelAgentPage;
+import edu.ui.adminResetPasswords.ResetPasswordListPage;
 
 import javax.swing.*;
 import java.awt.*;

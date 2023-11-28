@@ -1,15 +1,14 @@
 package edu.ui.landingPage;
 
 import edu.core.reservation.Room;
-import edu.core.users.TravelAgent;
 import edu.core.users.User;
 import edu.databaseAccessors.AccountDatabase;
 import edu.databaseAccessors.RoomDatabase;
-import edu.ui.addRoom.AddRoomPage;
-import edu.ui.createTravelAgent.FinishTravelAgentPage;
+import edu.ui.travelAgentAddRoom.AddRoomPage;
+import edu.ui.adminCreateTravelAgent.FinishTravelAgentPage;
 import edu.ui.editProfile.EditProfile;
-import edu.ui.editReservation.GuestsWithReservationPage;
-import edu.ui.modifyRoom.EditRoomPage;
+import edu.ui.travelAgentEditReservations.GuestsWithReservationPage;
+import edu.ui.travelAgentEditRooms.EditRoomPage;
 
 import javax.swing.*;
 import java.awt.*;

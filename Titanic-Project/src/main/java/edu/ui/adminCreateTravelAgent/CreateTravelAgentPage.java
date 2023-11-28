@@ -1,28 +1,11 @@
-package edu.ui.createTravelAgent;
+package edu.ui.adminCreateTravelAgent;
 
-import edu.core.reservation.Room;
-import edu.core.users.TravelAgent;
-import edu.core.users.User;
-import edu.databaseAccessors.RoomDatabase;
-import edu.ui.editReservation.EditReservationController;
-import edu.ui.editReservation.ReservationListPage;
 import edu.ui.landingPage.LandingPage;
-import edu.ui.landingPage.TravelAgentLandingPage;
-
-import edu.ui.resetPassword.ResetPasswordListPage;
-import edu.uniqueID.UniqueID;
 
 import javax.swing.*;
 import java.awt.*;
 
-import java.io.IOException;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-import java.util.List;
 import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class CreateTravelAgentPage {
     private JFrame frame;

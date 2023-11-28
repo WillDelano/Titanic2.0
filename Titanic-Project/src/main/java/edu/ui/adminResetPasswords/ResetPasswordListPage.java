@@ -1,15 +1,16 @@
-package edu.ui.editReservation;
+package edu.ui.adminResetPasswords;
 
 import edu.core.cruise.Cruise;
-import edu.core.users.Guest;
+import edu.core.users.User;
+import edu.ui.editProfile.EditProfile;
 import edu.ui.landingPage.LandingPage;
-import edu.ui.landingPage.TravelAgentLandingPage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Controller for displaying and selecting a cruise on the ui
@@ -20,8 +21,8 @@ import java.util.List;
  * @version 1.0
  * @see Cruise, CruiseDatabase, CruiseDetailsPage
  */
-public class GuestsWithReservationPage {
-    private TravelAgentLandingPage landingPage;
+public class ResetPasswordListPage {
+    private LandingPage landingPage;
     private JFrame mainFrame;
     private JLabel titleLabel;
     private JList<String> guestList;
@@ -29,20 +30,22 @@ public class GuestsWithReservationPage {
     private JButton backButton;
     private JTextArea detailsTextArea;
 
-    public GuestsWithReservationPage(TravelAgentLandingPage landingPage) {
+    public ResetPasswordListPage(LandingPage landingPage) {
         this.landingPage = landingPage;
         prepareGUI();
     }
 
     private void prepareGUI() {
-        mainFrame = new JFrame("Select a Cruise");
+        mainFrame = new JFrame("Choose an Account");
         mainFrame.setSize(1000, 700);
         mainFrame.setLayout(new BorderLayout());
 
-        titleLabel = new JLabel("Guests with a Reservation", JLabel.CENTER);
+        titleLabel = new JLabel("Users", JLabel.CENTER);
         mainFrame.add(titleLabel, BorderLayout.NORTH);
 
-        List<Guest> guestsWithReservations = GuestsWithReservationController.getGuestsWithReservations();
+        List<User> userList = ResetPasswordListPageController.getAllUsers();
+
+        System.out.println(userList.size());
 
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
@@ -50,32 +53,39 @@ public class GuestsWithReservationPage {
         JPanel detailsPanel = new JPanel();
         detailsPanel.setLayout(new BoxLayout(detailsPanel, BoxLayout.Y_AXIS));
 
-        for (int i = 0; i < guestsWithReservations.size(); i++) {
+        for (int i = 0; i < userList.size(); i++) {
             // get a guest from the list
-            Guest guest = guestsWithReservations.get(i);
+            User user = userList.get(i);
+            String firstname;
+            String lastname;
 
-            String username = guest.getUsername();
-            String first = guest.getFirstName();
-            String last = guest.getLastName();
-            String numReservations = Integer.toString(guest.getReservations().size());
+            //if the user to display is a travel agent that hasn't finished their account
+            if (Objects.equals(user.getFirstName(), "")) {
+                firstname = "NEW TRAVEL AGENT";
+                lastname = firstname;
+            }
+            else {
+                firstname = user.getUsername();
+                lastname = user.getLastName();
+            }
 
-            String guestDetails = "Guest username: " + username + "\n" +
-                    "First name: " + first + "\n" +
-                    "Last name: " + last + "\n" +
-                    "Reservations: " + numReservations +" \n";
+            String details = "Username: " + user.getUsername() + "\n" +
+                    "First name: " + firstname + "\n" +
+                    "Last name: " + lastname + "\n";
 
-            JTextArea detailsTextArea = new JTextArea(guestDetails);
+            JTextArea detailsTextArea = new JTextArea(details);
             detailsTextArea.setEditable(false);
             JScrollPane textScrollPane = new JScrollPane(detailsTextArea);
             detailsPanel.add(textScrollPane);
 
-            JButton selectButton = new JButton("Select " + guest.getUsername());
+            JButton selectButton = new JButton("Select " + user.getUsername());
             selectButton.setAlignmentX(Component.CENTER_ALIGNMENT);
             selectButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    handleReservationList(guest);
+                    navigateToResetPassword(user);
                 }
             });
+
             detailsPanel.add(selectButton);
         }
 
@@ -96,9 +106,9 @@ public class GuestsWithReservationPage {
         mainFrame.setVisible(true);
     }
 
-    private void handleReservationList(Guest guest) {
+    private void navigateToResetPassword(User user) {
         mainFrame.setVisible(false);
-        new ReservationListPage(this, guest);
+        new EditProfile(user, null, this, false);
     }
 
     public void show() {

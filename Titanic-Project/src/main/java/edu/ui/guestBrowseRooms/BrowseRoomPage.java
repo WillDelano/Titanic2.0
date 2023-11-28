@@ -1,4 +1,4 @@
-package edu.ui.roomDetails;
+package edu.ui.guestBrowseRooms;
 
 import edu.core.reservation.Room;
 import edu.core.users.CurrentGuest;

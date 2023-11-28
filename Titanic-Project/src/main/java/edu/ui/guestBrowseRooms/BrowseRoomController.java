@@ -1,8 +1,7 @@
-package edu.ui.roomDetails;
+package edu.ui.guestBrowseRooms;
 
 import edu.core.cruise.Country;
 import edu.core.cruise.Cruise;
-import edu.core.reservation.Reservation;
 import edu.core.reservation.Room;
 import edu.core.users.Guest;
 import edu.databaseAccessors.CruiseDatabase;

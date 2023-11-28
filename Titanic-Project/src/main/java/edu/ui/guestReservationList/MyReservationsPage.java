@@ -1,4 +1,4 @@
-package edu.ui.reservationDetails;
+package edu.ui.guestReservationList;
 
 import edu.core.users.CurrentGuest;
 import edu.core.reservation.Reservation;
@@ -103,7 +103,7 @@ public class MyReservationsPage implements ReservationListInterface {
         frame.setVisible(true);
     }
 
-    public void selectRow(JTable table) throws NoMatchingReservationException {
+    private void selectRow(JTable table) throws NoMatchingReservationException {
         Reservation r;
         int selectedRowForDeletion;
         selectedRowForDeletion = table.getSelectedRow();

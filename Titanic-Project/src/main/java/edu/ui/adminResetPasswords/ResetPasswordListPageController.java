@@ -1,13 +1,9 @@
-package edu.ui.resetPassword;
+package edu.ui.adminResetPasswords;
 
-import edu.core.users.Guest;
 import edu.core.users.User;
 import edu.databaseAccessors.AccountDatabase;
-import edu.databaseAccessors.ReservationDatabase;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class ResetPasswordListPageController {
     public static List<User> getAllUsers() {
