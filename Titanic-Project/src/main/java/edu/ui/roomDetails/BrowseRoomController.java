@@ -6,7 +6,10 @@ import edu.core.reservation.Reservation;
 import edu.core.reservation.Room;
 import edu.core.users.Guest;
 import edu.databaseAccessors.CruiseDatabase;
+import edu.databaseAccessors.ReservationDatabase;
 import edu.databaseAccessors.RoomDatabase;
+import edu.exceptions.NoMatchingReservationException;
+import edu.exceptions.NoMatchingRoomException;
 
 import javax.swing.*;
 import java.time.LocalDate;
@@ -53,6 +56,10 @@ public class BrowseRoomController {
 
         // Make the reservation
         guest.makeReservation(room, startDate, endDate, startCountry.getName(), endCountry.getName());
+    }
+
+    public static Room getRoom(int roomNumber) throws NoMatchingRoomException {
+        return RoomDatabase.getRoom(roomNumber);
     }
 
 }

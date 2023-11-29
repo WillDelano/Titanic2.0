@@ -76,7 +76,7 @@ public class SelectCruisePage {
         if (selectedCruiseName != null) {
             Cruise selectedCruise = CruiseDatabase.getCruise(selectedCruiseName);
             if (selectedCruise != null) {
-                new BrowseRoomPage(selectedCruise.getName()); // Assuming BrowseRoomPage takes a Cruise name
+                new BrowseRoomPage(selectedCruise.getName()).show(); // Assuming BrowseRoomPage takes a Cruise name
             } else {
                 JOptionPane.showMessageDialog(cruiseFrame, "Cruise details not found.", "Error", JOptionPane.ERROR_MESSAGE);
             }
