@@ -10,13 +10,15 @@ import java.util.Objects;
  * </p>
  *
  * @author Cole Hogan
- * @version 1.0
+ * @version 1.3
  * @see Room
  */
 public class Room {
     private int numberOfBeds;
 
-    private String bedType;
+    private bedType bedType;
+
+    String bedTypeStr;
 
     private boolean smokingAvailable;
 
@@ -36,10 +38,10 @@ public class Room {
      * default constructor of the Room
      *
      */
-    public Room(int roomNumber, int numberOfBeds, String bedType, boolean smokingAvailable, double roomPrice, String cruise) {
+    public Room(int roomNumber, int numberOfBeds, String bedTypeStr, boolean smokingAvailable, double roomPrice, String cruise) {
         this.roomNumber = roomNumber;
         this.numberOfBeds = numberOfBeds;
-        this.bedType = bedType;
+        this.bedTypeStr = bedTypeStr;
         this.smokingAvailable = smokingAvailable;
         this.roomPrice = roomPrice;
         this.cruise = cruise;
@@ -78,12 +80,25 @@ public class Room {
         this.numberOfBeds = numberOfBeds;
     }
     /**
+     * will take the string bedType
+     * to set the value of the bedType, this will help with calculating the price
+     * of the room.g
+     *
+     */
+    public void setBedTypeFromStr(){
+        for (bedType theType: edu.core.reservation.bedType.values()){
+            if(theType.name().equals(bedTypeStr)){
+                bedType = theType;
+            }
+        }
+    }
+    /**
      * Sets the type of Bed in a room
      *
-     * @param bedType
+     * @param bedTypeStr
      */
-    public void setBedType(String bedType) {
-        this.bedType = bedType;
+    public void setBedTypeStr(String bedTypeStr) {
+        this.bedTypeStr = bedTypeStr;
     }
     /**
      * sets the smoking boolean
@@ -101,6 +116,8 @@ public class Room {
      *
      */
     public void setRoomPrice(double roomPrice) {
+
+        //will calculate the room price using this function
         this.roomPrice = roomPrice;
 
     }
@@ -144,8 +161,8 @@ public class Room {
      *
      * @return the current bedType
      */
-    public String getBedType() {
-        return bedType;
+    public String getBedTypeStr() {
+        return bedTypeStr;
     }
     /**
      * retrives the smoking availability
@@ -180,7 +197,7 @@ public class Room {
         }
 
         return "Room Number: " + roomNumber + ", Number of Beds: " + numberOfBeds +
-                ", Bed Type: " + bedType +
+                ", Bed Type: " + bedTypeStr +
                 ", Smoking Availability: " + smoking +
                 ", Room Price: $" + roomPrice;
     }
@@ -196,7 +213,7 @@ public class Room {
         if (object == null || getClass() != object.getClass()) return false;
         if (!super.equals(object)) return false;
         Room room = (Room) object;
-        return java.util.Objects.equals(numberOfBeds, room.numberOfBeds) && java.util.Objects.equals(bedType, room.bedType) && java.util.Objects.equals(smokingAvailable, room.smokingAvailable) && java.util.Objects.equals(roomPrice, room.roomPrice);
+        return java.util.Objects.equals(numberOfBeds, room.numberOfBeds) && java.util.Objects.equals(bedTypeStr, room.bedTypeStr) && java.util.Objects.equals(smokingAvailable, room.smokingAvailable) && java.util.Objects.equals(roomPrice, room.roomPrice);
     }
 
     /**
@@ -208,12 +225,13 @@ public class Room {
     public int hashCode() {
         int result = 31; // A prime number as the initial value
         result = 31 * result + Objects.hashCode(numberOfBeds);
-        result = 31 * result + Objects.hashCode(bedType);
+        result = 31 * result + Objects.hashCode(bedTypeStr);
         result = 31 * result + Objects.hashCode(smokingAvailable);
         result = 31 * result + Objects.hashCode(roomNumber);
 
         return result;
     }
+
 }
 
 

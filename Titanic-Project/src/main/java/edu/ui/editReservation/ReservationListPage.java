@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.Set;
 
 /**
@@ -28,13 +29,13 @@ public class ReservationListPage implements ReservationListInterface {
     private GuestsWithReservationPage previousPage;
     private Guest guest;
 
-    public ReservationListPage(GuestsWithReservationPage previousPage, Guest guest) {
+    public ReservationListPage(GuestsWithReservationPage previousPage, Guest guest) throws SQLException {
         this.previousPage = previousPage;
         this.guest = guest;
         prepareGUI();
     }
 
-    private void prepareGUI() {
+    private void prepareGUI() throws SQLException {
         mainFrame = new JFrame("Select a Cruise");
         mainFrame.setSize(1000, 700);
         mainFrame.setLayout(new BorderLayout());

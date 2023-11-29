@@ -7,6 +7,7 @@ java.vendor=Oracle Corporation
 java.runtime.version=20.0.1+9-29
 user.dir=C:\Users\Owner\Desktop\Titanic2.0\Titanic-Project
 os.name=Windows 10
+
 os.arch=amd64
 os.version=10.0
 derby.system.home=null

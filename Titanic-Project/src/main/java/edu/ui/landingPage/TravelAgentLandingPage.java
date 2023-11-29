@@ -15,7 +15,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+<<<<<<< HEAD
 import java.util.Objects;
+=======
+import java.sql.SQLException;
+>>>>>>> checkin
 
 /**
  * Creates the landing page
@@ -57,8 +61,14 @@ public class TravelAgentLandingPage extends LandingPage {
         JPanel topPanel = new JPanel(new BorderLayout());
         JPanel middlePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
-        JButton browseCruisesButton = new JButton("Edit Reservations");
-        browseCruisesButton.addActionListener(e -> navigateToEditReservations());
+        JButton browseCruisesButton = new JButton("View/Edit Reservations");
+        browseCruisesButton.addActionListener(e -> {
+            try {
+                navigateToEditReservations();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
         JButton myReservationsButton = new JButton("Add Rooms");
         myReservationsButton.addActionListener(e -> navigateToAddRooms());
@@ -138,7 +148,7 @@ public class TravelAgentLandingPage extends LandingPage {
             return null;
         }
     }
-    private void navigateToEditReservations() {
+    private void navigateToEditReservations() throws SQLException {
         mainFrame.setVisible(false);   // hide the current landing page
         new GuestsWithReservationPage(this);
     }

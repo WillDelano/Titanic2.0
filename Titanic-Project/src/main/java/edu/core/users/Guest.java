@@ -5,6 +5,7 @@ import edu.core.billingmanagement.PaymentInfo;
 import edu.core.cruise.Country;
 import edu.core.reservation.Reservation;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -100,7 +101,7 @@ public class Guest extends User {
             }
 
             this.reservations.add(reservation);
-            
+
             RoomDatabase.bookRoom(room.getRoomNumber());
         } else {
             System.err.println("Attempting to add duplicate reservation - Cancelled.");
@@ -114,7 +115,7 @@ public class Guest extends User {
      *
      * @return Set of reservations associated with a guest.
      */
-    public Set<Reservation> getReservations() {
+    public Set<Reservation> getReservations() throws SQLException {
         return ReservationDatabase.getReservations(this);
     }
 

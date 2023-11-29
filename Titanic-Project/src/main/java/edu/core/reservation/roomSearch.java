@@ -50,7 +50,7 @@ public class roomSearch {
 
                 // iterate through traits to find in room's attributes
                 for (String s : traits) {
-                    if (s.toLowerCase().contains(obj.getBedType().toLowerCase())) { //bed type
+                    if (s.toLowerCase().contains(obj.getBedTypeStr().toLowerCase())) { //bed type
                         relevantRooms.add(obj);
                     } else if (s.toLowerCase().contains( // searching for beds
                             (obj.getNumberOfBeds() + " beds").toLowerCase())) {
@@ -212,35 +212,35 @@ public class roomSearch {
         switch(bedType){
             case SINGLE:
                 for(Room obj: roomList){
-                    if(obj.getBedType().equalsIgnoreCase("single")){
+                    if(obj.getBedTypeStr().equalsIgnoreCase("single")){
                         roomList.add(obj);
                     }
                 }
 
             case TWIN:
                 for(Room obj: roomList){
-                    if(obj.getBedType().equalsIgnoreCase("twin")){
+                    if(obj.getBedTypeStr().equalsIgnoreCase("twin")){
                         roomList.add(obj);
                     }
                 }
 
             case FULL:
                 for(Room obj: roomList){
-                    if(obj.getBedType().equalsIgnoreCase("full")){
+                    if(obj.getBedTypeStr().equalsIgnoreCase("full")){
                         roomList.add(obj);
                     }
                 }
 
             case QUEEN:
                 for(Room obj: roomList){
-                    if(obj.getBedType().equalsIgnoreCase("queen")){
+                    if(obj.getBedTypeStr().equalsIgnoreCase("queen")){
                         roomList.add(obj);
                     }
                 }
 
             case KING:
                 for(Room obj: roomList){
-                    if(obj.getBedType().equalsIgnoreCase("king")){
+                    if(obj.getBedTypeStr().equalsIgnoreCase("king")){
                         roomList.add(obj);
                     }
                 }

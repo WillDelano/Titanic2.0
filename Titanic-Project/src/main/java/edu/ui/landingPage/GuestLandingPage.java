@@ -10,7 +10,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+<<<<<<< HEAD
 import java.util.Objects;
+=======
+import java.sql.SQLException;
+>>>>>>> checkin
 
 /**
  * Creates the landing page
@@ -60,7 +64,13 @@ public class GuestLandingPage extends LandingPage {
         browseCruisesButton.addActionListener(e -> navigateToSelectCruisePage());
 
         JButton myReservationsButton = new JButton("My Reservations");
-        myReservationsButton.addActionListener(e -> openMyReservationsPage());
+        myReservationsButton.addActionListener(e -> {
+            try {
+                openMyReservationsPage();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
         JButton supportButton = new JButton("Support");
 
@@ -98,7 +108,7 @@ public class GuestLandingPage extends LandingPage {
         new SelectCruisePage(this);       // navigate to SelectCruisePage
     }
 
-    private void openMyReservationsPage() {
+    private void openMyReservationsPage() throws SQLException {
         new edu.ui.reservationDetails.MyReservationsPage().show();
     }
 

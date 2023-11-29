@@ -19,7 +19,7 @@ import java.lang.*;
  * @author Michael Okonkwo
  * @version 1.1
  */
-public class AccountDatabase {
+public class AccountDatabase implements driver{
     private static Set<User> accountDatabase;
     //private String fileName = getClass().getClassLoader().getResource("accountList.csv").getFile();
     private static final String url = "jdbc:derby:C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
@@ -30,7 +30,7 @@ public class AccountDatabase {
     }
 
     private static void initializeDatabase() {
-        try (Connection connection = DriverManager.getConnection(url)) {
+        try (Connection connection = driver.getDBConnection()) {
             String query = "SELECT * FROM Users";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 try (ResultSet resultSet = statement.executeQuery()) {
@@ -81,7 +81,7 @@ public class AccountDatabase {
      */
     public static int getUserCount() {
         int count = 0;
-        try (Connection connection = DriverManager.getConnection(url)) {
+        try (Connection connection = driver.getDBConnection()) {
             String selectCount = "SELECT COUNT(*) FROM Users";
             try (PreparedStatement statement = connection.prepareStatement(selectCount)) {
                 try (ResultSet resultSet = statement.executeQuery()) {
@@ -105,7 +105,7 @@ public class AccountDatabase {
         List<User> allUsers = new ArrayList<>();
 
         //create the connection to the db
-        try (Connection connection = DriverManager.getConnection(url)) {
+        try (Connection connection = driver.getDBConnection()) {
             //command to select all rows from db matching the guest id
             String selectAll = "SELECT * FROM Users";
             //preparing the statement
@@ -136,7 +136,7 @@ public class AccountDatabase {
      * @param username The username of the user.
      */
     public boolean isValidLogin(String username, String pass) {
-        try (Connection connection = DriverManager.getConnection(url)) {
+        try (Connection connection = driver.getDBConnection()) {
             String select = "SELECT * FROM Users WHERE username = ? AND password = ?";
 
             try (PreparedStatement statement = connection.prepareStatement(select)) {
@@ -174,7 +174,7 @@ public class AccountDatabase {
     public static void addUser(String username, String password, String firstName, String lastName, int rewardPoints, String email, String userType) {
         String insertSQL = "INSERT INTO Users (username, password, firstName, lastName, rewardPoints, email, type) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-        try (Connection connection = DriverManager.getConnection(url);
+        try (Connection connection = driver.getDBConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
 
             preparedStatement.setString(1, username);
@@ -213,9 +213,8 @@ public class AccountDatabase {
      */
 
     public static String getAccountType(String username) {
-
     String accountType = "";
-        try (Connection connection = DriverManager.getConnection(url)) {
+        try (Connection connection = driver.getDBConnection()) {
         String query = "SELECT type FROM Users WHERE username = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, username);
@@ -224,6 +223,7 @@ public class AccountDatabase {
                     accountType = resultSet.getString("type");
                 } else {
                     System.err.println("No account found, returning empty account type.");
+
                 }
             }
         }
@@ -239,7 +239,7 @@ public class AccountDatabase {
      * @param username A given username to validate
      */
     public static boolean accountExists(String username) {
-        try (Connection connection = DriverManager.getConnection(url)) {
+        try (Connection connection = driver.getDBConnection()) {
             String query = "SELECT COUNT(*) FROM Users WHERE username = ?";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setString(1, username);
@@ -263,7 +263,7 @@ public class AccountDatabase {
      * @return the truth value of successfully modifying account
      */
     public boolean modifyUsername(String oldUser, String newUser) {
-        try (Connection connection = DriverManager.getConnection(url)) {
+        try (Connection connection = driver.getDBConnection()) {
             String update = "UPDATE Users SET username = ? WHERE username = ?";
             try (PreparedStatement statement = connection.prepareStatement(update)) {
                 statement.setString(1, newUser);
@@ -285,7 +285,7 @@ public class AccountDatabase {
      * @param newPass  A given password to change into
      */
     public static void modifyPassword(String username, String newPass) {
-        try (Connection connection = DriverManager.getConnection(url)) {
+        try (Connection connection = driver.getDBConnection()) {
             String update = "UPDATE Users SET password = ? WHERE username = ?";
             try (PreparedStatement statement = connection.prepareStatement(update)) {
                 statement.setString(1, newPass);
@@ -306,7 +306,7 @@ public class AccountDatabase {
      * @param newFName A given first name to change into
      */
     public void modifyFirstName(String username, String newFName) {
-        try (Connection connection = DriverManager.getConnection(url)) {
+        try (Connection connection = driver.getDBConnection()) {
             String update = "UPDATE Users SET firstName = ? WHERE username = ?";
             try (PreparedStatement statement = connection.prepareStatement(update)) {
                 statement.setString(1, newFName);
@@ -325,7 +325,7 @@ public class AccountDatabase {
      * @param newLName A given last name to change into
      */
     public void modifyLastName(String username, String newLName) {
-        try (Connection connection = DriverManager.getConnection(url)) {
+        try (Connection connection = driver.getDBConnection()) {
             String update = "UPDATE Users SET lastName = ? WHERE username = ?";
             try (PreparedStatement statement = connection.prepareStatement(update)) {
                 statement.setString(1, newLName);
@@ -375,7 +375,7 @@ public class AccountDatabase {
      *
      */
     public static void updateAccount(User account, String email, String password, String username, String firstName, String lastName) {
-        try (Connection connection = DriverManager.getConnection(url)) {
+        try (Connection connection = driver.getDBConnection()) {
 
             //if the updating is for a travel agent finishing their account creation
             if (!Objects.equals(firstName, "")) {
@@ -418,7 +418,7 @@ public class AccountDatabase {
      *
      */
     public static void removeUser(User userToRemove) {
-        try (Connection connection = DriverManager.getConnection(url)) {
+        try (Connection connection = driver.getDBConnection()) {
             String delete = "DELETE FROM Users WHERE username = ?";
             try (PreparedStatement statement = connection.prepareStatement(delete)) {
                 statement.setString(1, userToRemove.getUsername());
