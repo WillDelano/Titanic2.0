@@ -12,12 +12,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
-<<<<<<< HEAD
-=======
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.SQLException;
->>>>>>> checkin
 import java.util.Set;
 
 
@@ -99,40 +94,12 @@ public class MyReservationsPage implements ReservationListInterface {
         String[] columnNames = {"#", "Cruise", "Room Number", "Start Date", "End Date", "Start Country", "End Country"};
         reservationsTable.setModel(new DefaultTableModel(data, columnNames));
 
-<<<<<<< HEAD
         TableColumnModel columnModel = reservationsTable.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(1);
         columnModel.getColumn(1).setPreferredWidth(100);
-=======
-    private void setUpRefreshMechanism() {
-        int delay = 10000; // 10 seconds
-        ActionListener taskPerformer = new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                try {
-                    refreshReservations();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        };
-        refreshTimer = new Timer(delay, taskPerformer);
-        refreshTimer.start();
-
-
-        frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowActivated(WindowEvent e) {
-                try {
-                    refreshReservations();
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        });
->>>>>>> checkin
     }
 
-    public void show() {
+    public void show() throws SQLException {
         refreshReservations();
         frame.setVisible(true);
     }
@@ -161,14 +128,10 @@ public class MyReservationsPage implements ReservationListInterface {
         }
     }
 
-<<<<<<< HEAD
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         Guest g = new Guest("wdelano", "baylor", "Will", "Delano", 0, "wdelano2002@gmail.com");
 
         CurrentGuest.setCurrentGuest(g);
-=======
-    public static void main(String[] args) throws SQLException {
->>>>>>> checkin
         new MyReservationsPage().show();
     }
 }

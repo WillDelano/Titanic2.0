@@ -25,7 +25,7 @@ public class CheckInDBTester implements driver {
     CheckInDatabase checkInDB = null;
 
     int testId;
-    private Guest u = new Guest("wdelano", "baylor", new UniqueID().getId(), "Will", "Delano", 0, "wdelano2002@gmail.com");
+    private Guest u = new Guest("wdelano", "baylor", "Will", "Delano", 0, "wdelano2002@gmail.com");
     LocalDate date = null;
     Room room = null;
     Country c = null;
@@ -35,7 +35,7 @@ public class CheckInDBTester implements driver {
         LocalDate date = LocalDate.now();
         Room room = new Room(0, 0, "", false, 0, "test");
         Country c = new Country("Test", date, date);
-        r = new Reservation(u, room, date, date, c, c);
+        r = new Reservation(new UniqueID().getId(),u, room, date, date, c, c);
     }
 
     @AfterEach
@@ -70,10 +70,20 @@ public class CheckInDBTester implements driver {
         LocalDate date = LocalDate.now();
         Room room = new Room(2, 6, "", false, 0, "test");
         Country c = new Country("Test", date, date);
-        Guest dan = new Guest("ricky", "taylorswift", new UniqueID().getId(), "Will", "Delano", 0, "wdelano2002@gmail.com");
-        Reservation r2 = new Reservation(dan,room,date,date,c,c);
+        Guest dan = new Guest("ricky", "taylorswift", "Will", "Delano", 0, "wdelano2002@gmail.com");
+        Reservation r2 = new Reservation( new UniqueID().getId(),dan,room,date,date,c,c);
         ReservationDatabase.addReservation(r2);
         assertNotEquals(CheckInDatabase.guestIsCheckedIn(dan),true);
+    }
+
+    @Test
+    public void checkinDateCheck(){
+        Room room = new Room(2, 6, "", false, 0, "test");
+        LocalDate wrongDate = LocalDate.of(1998,06,05);
+        Country c = new Country("Test", wrongDate, wrongDate);
+        Guest dan = new Guest("ricky", "taylorswift", "Will", "Delano", 0, "wdelano2002@gmail.com");
+        Reservation r2 = new Reservation( new UniqueID().getId(),dan,room,wrongDate,wrongDate,c,c);
+        assertNotEquals(CheckInDatabase.checkInGuest(r2),true);
     }
 
     @Test public void CheckOutTest() throws SQLException{

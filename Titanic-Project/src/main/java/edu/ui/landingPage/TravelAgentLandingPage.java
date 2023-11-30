@@ -15,11 +15,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-<<<<<<< HEAD
 import java.util.Objects;
-=======
 import java.sql.SQLException;
->>>>>>> checkin
+
 
 /**
  * Creates the landing page

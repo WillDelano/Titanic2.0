@@ -37,7 +37,6 @@ public class Reservation {
 
     private ReservationDatabase reservations;
 
-    private boolean checkIn = false;
 
 
     public Reservation(int id, User user, Room room, LocalDate startDate, LocalDate endDate, Country startCountry, Country endCountry) {

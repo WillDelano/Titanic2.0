@@ -1,6 +1,6 @@
 package edu.ui.reservationDetails;
 
-<<<<<<< HEAD
+
 import edu.core.reservation.Reservation;
 import edu.databaseAccessors.ReservationDatabase;
 import edu.exceptions.NoMatchingReservationException;
@@ -16,7 +16,5 @@ public class MyReservationsPageController {
     public static Reservation getReservation(int roomNumber) throws NoMatchingReservationException {
         return ReservationDatabase.getReservationByRoom(roomNumber);
     }
-=======
-public class MyReservationsPageController {
->>>>>>> checkin
 }
+

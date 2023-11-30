@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ReservationDBTester {
     private String url = "jdbc:derby:C:\\Users\\Colet\\Documents\\GIT\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\database";
-    private Guest u = new Guest("wdelano", "baylor", new UniqueID().getId(), "Will", "Delano", 0, "wdelano2002@gmail.com");
+    private Guest u = new Guest("wdelano", "baylor", "Will", "Delano", 0, "wdelano2002@gmail.com");
     @BeforeEach
     public void setUp() throws SQLException {
         new ReservationDatabase();
@@ -87,7 +87,7 @@ public class ReservationDBTester {
         //setting values to null and hardcoding id because delete only uses the id to match
         LocalDate date = LocalDate.now();
         Room room = new Room(0, 0, null, false, 0, null);
-        Reservation r = new Reservation(null, room, date, date, null, null);
+        Reservation r = new Reservation(new UniqueID().getId(),null, room, date, date, null, null);
         r.setId(1);
 
         ReservationDatabase.deleteReservation(r);
@@ -102,7 +102,7 @@ public class ReservationDBTester {
         //setting values to null and hardcoding id because delete only uses the id to match
         LocalDate date = LocalDate.now();
         Room room = new Room(0, 0, null, false, 0, null);
-        Reservation r = new Reservation(null, room, date, date, null, null);
+        Reservation r = new Reservation(new UniqueID().getId(),null, room, date, date, null, null);
         r.setId(1);
 
         ReservationDatabase.deleteReservation(r);
@@ -117,7 +117,7 @@ public class ReservationDBTester {
         LocalDate date = LocalDate.now();
         Country c = new Country("Test", date, date);
 
-        Reservation r = new Reservation(u, room, date, date, c, c);
+        Reservation r = new Reservation(new UniqueID().getId(),u, room, date, date, c, c);
 
         ReservationDatabase.addReservation(r);
 
@@ -131,7 +131,7 @@ public class ReservationDBTester {
         LocalDate date = LocalDate.now();
         Room room = new Room(0, 0, "", false, 0, "test");
         Country c = new Country("Test", date, date);
-        Reservation r = new Reservation(u, room, date, date, c, c);
+        Reservation r = new Reservation(new UniqueID().getId(),u, room, date, date, c, c);
 
         ReservationDatabase.addReservation(r);
         ReservationDatabase.addReservation(r);

@@ -165,18 +165,13 @@ public class EditRoomPage {
             }
 
             //if no changes were made, remind the agent
-<<<<<<< HEAD
-            if (newBedType.equals(room.getBedType()) &&
+
+            if (newBedType.equals(room.getBedTypeStr()) &&
                     newNumberOfBeds == room.getNumberOfBeds() &&
                     newSmokingAvailability == room.getSmokingAvailable()
                     &&
                     (Math.abs(newPrice-room.getRoomPrice()) < 0.0001)) {
-=======
-            if (Objects.equals(newRoomNumber, room.getRoomNumber()) && Objects.equals(newBedType, room.getBedTypeStr()) &&
-                    Objects.equals(newNumberOfBeds, room.getNumberOfBeds()) &&
-                    Objects.equals(newSmokingAvailability, room.getSmokingAvailable()) &&
-                    Objects.equals(newPrice, room.getRoomPrice())) {
->>>>>>> checkin
+
                 noChangesDecision();
             }
             //if there is a non-duplicate value, update the room

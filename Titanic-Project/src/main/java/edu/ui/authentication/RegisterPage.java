@@ -2,13 +2,12 @@ package edu.ui.authentication;
 
 import javax.swing.*;
 import java.awt.*;
-<<<<<<< HEAD
+
 import java.util.Objects;
-=======
+
 import edu.uniqueID.UniqueID;
 
-import edu.databaseAccessors.AccountDatabase;
->>>>>>> checkin
+
 import java.util.regex.Pattern;
 import java.util.regex.*;
 import edu.core.users.*;
@@ -161,7 +160,7 @@ public class RegisterPage {
         //please remove this and add to the Guest. The Guest should generate after authenticating the
         //the account. Right now we are passing in an id which seems weird. Either
         int id = new UniqueID().getId();
-        Guest g = new Guest(username, password, id, firstName, lastName, 100 , email);
+        Guest g = new Guest(username, password, firstName, lastName, 100 , email);
 
         //Checking email format
         String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}";

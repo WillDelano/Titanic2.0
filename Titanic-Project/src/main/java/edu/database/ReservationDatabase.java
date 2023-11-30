@@ -1,4 +1,4 @@
-package edu.database;
+package edu.Database;
 
 import com.opencsv.CSVWriter;
 import edu.core.cruise.Country;
@@ -8,6 +8,7 @@ import edu.core.reservation.Room;
 import edu.core.users.User;
 import edu.databaseAccessors.CountryDatabase;
 import edu.databaseAccessors.RoomDatabase;
+import edu.uniqueID.UniqueID;
 
 import java.io.*;
 import java.time.LocalDate;
@@ -127,7 +128,7 @@ public class ReservationDatabase {
                     LocalDate startDate = LocalDate.parse(split[6]);
                     LocalDate endDate = LocalDate.parse(split[7]);
 
-                    Reservation reservation = new Reservation(guest, guestRoom, startDate, endDate, startCountry, endCountry);
+                    Reservation reservation = new Reservation(new UniqueID().getId(),guest, guestRoom, startDate, endDate, startCountry, endCountry);
 
                     //set the id of the reservation to the stored value (the constructor will initially give it a unique one because it's "new")
                     reservation.setId(Integer.valueOf(split[0]));

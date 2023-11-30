@@ -3,6 +3,8 @@ package edu.ui.reservationListInterface;
 import edu.ui.reservationDetails.MyReservationsPage;
 import edu.ui.editReservation.ReservationListPage;
 
+import java.sql.SQLException;
+
 /**
  * Allows the edit reservation ui to be called from different classes
  *
@@ -18,5 +20,5 @@ import edu.ui.editReservation.ReservationListPage;
  * @see MyReservationsPage, ReservationListPage
  */
 public interface ReservationListInterface {
-    void show();
+    void show() throws SQLException;
 }

@@ -4,28 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fc14b32d-70fe-4d06-8946-f4a8359f9ce0" name="Changes" comment="">
-
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/exceptions/NoMatchingReservationException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ui/reservationDetails/MyReservationsPageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ui/reservationListInterface/ReservationListInterface.java" afterDir="false" />
-
+    <list default="true" id="ffe86e7c-427d-4580-a1aa-8bb61ba114d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/derby.log" beforeDir="false" afterPath="$PROJECT_DIR$/derby.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/db.lck" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/log/log.ctrl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/log/log1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/log/log1.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/log/logmirror.ctrl" afterDir="false" />
-
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/reservation/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/reservation/Reservation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/users/Guest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/users/Guest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/ReservationDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/ReservationDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CheckInDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CheckInDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/RegisterPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/RegisterPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/editReservation/EditReservationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/editReservation/EditReservationPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/editReservation/ReservationListPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/editReservation/ReservationListPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/GuestLandingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/GuestLandingPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/TravelAgentLandingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/TravelAgentLandingPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/modifyRoom/EditRoomPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/modifyRoom/EditRoomPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/reservationDetails/MyReservationsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/reservationDetails/MyReservationsPage.java" afterDir="false" />
-
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/reservationDetails/MyReservationsPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/reservationDetails/MyReservationsPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/reservationListInterface/ReservationListInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/reservationListInterface/ReservationListInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/edu/CheckInDBTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/CheckInDBTester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/edu/ReservationDBTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/ReservationDBTester.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,36 +46,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "adminui",
-    "jdk.selected.JAVA_MODULE": "20",
-    "last_opened_file_path": "C:/Users/Owner/Desktop/Software Eng/Practicum2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.42374215",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
-  },
-  "keyToStringList": {
-    "RunConfigurationTargetLRU": [
-<<<<<<< HEAD
-      "73220af7-872d-48ed-a1fd-ee272dbf41cb",
-=======
->>>>>>> checkin
-      "73220af7-872d-48ed-a1fd-ee272dbf41cb/schema/\"APP\""
-    ]
+    "git-widget-placeholder": "main",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -98,9 +62,7 @@
       <recent name="C:\Users\vince\Java Projects\Titanic2.0\Titanic-Project\src\main\resources" />
     </key>
   </component>
-
-
-  <component name="RunManager" selected="JUnit.CheckInDBTester.checkInTest">
+  <component name="RunManager" selected="JUnit.CheckInDBTester.checkinDateCheck">
     <configuration name="CheckInDBTester.CheckOutFail" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Titanic-Project" />
       <extension name="coverage">
@@ -165,7 +127,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReservationDBTester.getReservationsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CheckInDBTester.checkinDateCheck" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Titanic-Project" />
       <extension name="coverage">
         <pattern>
@@ -174,64 +136,30 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="edu" />
-      <option name="MAIN_CLASS_NAME" value="edu.ReservationDBTester" />
-      <option name="METHOD_NAME" value="getReservationsTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RoomDBTester" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Titanic-Project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="edu" />
-      <option name="MAIN_CLASS_NAME" value="edu.RoomDBTester" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RoomDBTester.testAddRoom" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Titanic-Project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="edu" />
-      <option name="MAIN_CLASS_NAME" value="edu.RoomDBTester" />
-      <option name="METHOD_NAME" value="testAddRoom" />
+      <option name="MAIN_CLASS_NAME" value="edu.CheckInDBTester" />
+      <option name="METHOD_NAME" value="checkinDateCheck" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.RoomDBTester" />
-      <item itemvalue="JUnit.RoomDBTester.testAddRoom" />
+      <item itemvalue="JUnit.CheckInDBTester.checkinDateCheck" />
       <item itemvalue="JUnit.CheckInDBTester.CheckOutFail" />
       <item itemvalue="JUnit.CheckInDBTester.CheckOutTest" />
       <item itemvalue="JUnit.CheckInDBTester.checkInTest" />
       <item itemvalue="JUnit.CheckInDBTester.checkInTestFail" />
-      <item itemvalue="JUnit.ReservationDBTester.getReservationsTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CheckInDBTester.checkinDateCheck" />
         <item itemvalue="JUnit.CheckInDBTester.checkInTest" />
         <item itemvalue="JUnit.CheckInDBTester.CheckOutFail" />
         <item itemvalue="JUnit.CheckInDBTester.checkInTestFail" />
         <item itemvalue="JUnit.CheckInDBTester.CheckOutTest" />
-        <item itemvalue="JUnit.ReservationDBTester.getReservationsTest" />
       </list>
     </recent_temporary>
   </component>
->>>>>>> checkin
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -317,11 +245,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/edu/databaseAccessors/RoomDatabase.java</url>
           <line>73</line>
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CheckInDatabase.java</url>
-          <line>28</line>
-          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
