@@ -1,7 +1,6 @@
 package edu.ui.reservationListInterface;
 
-import edu.ui.reservationDetails.MyReservationsPage;
-import edu.ui.editReservation.ReservationListPage;
+import edu.ui.guestReservationList.MyReservationsPage;
 
 /**
  * Allows the edit reservation ui to be called from different classes

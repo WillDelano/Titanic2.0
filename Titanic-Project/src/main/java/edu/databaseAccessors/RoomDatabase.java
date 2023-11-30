@@ -69,6 +69,13 @@ public class RoomDatabase {
         return false;
     }
 
+    /**
+     * Operation to get all rooms of a specific cruise
+     *
+     * @param cruiseName name of cruise to get the rooms of
+     *
+     * @return list of rooms for the specific cruise
+     */
     public static List<Room> getRoomsForCruise(String cruiseName) {
         List<Room> rooms = new ArrayList<>();
         String query = "SELECT * FROM Rooms WHERE cruise = ?";
@@ -125,6 +132,7 @@ public class RoomDatabase {
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setInt(1, roomNumber);
+
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     return new Room(resultSet.getInt("roomnumber"),
@@ -143,19 +151,16 @@ public class RoomDatabase {
 
 
     /**
-     * Operation to get all rooms of a specific cruise
+     * Operation to get all the rooms that exist
      *
-     * @param cruise cruise name containing the rooms
      *
      * @return list of rooms for the specific cruise
      */
-    public static List<Room> getAllRooms(String cruise) {
+    public static List<Room> getAllRooms() {
         List<Room> rooms = new ArrayList<>();
-        String query = "SELECT * FROM Rooms WHERE cruise = ?";
+        String query = "SELECT * FROM Rooms";
         try (Connection connection = DriverManager.getConnection(url);
              PreparedStatement statement = connection.prepareStatement(query)) {
-
-            statement.setString(1, cruise);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     Room room = new Room(resultSet.getInt("roomnumber"),
@@ -173,7 +178,7 @@ public class RoomDatabase {
         return rooms;
     }
 
-    public static void editAccount(User account, String email, String password) {
+    public static void editRoom(User account, String email, String password) {
         //SQL STUFF TO ALTER ROOM
     }
 
@@ -234,5 +239,4 @@ public class RoomDatabase {
             e.printStackTrace();
         }
     }
-
 }

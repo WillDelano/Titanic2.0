@@ -113,7 +113,6 @@ public class CruiseDatabase {
         String query = "SELECT * FROM Cruises";
         try (Connection connection = DriverManager.getConnection(url);
              PreparedStatement statement = connection.prepareStatement(query)) {
-
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     cruises.add(createCruiseFromResultSet(resultSet));
