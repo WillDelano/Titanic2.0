@@ -108,7 +108,7 @@ public class BrowseRoomPage {
             filterPanelVisibility();
         });
         searchButton.addActionListener(e -> {
-            applyFilters();
+            setFilters();
             List <Room> list = cruiseSearch.findRooms(searchTextField.getText());
             currentRooms = new ArrayList<>(list);
             roomFrame.remove(listScrollPane);
@@ -134,14 +134,14 @@ public class BrowseRoomPage {
      */
     private void generateFilterPanel(){
         filterPanel = new JPanel();
-        smokingBox = new JCheckBox("Smoking");
+        smokingBox = new JCheckBox("smoking");
         smokingBox.setSelected(true);
-        nonSmokingBox = new JCheckBox("Non-Smoking  ");
+        nonSmokingBox = new JCheckBox("non-Smoking  ");
         nonSmokingBox.setSelected(true);
         applyButton = new JButton("apply");
 
         bedCount = new JLabel("number of beds  ");
-        sortBy = new JLabel("sortBy  ");
+        sortBy = new JLabel("sort by:  ");
 
         String bedCounts[] = { "All","1", "2", "3", "4"};
         bedCountOption = new JComboBox<>(bedCounts);
@@ -150,7 +150,7 @@ public class BrowseRoomPage {
         sortTypeOption = new JComboBox<>(sortTypes);
 
         applyButton.addActionListener( e->{
-            applyFilters();
+            setFilters();
             roomFrame.remove(listScrollPane);
 
             List<Room> list = new ArrayList<>(currentRooms);
@@ -199,7 +199,7 @@ public class BrowseRoomPage {
      * Sets enabled filter options for roomSearch
      *
      */
-    private void applyFilters(){
+    private void setFilters(){
 
         //smoking options
         if(smokingBox.isSelected() && nonSmokingBox.isSelected()){

@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Vector;
@@ -34,7 +35,7 @@ public class SelectCruisePage {
     private LandingPage landingPage;
     private JTextArea detailsTextArea;
     private JMenuBar searchMenu;
-    JComboBox<String> departureMonth;
+    JComboBox<String> allDestinations, departureCountry;
 
     private JTextField searchTextField;
     private CruiseSearch SearchCruises;
@@ -52,7 +53,6 @@ public class SelectCruisePage {
         cruiseFrame.setLayout(new BorderLayout());
 
         titleLabel = new JLabel("Available Cruises", JLabel.CENTER);
-        //cruiseFrame.add(titleLabel, BorderLayout.NORTH);
         JPanel titlePanel = new JPanel();
         titlePanel.add(titleLabel);
 
@@ -69,7 +69,7 @@ public class SelectCruisePage {
         DefaultListModel<String> model = getAllCruiseNames(cruisesFromDatabase);
 
         cruiseList = new JList<>(model);
-        JScrollPane listScrollPane = new JScrollPane(cruiseList);
+        listScrollPane = new JScrollPane(cruiseList);
         cruiseFrame.add(listScrollPane, BorderLayout.CENTER);
 
 
@@ -120,21 +120,9 @@ public class SelectCruisePage {
             filterPanelVisibility();
         });
         searchButton.addActionListener(e -> {
-            //applyFilters();
+            setFilters();
             List <Cruise> list = SearchCruises.findCruises(searchTextField.getText());
-
-            //currentCruises = new ArrayList<>(list);
-            cruiseFrame.remove(listScrollPane);
-            DefaultListModel<String> model = getAllCruiseNames(list);
-            cruiseList = new JList<>(model);
-            listScrollPane = new JScrollPane(cruiseList);
-            listScrollPane.getViewport().revalidate();
-            listScrollPane.getViewport().repaint();
-            cruiseFrame.add(listScrollPane, BorderLayout.CENTER);
-
-
-            cruiseFrame.revalidate();
-            cruiseFrame.repaint();
+            updateCruiseListView(list);
         });
 
         searchMenu.add(searchTextField);
@@ -146,14 +134,26 @@ public class SelectCruisePage {
         filterPanel = new JPanel();
         applyButton = new JButton("apply");
 
-        Vector<String> months = getMonths();
-        departureMonth = new JComboBox<>(months);
+        JLabel destinationLabel = new JLabel("Destination ");
+        Vector<String> countries = getAllDestinations();
+        allDestinations = new JComboBox<>(countries);
+
+        JLabel departureLabel = new JLabel("Departure Port ");
+        Vector<String> firstCountries = getFirstCountries();
+        departureCountry = new JComboBox<>(firstCountries);
 
         applyButton.addActionListener( e->{
-            //applyFilters();
+            setFilters();
+            List<Cruise> list = new ArrayList<>(cruisesFromDatabase);
+            list = SearchCruises.sortAndFilterRooms(list);
+
+            updateCruiseListView(list);
         });
 
-        filterPanel.add(departureMonth);
+        filterPanel.add(destinationLabel);
+        filterPanel.add(allDestinations);
+        filterPanel.add(departureLabel);
+        filterPanel.add(departureCountry);
         filterPanel.add(applyButton);
     }
 
@@ -161,11 +161,9 @@ public class SelectCruisePage {
         if(!optionVisible) {
             northPanel.add(filterPanel, BorderLayout.CENTER);
             optionVisible = true;
-            //roomFrame.add(filterPanel, BorderLayout.NORTH);
             cruiseFrame.revalidate();
         } else {
             optionVisible = false;
-            //roomFrame.remove(filterPanel);
             northPanel.remove(filterPanel);
             cruiseFrame.revalidate();
         }
@@ -180,21 +178,70 @@ public class SelectCruisePage {
         }
         return model;
     }
-    private Vector<String> getMonths(){
-        Vector<String> allMonths = new Vector<>();
+    private Vector<String> getAllDestinations(){
+        Vector<String> allCountries = new Vector<>();
         List<Cruise> cruises = CruiseDatabase.getAllCruises();
 
         for(Cruise cruise: cruises){
             List<Country> currCountries = cruise.getTravelPath();
-            for(Country country: currCountries){
-                if(!allMonths.contains(country.getName())){
-                    allMonths.add(country.getName());
+            for(int i = 1; i < currCountries.size(); ++i){
+                if(!allCountries.contains(currCountries.get(i).getName())){
+                    allCountries.add(currCountries.get(i).getName());
                 }
             }
         }
-        Collections.sort(allMonths);
+        Collections.sort(allCountries);
+        allCountries.add(0,"Any");
 
-        return allMonths;
+        return allCountries;
+    }
+    private Vector<String> getFirstCountries(){
+        Vector<String> firstCountries = new Vector<>();
+        List<Cruise> cruises = CruiseDatabase.getAllCruises();
+        String currCountry;
+
+        for(Cruise cruise: cruises){
+            currCountry = cruise.getTravelPath().get(0).getName();
+            if(!firstCountries.contains(currCountry)) {
+                firstCountries.add(currCountry);
+            }
+        }
+        Collections.sort(firstCountries);
+        firstCountries.add(0,"Any");
+
+        return firstCountries;
+    }
+
+    private void setFilters(){
+        //destination selection
+        if(String.valueOf(allDestinations.getSelectedItem()).equals("Any")) {
+            SearchCruises.setPreferredDestination("");
+
+        } else {
+            SearchCruises.setPreferredDestination(String.valueOf(allDestinations.getSelectedItem()));
+        }
+
+        //departure selection
+        if(String.valueOf(departureCountry.getSelectedItem()).equals("Any")) {
+            SearchCruises.setPreferredDeparture("");
+
+        } else {
+            SearchCruises.setPreferredDeparture(String.valueOf(departureCountry.getSelectedItem()));
+        }
+
+    }
+
+    private void updateCruiseListView(List<Cruise> list){
+        cruiseFrame.remove(listScrollPane);
+        DefaultListModel<String> model = getAllCruiseNames(list);
+        cruiseList = new JList<>(model);
+        listScrollPane = new JScrollPane(cruiseList);
+        listScrollPane.getViewport().revalidate();
+        listScrollPane.getViewport().repaint();
+        cruiseFrame.add(listScrollPane, BorderLayout.CENTER);
+
+        cruiseFrame.revalidate();
+        cruiseFrame.repaint();
     }
 
     public static void main(String[] args) {
