@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ffe86e7c-427d-4580-a1aa-8bb61ba114d5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/reservation/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/reservation/Reservation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CheckInDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CheckInDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/RegisterPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/authentication/RegisterPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/editReservation/EditReservationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/editReservation/EditReservationPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/GuestLandingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/GuestLandingPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/TravelAgentLandingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/TravelAgentLandingPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/modifyRoom/EditRoomPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/modifyRoom/EditRoomPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/reservationDetails/MyReservationsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/reservationDetails/MyReservationsPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/reservationDetails/MyReservationsPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/reservationDetails/MyReservationsPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/reservationListInterface/ReservationListInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/reservationListInterface/ReservationListInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/edu/CheckInDBTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/CheckInDBTester.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/edu/ReservationDBTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/ReservationDBTester.java" afterDir="false" />
-    </list>
+    <list default="true" id="ffe86e7c-427d-4580-a1aa-8bb61ba114d5" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,7 +32,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "testingTravelAgentUI",
     "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
@@ -62,7 +48,7 @@
       <recent name="C:\Users\vince\Java Projects\Titanic2.0\Titanic-Project\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CheckInDBTester.checkinDateCheck">
+  <component name="RunManager">
     <configuration name="CheckInDBTester.CheckOutFail" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Titanic-Project" />
       <extension name="coverage">

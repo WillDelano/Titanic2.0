@@ -7,12 +7,9 @@ import edu.core.reservation.Room;
 import edu.core.users.User;
 import edu.exceptions.NoMatchingReservationException;
 
-import java.io.*;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 import java.util.logging.Logger;
 
@@ -201,9 +198,9 @@ public class ReservationDatabase implements driver{
      * Operation to add a reservation
      *
      * @param newReservation specified reservation to add
-     *
+     * @return
      */
-    public static void addReservation(Reservation newReservation) {
+    public static boolean addReservation(Reservation newReservation) {
         String startDate = String.valueOf(newReservation.getStartDate());
         String endDate = String.valueOf(newReservation.getEndDate());
 
@@ -235,6 +232,7 @@ public class ReservationDatabase implements driver{
                 System.err.println("Failed to connect to database.");
             }
         }
+        return true;
     }
 
 

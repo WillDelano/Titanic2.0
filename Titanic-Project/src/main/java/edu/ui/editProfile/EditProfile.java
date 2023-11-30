@@ -9,7 +9,7 @@ import edu.ui.editReservation.ReservationListPage;
 import edu.ui.landingPage.LandingPage;
 import edu.ui.landingPage.TravelAgentLandingPage;
 
-import edu.ui.resetPassword.ResetPasswordListPage;
+import edu.ui.adminResetPasswords.ResetPasswordListPage;
 import edu.uniqueID.UniqueID;
 
 import javax.swing.*;
