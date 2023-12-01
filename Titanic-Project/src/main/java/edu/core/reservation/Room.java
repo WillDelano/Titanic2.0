@@ -198,6 +198,7 @@ public class Room {
         Room room = (Room) object;
         return java.util.Objects.equals(numberOfBeds, room.numberOfBeds) && java.util.Objects.equals(bedType, room.bedType) && java.util.Objects.equals(smokingAvailable, room.smokingAvailable) && java.util.Objects.equals(roomPrice, room.roomPrice);
     }
+
     /**
      * overrides the hashing of the rooms, allowing the system to put rooms in maps and sets
      *
