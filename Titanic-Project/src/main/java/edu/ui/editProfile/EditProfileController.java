@@ -31,10 +31,9 @@ public class EditProfileController {
      *
      */
     public static void editAccount(User account, String email, String password) {
-        //Need some function to incorporate editing both email and password. If only one was changed it wouldn't affect
-        //the other so updating both is acceptable
-
-        //AccountDatabase.updateAccount(account, email, password);
+        /* Pass empty strings as the remaining parameters to show that this isn't a travel agent finishing their account.
+        * For more information, read the updateAccount function */
+        AccountDatabase.updateAccount(account, email, password, "", "", "");
     }
 
     /**

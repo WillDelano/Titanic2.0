@@ -13,6 +13,7 @@ import edu.databaseAccessors.AccountDatabase;
 import edu.databaseAccessors.CountryDatabase;
 import edu.databaseAccessors.ReservationDatabase;
 import edu.databaseAccessors.RoomDatabase;
+import edu.exceptions.NoMatchingReservationException;
 
 /**
  * Representation of a guest user in the cruise reservation system.
@@ -34,14 +35,13 @@ public class Guest extends User {
      *
      * @param username   The username of the guest.
      * @param password   The password of the guest.
-     * @param id         The unique ID of the guest.
      * @param firstName  The first name of the guest.
      * @param lastName   The last name of the guest.
      * @param rewardPoints Initial reward points of the guest.
      * @param email      The email of the guest.
      */
-    public Guest(String username, String password, int id, String firstName, String lastName, int rewardPoints, String email) {
-        super(username, password, id, firstName, lastName, email);
+    public Guest(String username, String password, String firstName, String lastName, int rewardPoints, String email) {
+        super(username, password, firstName, lastName, email);
         this.rewardPoints = rewardPoints;
         this.reservations = new ArrayList<>();
     }
@@ -83,12 +83,22 @@ public class Guest extends User {
         Country endCountryObject = CountryDatabase.getCountry(endCountry);
         System.out.println("End Country Object: " + endCountryObject);
 
-        Reservation reservation = new Reservation(this, room, startDate, endDate, startCountryObject, endCountryObject);
+        Reservation reservation = new Reservation(-1, this, room, startDate, endDate, startCountryObject, endCountryObject);
 
 
         if (!ReservationDatabase.hasReservation(reservation)) {
             ReservationDatabase.addReservation(reservation);
             room.bookRoom();
+
+
+            /* -1 was initially passed as the id so the DB could create its own, so now this is needed to update the reservation
+            variable to have the correct id */
+            try {
+                reservation = ReservationDatabase.getReservationByRoom(reservation.getRoom().getRoomNumber());
+            } catch (NoMatchingReservationException e) {
+                e.printStackTrace();
+            }
+
             this.reservations.add(reservation);
             
             RoomDatabase.bookRoom(room.getRoomNumber());
