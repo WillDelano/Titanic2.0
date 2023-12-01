@@ -163,6 +163,7 @@ public class AccountDatabase {
             addUser("wdelano", "baylor", "Will", "Delano", 0, "wdelano2002@gmail.com", "Guest");
             addUser("wdelano2", "baylor", "Will", "Delano", 0, "wdelano2002@gmail.com", "Guest");
             addUser("wdelanoagent", "baylor", "Will", "Delano", 0, "wdelano2002@gmail.com", "Agent");
+            addUser("admin", "baylor", "Will", "Delano", 0, "wdelano2002@gmail.com", "Admin");
         }
     }
 
