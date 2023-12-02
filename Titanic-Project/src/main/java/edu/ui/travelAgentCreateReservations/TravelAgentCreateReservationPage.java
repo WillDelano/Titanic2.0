@@ -206,11 +206,6 @@ public class TravelAgentCreateReservationPage {
         List<LocalDate> checkoutList = TravelAgentCreateReservationController.getAllCheckoutDates(cruise);
         String[] checkoutArray = checkoutList.stream().map(Object::toString).toArray(String[]::new);
 
-        //converting LocalDate to String array
-        String[] test = checkoutList.stream()
-                .map(Object::toString)
-                .toArray(String[]::new);
-
         //modify each string individually
         for (int i = 0; i < checkoutArray.length; i++) {
             //adding country name
