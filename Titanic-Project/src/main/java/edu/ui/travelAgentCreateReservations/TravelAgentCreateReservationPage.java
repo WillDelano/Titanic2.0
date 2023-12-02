@@ -15,6 +15,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -169,8 +170,13 @@ public class TravelAgentCreateReservationPage {
 
             Room r = TravelAgentCreateReservationController.getRoom(Integer.parseInt(selectedRoom), cruiseName);
             LocalDate startDate = cruise.getDeparture();
-            System.out.println(checkoutDropdown.getSelectedItem().toString());
-            LocalDate endDate = LocalDate.now();
+
+            String stringEndDate = checkoutDropdown.getSelectedItem().toString();
+            // Define the date format of the input string
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            // Parse the date from the input string
+            LocalDate endDate = LocalDate.parse(stringEndDate.substring(0, 10), formatter);
+
             int travelPathSize = cruise.getTravelPath().size();
 
             //get final country arrival
