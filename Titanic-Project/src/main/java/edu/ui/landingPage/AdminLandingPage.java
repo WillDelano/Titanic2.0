@@ -42,6 +42,12 @@ public class AdminLandingPage extends LandingPage {
      *
      */
     private void prepareGUI() {
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         mainFrame = new JFrame("Cruise Reservation Application");
         mainFrame.setSize(1000, 700);
         mainFrame.setLayout(new BorderLayout());
