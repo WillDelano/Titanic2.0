@@ -1,5 +1,6 @@
 package edu.ui.travelAgentEditRooms;
 
+import edu.core.reservation.Reservation;
 import edu.core.reservation.Room;
 import edu.databaseAccessors.ReservationDatabase;
 import edu.exceptions.NoMatchingReservationException;
@@ -132,7 +133,10 @@ public class ViewAllRoomsPage {
         else {
             JOptionPane.showMessageDialog(null, "No room is selected.");
         }
+
     }
+
+
 
     public static void main(String[] args) {
         new ViewAllRoomsPage(null).show();

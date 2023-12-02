@@ -73,11 +73,11 @@ public class CheckInDatabase {
     /**
      * Checks if a guest is checked in or not
      *
-     * @param g: the guest being checked
+     * @param userName: the username of the guest
      * @return Returns true or false whether the guest is checked in or not
      *
      */
-    public static boolean guestIsCheckedIn(Guest g) throws SQLException {
+    public static boolean guestIsCheckedIn(String userName) throws SQLException {
         Set<Reservation> guestReservations = new HashSet<>();
         boolean checkedIn = false;
         int count = 0;
@@ -89,7 +89,7 @@ public class CheckInDatabase {
             //preparing the statement
             try (PreparedStatement statement = connection.prepareStatement(selectAll)) {
                 //set the first parameter to search for (id) to the guest's id
-                statement.setString(1, g.getUsername());
+                statement.setString(1, userName);
                 try (ResultSet resultSet = statement.executeQuery()) {
                     while (resultSet.next()) {
                         if (resultSet.getBoolean("checkedin")) {

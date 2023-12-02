@@ -81,6 +81,7 @@ public class ReservationListPage implements ReservationListInterface {
             selectButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
             //Check In Button and Check Out Button
+            JButton checkInButton = new JButton("Check In Guest");
 
 
             selectButton.addActionListener(new ActionListener() {
@@ -90,6 +91,7 @@ public class ReservationListPage implements ReservationListInterface {
             });
             detailsPanel.add(selectButton);
         }
+
 
         mainPanel.add(detailsPanel, BorderLayout.CENTER);
 
@@ -107,6 +109,9 @@ public class ReservationListPage implements ReservationListInterface {
         mainFrame.add(mainPanel);
         mainFrame.setVisible(true);
     }
+
+
+
 
     private void handleReservationSelection(Reservation reservation) {
         mainFrame.setVisible(false);

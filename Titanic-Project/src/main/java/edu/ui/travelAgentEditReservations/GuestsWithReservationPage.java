@@ -90,6 +90,7 @@ public class GuestsWithReservationPage {
             detailsPanel.add(selectButton);
         }
 
+
         mainPanel.add(detailsPanel, BorderLayout.CENTER);
 
         backButton = new JButton("Back");

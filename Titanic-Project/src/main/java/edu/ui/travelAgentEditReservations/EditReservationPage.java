@@ -10,6 +10,7 @@ import edu.ui.reservationListInterface.ReservationListInterface;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.List;
@@ -135,13 +136,21 @@ public class EditReservationPage {
 
         backButton.addActionListener(e -> {
             frame.dispose(); // Close the Edit Reservation page
-            previousPage.show(); // Go back to the previous page
+            try {
+                previousPage.show(); // Go back to the previous page
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
         });
 
         cancelButton.addActionListener(e -> {
             if (cancelReservation()) {
                 frame.dispose(); // Close the Edit Reservation page
-                previousPage.show(); // Go back to the previous page
+                try {
+                    previousPage.show(); // Go back to the previous page
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 
@@ -189,7 +198,11 @@ public class EditReservationPage {
             if (Integer.parseInt(room) == reservation.getRoom().getRoomNumber() &&
                     LocalDate.parse(checkout).equals(reservation.getEndDate())) {
 
-                noChangesDecision();
+                try {
+                    noChangesDecision();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
             //if there is a non-duplicate value, update the reservation
             else {
@@ -197,7 +210,11 @@ public class EditReservationPage {
                 if (validateDecision(checkout, room)) {
                     updateReservation(checkout, room);
                     frame.dispose();
-                    previousPage.show(); // Go back to the reservation page
+                    try {
+                        previousPage.show(); // Go back to the reservation page
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
                 //restart the edit frame
                 else {
@@ -293,7 +310,7 @@ public class EditReservationPage {
         return true;
     }
 
-    public boolean noChangesDecision() {
+    public boolean noChangesDecision() throws SQLException {
         UIManager.put("OptionPane.yesButtonText", "Yes, quit");
         UIManager.put("OptionPane.noButtonText", "No, continue");
 
