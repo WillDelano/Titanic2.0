@@ -8,6 +8,7 @@ import edu.databaseAccessors.CruiseDatabase;
 
 import javax.swing.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GuestCreateReservationPageController {
@@ -17,33 +18,46 @@ public class GuestCreateReservationPageController {
         return String.valueOf(cruise.getDeparture());
     }
 
-    public static boolean reserveRoom(Guest guest, Room room, LocalDate checkout) {
-        // Fetch the cruise name from the room
-        String cruiseName = room.getCruise();
+    public static List<LocalDate> getAllCheckoutDates(Room roomToReserve) {
+        Cruise cruise = CruiseDatabase.getCruise(roomToReserve.getCruise());
+        List<LocalDate> times = new ArrayList<>();
 
-        // Retrieve all cruises and find the matching one
-        List<Cruise> cruises = CruiseDatabase.getAllCruises();
-        Cruise matchingCruise = cruises.stream()
-                .filter(cruise -> cruise.getName().equals(cruiseName))
-                .findFirst()
-                .orElse(null);
-
-        if (matchingCruise == null || matchingCruise.getTravelPath().size() < 2) {
-            // Handle the case where the cruise is not found or doesn't have enough countries
-            JOptionPane.showMessageDialog(null, "Error: Cruise data is not properly set up.");
-            return false;
+        for (Country c : cruise.getTravelPath()) {
+            times.add(c.getArrivalTime());
         }
 
-        // Use the first and last countries from the cruise's travel path
-        List<Country> travelPath = matchingCruise.getTravelPath();
-        Country startCountry = travelPath.get(0);
-        Country endCountry = travelPath.get(travelPath.size() - 1);
+        return times;
+    }
 
-        LocalDate startDate = LocalDate.now(); // Use current date as start date for reservation
-        LocalDate endDate = startDate.plusDays(1); // Example end date (one day after start date)
+    public static boolean reserveRoom(Guest guest, Room room, LocalDate checkout) {
+        //get the cruise
+        Cruise cruise = CruiseDatabase.getCruise(room.getCruise());
+
+        // Use the first and last countries from the cruise's travel path
+        List<Country> travelPath = cruise.getTravelPath();
+        Country startCountry = travelPath.get(0);
+        Country endCountry = null;
+
+        //find the country with a checkout date that matches
+        for (Country c : cruise.getTravelPath()) {
+            if (c.getArrivalTime() == checkout) {
+                endCountry = c;
+            }
+        }
+
+        if (endCountry == null) {
+            System.err.println("Could not find a matching country for the checkout. See GuestCreateReservationPageController");
+        }
+
+        LocalDate startDate = cruise.getDeparture(); // Use current date as start date for reservation
 
         // Make the reservation
-        guest.makeReservation(room, startDate, endDate, startCountry.getName(), endCountry.getName());
+        assert endCountry != null;
+        guest.makeReservation(room, startDate, checkout, startCountry.getName(), endCountry.getName());
         return true;
+    }
+
+    public static Cruise getCruise(String cruise) {
+        return CruiseDatabase.getCruise(cruise);
     }
 }

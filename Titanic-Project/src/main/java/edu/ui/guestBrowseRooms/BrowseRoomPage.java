@@ -4,6 +4,7 @@ import edu.core.reservation.Room;
 import edu.core.users.CurrentGuest;
 import edu.databaseAccessors.RoomDatabase;
 import edu.ui.guestCreateReservation.GuestCreateReservationPage;
+import edu.ui.guestSelectCruise.SelectCruisePage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,8 +26,10 @@ public class BrowseRoomPage {
     private JList<Room> roomList;
     private JButton backButton;
     private JButton selectRoomButton;
+    private SelectCruisePage prevPage;
 
-    public BrowseRoomPage(String selectedCruise) {
+    public BrowseRoomPage(SelectCruisePage prevPage, String selectedCruise) {
+        this.prevPage = prevPage;
         prepareGUI(selectedCruise);
     }
 
@@ -45,7 +48,10 @@ public class BrowseRoomPage {
         roomFrame.add(listScrollPane, BorderLayout.CENTER);
 
         backButton = new JButton("Back to Cruise Details");
-        backButton.addActionListener(e -> roomFrame.dispose());
+        backButton.addActionListener(e -> {
+            roomFrame.dispose();
+            prevPage.show();
+        });
 
         selectRoomButton = new JButton("Select Room");
         selectRoomButton.addActionListener(e -> {

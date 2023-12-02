@@ -10,6 +10,8 @@ import edu.databaseAccessors.CruiseDatabase;
 import edu.exceptions.CouldNotCreateReservationException;
 import edu.exceptions.UserNotFoundException;
 import edu.ui.guestBrowseRooms.BrowseRoomPage;
+import edu.ui.travelAgentCreateReservations.TravelAgentCreateReservationController;
+import edu.ui.travelAgentCreateReservations.TravelAgentCreateReservationPage;
 import edu.ui.travelAgentEditReservations.GuestsWithReservationPage;
 
 import javax.swing.*;
@@ -17,6 +19,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -77,6 +81,20 @@ public class GuestCreateReservationPage {
         checkoutLabel = new JLabel("Check-out Dates:");
         checkoutField = new JTextField();
 
+        Cruise cruise = GuestCreateReservationPageController.getCruise(roomToReserve.getCruise());
+        List<LocalDate> checkoutList = GuestCreateReservationPageController.getAllCheckoutDates(roomToReserve);
+        String[] checkoutArray = checkoutList.stream().map(Object::toString).toArray(String[]::new);
+
+        //modify each string individually
+        for (int i = 0; i < checkoutArray.length; i++) {
+            //adding country name
+            checkoutArray[i] += " - " + cruise.getTravelPath().get(i).getName();
+        }
+
+        //update the model of the existing checkoutDropdown
+        checkoutDropdown.setModel(new DefaultComboBoxModel<>(checkoutArray));
+        checkoutDropdown.setRenderer(new GuestCreateReservationPage.LineWrapRenderer());
+
         roomNumberLabel = new JLabel("Room:");
         roomNumberField = new JTextField();
         roomNumberField.setEditable(false);
@@ -132,50 +150,15 @@ public class GuestCreateReservationPage {
 
         submitButton.addActionListener(e -> {
             //get the new checkout time
-            String username = (String) usernameField.getText();
-            checkoutDropdown.getSelectedItem();
+            String stringEndDate = checkoutDropdown.getSelectedItem().toString();
+            // Define the date format of the input string
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            // Parse the date from the input string
+            LocalDate endDate = LocalDate.parse(stringEndDate.substring(0, 10), formatter);
 
             //create reservation
-            if (GuestCreateReservationPageController.reserveRoom(CurrentGuest.getCurrentGuest(), roomToReserve, )) {
+            if (GuestCreateReservationPageController.reserveRoom(CurrentGuest.getCurrentGuest(), roomToReserve, endDate)) {
                 JOptionPane.showMessageDialog(frame, "Room " + roomToReserve.getRoomNumber() + " reserved.");
-            }
-
-            //getting just the room number from the dropdown information
-            int firstCommaIndex = roomNumber.indexOf(',');
-            String roomNumberWithWords = (firstCommaIndex != -1) ? roomNumber.substring(0, firstCommaIndex) : roomNumber;
-            String selectedRoom = roomNumberWithWords.replaceAll("[^0-9]", "");
-
-            //creating a cruise object to get information from
-            Cruise cruise = GuestCreateReservationPageContoller.getCruise(cruiseName);
-
-            User u = null;
-            try {
-                u = GuestCreateReservationPageContoller.getUser(username);
-            } catch (UserNotFoundException ex) {
-                ex.printStackTrace();
-            }
-
-            Room r = GuestCreateReservationPageContoller.getRoom(Integer.parseInt(selectedRoom), cruiseName);
-            LocalDate startDate = cruise.getDeparture();
-            System.out.println(checkoutDropdown.getSelectedItem().toString());
-            LocalDate endDate = LocalDate.now();
-            int travelPathSize = cruise.getTravelPath().size();
-
-            //get final country arrival
-            LocalDate end = cruise.getTravelPath().get(travelPathSize-1).getArrivalTime();
-
-            Country startCountry = cruise.getTravelPath().get(0);
-            Country endCountry = cruise.getTravelPath().get(travelPathSize-1);
-
-            if (GuestCreateReservationPageContoller.createReservation(new Reservation(-1, u, r, startDate, endDate, startCountry, endCountry))) {
-                JOptionPane.showMessageDialog(mainPanel, "Reservation created.");
-            }
-            else {
-                try {
-                    throw new CouldNotCreateReservationException("Could not create reservation. See stack trace for details.");
-                } catch (CouldNotCreateReservationException ex) {
-                    ex.printStackTrace();
-                }
             }
         });
     }
@@ -190,20 +173,5 @@ public class GuestCreateReservationPage {
             label.setText("<html><p style=\"width:300\">" + value.toString() + "</p></html>");
             return label;
         }
-    }
-
-    public boolean validateUser(String username) {
-        //if username doesn't exist
-        if (!GuestCreateReservationPageContoller.usernameExists(username)) {
-            JOptionPane.showMessageDialog(mainPanel, "User " + username + " does not exist.");
-
-            return false;
-        }
-
-        return true;
-    }
-
-    public static void main(String[] args) {
-        new GuestCreateReservationPageContoller(null);
     }
 }
