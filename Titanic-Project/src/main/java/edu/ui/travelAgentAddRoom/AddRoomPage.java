@@ -2,12 +2,11 @@ package edu.ui.travelAgentAddRoom;
 
 import edu.core.reservation.Room;
 import edu.databaseAccessors.RoomDatabase;
-import edu.uniqueID.UniqueID;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 
 /**
  * The class for the add room ui
@@ -129,10 +128,12 @@ public class AddRoomPage {
 
             //if the room number already exists, get a new unique id
             do {
-                roomNumber = new UniqueID().getId();
+                roomNumber = new Random().nextInt(1000) + 1;
             } while (RoomDatabase.getRoom(roomNumber).getRoomNumber() != -1);
 
             addRoomToSystem(new Room(roomNumber, bedNumber, bedType, smokingAvailable, price, cruise));
+
+            JOptionPane.showMessageDialog(mainPanel, "Room created.");
         });
     }
 

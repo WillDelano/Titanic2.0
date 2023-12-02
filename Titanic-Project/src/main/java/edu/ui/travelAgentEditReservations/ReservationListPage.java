@@ -103,7 +103,13 @@ public class ReservationListPage implements ReservationListInterface {
         new EditReservationPage(this, reservation.getRoom().getCruise(), reservation);
     }
 
+    private void refreshData() {
+
+    }
+
     public void show() {
         mainFrame.setVisible(true);
+
+        refreshData();
     }
 }

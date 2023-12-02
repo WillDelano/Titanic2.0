@@ -3,7 +3,6 @@ package edu.ui.landingPage;
 import edu.core.users.CurrentGuest;
 import edu.core.users.Guest;
 import edu.core.users.User;
-import edu.uniqueID.UniqueID;
 
 import javax.swing.*;
 import java.awt.*;

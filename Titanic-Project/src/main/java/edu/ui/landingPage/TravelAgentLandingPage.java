@@ -27,7 +27,6 @@ import java.util.Objects;
  * @see LandingPageController
  */
 public class TravelAgentLandingPage extends LandingPage {
-
     private JFrame mainFrame;
     private JPanel headerPanel;
     private JLabel headerLabel;

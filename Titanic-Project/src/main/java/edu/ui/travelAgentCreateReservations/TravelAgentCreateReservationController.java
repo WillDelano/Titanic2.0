@@ -21,6 +21,7 @@ public class TravelAgentCreateReservationController {
 
         for (Country c : cruise.getTravelPath()) {
             times.add(c.getArrivalTime());
+            System.out.println(c.getName());
         }
 
         return times;

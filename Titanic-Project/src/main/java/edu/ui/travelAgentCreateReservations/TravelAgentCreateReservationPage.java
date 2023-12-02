@@ -74,7 +74,6 @@ public class TravelAgentCreateReservationPage {
         checkinField.setEditable(false);
 
         checkoutLabel = new JLabel("Check-out Dates:");
-        checkoutField = new JTextField();
 
         roomNumberLabel = new JLabel("Rooms:");
         roomNumberField = new JTextField();

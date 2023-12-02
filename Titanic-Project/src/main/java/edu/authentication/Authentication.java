@@ -3,7 +3,6 @@ package edu.authentication;
 import edu.core.users.CurrentGuest;
 import edu.databaseAccessors.AccountDatabase;
 import edu.exceptions.UserNotFoundException;
-import edu.uniqueID.UniqueID;
 import edu.core.users.Guest;
 
 import java.lang.*;

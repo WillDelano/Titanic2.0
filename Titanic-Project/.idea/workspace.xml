@@ -15,11 +15,27 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c490.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c490.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c4a1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c4a1.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c520.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c520.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/guestBrowseRooms/BrowseRoomPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/guestBrowseRooms/BrowseRoomPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/guestCreateReservation/GuestCreateReservationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/guestCreateReservation/GuestCreateReservationPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/guestCreateReservation/GuestCreateReservationPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/guestCreateReservation/GuestCreateReservationPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/guestSelectCruise/SelectCruisePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/guestSelectCruise/SelectCruisePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c531.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c531.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c540.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c540.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c590.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c590.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c5a1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c5a1.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c5b1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c5b1.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/authentication/Authentication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/cruise/Cruise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/cruise/Cruise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/reservation/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/reservation/Reservation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CountryDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CountryDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CruiseDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CruiseDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/RoomDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/RoomDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/guestReservationList/MyReservationsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/guestReservationList/MyReservationsPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/LandingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/LandingPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/TravelAgentLandingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/TravelAgentLandingPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentAddRoom/AddRoomPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentAddRoom/AddRoomPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentCreateReservations/TravelAgentCreateReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentCreateReservations/TravelAgentCreateReservationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentCreateReservations/TravelAgentCreateReservationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentCreateReservations/TravelAgentCreateReservationPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/EditReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/EditReservationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/EditReservationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/EditReservationPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/ReservationListPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/ReservationListPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditRooms/ViewAllRoomsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditRooms/ViewAllRoomsPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

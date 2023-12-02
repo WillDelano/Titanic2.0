@@ -142,6 +142,8 @@ public class RoomDatabase {
                             resultSet.getDouble("roomprice"),
                             resultSet.getString("cruise"));
                 }
+                //return a false value if there is no room with the number
+                return new Room(-1, -1, "", false, -1, "");
             }
         } catch (SQLException e) {
             e.printStackTrace();

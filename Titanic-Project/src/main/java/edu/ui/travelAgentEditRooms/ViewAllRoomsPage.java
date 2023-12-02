@@ -72,6 +72,7 @@ public class ViewAllRoomsPage {
         frame.add(contentPanel, BorderLayout.CENTER);
 
         refreshReservations();
+        frame.setVisible(true);
     }
 
     public void refreshReservations() {
