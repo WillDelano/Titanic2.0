@@ -3,6 +3,11 @@ package edu.ui.guestBrowseRooms;
 import edu.core.reservation.Room;
 import edu.core.users.CurrentGuest;
 import edu.databaseAccessors.RoomDatabase;
+<<<<<<< HEAD
+=======
+import edu.ui.guestCreateReservation.GuestCreateReservationPage;
+import edu.ui.guestSelectCruise.SelectCruisePage;
+>>>>>>> 0d351394b1b58d11507c22ab0d15eb848501b3be
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,8 +29,15 @@ public class BrowseRoomPage {
     private JList<Room> roomList;
     private JButton backButton;
     private JButton selectRoomButton;
+<<<<<<< HEAD
 
     public BrowseRoomPage(String selectedCruise) {
+=======
+    private SelectCruisePage prevPage;
+
+    public BrowseRoomPage(SelectCruisePage prevPage, String selectedCruise) {
+        this.prevPage = prevPage;
+>>>>>>> 0d351394b1b58d11507c22ab0d15eb848501b3be
         prepareGUI(selectedCruise);
     }
 
@@ -44,14 +56,25 @@ public class BrowseRoomPage {
         roomFrame.add(listScrollPane, BorderLayout.CENTER);
 
         backButton = new JButton("Back to Cruise Details");
+<<<<<<< HEAD
         backButton.addActionListener(e -> roomFrame.dispose());
+=======
+        backButton.addActionListener(e -> {
+            roomFrame.dispose();
+            prevPage.show();
+        });
+>>>>>>> 0d351394b1b58d11507c22ab0d15eb848501b3be
 
         selectRoomButton = new JButton("Select Room");
         selectRoomButton.addActionListener(e -> {
             Room selectedRoom = roomList.getSelectedValue();
             if (selectedRoom != null) {
+<<<<<<< HEAD
                 controller.reserveRoom(CurrentGuest.getCurrentGuest(), selectedRoom);
                 JOptionPane.showMessageDialog(roomFrame, "Room " + selectedRoom.getRoomNumber() + " reserved.");
+=======
+                new GuestCreateReservationPage(this, selectedRoom);
+>>>>>>> 0d351394b1b58d11507c22ab0d15eb848501b3be
             } else {
                 JOptionPane.showMessageDialog(roomFrame, "Please select a room first.");
             }

@@ -1,8 +1,11 @@
 package edu.ui.travelAgentEditReservations;
 
+import edu.core.cruise.Cruise;
 import edu.core.reservation.Reservation;
 import edu.core.reservation.Room;
 import edu.databaseAccessors.RoomDatabase;
+import edu.ui.guestCreateReservation.GuestCreateReservationPage;
+import edu.ui.guestCreateReservation.GuestCreateReservationPageController;
 import edu.ui.reservationListInterface.ReservationListInterface;
 
 import javax.swing.*;
@@ -31,12 +34,14 @@ public class EditReservationPage {
     private JTextField roomNumberField;
     private JButton submitButton;
     private JButton backButton;
+    JComboBox<String> checkoutDropdown;
     private ReservationListInterface previousPage;
 
     public EditReservationPage(ReservationListInterface previousPage, String cruise, Reservation reservation) {
         this.reservation = reservation;
         this.cruise = cruise;
         this.previousPage = previousPage;
+        this.checkoutDropdown = new JComboBox<>();
         createGUI();
     }
 
@@ -50,11 +55,24 @@ public class EditReservationPage {
         titleLabel = new JLabel("Edit Reservation", JLabel.CENTER);
 
         checkoutLabel = new JLabel("Check-out Date:");
-        checkoutField = new JTextField();
+
+        Cruise cruise = EditReservationController.getCruise(reservation.getRoom().getCruise());
+        List<LocalDate> checkoutList = EditReservationController.getAllCheckoutDates(reservation);
+        String[] checkoutArray = checkoutList.stream().map(Object::toString).toArray(String[]::new);
+
+        //modify each string individually
+        for (int i = 0; i < checkoutArray.length; i++) {
+            //adding country name
+            checkoutArray[i] += " - " + cruise.getTravelPath().get(i).getName();
+        }
+
+        //update the model of the existing checkoutDropdown
+        checkoutDropdown.setModel(new DefaultComboBoxModel<>(checkoutArray));
+        checkoutDropdown.setRenderer(new EditReservationPage.LineWrapRenderer());
 
         roomNumberLabel = new JLabel("Room Number (Enter or pick from the dropdown list):");
         roomNumberField = new JTextField();
-        List<Room> roomList = EditReservationController.getAllRooms(cruise);
+        List<Room> roomList = EditReservationController.getAllRooms(cruise.getName());
 
         //put the current reservation room in the list to be displayed on the dropdown
         roomList.add(EditReservationController.getRoom(reservation.getRoom().getRoomNumber()));
@@ -75,9 +93,22 @@ public class EditReservationPage {
 
         //second row
         mainPanel.add(checkoutLabel);
-        mainPanel.add(checkoutField);
-        checkoutField.setText(reservation.getEndDate().toString());
+        mainPanel.add(checkoutDropdown);
         mainPanel.add(new JLabel());
+
+        for (int i = 0; i < checkoutArray.length; i++) {
+
+            //set the selected to the matching end reservation date
+            if (checkoutArray[i].substring(0, 10).equals(String.valueOf(reservation.getEndDate()))) {
+                checkoutDropdown.setSelectedItem(checkoutArray[i]);
+            }
+
+            System.out.println("Comparing: " + checkoutArray[i].substring(0, 10));
+            System.out.println("With " + String.valueOf(reservation.getEndDate()));
+            System.out.println();
+        }
+
+        roomNumberDropdown.setSelectedItem(checkoutArray[checkoutList.size()-1]); //set the dropdown default to the current checkout
 
         //third row
         mainPanel.add(roomNumberLabel);
@@ -125,7 +156,9 @@ public class EditReservationPage {
 
         submitButton.addActionListener(e -> {
             //get the new checkout time
-            String checkout = (String) checkoutField.getText();
+            String checkout = (String) checkoutDropdown.getSelectedItem();
+            //remove the country in the string
+            checkout = checkout.substring(0, 10);
 
             //get the item selected with the dropdown
             String roomDetails = (String) roomNumberDropdown.getSelectedItem();
@@ -165,11 +198,7 @@ public class EditReservationPage {
             if (Integer.parseInt(room) == reservation.getRoom().getRoomNumber() &&
                     LocalDate.parse(checkout).equals(reservation.getEndDate())) {
 
-                try {
-                    noChangesDecision();
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
+                noChangesDecision();
             }
             //if there is a non-duplicate value, update the reservation
             else {
@@ -277,7 +306,7 @@ public class EditReservationPage {
         return true;
     }
 
-    public boolean noChangesDecision() throws SQLException {
+    public boolean noChangesDecision() {
         UIManager.put("OptionPane.yesButtonText", "Yes, quit");
         UIManager.put("OptionPane.noButtonText", "No, continue");
 
@@ -286,7 +315,11 @@ public class EditReservationPage {
 
         if (dialogResult == JOptionPane.YES_OPTION) {
             frame.dispose(); //close this frame
-            previousPage.show(); // Go back to the landingPage
+            try {
+                previousPage.show(); // Go back to the landingPage
+            } catch (SQLException e) {
+
+            }
             return true;
         }
         else {

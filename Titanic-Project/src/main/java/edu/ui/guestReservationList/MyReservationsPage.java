@@ -115,7 +115,11 @@ public class MyReservationsPage implements ReservationListInterface {
             DefaultTableModel model = (DefaultTableModel) table.getModel();
 
             //you can't cast the object to an int in case it's null, so you have to cast to string, then cast to int
+<<<<<<< HEAD
             String row = (String) model.getValueAt(modelRow, 1);
+=======
+            String row = (String) model.getValueAt(modelRow, 2);
+>>>>>>> 0d351394b1b58d11507c22ab0d15eb848501b3be
             int intRow = Integer.parseInt(row);
 
             r = MyReservationsPageController.getReservation(intRow);

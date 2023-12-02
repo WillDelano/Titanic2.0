@@ -1,5 +1,8 @@
 package edu.ui.travelAgentCreateReservations;
 
+
+import edu.core.cruise.Country;
+
 import edu.core.cruise.Cruise;
 import edu.core.reservation.Reservation;
 import edu.core.reservation.Room;
@@ -10,12 +13,21 @@ import edu.databaseAccessors.ReservationDatabase;
 import edu.databaseAccessors.RoomDatabase;
 import edu.exceptions.UserNotFoundException;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TravelAgentCreateReservationController {
-    public static List<Cruise> getAllCheckoutDates(Cruise cruise) {
-        return new ArrayList<>();
+
+    public static List<LocalDate> getAllCheckoutDates(Cruise cruise) {
+        List<LocalDate> times = new ArrayList<>();
+
+        for (Country c : cruise.getTravelPath()) {
+            times.add(c.getArrivalTime());
+            System.out.println(c.getName());
+        }
+
+        return times;
     }
 
     public static List<String> getAllCruises() {
@@ -51,8 +63,13 @@ public class TravelAgentCreateReservationController {
     }
 
     public static boolean usernameExists(String username) {
-        AccountDatabase.getUser(username);
+        try {
+            AccountDatabase.getUser(username);
 
-        return true;
+            return true;
+        } catch (UserNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

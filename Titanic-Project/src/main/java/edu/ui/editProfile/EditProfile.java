@@ -1,12 +1,22 @@
 package edu.ui.editProfile;
 
 import edu.core.users.User;
+<<<<<<< HEAD
 import edu.ui.adminResetPasswords.AdminResetPasswordListPage;
 import edu.ui.landingPage.LandingPage;
+=======
+import edu.ui.landingPage.LandingPage;
+
+import edu.ui.adminResetPasswords.ResetPasswordListPage;
+>>>>>>> 0d351394b1b58d11507c22ab0d15eb848501b3be
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0d351394b1b58d11507c22ab0d15eb848501b3be
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -1,6 +1,5 @@
 package edu.core.reservation;
 import edu.core.cruise.Country;
-import edu.uniqueID.UniqueID;
 import edu.core.users.User;
 import edu.databaseAccessors.ReservationDatabase;
 

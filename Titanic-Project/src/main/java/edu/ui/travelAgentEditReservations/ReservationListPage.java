@@ -29,13 +29,13 @@ public class ReservationListPage implements ReservationListInterface {
     private GuestsWithReservationPage previousPage;
     private Guest guest;
 
-    public ReservationListPage(GuestsWithReservationPage previousPage, Guest guest) throws SQLException {
+    public ReservationListPage(GuestsWithReservationPage previousPage, Guest guest) {
         this.previousPage = previousPage;
         this.guest = guest;
         prepareGUI();
     }
 
-    private void prepareGUI() throws SQLException {
+    private void prepareGUI() {
         mainFrame = new JFrame("Select a Cruise");
         mainFrame.setSize(1000, 700);
         mainFrame.setLayout(new BorderLayout());
@@ -43,7 +43,12 @@ public class ReservationListPage implements ReservationListInterface {
         titleLabel = new JLabel(guest.getUsername() + "'s Reservations", JLabel.CENTER);
         mainFrame.add(titleLabel, BorderLayout.NORTH);
 
-        Set<Reservation> listOfReservations = ReservationListPageController.getReservationList(guest);
+        Set<Reservation> listOfReservations = null;
+        try {
+            listOfReservations = ReservationListPageController.getReservationList(guest);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
@@ -104,7 +109,13 @@ public class ReservationListPage implements ReservationListInterface {
         new EditReservationPage(this, reservation.getRoom().getCruise(), reservation);
     }
 
+    private void refreshData() {
+
+    }
+
     public void show() {
         mainFrame.setVisible(true);
+
+        refreshData();
     }
 }

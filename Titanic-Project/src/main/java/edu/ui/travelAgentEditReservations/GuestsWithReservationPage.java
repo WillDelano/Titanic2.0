@@ -4,6 +4,7 @@ import edu.core.cruise.Cruise;
 import edu.core.users.Guest;
 import edu.exceptions.UserNotFoundException;
 import edu.ui.landingPage.TravelAgentLandingPage;
+import edu.ui.travelAgentCreateReservations.TravelAgentCreateReservationPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,12 +29,12 @@ public class GuestsWithReservationPage {
     private JButton backButton;
     private JButton newReservation;
 
-    public GuestsWithReservationPage(TravelAgentLandingPage landingPage) throws SQLException {
+    public GuestsWithReservationPage(TravelAgentLandingPage landingPage) {
         this.landingPage = landingPage;
         prepareGUI();
     }
 
-    private void prepareGUI() throws SQLException {
+    private void prepareGUI() {
         mainFrame = new JFrame("Select a Cruise");
         mainFrame.setSize(1000, 700);
         mainFrame.setLayout(new BorderLayout());
@@ -62,7 +63,12 @@ public class GuestsWithReservationPage {
             String username = guest.getUsername();
             String first = guest.getFirstName();
             String last = guest.getLastName();
-            String numReservations = Integer.toString(guest.getReservations().size());
+            String numReservations = null;
+            try {
+                numReservations = Integer.toString(guest.getReservations().size());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
 
             String guestDetails = "Guest username: " + username + "\n" +
                     "First name: " + first + "\n" +
@@ -78,11 +84,7 @@ public class GuestsWithReservationPage {
             selectButton.setAlignmentX(Component.CENTER_ALIGNMENT);
             selectButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    try {
-                        handleReservationList(guest);
-                    } catch (SQLException ex) {
-                        throw new RuntimeException(ex);
-                    }
+                    handleReservationList(guest);
                 }
             });
             detailsPanel.add(selectButton);
@@ -109,13 +111,13 @@ public class GuestsWithReservationPage {
         mainFrame.setVisible(true);
     }
 
-    private void handleReservationList(Guest guest) throws SQLException {
+    private void handleReservationList(Guest guest) {
         mainFrame.setVisible(false);
         new ReservationListPage(this, guest);
     }
 
     private void createReservation() {
-        //new TravelAgentCreateReservationPage(this);
+        new TravelAgentCreateReservationPage(this);
     }
 
     public void show() {

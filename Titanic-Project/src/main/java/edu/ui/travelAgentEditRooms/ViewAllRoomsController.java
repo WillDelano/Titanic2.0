@@ -1,6 +1,6 @@
 package edu.ui.travelAgentEditRooms;
 
-import edu.core.cruise.Cruise;
+
 import edu.core.reservation.Room;
 import edu.databaseAccessors.RoomDatabase;
 
@@ -16,7 +16,9 @@ public class ViewAllRoomsController {
         new EditRoomPage(r, prevPage);
     }
 
-//    public static List<Room> getAllRooms() {
-//        return RoomDatabase.getAllRooms(cruise.getName());
-//    }
+
+    public static List<Room> getAllRooms() {
+        return RoomDatabase.getAllRooms();
+    }
+
 }

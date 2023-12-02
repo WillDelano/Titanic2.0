@@ -7,11 +7,13 @@ import edu.core.reservation.Room;
 import edu.core.users.User;
 import edu.exceptions.NoMatchingReservationException;
 
+import java.io.*;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
-import java.util.logging.Logger;
 
 /**
  * Database to record reservations
@@ -21,23 +23,8 @@ import java.util.logging.Logger;
  * @author William Delano
  * @version 1.0
  */
-
-public class ReservationDatabase implements driver{
-    private static final Logger logger = Logger.getLogger(ReservationDatabase.class.getName());
-    //private static String url = "jdbc:derby:C:/Users/Colet/Documents/GIT/Titanic2.0/Titanic-Project/src/main/java/edu/Database";
-    /**
-     * TODO
-     *
-     */
-    public ReservationDatabase() throws SQLException {
-        try(Connection connection = driver.getDBConnection()){
-            return;
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-
-    }
+public class ReservationDatabase {
+    private static final String url = "jdbc:derby:C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
 
     /**
      * Returns the reservation database size
@@ -80,14 +67,13 @@ public class ReservationDatabase implements driver{
      *
      * @return The set of reservations a guest has
      */
-    public static Set<Reservation> getReservations(Guest guest) throws SQLException {
+    public static Set<Reservation> getReservations(Guest guest) {
         Set<Reservation> guestReservations = new HashSet<>();
 
         //create the connection to the db
-
         try (Connection connection = driver.getDBConnection()) {
-            //command to select all rows from db matching the guest id
-            String selectAll = "SELECT * FROM Reservation WHERE Username = ?";
+            //command to select all rows from db matching the guest username
+            String selectAll = "SELECT * FROM Reservation WHERE username = ?";
             //preparing the statement
             try (PreparedStatement statement = connection.prepareStatement(selectAll)) {
                 //set the first parameter to search for (id) to the guest's id
@@ -111,7 +97,7 @@ public class ReservationDatabase implements driver{
                 }
             }
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
 
             System.err.println("Failed to connect to database.");
@@ -198,7 +184,7 @@ public class ReservationDatabase implements driver{
      * Operation to add a reservation
      *
      * @param newReservation specified reservation to add
-     * @return
+     *
      */
     public static boolean addReservation(Reservation newReservation) {
         String startDate = String.valueOf(newReservation.getStartDate());
@@ -225,14 +211,18 @@ public class ReservationDatabase implements driver{
                     if (inserted <= 0) {
                         System.out.println("Failed to insert data");
                     }
+                    else {
+                        return true;
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
 
                 System.err.println("Failed to connect to database.");
+                return false;
             }
         }
-        return true;
+        return false;
     }
 
 
@@ -347,9 +337,8 @@ public class ReservationDatabase implements driver{
      *
      */
     public static void deleteReservation(Reservation reservation) {
-        logger.info("deleteing " + reservation.getId());
+        System.out.println("Deleting: " + reservation.getId());
         try (Connection connection = driver.getDBConnection()) {
-
             String select = "DELETE FROM Reservation WHERE id = ?";
             try (PreparedStatement statement = connection.prepareStatement(select)) {
                 statement.setLong(1, reservation.getId());

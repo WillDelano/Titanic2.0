@@ -3,15 +3,17 @@ package edu.ui.landingPage;
 import edu.core.users.CurrentGuest;
 import edu.core.users.Guest;
 import edu.core.users.User;
-import edu.ui.createTravelAgent.FinishTravelAgentPage;
-import edu.ui.cruiseDetails.SelectCruisePage;
+import edu.ui.guestSelectCruise.SelectCruisePage;
 
 import javax.swing.*;
 import java.awt.*;
+<<<<<<< HEAD
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import java.util.Objects;
+=======
+>>>>>>> 0d351394b1b58d11507c22ab0d15eb848501b3be
 
 import java.sql.SQLException;
 
@@ -107,8 +109,13 @@ public class GuestLandingPage extends LandingPage {
         new SelectCruisePage(this);       // navigate to SelectCruisePage
     }
 
+<<<<<<< HEAD
     private void openMyReservationsPage() throws SQLException {
         new edu.ui.reservationDetails.MyReservationsPage().show();
+=======
+    private void openMyReservationsPage() {
+        new edu.ui.guestReservationList.MyReservationsPage().show();
+>>>>>>> 0d351394b1b58d11507c22ab0d15eb848501b3be
     }
 
     public void show() {

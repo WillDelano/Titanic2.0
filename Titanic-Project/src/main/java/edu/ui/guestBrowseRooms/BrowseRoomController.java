@@ -24,6 +24,7 @@ public class BrowseRoomController {
     public static List<Room> getRooms(String cruise) {
         return RoomDatabase.getRoomsForCruise(cruise);
     }
+<<<<<<< HEAD
 
     public void reserveRoom(Guest guest, Room room) {
         // Fetch the cruise name from the room
@@ -55,3 +56,6 @@ public class BrowseRoomController {
     }
 
 }
+=======
+}
+>>>>>>> 0d351394b1b58d11507c22ab0d15eb848501b3be

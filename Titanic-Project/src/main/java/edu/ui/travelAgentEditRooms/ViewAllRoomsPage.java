@@ -72,6 +72,9 @@ public class ViewAllRoomsPage {
         frame.add(contentPanel, BorderLayout.CENTER);
 
         refreshReservations();
+
+        frame.setVisible(true);
+
     }
 
     public void refreshReservations() {
@@ -85,7 +88,9 @@ public class ViewAllRoomsPage {
             data[i][0] = String.valueOf(temp.getRoomNumber());
             data[i][1] = "$" + String.valueOf(temp.getRoomPrice());
             data[i][2] = String.valueOf(temp.getNumberOfBeds());
+
             data[i][3] = String.valueOf(temp.getBedTypeStr());
+
             data[i][4] = String.valueOf(temp.getCruise());
             data[i][5] = String.valueOf(temp.getSmokingAvailable());
             data[i][6] = String.valueOf(temp.isBooked());

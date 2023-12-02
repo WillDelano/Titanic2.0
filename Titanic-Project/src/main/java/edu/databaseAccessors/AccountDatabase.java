@@ -2,6 +2,7 @@ package edu.databaseAccessors;
 import edu.core.reservation.Reservation;
 import edu.core.users.*;
 import edu.exceptions.NoMatchingClassException;
+import edu.exceptions.UserNotFoundException;
 
 import java.io.*;
 import java.sql.*;
@@ -344,13 +345,13 @@ public class AccountDatabase implements driver{
      *
      * @return the specified user
      */
-    public static User getUser(String username){
+    public static User getUser(String username) throws UserNotFoundException {
         for(User u: accountDatabase){
             if(u.getUsername().equals(username)){
                 return u;
             }
         }
-        return null;
+        throw new UserNotFoundException("No user with username " + username + " exists.");
     }
 
 
