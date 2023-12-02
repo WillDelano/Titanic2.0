@@ -79,6 +79,10 @@ public class ReservationListPage implements ReservationListInterface {
 
             JButton selectButton = new JButton("Select Reservation ID: " + reservation.getId());
             selectButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+            //Check In Button and Check Out Button
+
+
             selectButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     handleReservationSelection(reservation);
@@ -108,6 +112,8 @@ public class ReservationListPage implements ReservationListInterface {
         mainFrame.setVisible(false);
         new EditReservationPage(this, reservation.getRoom().getCruise(), reservation);
     }
+
+
 
     private void refreshData() {
 

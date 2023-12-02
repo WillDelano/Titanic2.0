@@ -34,6 +34,8 @@ public class GuestsWithReservationController {
         return guestsWithReservations;
     }
 
+
+
     public static int getNumberOfReservations() {
         return ReservationDatabase.getReservationDatabaseSize();
     }

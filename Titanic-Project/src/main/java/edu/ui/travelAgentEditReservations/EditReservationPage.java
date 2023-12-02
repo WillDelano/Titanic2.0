@@ -10,7 +10,6 @@ import edu.ui.reservationListInterface.ReservationListInterface;
 
 import javax.swing.*;
 import java.awt.*;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.List;
@@ -136,21 +135,13 @@ public class EditReservationPage {
 
         backButton.addActionListener(e -> {
             frame.dispose(); // Close the Edit Reservation page
-            try {
-                previousPage.show(); // Go back to the previous page
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
+            previousPage.show(); // Go back to the previous page
         });
 
         cancelButton.addActionListener(e -> {
             if (cancelReservation()) {
                 frame.dispose(); // Close the Edit Reservation page
-                try {
-                    previousPage.show(); // Go back to the previous page
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
+                previousPage.show(); // Go back to the previous page
             }
         });
 
@@ -206,11 +197,7 @@ public class EditReservationPage {
                 if (validateDecision(checkout, room)) {
                     updateReservation(checkout, room);
                     frame.dispose();
-                    try {
-                        previousPage.show(); // Go back to the reservation page
-                    } catch (SQLException ex) {
-                        throw new RuntimeException(ex);
-                    }
+                    previousPage.show(); // Go back to the reservation page
                 }
                 //restart the edit frame
                 else {
@@ -315,11 +302,7 @@ public class EditReservationPage {
 
         if (dialogResult == JOptionPane.YES_OPTION) {
             frame.dispose(); //close this frame
-            try {
-                previousPage.show(); // Go back to the landingPage
-            } catch (SQLException e) {
-
-            }
+            previousPage.show(); // Go back to the landingPage
             return true;
         }
         else {
