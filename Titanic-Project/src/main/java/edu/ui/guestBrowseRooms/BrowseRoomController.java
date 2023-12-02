@@ -24,4 +24,10 @@ public class BrowseRoomController {
     public static List<Room> getRooms(String cruise) {
         return RoomDatabase.getRoomsForCruise(cruise);
     }
+
+
+    public static Room getRoom(int roomNumber) {
+        return RoomDatabase.getRoom(roomNumber);
+    }
 }
+

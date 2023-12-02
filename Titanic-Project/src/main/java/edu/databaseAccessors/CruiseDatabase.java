@@ -22,6 +22,7 @@ import java.util.*;
 public class CruiseDatabase implements driver {
     private static Set<Cruise> cruiseDatabase;
 
+
     static {
         cruiseDatabase = new HashSet<>();
         initializeDatabase(); // Static initialization of the database
