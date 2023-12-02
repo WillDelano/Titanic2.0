@@ -6,12 +6,8 @@ import edu.core.reservation.Reservation;
 import edu.core.reservation.Room;
 import edu.core.users.User;
 import edu.databaseAccessors.CruiseDatabase;
-import edu.databaseAccessors.RoomDatabase;
 import edu.exceptions.CouldNotCreateReservationException;
 import edu.exceptions.UserNotFoundException;
-import edu.ui.guestReservationList.MyReservationsPage;
-import edu.ui.landingPage.TravelAgentLandingPage;
-import edu.ui.reservationListInterface.ReservationListInterface;
 import edu.ui.travelAgentEditReservations.GuestsWithReservationPage;
 
 import javax.swing.*;
@@ -19,8 +15,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class TravelAgentCreateReservationPage {
     private JFrame frame;
@@ -107,9 +103,8 @@ public class TravelAgentCreateReservationPage {
 
         //fifth row
         mainPanel.add(checkoutLabel);
+        mainPanel.add(checkoutDropdown);
         mainPanel.add(new JLabel());
-        mainPanel.add(new JLabel());
-        //mainPanel.add(checkoutDropdown);
 
         //sixth row
         mainPanel.add(roomNumberLabel);
@@ -174,12 +169,15 @@ public class TravelAgentCreateReservationPage {
 
             Room r = TravelAgentCreateReservationController.getRoom(Integer.parseInt(selectedRoom), cruiseName);
             LocalDate startDate = cruise.getDeparture();
+            System.out.println(checkoutDropdown.getSelectedItem().toString());
             LocalDate endDate = LocalDate.now();
-            //LocalDate end = (LocalDate) checkoutDropdown.getSelectedItem(); CODE FOR THE END DATE
+            int travelPathSize = cruise.getTravelPath().size();
+
+            //get final country arrival
+            LocalDate end = cruise.getTravelPath().get(travelPathSize-1).getArrivalTime();
 
             Country startCountry = cruise.getTravelPath().get(0);
-            Country endCountry = cruise.getTravelPath().get(0);
-            //Country endCountry = cruise.getTravelPath().get(0); CODE TO GET THE COUNTRY ASSOCIATED WITH THE END DATE
+            Country endCountry = cruise.getTravelPath().get(travelPathSize-1);
 
             if (TravelAgentCreateReservationController.createReservation(new Reservation(-1, u, r, startDate, endDate, startCountry, endCountry))) {
                 JOptionPane.showMessageDialog(mainPanel, "Reservation created.");
@@ -199,8 +197,19 @@ public class TravelAgentCreateReservationPage {
 
         checkinField.setText(cruise.getDeparture().toString());
 
-        List<Cruise> checkoutList = TravelAgentCreateReservationController.getAllCheckoutDates(cruise);
+        List<LocalDate> checkoutList = TravelAgentCreateReservationController.getAllCheckoutDates(cruise);
         String[] checkoutArray = checkoutList.stream().map(Object::toString).toArray(String[]::new);
+
+        //converting LocalDate to String array
+        String[] test = checkoutList.stream()
+                .map(Object::toString)
+                .toArray(String[]::new);
+
+        //modify each string individually
+        for (int i = 0; i < checkoutArray.length; i++) {
+            //adding country name
+            checkoutArray[i] += " - " + cruise.getTravelPath().get(i).getName();
+        }
 
         //update the model of the existing checkoutDropdown
         checkoutDropdown.setModel(new DefaultComboBoxModel<>(checkoutArray));

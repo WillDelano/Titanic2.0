@@ -4,6 +4,7 @@ import edu.core.cruise.Cruise;
 import edu.core.users.Guest;
 import edu.exceptions.UserNotFoundException;
 import edu.ui.landingPage.TravelAgentLandingPage;
+import edu.ui.travelAgentCreateReservations.TravelAgentCreateReservationPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -110,7 +111,7 @@ public class GuestsWithReservationPage {
     }
 
     private void createReservation() {
-        //new TravelAgentCreateReservationPage(this);
+        new TravelAgentCreateReservationPage(this);
     }
 
     public void show() {

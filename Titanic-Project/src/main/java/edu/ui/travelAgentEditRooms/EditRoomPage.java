@@ -189,7 +189,6 @@ public class EditRoomPage {
     }
 
     private void updateRoom( String bedType, int numOfBeds, boolean smokingChoice, double price) {
-        //Fixme: Fully implement this in roomDatabase
         EditRoomController.editRoom(room,bedType,numOfBeds,smokingChoice,price);
     }
 

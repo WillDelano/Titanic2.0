@@ -5,18 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fc14b32d-70fe-4d06-8946-f4a8359f9ce0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditRooms/ViewAllRoomsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditRooms/ViewAllRoomsPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/derby.log" beforeDir="false" afterPath="$PROJECT_DIR$/derby.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/db.lck" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/RoomDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/RoomDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/guestBrowseRooms/BrowseRoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/guestBrowseRooms/BrowseRoomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/guestReservationList/MyReservationsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/guestReservationList/MyReservationsPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/guestReservationList/MyReservationsPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/guestReservationList/MyReservationsPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/TravelAgentLandingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/TravelAgentLandingPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/log/log.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/log/log1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/log/log1.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/log/logmirror.ctrl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentCreateReservations/TravelAgentCreateReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentCreateReservations/TravelAgentCreateReservationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/EditReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/EditReservationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentCreateReservations/TravelAgentCreateReservationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentCreateReservations/TravelAgentCreateReservationPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditRooms/EditRoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditRooms/EditRoomController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditRooms/EditRoomPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditRooms/EditRoomPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
