@@ -21,7 +21,6 @@ import java.util.*;
  */
 public class CruiseDatabase implements driver {
     private static Set<Cruise> cruiseDatabase;
-    private static final String url = "jdbc:derby:C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
 
     static {
         cruiseDatabase = new HashSet<>();
@@ -47,7 +46,7 @@ public class CruiseDatabase implements driver {
     }
 
     private static void initializeDatabase() {
-        try (Connection connection = DriverManager.getConnection(url)) {
+        try (Connection connection = driver.getDBConnection()) {
             String query = "SELECT * FROM Cruises";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 try (ResultSet resultSet = statement.executeQuery()) {
