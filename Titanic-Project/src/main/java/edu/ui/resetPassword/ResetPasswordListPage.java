@@ -82,11 +82,11 @@ public class ResetPasswordListPage {
 
             JButton selectButton = new JButton("Select " + user.getUsername());
             selectButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-            selectButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    navigateToResetPassword(user);
-                }
-            });
+//            selectButton.addActionListener(new ActionListener() {
+//                public void actionPerformed(ActionEvent e) {
+//                    navigateToResetPassword(user);
+//                }
+//            });
 
             detailsPanel.add(selectButton);
         }
@@ -108,10 +108,10 @@ public class ResetPasswordListPage {
         mainFrame.setVisible(true);
     }
 
-    private void navigateToResetPassword(User user) {
-        mainFrame.setVisible(false);
-        new EditProfile(user, null, this, false);
-    }
+//    private void navigateToResetPassword(User user) {
+//        mainFrame.setVisible(false);
+//        new EditProfile(user, null, this, false);
+//    }
 
     public void show() {
         mainFrame.setVisible(true);

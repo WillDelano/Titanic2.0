@@ -1,4 +1,5 @@
-package edu.ui.checkInAndOut;
+package edu.ui.travelAgentCheckIn;
 
 public class checkInAndOutController {
+
 }

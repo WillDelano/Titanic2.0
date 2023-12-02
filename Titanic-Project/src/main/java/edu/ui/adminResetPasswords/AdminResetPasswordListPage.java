@@ -21,7 +21,7 @@ import java.util.Objects;
  * @version 1.0
  * @see Cruise, CruiseDatabase, CruiseDetailsPage
  */
-public class ResetPasswordListPage {
+public class AdminResetPasswordListPage {
     private LandingPage landingPage;
     private JFrame mainFrame;
     private JLabel titleLabel;
@@ -30,7 +30,7 @@ public class ResetPasswordListPage {
     private JButton backButton;
     private JTextArea detailsTextArea;
 
-    public ResetPasswordListPage(LandingPage landingPage) {
+    public AdminResetPasswordListPage(LandingPage landingPage) {
         this.landingPage = landingPage;
         prepareGUI();
     }

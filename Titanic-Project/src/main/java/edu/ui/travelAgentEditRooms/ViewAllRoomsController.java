@@ -16,7 +16,7 @@ public class ViewAllRoomsController {
         new EditRoomPage(r, prevPage);
     }
 
-    public static List<Room> getAllRooms(Cruise cruise) {
-        return RoomDatabase.getAllRooms(cruise.getName());
-    }
+//    public static List<Room> getAllRooms() {
+//        return RoomDatabase.getAllRooms(cruise.getName());
+//    }
 }

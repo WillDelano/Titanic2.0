@@ -1,25 +1,12 @@
 package edu.ui.editProfile;
 
-import edu.core.reservation.Room;
-import edu.core.users.TravelAgent;
 import edu.core.users.User;
-import edu.databaseAccessors.RoomDatabase;
-import edu.ui.editReservation.EditReservationController;
-import edu.ui.editReservation.ReservationListPage;
+import edu.ui.adminResetPasswords.AdminResetPasswordListPage;
 import edu.ui.landingPage.LandingPage;
-import edu.ui.landingPage.TravelAgentLandingPage;
-
-import edu.ui.adminResetPasswords.ResetPasswordListPage;
-import edu.uniqueID.UniqueID;
 
 import javax.swing.*;
 import java.awt.*;
-
 import java.io.IOException;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -42,11 +29,11 @@ public class EditProfile {
 
     /* Two previous pages are used to represent the two potential previous pages that can reach this page*/
     private LandingPage previousLandingPage;
-    private ResetPasswordListPage prevListPage;
+    private AdminResetPasswordListPage prevListPage;
     private JButton backButton;
     boolean comingFromTravelAgentPage;
 
-    public EditProfile(User account, LandingPage prevLandingPage, ResetPasswordListPage prevListPage, boolean ta) {
+    public EditProfile(User account, LandingPage prevLandingPage, AdminResetPasswordListPage prevListPage, boolean ta) {
         this.previousLandingPage = prevLandingPage;
         this.prevListPage = prevListPage;
         this.account = account;
