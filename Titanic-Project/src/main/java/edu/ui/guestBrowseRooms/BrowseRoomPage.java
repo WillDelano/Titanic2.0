@@ -5,6 +5,7 @@ import edu.core.reservation.Room;
 import edu.core.users.CurrentGuest;
 import edu.databaseAccessors.RoomDatabase;
 import edu.exceptions.NoMatchingRoomException;
+import edu.ui.guestCreateReservation.GuestCreateReservationPage;
 import edu.ui.roomListInterface.RoomListInterface;
 import edu.ui.guestSelectCruise.SelectCruisePage;
 
@@ -54,7 +55,6 @@ public class BrowseRoomPage implements RoomListInterface {
             prevPage.show();
         });
 
-
         selectRoomButton = new JButton("Select Room");
         selectRoomButton.addActionListener(e -> {
             try {
@@ -96,12 +96,11 @@ public class BrowseRoomPage implements RoomListInterface {
 
             //you can't cast the object to an int in case it's null, so you have to cast to string, then cast to int
             String row = (String) model.getValueAt(modelRow, 1);
-            int test = Integer.parseInt(row);
+            int roomNumber = Integer.parseInt(row);
 
-            r = BrowseRoomController.getRoom(test);
+            r = BrowseRoomController.getRoom(roomNumber);
             if (r != null) {
-                //controller.reserveRoom(CurrentGuest.getCurrentGuest(), r);
-                JOptionPane.showMessageDialog(roomFrame, "Room " + r.getRoomNumber() + " reserved.");
+                new GuestCreateReservationPage(this, r);
             } else {
                 JOptionPane.showMessageDialog(roomFrame, "Please select a room first.");
             }
