@@ -23,7 +23,7 @@ import java.lang.*;
 public class AccountDatabase {
     private static Set<User> accountDatabase;
     //private String fileName = getClass().getClassLoader().getResource("accountList.csv").getFile();
-    private static final String url = "jdbc:derby:C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
+    private static final String url = "jdbc:derby:/Users/willdelano/Desktop/Software1/Titanic2.0/Titanic-Project/src/main/java/edu/Database";
 
     static {
         accountDatabase = new HashSet<>();
@@ -164,6 +164,7 @@ public class AccountDatabase {
             addUser("wdelano", "baylor", "Will", "Delano", 0, "wdelano2002@gmail.com", "Guest");
             addUser("wdelano2", "baylor", "Will", "Delano", 0, "wdelano2002@gmail.com", "Guest");
             addUser("wdelanoagent", "baylor", "Will", "Delano", 0, "wdelano2002@gmail.com", "Agent");
+            addUser("admin", "baylor", "Will", "Delano", 0, "wdelano2002@gmail.com", "Admin");
         }
     }
 

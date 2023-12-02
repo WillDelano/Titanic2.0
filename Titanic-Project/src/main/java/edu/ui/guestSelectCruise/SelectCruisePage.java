@@ -55,7 +55,6 @@ public class SelectCruisePage {
         selectButton = new JButton("View Details");
         selectButton.addActionListener(e -> {
             handleCruiseSelection(e);
-            cruiseFrame.dispose();
         });
         backButton = new JButton("Back");
         backButton.addActionListener(e -> {
@@ -76,7 +75,8 @@ public class SelectCruisePage {
         if (selectedCruiseName != null) {
             Cruise selectedCruise = CruiseDatabase.getCruise(selectedCruiseName);
             if (selectedCruise != null) {
-                new BrowseRoomPage(this, selectedCruise.getName()); // Assuming BrowseRoomPage takes a Cruise name
+                new BrowseRoomPage(this, selectedCruise.getName());
+                cruiseFrame.setVisible(false);
             } else {
                 JOptionPane.showMessageDialog(cruiseFrame, "Cruise details not found.", "Error", JOptionPane.ERROR_MESSAGE);
             }
