@@ -3,6 +3,7 @@ package edu.ui.guestBrowseRooms;
 import edu.core.reservation.Room;
 import edu.core.users.CurrentGuest;
 import edu.databaseAccessors.RoomDatabase;
+import edu.ui.guestCreateReservation.GuestCreateReservationPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -50,8 +51,7 @@ public class BrowseRoomPage {
         selectRoomButton.addActionListener(e -> {
             Room selectedRoom = roomList.getSelectedValue();
             if (selectedRoom != null) {
-                controller.reserveRoom(CurrentGuest.getCurrentGuest(), selectedRoom);
-                JOptionPane.showMessageDialog(roomFrame, "Room " + selectedRoom.getRoomNumber() + " reserved.");
+                new GuestCreateReservationPage(this, selectedRoom);
             } else {
                 JOptionPane.showMessageDialog(roomFrame, "Please select a room first.");
             }
