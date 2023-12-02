@@ -31,11 +31,11 @@ public class MyReservationsPage implements ReservationListInterface {
     private JTable reservationsTable;
     private Timer refreshTimer;
 
-    public MyReservationsPage() throws SQLException {
+    public MyReservationsPage() {
         prepareUI();
     }
 
-    private void prepareUI() throws SQLException {
+    private void prepareUI() {
         frame = new JFrame("My Reservations");
         frame.setSize(800, 600);
         frame.setLayout(new BorderLayout());
@@ -68,8 +68,13 @@ public class MyReservationsPage implements ReservationListInterface {
         refreshReservations();
     }
 
-    public void refreshReservations() throws SQLException {
-        Set<Reservation> reservationSet = CurrentGuest.getCurrentGuest().getReservations();
+    public void refreshReservations() {
+        Set<Reservation> reservationSet = null;
+        try {
+            reservationSet = CurrentGuest.getCurrentGuest().getReservations();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         System.err.println("Reservations: ");
 
         for (Reservation q : reservationSet) {
@@ -99,7 +104,7 @@ public class MyReservationsPage implements ReservationListInterface {
         columnModel.getColumn(1).setPreferredWidth(100);
     }
 
-    public void show() throws SQLException {
+    public void show() {
         refreshReservations();
         frame.setVisible(true);
     }
@@ -115,11 +120,7 @@ public class MyReservationsPage implements ReservationListInterface {
             DefaultTableModel model = (DefaultTableModel) table.getModel();
 
             //you can't cast the object to an int in case it's null, so you have to cast to string, then cast to int
-<<<<<<< HEAD
-            String row = (String) model.getValueAt(modelRow, 1);
-=======
             String row = (String) model.getValueAt(modelRow, 2);
->>>>>>> 0d351394b1b58d11507c22ab0d15eb848501b3be
             int intRow = Integer.parseInt(row);
 
             r = MyReservationsPageController.getReservation(intRow);
@@ -132,7 +133,7 @@ public class MyReservationsPage implements ReservationListInterface {
         }
     }
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         Guest g = new Guest("wdelano", "baylor", "Will", "Delano", 0, "wdelano2002@gmail.com");
 
         CurrentGuest.setCurrentGuest(g);

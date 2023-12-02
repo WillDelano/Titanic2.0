@@ -7,15 +7,6 @@ import edu.ui.guestSelectCruise.SelectCruisePage;
 
 import javax.swing.*;
 import java.awt.*;
-<<<<<<< HEAD
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import java.util.Objects;
-=======
->>>>>>> 0d351394b1b58d11507c22ab0d15eb848501b3be
-
-import java.sql.SQLException;
 
 /**
  * Creates the landing page
@@ -65,13 +56,7 @@ public class GuestLandingPage extends LandingPage {
         browseCruisesButton.addActionListener(e -> navigateToSelectCruisePage());
 
         JButton myReservationsButton = new JButton("My Reservations");
-        myReservationsButton.addActionListener(e -> {
-            try {
-                openMyReservationsPage();
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
+        myReservationsButton.addActionListener(e -> openMyReservationsPage());
 
         JButton supportButton = new JButton("Support");
 
@@ -109,13 +94,8 @@ public class GuestLandingPage extends LandingPage {
         new SelectCruisePage(this);       // navigate to SelectCruisePage
     }
 
-<<<<<<< HEAD
-    private void openMyReservationsPage() throws SQLException {
-        new edu.ui.reservationDetails.MyReservationsPage().show();
-=======
     private void openMyReservationsPage() {
         new edu.ui.guestReservationList.MyReservationsPage().show();
->>>>>>> 0d351394b1b58d11507c22ab0d15eb848501b3be
     }
 
     public void show() {
