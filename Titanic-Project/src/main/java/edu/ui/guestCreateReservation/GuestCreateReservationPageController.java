@@ -40,7 +40,7 @@ public class GuestCreateReservationPageController {
 
         //find the country with a checkout date that matches
         for (Country c : cruise.getTravelPath()) {
-            if (c.getArrivalTime() == checkout) {
+            if (c.getArrivalTime().equals(checkout)) {
                 endCountry = c;
             }
         }
