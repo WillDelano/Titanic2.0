@@ -8,6 +8,7 @@
       <change beforePath="$PROJECT_DIR$/derby.log" beforeDir="false" afterPath="$PROJECT_DIR$/derby.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/db.lck" afterDir="false" />
     </list>
+    <list default="true" id="fc14b32d-70fe-4d06-8946-f4a8359f9ce0" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,6 +50,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "convertToTableFormat",
+    "git-widget-placeholder": "main",
     "jdk.selected.JAVA_MODULE": "20",
     "last_opened_file_path": "C:/Users/Owner/Desktop/Software Eng/Practicum2",
     "node.js.detected.package.eslint": "true",
@@ -144,7 +146,7 @@
       <workItem from="1700684082373" duration="49000" />
       <workItem from="1700684138791" duration="23000" />
       <workItem from="1700684168512" duration="500000" />
-      <workItem from="1701172691611" duration="7698000" />
+      <workItem from="1701172691611" duration="10800000" />
     </task>
     <servers />
   </component>
