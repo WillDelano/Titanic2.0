@@ -15,6 +15,7 @@ import edu.databaseAccessors.AccountDatabase;
 import edu.databaseAccessors.CountryDatabase;
 import edu.databaseAccessors.CruiseDatabase;
 import edu.databaseAccessors.RoomDatabase;
+import edu.exceptions.UserNotFoundException;
 import edu.ui.landingPage.GuestLandingPage;
 import edu.ui.landingPage.TravelAgentLandingPage;
 
@@ -99,8 +100,8 @@ public class LoginPage {
         loginButton.addActionListener(e -> {
             try {
                 loginToSystem();
-            } catch (ClassNotFoundException ex) {
-                throw new RuntimeException(ex);
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
         });
         registerButton.addActionListener(e -> registerAccount());
@@ -112,7 +113,7 @@ public class LoginPage {
      * This logs the Guest into the system.
      *
      */
-    private void loginToSystem() throws ClassNotFoundException {
+    private void loginToSystem() throws ClassNotFoundException, UserNotFoundException {
         String username = usernameField.getText();
         String password = passwordField.getText();
 

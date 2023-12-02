@@ -3,14 +3,10 @@ package edu.ui.landingPage;
 import edu.core.users.CurrentGuest;
 import edu.core.users.Guest;
 import edu.core.users.User;
-import edu.ui.createTravelAgent.FinishTravelAgentPage;
-import edu.ui.cruiseDetails.SelectCruisePage;
+import edu.ui.guestSelectCruise.SelectCruisePage;
 
 import javax.swing.*;
 import java.awt.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Objects;
 
 /**
  * Creates the landing page
@@ -99,7 +95,7 @@ public class GuestLandingPage extends LandingPage {
     }
 
     private void openMyReservationsPage() {
-        new edu.ui.reservationDetails.MyReservationsPage().show();
+        new edu.ui.guestReservationList.MyReservationsPage().show();
     }
 
     public void show() {

@@ -2,7 +2,7 @@ package edu.authentication;
 
 import edu.core.users.CurrentGuest;
 import edu.databaseAccessors.AccountDatabase;
-import edu.uniqueID.UniqueID;
+import edu.exceptions.UserNotFoundException;
 import edu.core.users.Guest;
 
 import java.lang.*;
@@ -46,7 +46,7 @@ public class Authentication {
      * @param username   The given username for potential user account.
      * @param password   The given password for potential user account.
      */
-    public boolean login(String username, String password){
+    public boolean login(String username, String password) throws UserNotFoundException {
         AccountDatabase loginList = new AccountDatabase();
         boolean validLogin = false;
 

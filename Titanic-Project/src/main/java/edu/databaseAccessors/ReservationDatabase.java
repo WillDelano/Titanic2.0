@@ -186,7 +186,7 @@ public class ReservationDatabase {
      * @param newReservation specified reservation to add
      *
      */
-    public static void addReservation(Reservation newReservation) {
+    public static boolean addReservation(Reservation newReservation) {
         String startDate = String.valueOf(newReservation.getStartDate());
         String endDate = String.valueOf(newReservation.getEndDate());
 
@@ -211,13 +211,18 @@ public class ReservationDatabase {
                     if (inserted <= 0) {
                         System.out.println("Failed to insert data");
                     }
+                    else {
+                        return true;
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
 
                 System.err.println("Failed to connect to database.");
+                return false;
             }
         }
+        return false;
     }
 
 
