@@ -24,7 +24,7 @@ import java.util.Set;
  * @version 1.0
  */
 public class ReservationDatabase {
-    private static final String url = "jdbc:derby:C:\\Users\\gabec\\SoftwareEngineeringI\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
+    private static final String url = "jdbc:derby:/Users/willdelano/Desktop/Software1/Titanic2.0/Titanic-Project/src/main/java/edu/Database";
 
     /**
      * Returns the reservation database size
@@ -368,7 +368,7 @@ public class ReservationDatabase {
     public static void updateReservation(Reservation reservation, String endDate, String roomNumber) {
         //get the connection to the db
         try (Connection connection = DriverManager.getConnection(url)) {
-            String update = "UPDATE Reservation SET endDate=?, roomNum=?, WHERE id=?";
+            String update = "UPDATE Reservation SET endDate=?, roomNum=? WHERE id=?";
 
             try (PreparedStatement statement = connection.prepareStatement(update)) {
                 statement.setString(1, endDate);

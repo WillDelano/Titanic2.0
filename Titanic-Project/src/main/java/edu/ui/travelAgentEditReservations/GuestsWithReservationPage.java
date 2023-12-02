@@ -87,7 +87,6 @@ public class GuestsWithReservationPage {
         newReservation = new JButton("Create a new reservation");
         newReservation.addActionListener(e -> createReservation());
 
-        buttonPanel = new JPanel();
         buttonPanel.add(backButton);
         buttonPanel.add(newReservation);
 
