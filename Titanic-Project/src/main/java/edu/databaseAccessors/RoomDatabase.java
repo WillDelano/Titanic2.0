@@ -24,7 +24,7 @@ import java.util.*;
 public class RoomDatabase {
     private static Set<Room> roomDatabase;
 
-    private static final String url = "jdbc:derby:C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
+    private static final String url = "jdbc:derby:C:\\Users\\gabec\\SoftwareEngineeringI\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
 
     /**
      * Operation to add a reservation
