@@ -38,7 +38,7 @@
 
         <dependency>
             <groupId>org.apache.derby</groupId>
-            <artifactId>derby</artifactId>
+            <artifactId>derby-project</artifactId>
             <version>10.16.1.1</version>
         </dependency>
 

@@ -75,7 +75,6 @@ public class AdminLandingPage extends LandingPage {
         mainFrame.add(headerLabel, BorderLayout.CENTER);
         mainFrame.add(headerPanel, BorderLayout.NORTH);
         mainFrame.setVisible(true);
-
     }
 
     /**

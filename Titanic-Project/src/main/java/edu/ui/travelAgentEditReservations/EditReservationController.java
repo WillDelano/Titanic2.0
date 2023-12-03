@@ -1,5 +1,11 @@
 package edu.ui.travelAgentEditReservations;
 
+import edu.core.reservation.Reservation;
+import edu.core.reservation.Room;
+import edu.databaseAccessors.ReservationDatabase;
+import edu.databaseAccessors.RoomDatabase;
+
+import java.util.List;
 import edu.core.cruise.Country;
 import edu.core.cruise.Cruise;
 import edu.core.reservation.Reservation;

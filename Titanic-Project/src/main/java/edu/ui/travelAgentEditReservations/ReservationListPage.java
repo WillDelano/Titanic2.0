@@ -2,6 +2,13 @@ package edu.ui.travelAgentEditReservations;
 
 import edu.core.cruise.Cruise;
 import edu.core.reservation.Reservation;
+import edu.core.users.Guest;
+import edu.ui.reservationListInterface.ReservationListInterface;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import edu.core.reservation.Room;
 import edu.core.users.CurrentGuest;
 import edu.core.users.Guest;
@@ -61,36 +68,6 @@ public class ReservationListPage implements ReservationListInterface {
         JPanel detailsPanel = new JPanel();
         detailsPanel.setLayout(new BoxLayout(detailsPanel, BoxLayout.Y_AXIS));
 
-        /*for (Reservation reservation : listOfReservations) {
-            String startDate = String.valueOf(reservation.getStartDate());
-            String endDate = String.valueOf(reservation.getEndDate());
-            String roomNumber = String.valueOf(reservation.getRoom().getRoomNumber());
-            String startCountry = reservation.getStartCountry().getName();
-            String endCountry = reservation.getEndCountry().getName();
-            String totalDays = String.valueOf(reservation.getDays());
-
-            String guestDetails = "Reservation ID: " + reservation.getId() + "\n" +
-                    "Check-in Date: " + startDate + "\n" +
-                    "Check-out Date: " + endDate + "\n" +
-                    "Room Number: " + roomNumber + "\n" +
-                    "Start Country: " + startCountry + "\n" +
-                    "End Country: " + endCountry + "\n" +
-                    "Total Trip Duration (In Days): " + totalDays + "\n";
-
-            JTextArea detailsTextArea = new JTextArea(guestDetails);
-            detailsTextArea.setEditable(false);
-            JScrollPane textScrollPane = new JScrollPane(detailsTextArea);
-            detailsPanel.add(textScrollPane);
-
-            JButton selectButton = new JButton("Select Reservation ID: " + reservation.getId());
-            selectButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-            selectButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    handleReservationSelection(reservation);
-                }
-            });
-            detailsPanel.add(selectButton);
-        }*/
         JButton selectButton = new JButton("Select");
         selectButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         selectButton.addActionListener(new ActionListener() {
@@ -102,8 +79,6 @@ public class ReservationListPage implements ReservationListInterface {
                 }
             }
         });
-
-
 
         backButton = new JButton("Back");
         backButton.addActionListener(e -> {
@@ -125,7 +100,6 @@ public class ReservationListPage implements ReservationListInterface {
 
         mainFrame.add(contentPanel, BorderLayout.CENTER);
         mainFrame.add(buttonPanel, BorderLayout.SOUTH);
-        //mainFrame.add(mainPanel);
         mainFrame.setVisible(true);
         refreshRooms();
     }
@@ -196,7 +170,6 @@ public class ReservationListPage implements ReservationListInterface {
 
     public void show() {
         mainFrame.setVisible(true);
-
         refreshRooms();
     }
 }
