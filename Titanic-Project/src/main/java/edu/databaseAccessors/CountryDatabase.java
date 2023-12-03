@@ -3,6 +3,7 @@ package edu.databaseAccessors;
 import edu.core.cruise.Country;
 
 import java.io.*;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -31,7 +32,8 @@ import java.util.*;
  * @version 1.0
  */
 public class CountryDatabase {
-    private static final String url = "jdbc:derby:C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
+    private static final String url = DatabaseProperties.url;
+
     public static void addCountry(Country country, int cruiseId) {
         String insertSQL = "INSERT INTO Countries (name, arrivalTime, departureTime, cruise_id) VALUES (?, ?, ?, ?)";
         try (Connection connection = DriverManager.getConnection(url);

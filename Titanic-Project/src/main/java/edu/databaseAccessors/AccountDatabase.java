@@ -5,6 +5,7 @@ import edu.exceptions.NoMatchingClassException;
 import edu.exceptions.UserNotFoundException;
 
 import java.io.*;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.util.*;
 import java.lang.*;
@@ -21,9 +22,8 @@ import java.lang.*;
  * @version 1.1
  */
 public class AccountDatabase {
+    private static final String url = DatabaseProperties.url;
     private static Set<User> accountDatabase;
-    //private String fileName = getClass().getClassLoader().getResource("accountList.csv").getFile();
-    private static final String url = "jdbc:derby:C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
 
     static {
         accountDatabase = new HashSet<>();

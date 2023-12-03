@@ -20,9 +20,9 @@ import java.util.*;
  * @version 1.0
  */
 public class CruiseDatabase {
-    //public static String filepath = "C:\\Users\\Chas\\Soft.Eng\\Group project\\Titanic4\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\cruises.csv";
+    private static final String url = DatabaseProperties.url;
+
     private static Set<Cruise> cruiseDatabase;
-    private static final String url = "jdbc:derby:C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
 
     static {
         cruiseDatabase = new HashSet<>();
