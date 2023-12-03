@@ -73,7 +73,7 @@ public class Guest extends User {
      * @return              The created reservation.
      */
     public Reservation makeReservation(Room room, LocalDate startDate, LocalDate endDate, String startCountry, String endCountry) {
-        if (endDate.isBefore(startDate) || startDate.equals(endDate)) {
+        if (endDate.isBefore(startDate)) {
             throw new RuntimeException("Invalid Date Range. Please make sure start date is before end date.");
         }
 
