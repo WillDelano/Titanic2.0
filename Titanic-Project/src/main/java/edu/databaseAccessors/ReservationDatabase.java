@@ -339,6 +339,9 @@ public class ReservationDatabase {
      */
     public static void deleteReservation(Reservation reservation) {
         System.out.println("Deleting: " + reservation.getId());
+
+        RoomDatabase.unbookRoom(reservation.getRoom().getRoomNumber());
+
         try (Connection connection = DriverManager.getConnection(url)) {
             String select = "DELETE FROM Reservation WHERE id = ?";
             try (PreparedStatement statement = connection.prepareStatement(select)) {

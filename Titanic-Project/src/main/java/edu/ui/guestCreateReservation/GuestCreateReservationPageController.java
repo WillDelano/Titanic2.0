@@ -22,6 +22,8 @@ public class GuestCreateReservationPageController {
         Cruise cruise = CruiseDatabase.getCruise(roomToReserve.getCruise());
         List<LocalDate> times = new ArrayList<>();
 
+        System.out.println(times.size());
+
         for (Country c : cruise.getTravelPath()) {
             times.add(c.getArrivalTime());
         }

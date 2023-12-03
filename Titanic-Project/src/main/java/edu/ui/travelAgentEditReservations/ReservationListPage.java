@@ -53,6 +53,14 @@ public class ReservationListPage implements ReservationListInterface {
     }
 
     private void prepareGUI() {
+        Set<Reservation> reservationSet = ReservationListPageController.getReservationList(guest);
+
+        System.out.println("Reservations: ");
+
+        for (Reservation q : reservationSet) {
+            System.out.println("\t" + q.getRoom());
+        }
+
         mainFrame = new JFrame("Reservation List");
         mainFrame.setSize(1000, 700);
         mainFrame.setLayout(new BorderLayout());
@@ -111,11 +119,6 @@ public class ReservationListPage implements ReservationListInterface {
 
     public void refreshRooms() {
         Set<Reservation> reservationSet = ReservationListPageController.getReservationList(guest);
-        System.err.println("Reservations: ");
-
-        for (Reservation q : reservationSet) {
-            System.err.println("\t" + q.getRoom());
-        }
 
         int numReservations = reservationSet.size();
         String[][] data = new String[numReservations][8];

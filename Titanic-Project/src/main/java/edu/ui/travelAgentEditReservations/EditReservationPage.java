@@ -73,11 +73,9 @@ public class EditReservationPage {
         roomNumberField = new JTextField();
         List<Room> roomList = EditReservationController.getAllRooms(cruise.getName());
 
-        //put the current reservation room in the list to be displayed on the dropdown
-        roomList.add(EditReservationController.getRoom(reservation.getRoom().getRoomNumber()));
-
         String[] roomNumberArray = roomList.stream().map(Object::toString).toArray(String[]::new);
         JComboBox<String> roomNumberDropdown = new JComboBox<>(roomNumberArray);
+
         roomNumberDropdown.setRenderer(new LineWrapRenderer());
 
         JButton cancelButton = new JButton("Cancel Reservation");
@@ -101,10 +99,6 @@ public class EditReservationPage {
             if (checkoutArray[i].substring(0, 10).equals(String.valueOf(reservation.getEndDate()))) {
                 checkoutDropdown.setSelectedItem(checkoutArray[i]);
             }
-
-            System.out.println("Comparing: " + checkoutArray[i].substring(0, 10));
-            System.out.println("With " + String.valueOf(reservation.getEndDate()));
-            System.out.println();
         }
 
         roomNumberDropdown.setSelectedItem(checkoutArray[checkoutList.size()-1]); //set the dropdown default to the current checkout
@@ -168,8 +162,6 @@ public class EditReservationPage {
             else {
                 room = selectedRoom;
             }
-
-            System.out.println(room);
 
             //if checkout is not valid, start over
             if (!validateDate(checkout)) {

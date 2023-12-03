@@ -36,6 +36,13 @@ public class MyReservationsPage implements ReservationListInterface {
     }
 
     private void prepareUI() {
+        Set<Reservation> reservationSet = CurrentGuest.getCurrentGuest().getReservations();
+        System.out.println("Reservations: ");
+
+        for (Reservation q : reservationSet) {
+            System.out.println("\t" + q.getRoom());
+        }
+
         frame = new JFrame("My Reservations");
         frame.setSize(800, 600);
         frame.setLayout(new BorderLayout());
@@ -75,11 +82,6 @@ public class MyReservationsPage implements ReservationListInterface {
 
     public void refreshReservations() {
         Set<Reservation> reservationSet = CurrentGuest.getCurrentGuest().getReservations();
-        System.err.println("Reservations: ");
-
-        for (Reservation q : reservationSet) {
-            System.err.println("\t" + q.getRoom());
-        }
 
         int numReservations = reservationSet.size();
         String[][] data = new String[numReservations][8];
@@ -121,7 +123,7 @@ public class MyReservationsPage implements ReservationListInterface {
             DefaultTableModel model = (DefaultTableModel) table.getModel();
 
             //you can't cast the object to an int in case it's null, so you have to cast to string, then cast to int
-            String row = (String) model.getValueAt(modelRow, 1);
+            String row = (String) model.getValueAt(modelRow, 2);
             int intRow = Integer.parseInt(row);
 
             r = MyReservationsPageController.getReservation(intRow);
