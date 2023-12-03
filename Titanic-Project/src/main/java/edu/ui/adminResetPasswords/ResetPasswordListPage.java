@@ -121,8 +121,9 @@ public class ResetPasswordListPage {
     public void refreshUsers() {
         List<User> userList = ResetPasswordListPageController.getAllUsers();
 
+        System.out.println("Users:");
         for (User q : userList) {
-            System.err.println("\t" + q.getUsername());
+            System.out.println("\t" + q.getUsername());
         }
 
         int numUsers = userList.size();
@@ -157,6 +158,11 @@ public class ResetPasswordListPage {
     }
 
     public void show() {
+        refreshUsers();
         mainFrame.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new ResetPasswordListPage(null);
     }
 }

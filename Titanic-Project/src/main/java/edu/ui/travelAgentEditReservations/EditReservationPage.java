@@ -12,7 +12,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class EditReservationPage {
     private Reservation reservation;
@@ -72,7 +75,6 @@ public class EditReservationPage {
         roomNumberLabel = new JLabel("Room Number (Enter or pick from the dropdown list):");
         roomNumberField = new JTextField();
         List<Room> roomList = EditReservationController.getAllRooms(cruise.getName());
-
         String[] roomNumberArray = roomList.stream().map(Object::toString).toArray(String[]::new);
         JComboBox<String> roomNumberDropdown = new JComboBox<>(roomNumberArray);
 
@@ -94,21 +96,39 @@ public class EditReservationPage {
         mainPanel.add(new JLabel());
 
         for (int i = 0; i < checkoutArray.length; i++) {
-
             //set the selected to the matching end reservation date
             if (checkoutArray[i].substring(0, 10).equals(String.valueOf(reservation.getEndDate()))) {
                 checkoutDropdown.setSelectedItem(checkoutArray[i]);
             }
         }
 
-        roomNumberDropdown.setSelectedItem(checkoutArray[checkoutList.size()-1]); //set the dropdown default to the current checkout
-
         //third row
         mainPanel.add(roomNumberLabel);
         mainPanel.add(roomNumberField);
         roomNumberField.setText(Integer.toString(reservation.getRoom().getRoomNumber()));
         mainPanel.add(roomNumberDropdown);
-        roomNumberDropdown.setSelectedItem(roomNumberArray[roomList.size()-1]); //set the dropdown default to the current room
+
+        List<String> roomNumbers = new ArrayList<>();
+
+        //take just the room number from every reservation string and add it to list
+        for (String s : roomNumberArray) {
+            // Define the pattern for room number
+            Pattern pattern = Pattern.compile("Room Number: (\\d+)");
+            // Create a matcher with the input string
+            Matcher matcher = pattern.matcher(s);
+            // Check if the pattern is found
+            if (matcher.find()) {
+                // Extract and print the room number
+                roomNumbers.add(matcher.group(1));
+            }
+        }
+
+        //match the string of the room number selected with the reservation's room number
+        for (int i = 0; i < roomNumbers.size(); i++) {
+            if (String.valueOf(reservation.getRoom().getRoomNumber()).equals(roomNumbers.get(i))) {
+                roomNumberDropdown.setSelectedItem(roomNumberArray[i]);
+            }
+        }
 
         //fourth row
         mainPanel.add(new JLabel());

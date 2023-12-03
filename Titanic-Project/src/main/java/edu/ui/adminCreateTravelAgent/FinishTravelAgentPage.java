@@ -148,7 +148,7 @@ public class FinishTravelAgentPage {
     }
 
     private void updateAccount(User account, String email, String first, String last) {
-        FinishTravelAgentController.createAccount(account, email, first, last);
+        FinishTravelAgentController.updateAccount(account, email, first, last);
     }
 
     public boolean validateDecision(String email, String password) {

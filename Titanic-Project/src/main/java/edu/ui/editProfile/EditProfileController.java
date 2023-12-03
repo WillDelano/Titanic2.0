@@ -4,6 +4,7 @@ import edu.core.users.User;
 import edu.databaseAccessors.AccountDatabase;
 import edu.databaseAccessors.CruiseDatabase;
 import edu.databaseAccessors.RoomDatabase;
+import edu.exceptions.UserNotFoundException;
 
 
 import java.io.IOException;
@@ -44,5 +45,9 @@ public class EditProfileController {
     public static void deleteAccount(User account) throws IOException {
 
         AccountDatabase.removeUser(account);
+    }
+
+    public static String getAccountEmail(User account) throws UserNotFoundException {
+        return AccountDatabase.getUser(account.getUsername()).getEmail();
     }
 }
