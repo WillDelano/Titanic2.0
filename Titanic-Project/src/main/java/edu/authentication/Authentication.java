@@ -2,7 +2,7 @@ package edu.authentication;
 
 import edu.core.users.CurrentGuest;
 import edu.databaseAccessors.AccountDatabase;
-import edu.uniqueID.UniqueID;
+import edu.exceptions.UserNotFoundException;
 import edu.core.users.Guest;
 
 import java.lang.*;
@@ -31,16 +31,11 @@ public class Authentication {
      * @param email      The email of the user.
      */
     public void createAccount(String username, String password, String firstName, String lastName, String email){
-
         AccountDatabase d = new AccountDatabase();
 
         if (!d.accountExists(username)) {
-            int id = new UniqueID().getId(); // Assuming this generates a unique ID
-            Guest guest = new Guest(username, password, id, firstName, lastName, 0, email);
-            d.addUser(username, password, id, firstName, lastName, 0, email, "Guest"); // Add user attributes here
+            d.addUser(username, password, firstName, lastName, 0, email, "Guest"); // Add user attributes here
         }
-
-
     }
 
 
@@ -51,17 +46,17 @@ public class Authentication {
      * @param username   The given username for potential user account.
      * @param password   The given password for potential user account.
      */
-    public boolean login(String username, String password){
+    public boolean login(String username, String password) throws UserNotFoundException {
         AccountDatabase loginList = new AccountDatabase();
         boolean validLogin = false;
 
         //first check if username and pw are valid  and connected
         if(loginList.isValidLogin(username,password)){
             System.out.println("Success");
-            validLogin=true;
+            validLogin = true;
 
             if (Objects.equals(AccountDatabase.getAccountType(username), "Guest")) {
-                System.err.println("HERE");
+                Guest guest = (Guest) AccountDatabase.getUser(username);
                 CurrentGuest.setCurrentGuest((Guest) AccountDatabase.getUser(username));
                 CurrentGuest.getCurrentGuest().setId(AccountDatabase.getUser(username).getId());
             }

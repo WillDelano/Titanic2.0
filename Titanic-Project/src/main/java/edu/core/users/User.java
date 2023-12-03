@@ -28,12 +28,11 @@ public abstract class User  {
      *
      * @param username   The username of the user.
      * @param password   The password of the user.
-     * @param id         The unique ID of the user.
      * @param firstName  The first name of the user.
      * @param lastName   The last name of the user.
      * @param email      The email of the user.
      */
-    public User(String username, String password, int id, String firstName, String lastName, String email) {
+    public User(String username, String password, String firstName, String lastName, String email) {
         this.username = username;
         this.password = password;
         this.id = id;

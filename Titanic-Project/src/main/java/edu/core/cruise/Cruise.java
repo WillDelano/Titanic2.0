@@ -1,7 +1,6 @@
 package edu.core.cruise;
 
 import edu.core.reservation.Room;
-import edu.uniqueID.UniqueID;
 
 
 import java.time.LocalDate;
@@ -37,7 +36,6 @@ public class Cruise {
      * @param roomList
      */
     public Cruise(String name, LocalDate departure, int maxCapacity, List<Country> path, List<Room> roomList) {
-        this.id = new UniqueID().getId();
         this.travelPath = path;
         this.name = name;
         this.departure = departure;
@@ -101,13 +99,6 @@ public class Cruise {
      * @return The departure of a cruise
      */
     public LocalDate getDeparture() { return departure; }
-
-    /**
-     * This function returns the id of a cruise
-     *
-     * @return The id of a cruise
-     */
-    public int getId() { return id; }
 
     /**
      * This function returns the travel path of a cruise

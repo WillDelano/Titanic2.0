@@ -2,6 +2,8 @@ package edu.ui.authentication;
 
 import edu.authentication.Authentication;
 import edu.databaseAccessors.AccountDatabase;
+import edu.exceptions.UserNotFoundException;
+import edu.ui.landingPage.AdminLandingPage;
 import edu.ui.landingPage.GuestLandingPage;
 import edu.ui.landingPage.TravelAgentLandingPage;
 
@@ -24,7 +26,7 @@ public class LoginPageController {
      * @param password The password of the account
      * @return Returns true if the login is successful.
      */
-    public static boolean loginUser(String username, String password){
+    public static boolean loginUser(String username, String password) throws UserNotFoundException {
         boolean flag = false;
         Authentication a = new Authentication();
         new AccountDatabase();
@@ -37,7 +39,11 @@ public class LoginPageController {
                 landingPage.showLandingPage(AccountDatabase.getUser(username));
             }
             else if (Objects.equals(AccountDatabase.getAccountType(username), "Agent")) {
-                TravelAgentLandingPage landingPage = new TravelAgentLandingPage();
+                TravelAgentLandingPage landingPage = new TravelAgentLandingPage(AccountDatabase.getUser(username));
+                landingPage.showLandingPage(AccountDatabase.getUser(username));
+            }
+            else if (Objects.equals(AccountDatabase.getAccountType(username), "Admin")) {
+                AdminLandingPage landingPage = new AdminLandingPage();
                 landingPage.showLandingPage(AccountDatabase.getUser(username));
             }
         }

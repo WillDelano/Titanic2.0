@@ -6,13 +6,16 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 import edu.authentication.Authentication;
+import edu.core.users.User;
 import edu.databaseAccessors.AccountDatabase;
 import edu.databaseAccessors.CountryDatabase;
 import edu.databaseAccessors.CruiseDatabase;
 import edu.databaseAccessors.RoomDatabase;
+import edu.exceptions.UserNotFoundException;
 import edu.ui.landingPage.GuestLandingPage;
 import edu.ui.landingPage.TravelAgentLandingPage;
 
@@ -86,7 +89,6 @@ public class LoginPage {
             public void windowClosing(WindowEvent e) {
                 try {
                     DriverManager.getConnection("jdbc:derby:;shutdown=true");
-                    System.out.println("Hi");
                 } catch (SQLException ex) {
                     if (!ex.getSQLState().equals("XJ015")) {
                         ex.printStackTrace();
@@ -98,8 +100,8 @@ public class LoginPage {
         loginButton.addActionListener(e -> {
             try {
                 loginToSystem();
-            } catch (ClassNotFoundException ex) {
-                throw new RuntimeException(ex);
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
         });
         registerButton.addActionListener(e -> registerAccount());
@@ -111,7 +113,7 @@ public class LoginPage {
      * This logs the Guest into the system.
      *
      */
-    private void loginToSystem() throws ClassNotFoundException {
+    private void loginToSystem() throws ClassNotFoundException, UserNotFoundException {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
@@ -125,7 +127,6 @@ public class LoginPage {
             usernameField.setText("");
             passwordField.setText("");
         }
-
     }
 
     /**

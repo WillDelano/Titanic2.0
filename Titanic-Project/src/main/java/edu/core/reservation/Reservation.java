@@ -1,6 +1,5 @@
 package edu.core.reservation;
 import edu.core.cruise.Country;
-import edu.uniqueID.UniqueID;
 import edu.core.users.User;
 import edu.databaseAccessors.ReservationDatabase;
 
@@ -38,14 +37,14 @@ public class Reservation {
     private ReservationDatabase reservations;
 
 
-    public Reservation(User user, Room room, LocalDate startDate, LocalDate endDate, Country startCountry, Country endCountry) {
+    public Reservation(int id, User user, Room room, LocalDate startDate, LocalDate endDate, Country startCountry, Country endCountry) {
         // if room is already booked, throw error
         if (room.isBooked()) {
             throw new IllegalArgumentException("Room is already booked!");
         }
 
         this.user = user;
-        this.id = new UniqueID().getId();
+        this.id = id;
         this.room = room;
         this.roomNumber = room.getRoomNumber();
         this.days = ChronoUnit.DAYS.between(startDate, endDate);
