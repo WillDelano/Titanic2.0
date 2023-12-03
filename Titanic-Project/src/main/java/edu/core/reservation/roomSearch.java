@@ -18,17 +18,17 @@ import java.util.List;
 public class roomSearch {
     List<Room> allRooms;
     boolean price;
-    enum priceSortType {NONE, ASCENDING, DESCENDING}
+    public enum priceSortType {NONE, ASCENDING, DESCENDING}
     enum bedPreferenceType {ALL, SINGLE, TWIN, FULL, QUEEN, KING}
-    enum bedCountType {ALL, ONE, TWO, THREE, FOUR}
+    public enum bedCountType {ALL, ONE, TWO, THREE, FOUR}
 
-    enum smokingSortType {ALL, NON_SMOKING, SMOKING}
-    priceSortType priceSort = priceSortType.NONE;
-    smokingSortType smokeType = smokingSortType.ALL;
-    bedPreferenceType bedType = bedPreferenceType.ALL;
-    bedCountType bedCount = bedCountType.ALL;
+    public enum smokingSortType {ALL, NON_SMOKING, SMOKING}
+    priceSortType priceSort;
+    public smokingSortType smokeType;
+    bedPreferenceType bedType;
+    bedCountType bedCount;
 
-    enum roomSortType{/* add room types here */};
+    enum roomSortType{/* add room types here */}
 
     /**
      * RoomSearch Constructor
@@ -36,12 +36,38 @@ public class roomSearch {
      * @param cruise - cruise object to retrieve rooms from.
      */
 
-    roomSearch(Cruise cruise){
+    public roomSearch(Cruise cruise){
         allRooms = cruise.getRoomList();
+        priceSort = priceSortType.NONE;
+        smokeType = smokingSortType.ALL;
+        bedType = bedPreferenceType.ALL;
+        bedCount = bedCountType.ALL;
     }
+
+    /**
+     * RoomSearch Constructor
+     *
+     * @param rooms - list to retrieve rooms from.
+     */
+    public roomSearch(List<Room> rooms){
+        allRooms = rooms;
+        priceSort = priceSortType.NONE;
+        smokeType = smokingSortType.ALL;
+        bedType = bedPreferenceType.ALL;
+        bedCount = bedCountType.ALL;
+    }
+
     public List<Room> findRooms(String line){
         String[] traits = line.split( " ");
         List<Room> relevantRooms = new ArrayList<>();
+        boolean checkSmoking = false, smoking = true;
+
+        if(line.toLowerCase().contains("smoking")) {
+            checkSmoking = true;
+            if (line.toLowerCase().contains("no")) { // checks for "no" in non smoking || no smoking || non-smoking
+                smoking = false;
+            }
+        }
 
         // iterate through rooms and add relevant rooms to new list
         for(Room obj : allRooms){
@@ -50,20 +76,28 @@ public class roomSearch {
 
                 // iterate through traits to find in room's attributes
                 for (String s : traits) {
-                    if (s.toLowerCase().contains(obj.getBedType().toLowerCase())) { //bed type
+                    if (obj.getBedType().toLowerCase().contains(s.toLowerCase())) { //bed type
                         relevantRooms.add(obj);
-                    } else if (s.toLowerCase().contains( // searching for beds
-                            (obj.getNumberOfBeds() + " beds").toLowerCase())) {
+                    } else if (s.toLowerCase().equals( // searching for beds
+                                (Integer.toString( obj.getNumberOfBeds())))) {
+                            relevantRooms.add(obj);
+                    } else if (s.equals(String.valueOf(obj.getRoomNumber()))) {
                         relevantRooms.add(obj);
-                    } else if (s.contains(String.valueOf(obj.getRoomNumber()))) {
+                    } else if (s.contains(String.valueOf((int)obj.getRoomPrice()))) {
                         relevantRooms.add(obj);
-                    } else if (s.contains(String.valueOf(obj.getRoomPrice()))) {
+                    }
+                }
+
+                if(checkSmoking) {
+                    if (!obj.getSmokingAvailable() && !smoking) {
+                        relevantRooms.add(obj);
+                    } else if (obj.getSmokingAvailable() && smoking) {
                         relevantRooms.add(obj);
                     }
                 }
             }
         }
-        sortAndFilterRooms(relevantRooms);
+        relevantRooms = sortAndFilterRooms(relevantRooms);
 
         return relevantRooms;
     }
@@ -74,12 +108,12 @@ public class roomSearch {
      * @param rooms list of rooms to be sorted
      * @return filtered and sorted list of rooms
      */
-    List<Room> sortAndFilterRooms (List<Room> rooms){
-        List<Room> sortedRooms = rooms;
+    public List<Room> sortAndFilterRooms (List<Room> rooms){
+        List<Room> sortedRooms = new ArrayList<Room>(rooms);
 
         // filter rooms
         if(smokeType != smokingSortType.ALL) {
-            filterBySmokingType(sortedRooms);
+            sortedRooms = filterBySmokingType(sortedRooms);
         }
 
         // filter by bed type
@@ -89,12 +123,12 @@ public class roomSearch {
 
         // filter by bed Count
         if(bedCount != bedCountType.ALL){
-            filterByBedCount(sortedRooms);
+            sortedRooms = filterByBedCount(sortedRooms);
         }
 
         // sort rooms
         if(priceSort != priceSortType.NONE){
-            sortRoomsByPrice(sortedRooms);
+            sortedRooms = sortRoomsByPrice(sortedRooms);
         }
 
         return sortedRooms;
@@ -105,17 +139,17 @@ public class roomSearch {
      *
      * //@param type of price sorting
      */
-    void setPriceSorting(priceSortType type){
+    public void setPriceSorting(priceSortType type){
         switch (type){
             case NONE:
                 priceSort = priceSortType.NONE;
-
+                break;
             case ASCENDING:
                 priceSort = priceSortType.ASCENDING;
-
+                break;
             case DESCENDING:
                 priceSort = priceSortType.DESCENDING;
-
+                break;
         }
     }
 
@@ -124,14 +158,18 @@ public class roomSearch {
      *
      * //@param list of rooms to sort
      */
-    void sortRoomsByPrice(List<Room> roomList){
+    List<Room> sortRoomsByPrice(List<Room> roomList){
+        Comparator<Room> myComparator = Comparator.comparingDouble(Room::getRoomPrice);
         switch(priceSort){
             case ASCENDING:
-                Collections.sort(roomList, new ByPriceASCENDING());
-
+                myComparator = Comparator.comparingDouble(Room::getRoomPrice);
+                break;
             case DESCENDING:
-                Collections.sort(roomList, new ByPriceDESCENDING());
+                myComparator = Comparator.comparingDouble(Room::getRoomPrice).reversed();
+                break;
         }
+        Collections.sort(roomList, myComparator);
+        return roomList;
     }
 
     /**
@@ -139,16 +177,17 @@ public class roomSearch {
      *
      * //@param smoking choice
      */
-    void setSmokingType(smokingSortType type){
+    public void setSmokingType(smokingSortType type){
         switch (type){
             case ALL:
                 smokeType = smokingSortType.ALL;
-
+                break;
             case NON_SMOKING:
                 smokeType = smokingSortType.NON_SMOKING;
-
+                break;
             case SMOKING:
                 smokeType = smokingSortType.SMOKING;
+                break;
         }
     }
 
@@ -157,22 +196,18 @@ public class roomSearch {
      *
      * //@param list of rooms to sort
      */
-    void filterBySmokingType(List<Room> roomList){
+    public List<Room> filterBySmokingType(List<Room> roomList){
+        List<Room> ogRooms = new ArrayList<Room>(roomList);
         switch(smokeType){
             case NON_SMOKING:
-                for(Room obj: roomList){
-                    if(!obj.getSmokingAvailable()){
-                        roomList.add(obj);
-                    }
-                }
+                ogRooms.removeIf(obj -> obj.getSmokingAvailable());
+                break;
 
             case SMOKING:
-                for(Room obj: roomList){
-                    if(obj.getSmokingAvailable()){
-                        roomList.add(obj);
-                    }
-                }
+                ogRooms.removeIf(obj -> !obj.getSmokingAvailable());
+                break;
         }
+        return ogRooms;
     }
 
     /**
@@ -180,26 +215,40 @@ public class roomSearch {
      *
      * //@param bed preference
      */
-    void setBedType(bedPreferenceType type){
+    public void setBedType(bedPreferenceType type){
         switch (type){
             case ALL:
                 bedType = bedPreferenceType.ALL;
-
+                break;
             case SINGLE:
                 bedType = bedPreferenceType.SINGLE;
-
+                break;
             case TWIN:
                 bedType = bedPreferenceType.TWIN;
-
+                break;
             case FULL:
                 bedType = bedPreferenceType.FULL;
-
+                break;
             case QUEEN:
                 bedType = bedPreferenceType.QUEEN;
-
+                break;
             case KING:
                 bedType = bedPreferenceType.KING;
+                break;
         }
+    }
+    public String getSortType(){
+        String smokingType = "";
+
+        if(priceSort == priceSortType.ASCENDING){
+            smokingType = "ascending";
+        }else if (priceSort == priceSortType.DESCENDING){
+            smokingType = "descending";
+        } else if (priceSort == priceSortType.NONE){
+            smokingType = "None";
+        }
+
+        return smokingType;
     }
 
     /**
@@ -216,34 +265,35 @@ public class roomSearch {
                         roomList.add(obj);
                     }
                 }
-
+                break;
             case TWIN:
                 for(Room obj: roomList){
                     if(obj.getBedType().equalsIgnoreCase("twin")){
                         roomList.add(obj);
                     }
                 }
-
+                break;
             case FULL:
                 for(Room obj: roomList){
                     if(obj.getBedType().equalsIgnoreCase("full")){
                         roomList.add(obj);
                     }
                 }
-
+                break;
             case QUEEN:
                 for(Room obj: roomList){
                     if(obj.getBedType().equalsIgnoreCase("queen")){
                         roomList.add(obj);
                     }
                 }
-
+                break;
             case KING:
                 for(Room obj: roomList){
                     if(obj.getBedType().equalsIgnoreCase("king")){
                         roomList.add(obj);
                     }
                 }
+                break;
         }
     }
 
@@ -252,22 +302,23 @@ public class roomSearch {
      *
      * //@param bedtype choice
      */
-    void setBedCount(bedCountType type){
+    public void setBedCount(bedCountType type){
         switch (type){
             case ALL:
                 bedCount = bedCountType.ALL;
-
+                break;
             case ONE:
                 bedCount = bedCountType.ONE;
-
+                break;
             case TWO:
                 bedCount = bedCountType.TWO;
-
+                break;
             case THREE:
                 bedCount = bedCountType.THREE;
-
+                break;
             case FOUR:
                 bedCount = bedCountType.FOUR;
+                break;
         }
     }
 
@@ -276,28 +327,29 @@ public class roomSearch {
      *
      * //@param list of rooms to sort
      */
-    void filterByBedCount(List<Room> roomList){
-        int preferredBedCount = 0;
+    List<Room> filterByBedCount(List<Room> roomList){
+        int preferredBedCount;
 
         switch(bedCount){
             case ONE:
                 preferredBedCount = 1;
-
+                break;
             case TWO:
                 preferredBedCount = 2;
-
+                break;
             case THREE:
                 preferredBedCount = 3;
-
+                break;
             case FOUR:
                 preferredBedCount = 4;
-        }
+                break;
 
-        for(Room obj: roomList){
-            if(obj.getNumberOfBeds() == preferredBedCount){
-                roomList.add(obj);
-            }
+            default:
+                preferredBedCount = 0;
         }
+        roomList.removeIf(obj -> obj.getNumberOfBeds() != preferredBedCount);
+
+        return roomList;
     }
 
 }
@@ -311,6 +363,7 @@ public class roomSearch {
  * @author Chas Doughtry
  * @version 1.0
  */
+
 class ByPriceASCENDING implements Comparator<Room> {
     public int compare (Room a, Room b){
         double epsilon = 0.000001d;
@@ -331,6 +384,7 @@ class ByPriceASCENDING implements Comparator<Room> {
  * @author Chas Doughtry
  * @version 1.0
  */
+
 class ByPriceDESCENDING implements Comparator<Room> {
     public int compare (Room a, Room b){
         double epsilon = 0.000001d;

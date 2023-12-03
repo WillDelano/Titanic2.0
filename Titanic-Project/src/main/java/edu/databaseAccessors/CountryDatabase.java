@@ -36,7 +36,6 @@ public class CountryDatabase {
         String insertSQL = "INSERT INTO Countries (name, arrivalTime, departureTime, cruise_id) VALUES (?, ?, ?, ?)";
         try (Connection connection = DriverManager.getConnection(url);
              PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
-
             preparedStatement.setString(1, country.getName());
             preparedStatement.setDate(2, Date.valueOf(country.getArrivalTime()));
             preparedStatement.setDate(3, Date.valueOf(country.getDepartureTime()));
