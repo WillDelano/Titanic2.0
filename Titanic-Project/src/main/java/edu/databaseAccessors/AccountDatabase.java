@@ -147,7 +147,7 @@ public class AccountDatabase {
                     boolean validLogin = resultSet.next();
 
                     // Log the result of the query
-                    System.out.println("Login valid: " + validLogin);
+                    System.out.println("Account found in database: " + validLogin);
                     return validLogin;
                 }
             }
