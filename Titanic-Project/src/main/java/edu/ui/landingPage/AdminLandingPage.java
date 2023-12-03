@@ -3,13 +3,8 @@ package edu.ui.landingPage;
 import edu.core.reservation.Room;
 import edu.core.users.User;
 import edu.databaseAccessors.AccountDatabase;
-import edu.databaseAccessors.RoomDatabase;
-import edu.ui.addRoom.AddRoomPage;
-import edu.ui.createTravelAgent.CreateTravelAgentPage;
-import edu.ui.editProfile.EditProfile;
-import edu.ui.editReservation.GuestsWithReservationPage;
-import edu.ui.modifyRoom.EditRoomPage;
-import edu.ui.resetPassword.ResetPasswordListPage;
+import edu.ui.adminCreateTravelAgent.CreateTravelAgentPage;
+import edu.ui.adminResetPasswords.ResetPasswordListPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -47,11 +42,17 @@ public class AdminLandingPage extends LandingPage {
      *
      */
     private void prepareGUI() {
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         mainFrame = new JFrame("Cruise Reservation Application");
         mainFrame.setSize(1000, 700);
         mainFrame.setLayout(new BorderLayout());
 
-        headerLabel = new JLabel("", JLabel.CENTER);
+        this.headerLabel = new JLabel("", JLabel.CENTER);
         headerPanel = new JPanel(new GridLayout(2, 5));
 
         JPanel topPanel = new JPanel(new BorderLayout());
@@ -71,6 +72,7 @@ public class AdminLandingPage extends LandingPage {
         headerPanel.add(new JPanel());
         headerPanel.add(middlePanel);
 
+        mainFrame.add(headerLabel, BorderLayout.CENTER);
         mainFrame.add(headerPanel, BorderLayout.NORTH);
         mainFrame.setVisible(true);
     }
@@ -83,12 +85,12 @@ public class AdminLandingPage extends LandingPage {
     public void showLandingPage(User account) {
         this.account = account;
 
-        String name = account.getFirstName() + " " + account.getLastName();
+        String name = account.getFirstName();
         int count = AccountDatabase.getUserCount();
 
-        headerLabel.setText(String.format("<html>" +
+        this.headerLabel.setText(String.format("<html>" +
                 "<div style='text-align: center; font-size: 24px;'>Cruise Reservation</div>" +
-                "<div style='text-align: center; font-size: 11px;'>Logged in as admin %s</div>" +
+                "<div style='text-align: center; font-size: 11px;'>Logged in as %s</div>" +
                 "<div style='text-align: center;'>%s</div></html>", name, "Total Account Population is " + count));
 
         mainFrame.setVisible(true);
@@ -128,6 +130,6 @@ public class AdminLandingPage extends LandingPage {
     }
 
     public static void main(String[] args) {
-        new AdminLandingPage();
+        //new AdminLandingPage();
     }
 }

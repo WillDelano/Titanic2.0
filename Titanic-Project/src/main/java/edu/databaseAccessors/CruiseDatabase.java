@@ -22,7 +22,7 @@ import java.util.*;
 public class CruiseDatabase {
     //public static String filepath = "C:\\Users\\Chas\\Soft.Eng\\Group project\\Titanic4\\Titanic2.0\\Titanic-Project\\src\\main\\resources\\cruises.csv";
     private static Set<Cruise> cruiseDatabase;
-    private static final String url = "jdbc:derby:C:\\Users\\Chas\\Soft.Eng\\Group project\\Titanic8\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
+    private static final String url = "jdbc:derby:C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
 
     static {
         cruiseDatabase = new HashSet<>();
@@ -65,20 +65,6 @@ public class CruiseDatabase {
         }
     }
 
-//    private static Cruise createCruiseFromResultSet(ResultSet resultSet) throws SQLException {
-//        // Extract cruise data from resultSet
-//        int id = resultSet.getInt("id");
-//        String name = resultSet.getString("name");
-//        LocalDate departure = resultSet.getDate("departure").toLocalDate();
-//        int maxCapacity = resultSet.getInt("maxCapacity");
-//        // Assuming travelPath and roomList are stored in a format that needs processing
-//        // List<Country> travelPath = processTravelPath(resultSet.getString("travelPath"));
-//        // List<Room> roomList = processRoomList(resultSet.getString("roomList"));
-//        // return new Cruise(name, departure, maxCapacity, travelPath);
-//        // Set id and roomList as needed
-//        // ...
-//    }
-
     public static Cruise getCruise(String cruiseName) {
         String query = "SELECT * FROM Cruises WHERE name = ?";
         try (Connection connection = DriverManager.getConnection(url);
@@ -114,7 +100,6 @@ public class CruiseDatabase {
         String query = "SELECT * FROM Cruises";
         try (Connection connection = DriverManager.getConnection(url);
              PreparedStatement statement = connection.prepareStatement(query)) {
-
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     cruises.add(createCruiseFromResultSet(resultSet));
@@ -146,9 +131,9 @@ public class CruiseDatabase {
 
     public static void initializeCruises() {
         List<Cruise> predefinedCruises = Arrays.asList(
-                new Cruise("Caribbean Adventure", LocalDate.now().plusDays(10), 200, createCaribbeanTravelPath(), createSampleRoomList()),
-                new Cruise("Mediterranean Escape", LocalDate.now().plusDays(20), 150, createMediterraneanTravelPath(), createSampleRoomList()),
-                new Cruise("Alaskan", LocalDate.now().plusDays(15), 250, createAlaskanTravelPath(), createSampleRoomList())
+                new Cruise("Caribbean Adventure", LocalDate.of(2023, 12, 12), 200, createCaribbeanTravelPath(), createSampleRoomList()),
+                new Cruise("Mediterranean Escape", LocalDate.of(2023, 7, 4), 150, createMediterraneanTravelPath(), createSampleRoomList()),
+                new Cruise("Alaskan", LocalDate.of(2023, 6, 14), 250, createAlaskanTravelPath(), createSampleRoomList())
         );
 
         for (Cruise cruise : predefinedCruises) {
@@ -164,25 +149,25 @@ public class CruiseDatabase {
 
     private static List<Country> createCaribbeanTravelPath() {
         return Arrays.asList(
-                new Country("Jamaica", LocalDate.now(), LocalDate.now().plusDays(1)),
-                new Country("Bahamas", LocalDate.now().plusDays(2), LocalDate.now().plusDays(3)),
-                new Country("Barbados", LocalDate.now().plusDays(4), LocalDate.now().plusDays(5))
+                new Country("Kingston, Jamaica", LocalDate.of(2023, 12, 12), LocalDate.of(2023, 12, 12)),
+                new Country("Nassau, Bahamas", LocalDate.of(2023, 12, 14), LocalDate.of(2023, 12, 14)),
+                new Country("Bridgetown, Barbados", LocalDate.of(2023, 12, 17), LocalDate.of(2023, 12, 17))
         );
     }
 
     private static List<Country> createMediterraneanTravelPath() {
         return Arrays.asList(
-                new Country("Italy", LocalDate.now(), LocalDate.now().plusDays(1)),
-                new Country("Greece", LocalDate.now().plusDays(2), LocalDate.now().plusDays(3)),
-                new Country("Spain", LocalDate.now().plusDays(4), LocalDate.now().plusDays(5))
+                new Country("Naples, Italy", LocalDate.of(2023, 7, 4), LocalDate.of(2023, 7, 4)),
+                new Country("Athens, Greece", LocalDate.of(2023, 7, 7), LocalDate.of(2023, 7, 7)),
+                new Country("Nice, France", LocalDate.of(2023, 7, 8), LocalDate.of(2023, 7, 8))
         );
     }
 
     private static List<Country> createAlaskanTravelPath() {
         return Arrays.asList(
-                new Country("Juneau", LocalDate.now(), LocalDate.now().plusDays(1)),
-                new Country("Skagway", LocalDate.now().plusDays(2), LocalDate.now().plusDays(3)),
-                new Country("Ketchikan", LocalDate.now().plusDays(4), LocalDate.now().plusDays(5))
+                new Country("Juneau, United States", LocalDate.of(2023, 6, 14), LocalDate.of(2023, 6, 14)),
+                new Country("Valdez, United States", LocalDate.of(2023, 6, 16), LocalDate.of(2023, 6, 16)),
+                new Country("Anchorage, United States", LocalDate.of(2023, 6, 17), LocalDate.of(2023, 6, 17))
         );
     }
 

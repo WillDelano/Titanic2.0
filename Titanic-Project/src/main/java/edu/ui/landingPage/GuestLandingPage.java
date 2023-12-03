@@ -1,14 +1,12 @@
 package edu.ui.landingPage;
 
+import edu.core.users.CurrentGuest;
+import edu.core.users.Guest;
 import edu.core.users.User;
-import edu.ui.createTravelAgent.FinishTravelAgentPage;
-import edu.ui.cruiseDetails.SelectCruisePage;
+import edu.ui.guestSelectCruise.SelectCruisePage;
 
 import javax.swing.*;
 import java.awt.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Objects;
 
 /**
  * Creates the landing page
@@ -91,35 +89,23 @@ public class GuestLandingPage extends LandingPage {
         mainFrame.setVisible(true);
     }
 
-
-    /**
-     * Loads an image from the internet
-     *
-     * @param path URL to get the image from
-     */
-    private ImageIcon createImageIcon(String path) {
-        try {
-            URL imgURL = new URL(path);
-            if (imgURL != null) {
-                return new ImageIcon(new ImageIcon(imgURL).getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH));
-            } else {
-                System.err.println("Couldn't find file: " + path);
-                return null;
-            }
-        } catch (MalformedURLException e) {
-            return null;
-        }
-    }
     private void navigateToSelectCruisePage() {
         mainFrame.setVisible(false);   // hide the current landing page
         new SelectCruisePage(this);       // navigate to SelectCruisePage
     }
 
     private void openMyReservationsPage() {
-        new edu.ui.reservationDetails.MyReservationsPage().show();
+        new edu.ui.guestReservationList.MyReservationsPage().show();
     }
 
     public void show() {
         mainFrame.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new GuestLandingPage();
+        Guest g = new Guest("wdelano", "baylor", "Will", "Delano", 0, "wdelano2002@gmail.com");
+
+        CurrentGuest.setCurrentGuest(g);
     }
 }

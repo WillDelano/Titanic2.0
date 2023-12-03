@@ -1,4 +1,5 @@
 ----------------------------------------------------------------
+<<<<<<< HEAD
 Sat Dec 02 11:08:43 CST 2023:
 Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018c-2b81-00c3-00000f0a6840 
 on database directory C:\Users\Chas\Soft.Eng\Group project\Titanic8\Titanic2.0\Titanic-Project\src\main\java\edu\Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528 
@@ -7,6 +8,16 @@ java.vendor=Oracle Corporation
 java.runtime.version=20+36-2344
 user.dir=C:\Users\Chas\Soft.Eng\Group project\Titanic8\Titanic2.0\Titanic-Project
 os.name=Windows 11
+=======
+Sun Dec 03 10:43:37 CST 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018c-3090-60aa-00000f38d0d0 
+on database directory C:\Users\Owner\Desktop\Titanic2.0\Titanic-Project\src\main\java\edu\Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528 
+Loaded from file:/C:/Users/Owner/Desktop/Titanic2.0/Titanic-Project/libs/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=20.0.1+9-29
+user.dir=C:\Users\Owner\Desktop\Titanic2.0\Titanic-Project
+os.name=Windows 10
+>>>>>>> main
 os.arch=amd64
 os.version=10.0
 derby.system.home=null
