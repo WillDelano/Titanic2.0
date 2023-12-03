@@ -31,7 +31,7 @@ import java.util.*;
  * @version 1.0
  */
 public class CountryDatabase {
-    private static final String url = "jdbc:derby:C:\\Users\\vince\\IdeaProjects\\titanic2\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
+    private static final String url = "jdbc:derby:C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
     public static void addCountry(Country country, int cruiseId) {
         String insertSQL = "INSERT INTO Countries (name, arrivalTime, departureTime, cruise_id) VALUES (?, ?, ?, ?)";
         try (Connection connection = DriverManager.getConnection(url);
@@ -70,15 +70,15 @@ public class CountryDatabase {
         int alaskanCruiseId = 3;
 
         List<Country> predefinedCountries = Arrays.asList(
-                new Country("Jamaica", LocalDate.now(), LocalDate.now().plusDays(1)),
-                new Country("Bahamas", LocalDate.now().plusDays(2), LocalDate.now().plusDays(3)),
-                new Country("Barbados", LocalDate.now().plusDays(4), LocalDate.now().plusDays(5)),
-                new Country("Italy", LocalDate.now(), LocalDate.now().plusDays(1)),
-                new Country("Greece", LocalDate.now().plusDays(2), LocalDate.now().plusDays(3)),
-                new Country("Spain", LocalDate.now().plusDays(4), LocalDate.now().plusDays(5)),
-                new Country("Juneau", LocalDate.now(), LocalDate.now().plusDays(1)),
-                new Country("Skagway", LocalDate.now().plusDays(2), LocalDate.now().plusDays(3)),
-                new Country("Ketchikan", LocalDate.now().plusDays(4), LocalDate.now().plusDays(5))
+                new Country("Kingston, Jamaica", LocalDate.of(2023, 12, 12), LocalDate.of(2023, 12, 12)),
+                new Country("Nassau, Bahamas", LocalDate.of(2023, 12, 14), LocalDate.of(2023, 12, 14)),
+                new Country("Bridgetown, Barbados", LocalDate.of(2023, 12, 17), LocalDate.of(2023, 12, 17)),
+                new Country("Naples, Italy", LocalDate.of(2023, 7, 4), LocalDate.of(2023, 7, 4)),
+                new Country("Athens, Greece", LocalDate.of(2023, 7, 7), LocalDate.of(2023, 7, 7)),
+                new Country("Nice, France", LocalDate.of(2023, 7, 8), LocalDate.of(2023, 7, 8)),
+                new Country("Juneau, United States", LocalDate.of(2023, 6, 14), LocalDate.of(2023, 6, 14)),
+                new Country("Valdez, United States", LocalDate.of(2023, 6, 16), LocalDate.of(2023, 6, 16)),
+                new Country("Anchorage, United States", LocalDate.of(2023, 6, 17), LocalDate.of(2023, 6, 17))
         );
 
         for (Country country : predefinedCountries) {
@@ -86,19 +86,19 @@ public class CountryDatabase {
 
                 int cruiseId;
                 switch (country.getName()) {
-                    case "Jamaica":
-                    case "Bahamas":
-                    case "Barbados":
+                    case "Kingston, Jamaica":
+                    case "Nassau, Bahamas":
+                    case "Bridgetown, Barbados":
                         cruiseId = caribbeanCruiseId;
                         break;
-                    case "Italy":
-                    case "Greece":
-                    case "Spain":
+                    case "Athens, Greece":
+                    case "Naples, Italy":
+                    case "Nice, France":
                         cruiseId = mediterraneanCruiseId;
                         break;
-                    case "Juneau":
-                    case "Skagway":
-                    case "Ketchikan":
+                    case "Juneau, United States":
+                    case "Valdez, United States":
+                    case "Anchorage, United States":
                         cruiseId = alaskanCruiseId;
                         break;
                     default:

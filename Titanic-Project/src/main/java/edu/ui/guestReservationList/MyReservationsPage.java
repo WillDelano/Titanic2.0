@@ -52,8 +52,6 @@ public class MyReservationsPage implements ReservationListInterface {
             }
         });
 
-
-
         JPanel buttonPanel = new JPanel(); // Create a new panel for buttons
         buttonPanel.add(select);
 
@@ -86,7 +84,6 @@ public class MyReservationsPage implements ReservationListInterface {
         int numReservations = reservationSet.size();
         String[][] data = new String[numReservations][8];
         int i = 0;
-
 
         for (Reservation temp : reservationSet) {
             data[i][0] = String.valueOf(i + 1);

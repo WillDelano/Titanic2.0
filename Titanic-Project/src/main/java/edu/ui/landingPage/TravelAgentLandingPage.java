@@ -4,6 +4,7 @@ import edu.core.reservation.Room;
 import edu.core.users.User;
 import edu.databaseAccessors.AccountDatabase;
 import edu.databaseAccessors.RoomDatabase;
+import edu.exceptions.UserNotFoundException;
 import edu.ui.travelAgentAddRoom.AddRoomPage;
 import edu.ui.adminCreateTravelAgent.FinishTravelAgentPage;
 import edu.ui.editProfile.EditProfile;
@@ -27,7 +28,6 @@ import java.util.Objects;
  * @see LandingPageController
  */
 public class TravelAgentLandingPage extends LandingPage {
-
     private JFrame mainFrame;
     private JPanel headerPanel;
     private JLabel headerLabel;
@@ -47,6 +47,12 @@ public class TravelAgentLandingPage extends LandingPage {
      *
      */
     private void prepareGUI() {
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         mainFrame = new JFrame("Cruise Reservation Application");
         mainFrame.setSize(1000, 700);
         mainFrame.setLayout(new BorderLayout());
@@ -58,7 +64,13 @@ public class TravelAgentLandingPage extends LandingPage {
         JPanel middlePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
         JButton browseCruisesButton = new JButton("Edit Reservations");
-        browseCruisesButton.addActionListener(e -> navigateToEditReservations());
+        browseCruisesButton.addActionListener(e -> {
+            try {
+                navigateToEditReservations();
+            } catch (UserNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
         JButton myReservationsButton = new JButton("Add Rooms");
         myReservationsButton.addActionListener(e -> navigateToAddRooms());
@@ -135,7 +147,7 @@ public class TravelAgentLandingPage extends LandingPage {
             return null;
         }
     }
-    private void navigateToEditReservations() {
+    private void navigateToEditReservations() throws UserNotFoundException {
         mainFrame.setVisible(false);   // hide the current landing page
         new GuestsWithReservationPage(this);
     }

@@ -52,9 +52,10 @@ public class SelectCruisePage {
         JScrollPane listScrollPane = new JScrollPane(cruiseList);
         cruiseFrame.add(listScrollPane, BorderLayout.CENTER);
 
-
         selectButton = new JButton("View Details");
-        selectButton.addActionListener(this::handleCruiseSelection);
+        selectButton.addActionListener(e -> {
+            handleCruiseSelection(e);
+        });
         backButton = new JButton("Back");
         backButton.addActionListener(e -> {
             cruiseFrame.dispose();
@@ -69,13 +70,13 @@ public class SelectCruisePage {
         cruiseFrame.setVisible(true);
     }
 
-
     private void handleCruiseSelection(ActionEvent e) {
         String selectedCruiseName = cruiseList.getSelectedValue();
         if (selectedCruiseName != null) {
             Cruise selectedCruise = CruiseDatabase.getCruise(selectedCruiseName);
             if (selectedCruise != null) {
-                new BrowseRoomPage(selectedCruise.getName()); // Assuming BrowseRoomPage takes a Cruise name
+                new BrowseRoomPage(this, selectedCruise.getName());
+                cruiseFrame.setVisible(false);
             } else {
                 JOptionPane.showMessageDialog(cruiseFrame, "Cruise details not found.", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -85,6 +86,10 @@ public class SelectCruisePage {
     }
     private void showMessage(String message) {
         JOptionPane.showMessageDialog(cruiseFrame, message);
+    }
+
+    public void show() {
+        cruiseFrame.setVisible(true);
     }
 
     public static void main(String[] args) {

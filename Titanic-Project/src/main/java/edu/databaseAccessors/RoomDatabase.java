@@ -24,7 +24,7 @@ import java.util.*;
 public class RoomDatabase {
     private static Set<Room> roomDatabase;
 
-    private static final String url = "jdbc:derby:C:\\Users\\vince\\IdeaProjects\\titanic2\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
+    private static final String url = "jdbc:derby:C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
 
     /**
      * Operation to add a reservation
@@ -91,6 +91,10 @@ public class RoomDatabase {
                             resultSet.getBoolean("smokingavailable"),
                             resultSet.getDouble("roomprice"),
                             resultSet.getString("cruise"));
+
+                            if (resultSet.getBoolean("isBooked")) {
+                                room.bookRoom();
+                            }
                     rooms.add(room);
                 }
             }
@@ -142,6 +146,8 @@ public class RoomDatabase {
                             resultSet.getDouble("roomprice"),
                             resultSet.getString("cruise"));
                 }
+                //return a false value if there is no room with the number
+                return new Room(-1, -1, "", false, -1, "");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -169,6 +175,10 @@ public class RoomDatabase {
                             resultSet.getBoolean("smokingavailable"),
                             resultSet.getDouble("roomprice"),
                             resultSet.getString("cruise"));
+                    //sets avaliability of room
+                    if(resultSet.getBoolean("isbooked")){
+                        room.bookRoom();
+                    }
                     rooms.add(room);
                 }
             }
