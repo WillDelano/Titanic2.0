@@ -9,6 +9,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.*;
 import edu.core.reservation.Room;
+
+import javax.swing.plaf.synth.SynthDesktopIconUI;
 import java.sql.*;
 import java.util.*;
 
@@ -22,9 +24,8 @@ import java.util.*;
  * @version 1.0
  */
 public class RoomDatabase {
+    private static final String url = DatabaseProperties.url;
     private static Set<Room> roomDatabase;
-
-    private static final String url = "jdbc:derby:C:\\Users\\gabec\\SoftwareEngineeringI\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
 
     /**
      * Operation to add a reservation
@@ -34,7 +35,7 @@ public class RoomDatabase {
      */
     public static void addRoom(Room room) {
         String insertSQL = "INSERT INTO Rooms (roomnumber, numberofbeds, bedtype, smokingavailable, roomprice, isbooked, cruise) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        try (Connection connection = DriverManager.getConnection(url);
+        try (Connection connection = driver.getDBConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
 
             preparedStatement.setInt(1, room.getRoomNumber());
@@ -51,16 +52,15 @@ public class RoomDatabase {
         }
     }
 
-    public static boolean roomExists(int roomNumber, String cruise) {
-        String query = "SELECT COUNT(*) FROM Rooms WHERE roomnumber = ? AND cruise = ?";
+    public static boolean roomExists(int roomNumber) {
+        String query = "SELECT COUNT(*) FROM Rooms WHERE roomnumber = ?";
         try (Connection connection = driver.getDBConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setInt(1, roomNumber);
-            statement.setString(2, cruise);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    return resultSet.getInt(1) > 0;
+                    if (resultSet.getInt(1) > 0) { return true; }
                 }
             }
         } catch (SQLException e) {
@@ -92,9 +92,9 @@ public class RoomDatabase {
                             resultSet.getDouble("roomprice"),
                             resultSet.getString("cruise"));
 
-                            if (resultSet.getBoolean("isBooked")) {
-                                room.bookRoom();
-                            }
+                    if (resultSet.getBoolean("isBooked")) {
+                        room.bookRoom();
+                    }
                     rooms.add(room);
                 }
             }
@@ -118,7 +118,7 @@ public class RoomDatabase {
         );
 
         for (Room room : predefinedRooms) {
-            if (!roomExists(room.getRoomNumber(), room.getCruise())) {
+            if (!roomExists(room.getRoomNumber())) {
                 addRoom(room);
             }
         }
@@ -214,6 +214,20 @@ public class RoomDatabase {
         }
         System.out.println("Room not found.");
         return false;
+    }
+
+    public static void unbookRoom(int roomNumber) {
+        String updateSQL = "UPDATE Rooms SET isbooked = false WHERE roomnumber = ?";
+        try (Connection connection = driver.getDBConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(updateSQL)) {
+
+            preparedStatement.setInt(1, roomNumber);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.err.println("Room: " + roomNumber + " unbooked");
     }
 
     public static void bookRoom(int roomNumber) {

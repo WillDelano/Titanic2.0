@@ -4,10 +4,7 @@ import edu.core.reservation.Reservation;
 import edu.core.reservation.Room;
 import edu.core.users.Guest;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,6 +24,8 @@ import java.util.logging.Logger;
  * @see Room
  */
 public class CheckInDatabase {
+
+    private static final String url = DatabaseProperties.url;
     private static final Logger logger = Logger.getLogger(ReservationDatabase.class.getName());
 
 
@@ -48,7 +47,7 @@ public class CheckInDatabase {
         //LocalDate testDate = LocalDate.of(2023,12,12);
         System.out.println("the current date is: " + rightNow + "The check in date is: " + reservation.getStartDate());
         if (rightNow.equals(reservation.getStartDate())) {
-            try (Connection dbConnection = driver.getDBConnection();
+            try (Connection dbConnection = DriverManager.getConnection(url);
                  PreparedStatement statement = dbConnection.prepareStatement(updateTableSQL)) {
                 //the checked in is being inserted first, then the id in the updateTableSQL
                 statement.setBoolean(1, true);
@@ -85,7 +84,7 @@ public class CheckInDatabase {
         int count = 0;
 
         //create the connection to the db
-        try (Connection connection = driver.getDBConnection()) {
+        try (Connection connection = DriverManager.getConnection(url)) {
             //command to select all rows from db matching the guest id
             String selectAll = "SELECT * FROM Reservation WHERE Username = ?";
             //preparing the statement
@@ -120,7 +119,7 @@ public class CheckInDatabase {
         //connecting to the table
         String updateTableSQL = "UPDATE Reservation SET Checkedin = ? WHERE id = ?";
 
-        try (Connection dbConnection = driver.getDBConnection();
+        try (Connection dbConnection = DriverManager.getConnection(url);
              PreparedStatement statement = dbConnection.prepareStatement(updateTableSQL)) {
             //the checked in is being inserted first, then the id in the updateTableSQL
             statement.setBoolean(1, false);

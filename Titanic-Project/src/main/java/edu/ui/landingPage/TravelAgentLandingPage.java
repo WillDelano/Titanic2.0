@@ -4,6 +4,7 @@ import edu.core.reservation.Room;
 import edu.core.users.User;
 import edu.databaseAccessors.AccountDatabase;
 import edu.databaseAccessors.RoomDatabase;
+import edu.exceptions.UserNotFoundException;
 import edu.ui.travelAgentAddRoom.AddRoomPage;
 import edu.ui.adminCreateTravelAgent.FinishTravelAgentPage;
 import edu.ui.editProfile.EditProfile;
@@ -16,8 +17,6 @@ import java.awt.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Objects;
-import java.sql.SQLException;
-
 
 /**
  * Creates the landing page
@@ -64,11 +63,11 @@ public class TravelAgentLandingPage extends LandingPage {
         JPanel topPanel = new JPanel(new BorderLayout());
         JPanel middlePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
-        JButton browseCruisesButton = new JButton("View/Edit Reservations");
+        JButton browseCruisesButton = new JButton("Edit Reservations");
         browseCruisesButton.addActionListener(e -> {
             try {
                 navigateToEditReservations();
-            } catch (SQLException ex) {
+            } catch (UserNotFoundException ex) {
                 throw new RuntimeException(ex);
             }
         });
@@ -148,7 +147,7 @@ public class TravelAgentLandingPage extends LandingPage {
             return null;
         }
     }
-    private void navigateToEditReservations() throws SQLException {
+    private void navigateToEditReservations() throws UserNotFoundException {
         mainFrame.setVisible(false);   // hide the current landing page
         new GuestsWithReservationPage(this);
     }

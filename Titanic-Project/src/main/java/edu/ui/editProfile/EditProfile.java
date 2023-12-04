@@ -86,9 +86,14 @@ public class EditProfile {
         mainPanel.add(emailField);
 
         //prefill the correct account information to display
-        String email = account.getEmail();
-        emailField.setText(email);
+        String email = "Failed to find email in database.";
+        try {
+            email = EditProfileController.getAccountEmail(account);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+        emailField.setText(email);
         mainPanel.add(new JLabel());
 
         //third row
@@ -238,21 +243,21 @@ public class EditProfile {
 
         //if both values to be changed are different
         if (!Objects.equals(account.getEmail(), email) && !Objects.equals(account.getPassword(), password)) {
-            int dialogResult = JOptionPane.showConfirmDialog(mainPanel, "You are changing your email to: "
-                    + email + " and your password to " + password, "Review Changes", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            int dialogResult = JOptionPane.showConfirmDialog(mainPanel, "You are changing email to: "
+                    + email + " and password to " + password, "Review Changes", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
             return dialogResult == JOptionPane.YES_OPTION;
         }
         //if only the email was changed
         else if (!Objects.equals(account.getEmail(), email)) {
-            int dialogResult = JOptionPane.showConfirmDialog(mainPanel, "You are changing your email to: "
+            int dialogResult = JOptionPane.showConfirmDialog(mainPanel, "You are changing email to: "
                     + email,"Review Changes", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
             return dialogResult == JOptionPane.YES_OPTION;
         }
         //only the password was changed
         else {
-            int dialogResult = JOptionPane.showConfirmDialog(mainPanel, "You are changing your password to: "
+            int dialogResult = JOptionPane.showConfirmDialog(mainPanel, "You are changing password to: "
                     + password, "Review Changes", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
             return dialogResult == JOptionPane.YES_OPTION;

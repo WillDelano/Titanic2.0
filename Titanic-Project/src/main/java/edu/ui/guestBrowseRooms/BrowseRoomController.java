@@ -25,7 +25,6 @@ public class BrowseRoomController {
         return RoomDatabase.getRoomsForCruise(cruise);
     }
 
-
     public static Room getRoom(int roomNumber) {
         return RoomDatabase.getRoom(roomNumber);
     }

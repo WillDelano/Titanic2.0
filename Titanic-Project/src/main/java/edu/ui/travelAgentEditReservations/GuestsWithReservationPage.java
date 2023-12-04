@@ -1,6 +1,14 @@
 package edu.ui.travelAgentEditReservations;
 
 import edu.core.cruise.Cruise;
+import edu.core.users.Guest;
+import edu.exceptions.UserNotFoundException;
+import edu.ui.landingPage.TravelAgentLandingPage;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import edu.core.reservation.Room;
 import edu.core.users.CurrentGuest;
 import edu.core.users.Guest;
@@ -43,7 +51,7 @@ public class GuestsWithReservationPage {
     private JTable table;
     private JButton newReservation;
 
-    public GuestsWithReservationPage(TravelAgentLandingPage landingPage) {
+    public GuestsWithReservationPage(TravelAgentLandingPage landingPage) throws UserNotFoundException {
         this.landingPage = landingPage;
         prepareGUI();
     }
@@ -186,7 +194,7 @@ public class GuestsWithReservationPage {
     }
 
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws UserNotFoundException {
         TravelAgent ta = new TravelAgent("s","s","s","s","s");
         new GuestsWithReservationPage(new TravelAgentLandingPage(ta));
     }

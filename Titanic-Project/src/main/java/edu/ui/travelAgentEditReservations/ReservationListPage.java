@@ -53,6 +53,7 @@ public class ReservationListPage implements ReservationListInterface {
         prepareGUI();
     }
 
+
     private void prepareGUI() throws SQLException {
         Set<Reservation> reservationSet = ReservationListPageController.getReservationList(guest);
 

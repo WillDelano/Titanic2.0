@@ -1,10 +1,10 @@
 package edu.ui.editProfile;
 
-import edu.core.reservation.Room;
 import edu.core.users.User;
 import edu.databaseAccessors.AccountDatabase;
 import edu.databaseAccessors.CruiseDatabase;
 import edu.databaseAccessors.RoomDatabase;
+import edu.exceptions.UserNotFoundException;
 
 
 import java.io.IOException;
@@ -46,4 +46,9 @@ public class EditProfileController {
 
         AccountDatabase.removeUser(account);
     }
+
+    public static String getAccountEmail(User account) throws UserNotFoundException {
+        return AccountDatabase.getUser(account.getUsername()).getEmail();
+    }
 }
+

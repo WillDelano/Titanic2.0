@@ -1,5 +1,10 @@
 package edu.ui.guestBrowseRooms;
 
+import edu.core.reservation.Room;
+import edu.core.users.CurrentGuest;
+import edu.databaseAccessors.RoomDatabase;
+
+import javax.swing.*;
 import edu.core.reservation.Reservation;
 import edu.core.reservation.Room;
 import edu.core.users.CurrentGuest;
@@ -69,6 +74,7 @@ public class BrowseRoomPage implements RoomListInterface {
         buttonPanel.add(selectRoomButton);
 
         roomFrame.add(buttonPanel, BorderLayout.SOUTH);
+
         JPanel contentPanel = new JPanel(new BorderLayout());
         contentPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
         roomTable = new JTable();
