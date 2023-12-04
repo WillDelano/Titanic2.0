@@ -146,6 +146,7 @@ public class GuestCreateReservationPage {
 
         backButton.addActionListener(e -> {
             frame.dispose(); // Close the Edit Reservation page
+            previousPage.show();
         });
 
         submitButton.addActionListener(e -> {

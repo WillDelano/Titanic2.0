@@ -91,6 +91,10 @@ public class RoomDatabase {
                             resultSet.getBoolean("smokingavailable"),
                             resultSet.getDouble("roomprice"),
                             resultSet.getString("cruise"));
+
+                            if (resultSet.getBoolean("isBooked")) {
+                                room.bookRoom();
+                            }
                     rooms.add(room);
                 }
             }

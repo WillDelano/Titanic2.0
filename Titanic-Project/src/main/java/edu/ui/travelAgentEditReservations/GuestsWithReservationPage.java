@@ -91,7 +91,6 @@ public class GuestsWithReservationPage {
         newReservation = new JButton("Create a new reservation");
         newReservation.addActionListener(e -> createReservation());
 
-        buttonPanel = new JPanel();
         buttonPanel.add(backButton);
         buttonPanel.add(newReservation);
 
@@ -171,7 +170,11 @@ public class GuestsWithReservationPage {
 
     private void handleReservationList(Guest guest) {
         mainFrame.setVisible(false);
-        new ReservationListPage(this, guest);
+        try {
+            new ReservationListPage(this, guest);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void createReservation() {

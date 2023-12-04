@@ -79,10 +79,11 @@ public class BrowseRoomPage implements RoomListInterface {
 
         roomFrame.add(contentPanel, BorderLayout.CENTER);
         refreshRooms();
+
+        roomFrame.setVisible(true);
     }
 
     private void selectRow(JTable roomTable) throws NoMatchingRoomException{
-        //Room selectedRoom = roomList.getSelectedValue();
         BrowseRoomController controller = new BrowseRoomController();
 
         Room r;

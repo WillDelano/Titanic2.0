@@ -91,7 +91,7 @@ public class ReservationDatabase {
                         Country endCountry = CountryDatabase.getCountry(resultSet.getString("endCountry"));
 
                         Reservation r = new Reservation(id, user, room, startDate, endDate, startCountry, endCountry);
-
+                        r.setCheckedIn(resultSet.getBoolean("CHECKEDIN"));
                         guestReservations.add(r);
                     }
                 }
@@ -131,8 +131,10 @@ public class ReservationDatabase {
                         LocalDate endDate = LocalDate.parse(resultSet.getString("endDate"));
                         Country startCountry = CountryDatabase.getCountry(resultSet.getString("startCountry"));
                         Country endCountry = CountryDatabase.getCountry(resultSet.getString("endCountry"));
-
+                        Reservation reserve = new Reservation(id,user,room,startDate,endDate,startCountry,endCountry);
+                        reserve.setCheckedIn(resultSet.getBoolean("checkedIn"));
                         return new Reservation(id, user, room, startDate, endDate, startCountry, endCountry);
+
                     }
                 }
             }
@@ -367,9 +369,9 @@ public class ReservationDatabase {
      */
     public static void updateReservation(Reservation reservation, String endDate, String roomNumber) {
         //get the connection to the db
-        try (Connection connection = driver.getDBConnection()) {
-            String update = "UPDATE Reservation SET endDate=?, roomNum=?, WHERE id=?";
 
+        try (Connection connection = DriverManager.getConnection(url)) {
+            String update = "UPDATE Reservation SET endDate=?, roomNum=? WHERE id=?";
             try (PreparedStatement statement = connection.prepareStatement(update)) {
                 statement.setString(1, endDate);
                 statement.setInt(2, Integer.parseInt(roomNumber));

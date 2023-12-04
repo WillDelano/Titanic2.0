@@ -45,7 +45,9 @@ public class CheckInDatabase {
         //connecting to the table
         String updateTableSQL = "UPDATE Reservation SET Checkedin = ? WHERE id = ?";
         LocalDate rightNow = LocalDate.now();
-        if (rightNow.equals(reservation.getStartDate())) {
+        LocalDate testDate = LocalDate.of(2023,12,12);
+        System.out.println("the current date is: " + rightNow + "The check in date is: " + reservation.getStartDate());
+        if (testDate.equals(reservation.getStartDate())) {
             try (Connection dbConnection = driver.getDBConnection();
                  PreparedStatement statement = dbConnection.prepareStatement(updateTableSQL)) {
                 //the checked in is being inserted first, then the id in the updateTableSQL
@@ -66,7 +68,7 @@ public class CheckInDatabase {
             return true;
         }
         else{
-            logger.info("the user is trying to checkin in past registration time");
+            logger.info("User can not check in. user is either checking in too soon, or past registration date");
             return false;
         }
     }
