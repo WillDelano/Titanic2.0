@@ -20,8 +20,9 @@ import java.util.*;
  * @version 1.0
  */
 public class CruiseDatabase {
+    private static final String url = DatabaseProperties.url;
+
     private static Set<Cruise> cruiseDatabase;
-    private static final String url = "jdbc:derby:C:\\Users\\vince\\IdeaProjects\\titanic2\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
 
     static {
         cruiseDatabase = new HashSet<>();
@@ -63,20 +64,6 @@ public class CruiseDatabase {
             e.printStackTrace();
         }
     }
-
-//    private static Cruise createCruiseFromResultSet(ResultSet resultSet) throws SQLException {
-//        // Extract cruise data from resultSet
-//        int id = resultSet.getInt("id");
-//        String name = resultSet.getString("name");
-//        LocalDate departure = resultSet.getDate("departure").toLocalDate();
-//        int maxCapacity = resultSet.getInt("maxCapacity");
-//        // Assuming travelPath and roomList are stored in a format that needs processing
-//        // List<Country> travelPath = processTravelPath(resultSet.getString("travelPath"));
-//        // List<Room> roomList = processRoomList(resultSet.getString("roomList"));
-//        // return new Cruise(name, departure, maxCapacity, travelPath);
-//        // Set id and roomList as needed
-//        // ...
-//    }
 
     public static Cruise getCruise(String cruiseName) {
         String query = "SELECT * FROM Cruises WHERE name = ?";

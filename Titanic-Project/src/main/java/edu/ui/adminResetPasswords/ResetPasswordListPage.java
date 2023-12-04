@@ -2,6 +2,10 @@ package edu.ui.adminResetPasswords;
 
 import edu.core.cruise.Cruise;
 import edu.core.users.User;
+import edu.ui.editProfile.EditProfile;
+import edu.ui.landingPage.LandingPage;
+
+import javax.swing.*;
 import edu.databaseAccessors.AccountDatabase;
 import edu.exceptions.NoMatchingReservationException;
 import edu.ui.editProfile.EditProfile;
@@ -15,7 +19,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * Controller for displaying and selecting a cruise on the ui
@@ -59,44 +62,6 @@ public class ResetPasswordListPage {
 
         JPanel detailsPanel = new JPanel();
         detailsPanel.setLayout(new BoxLayout(detailsPanel, BoxLayout.Y_AXIS));
-
-        /*for (int i = 0; i < userList.size(); i++) {
-            // get a guest from the list
-            User user = userList.get(i);
-            String firstname;
-            String lastname;
-
-            //if the user to display is a travel agent that hasn't finished their account
-            if (Objects.equals(user.getFirstName(), "")) {
-                firstname = "NEW TRAVEL AGENT";
-                lastname = firstname;
-            }
-            else {
-                firstname = user.getUsername();
-                lastname = user.getLastName();
-            }
-
-            String details = "Username: " + user.getUsername() + "\n" +
-                    "First name: " + firstname + "\n" +
-                    "Last name: " + lastname + "\n";
-
-            JTextArea detailsTextArea = new JTextArea(details);
-            detailsTextArea.setEditable(false);
-            JScrollPane textScrollPane = new JScrollPane(detailsTextArea);
-            detailsPanel.add(textScrollPane);
-
-            JButton selectButton = new JButton("Select " + user.getUsername());
-            selectButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-            selectButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    navigateToResetPassword(user);
-                }
-            });
-
-            detailsPanel.add(selectButton);
-        }*/
-
-        //mainPanel.add(detailsPanel, BorderLayout.CENTER);
 
         backButton = new JButton("Back");
         backButton.addActionListener(e -> {
@@ -156,8 +121,9 @@ public class ResetPasswordListPage {
     public void refreshUsers() {
         List<User> userList = ResetPasswordListPageController.getAllUsers();
 
+        System.out.println("Users:");
         for (User q : userList) {
-            System.err.println("\t" + q.getUsername());
+            System.out.println("\t" + q.getUsername());
         }
 
         int numUsers = userList.size();
@@ -192,6 +158,11 @@ public class ResetPasswordListPage {
     }
 
     public void show() {
+        refreshUsers();
         mainFrame.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new ResetPasswordListPage(null);
     }
 }

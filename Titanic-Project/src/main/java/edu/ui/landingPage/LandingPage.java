@@ -1,13 +1,6 @@
 package edu.ui.landingPage;
 
-import edu.core.users.CurrentGuest;
-import edu.core.users.Guest;
-import edu.core.users.User;
-
 import javax.swing.*;
-import java.awt.*;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 /**
  * Creates the landing page

@@ -5,6 +5,7 @@ import edu.core.reservation.Reservation;
 import edu.core.users.Guest;
 import edu.databaseAccessors.ReservationDatabase;
 import edu.exceptions.NoMatchingReservationException;
+import edu.ui.billingProcessing.ProcessBillingPage;
 import edu.ui.reservationListInterface.ReservationListInterface;
 
 import javax.swing.*;
@@ -35,6 +36,13 @@ public class MyReservationsPage implements ReservationListInterface {
     }
 
     private void prepareUI() {
+        Set<Reservation> reservationSet = CurrentGuest.getCurrentGuest().getReservations();
+        System.out.println("Reservations: ");
+
+        for (Reservation q : reservationSet) {
+            System.out.println("\t" + q.getRoom());
+        }
+
         frame = new JFrame("My Reservations");
         frame.setSize(800, 600);
         frame.setLayout(new BorderLayout());
@@ -56,6 +64,11 @@ public class MyReservationsPage implements ReservationListInterface {
 
         contentPanel.add(buttonPanel, BorderLayout.SOUTH); // Add the button panel to the content panel
 
+        JButton payNowButton = new JButton("Pay Now");
+        payNowButton.addActionListener(e -> navigateToProcessBilling());
+
+        buttonPanel.add(payNowButton);
+
         reservationsTable = new JTable();
         reservationsTable.setAutoCreateRowSorter(true);
         reservationsTable.setFillsViewportHeight(true);
@@ -69,14 +82,9 @@ public class MyReservationsPage implements ReservationListInterface {
 
     public void refreshReservations() {
         Set<Reservation> reservationSet = CurrentGuest.getCurrentGuest().getReservations();
-        System.err.println("Reservations: ");
-
-        for (Reservation q : reservationSet) {
-            System.err.println("\t" + q.getRoom());
-        }
 
         int numReservations = reservationSet.size();
-        String[][] data = new String[numReservations][7];
+        String[][] data = new String[numReservations][8];
         int i = 0;
 
         for (Reservation temp : reservationSet) {
@@ -87,10 +95,11 @@ public class MyReservationsPage implements ReservationListInterface {
             data[i][4] = String.valueOf(temp.getEndDate());
             data[i][5] = String.valueOf(temp.getStartCountry().getName());
             data[i][6] = String.valueOf(temp.getEndCountry().getName());
+            data[i][7] = String.valueOf(temp.getRoom().getRoomPrice());
             i++;
         }
 
-        String[] columnNames = {"#", "Cruise", "Room Number", "Start Date", "End Date", "Start Country", "End Country"};
+        String[] columnNames = {"#", "Cruise", "Room Number", "Start Date", "End Date", "Start Country", "End Country", "Room Price"};
         reservationsTable.setModel(new DefaultTableModel(data, columnNames));
 
         TableColumnModel columnModel = reservationsTable.getColumnModel();
@@ -127,6 +136,20 @@ public class MyReservationsPage implements ReservationListInterface {
         }
     }
 
+    private void navigateToProcessBilling() {
+        int selectedRow = reservationsTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            int modelRow = reservationsTable.convertRowIndexToModel(selectedRow);
+            DefaultTableModel model = (DefaultTableModel) reservationsTable.getModel();
+            String priceString = (String) model.getValueAt(modelRow, 7);
+            double price = Double.parseDouble(priceString);
+
+            ProcessBillingPage billingPage = new ProcessBillingPage(price);
+            billingPage.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a reservation to pay.");
+        }
+    }
     public static void main(String[] args) {
         Guest g = new Guest("wdelano", "baylor", "Will", "Delano", 0, "wdelano2002@gmail.com");
 

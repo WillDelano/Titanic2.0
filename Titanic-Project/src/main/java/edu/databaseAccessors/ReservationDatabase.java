@@ -8,6 +8,7 @@ import edu.core.users.User;
 import edu.exceptions.NoMatchingReservationException;
 
 import java.io.*;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -24,7 +25,8 @@ import java.util.Set;
  * @version 1.0
  */
 public class ReservationDatabase {
-    private static final String url = "jdbc:derby:C:\\Users\\vince\\IdeaProjects\\titanic2\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
+
+    private static final String url = DatabaseProperties.url;
 
     /**
      * Returns the reservation database size
@@ -338,6 +340,9 @@ public class ReservationDatabase {
      */
     public static void deleteReservation(Reservation reservation) {
         System.out.println("Deleting: " + reservation.getId());
+
+        RoomDatabase.unbookRoom(reservation.getRoom().getRoomNumber());
+
         try (Connection connection = DriverManager.getConnection(url)) {
             String select = "DELETE FROM Reservation WHERE id = ?";
             try (PreparedStatement statement = connection.prepareStatement(select)) {
