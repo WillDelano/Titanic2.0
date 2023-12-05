@@ -19,7 +19,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.List;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import java.util.stream.Collectors;
 
 /**
  * UI for displaying all rooms on a cruise
@@ -40,9 +44,15 @@ public class BrowseRoomPage implements RoomListInterface {
     private JTable roomTable;
     private String selectedCruise;
     private SelectCruisePage prevPage;
+    private JTextField searchTextField;
+    private JComboBox<String> bedTypeFilter;
+    private JComboBox<Boolean> smokingFilter;
+    private List<Room> allRooms;
+    private JPanel northPanel;
     public BrowseRoomPage(SelectCruisePage prevPage, String selectedCruise) {
         this.selectedCruise = selectedCruise;
         this.prevPage = prevPage;
+        allRooms = RoomDatabase.getRoomsForCruise(selectedCruise);
         prepareGUI();
     }
 
@@ -51,15 +61,40 @@ public class BrowseRoomPage implements RoomListInterface {
         roomFrame.setSize(1000, 700);
         roomFrame.setLayout(new BorderLayout());
 
+        // Title label at the top
         titleLabel = new JLabel("Available Rooms for " + selectedCruise, JLabel.CENTER);
-        roomFrame.add(titleLabel, BorderLayout.NORTH);
 
-        backButton = new JButton("Back to Cruise Details");
-        backButton.addActionListener(e -> {
-            roomFrame.dispose();
-            prevPage.show();
-        });
+        // Initialize the north panel
+        northPanel = new JPanel();
+        northPanel.setLayout(new BorderLayout());
+        northPanel.add(titleLabel, BorderLayout.NORTH);
 
+        // Search panel with filters
+        JPanel searchPanel = new JPanel();
+        searchTextField = new JTextField(20);
+        bedTypeFilter = new JComboBox<>(new String[]{"All", "Single", "Double", "Suite"});
+        smokingFilter = new JComboBox<>(new Boolean[]{true, false});
+
+        // Add action listeners to filter components
+        searchTextField.addActionListener(this::filterRooms);
+        bedTypeFilter.addActionListener(this::filterRooms);
+        smokingFilter.addActionListener(this::filterRooms);
+
+        // Adding components to the search panel
+        searchPanel.add(new JLabel("Search:"));
+        searchPanel.add(searchTextField);
+        searchPanel.add(new JLabel("Bed Type:"));
+        searchPanel.add(bedTypeFilter);
+        searchPanel.add(new JLabel("Smoking:"));
+        searchPanel.add(smokingFilter);
+
+        // Add the search panel to the north panel
+        northPanel.add(searchPanel, BorderLayout.SOUTH);
+
+        // Adding the north panel to the main frame
+        roomFrame.add(northPanel, BorderLayout.NORTH);
+
+        // Select and Back buttons
         selectRoomButton = new JButton("Select Room");
         selectRoomButton.addActionListener(e -> {
             try {
@@ -69,24 +104,70 @@ public class BrowseRoomPage implements RoomListInterface {
             }
         });
 
+        backButton = new JButton("Back to Cruise Details");
+        backButton.addActionListener(e -> {
+            roomFrame.dispose();
+            prevPage.show();
+        });
+
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(backButton);
         buttonPanel.add(selectRoomButton);
 
+        // Adding the button panel to the main frame
         roomFrame.add(buttonPanel, BorderLayout.SOUTH);
 
-        JPanel contentPanel = new JPanel(new BorderLayout());
-        contentPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+        // Table for displaying rooms
         roomTable = new JTable();
         roomTable.setAutoCreateRowSorter(true);
         roomTable.setFillsViewportHeight(true);
-
+        JPanel contentPanel = new JPanel(new BorderLayout());
+        contentPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
         contentPanel.add(new JScrollPane(roomTable), BorderLayout.CENTER);
 
+        // Adding the content panel to the main frame
         roomFrame.add(contentPanel, BorderLayout.CENTER);
+
+        // Refresh the initial room set
         refreshRooms();
 
+        // Make the frame visible
         roomFrame.setVisible(true);
+    }
+
+
+    private void filterRooms(ActionEvent e) {
+        String searchText = searchTextField.getText().toLowerCase();
+        String selectedBedType = bedTypeFilter.getSelectedItem().toString();
+        boolean selectedSmoking = (Boolean)smokingFilter.getSelectedItem();
+
+        List<Room> filteredRooms = allRooms.stream()
+                .filter(room -> room.toString().toLowerCase().contains(searchText))
+                .filter(room -> selectedBedType.equals("All") || room.getBedType().equals(selectedBedType))
+                .filter(room -> room.getSmokingAvailable() == selectedSmoking)
+                .collect(Collectors.toList());
+
+        updateRoomTable(filteredRooms);
+    }
+
+    private void updateRoomTable(List<Room> rooms) {
+        String[] columnNames = {"Room Number", "Number of Beds", "Bed Type", "Smoking Available", "Room Price", "Cruise"};
+
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+
+        for (Room room : rooms) {
+            String smoking = room.getSmokingAvailable() ? "Yes" : "No";
+            Object[] row = new Object[]{
+                    room.getRoomNumber(),
+                    room.getNumberOfBeds(),
+                    room.getBedType(),
+                    smoking,
+                    room.getRoomPrice(),
+                    room.getCruise()
+            };
+            model.addRow(row);
+        }
+        roomTable.setModel(model);
     }
 
     private void selectRow(JTable roomTable) throws NoMatchingRoomException{
