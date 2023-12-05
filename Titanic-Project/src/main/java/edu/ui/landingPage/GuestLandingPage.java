@@ -3,6 +3,7 @@ package edu.ui.landingPage;
 import edu.core.users.CurrentGuest;
 import edu.core.users.Guest;
 import edu.core.users.User;
+import edu.ui.authentication.LoginPage;
 import edu.ui.guestSelectCruise.SelectCruisePage;
 
 import javax.swing.*;
@@ -37,12 +38,6 @@ public class GuestLandingPage extends LandingPage {
      *
      */
     private void prepareGUI() {
-        try {
-            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         mainFrame = new JFrame("Cruise Reservation Application");
         mainFrame.setSize(1000, 700);
         mainFrame.setLayout(new BorderLayout());
@@ -65,11 +60,12 @@ public class GuestLandingPage extends LandingPage {
             }
         });
 
-        JButton supportButton = new JButton("Support");
+        JButton logoutButton = new JButton("Logout");
+        logoutButton.addActionListener(e -> logout());
 
         headerPanel.add(browseCruisesButton);
         headerPanel.add(myReservationsButton);
-        headerPanel.add(supportButton, BorderLayout.EAST);
+        headerPanel.add(logoutButton, BorderLayout.EAST);
 
         headerPanel.add(topPanel);
         headerPanel.add(new JPanel());
@@ -77,7 +73,14 @@ public class GuestLandingPage extends LandingPage {
 
         mainFrame.add(headerLabel, BorderLayout.CENTER);
         mainFrame.add(headerPanel, BorderLayout.NORTH);
+
         mainFrame.setVisible(true);
+    }
+
+    private void logout() {
+        mainFrame.dispose();
+        CurrentGuest.logoutCurrentGuest();
+        new LoginPage();
     }
 
     /**

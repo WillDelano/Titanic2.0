@@ -89,10 +89,10 @@ public class EditProfile {
         String email = "Failed to find email in database.";
         try {
             email = EditProfileController.getAccountEmail(account);
+            System.out.println(email);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         emailField.setText(email);
         mainPanel.add(new JLabel());
 
@@ -220,7 +220,6 @@ public class EditProfile {
     private void updateAccount(String email, String password) {
         EditProfileController.editAccount(account, email, password);
     }
-
 
     public boolean deleteAccount() throws IOException {
 

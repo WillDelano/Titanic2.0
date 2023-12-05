@@ -43,7 +43,6 @@ public class EditProfileController {
      *
      */
     public static void deleteAccount(User account) throws IOException {
-
         AccountDatabase.removeUser(account);
     }
 

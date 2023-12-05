@@ -144,8 +144,8 @@ public class CountryDatabase {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     Country country = new Country(resultSet.getString("name"),
-                            resultSet.getDate("arrivalDate").toLocalDate(),
-                            resultSet.getDate("departureDate").toLocalDate());
+                            resultSet.getDate("arrivalTime").toLocalDate(),
+                            resultSet.getDate("departureTime").toLocalDate());
                     countries.add(country);
                 }
             }

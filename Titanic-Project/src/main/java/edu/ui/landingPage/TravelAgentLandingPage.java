@@ -5,6 +5,7 @@ import edu.core.users.User;
 import edu.databaseAccessors.AccountDatabase;
 import edu.databaseAccessors.RoomDatabase;
 import edu.exceptions.UserNotFoundException;
+import edu.ui.authentication.LoginPage;
 import edu.ui.travelAgentAddRoom.AddRoomPage;
 import edu.ui.adminCreateTravelAgent.FinishTravelAgentPage;
 import edu.ui.editProfile.EditProfile;
@@ -32,13 +33,18 @@ public class TravelAgentLandingPage extends LandingPage {
     private JPanel headerPanel;
     private JLabel headerLabel;
     private User account;
+    private JPanel logoutPanel;
+    private JLabel logoutLabel;
     private Room room;
+    private boolean created;
+
     /**
      * Constructor for the landing page that creates the GUI
      *
      */
     public TravelAgentLandingPage(User account) {
         this.account = account;
+        this.created = false;
         prepareGUI();
     }
 
@@ -47,18 +53,15 @@ public class TravelAgentLandingPage extends LandingPage {
      *
      */
     private void prepareGUI() {
-        try {
-            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         mainFrame = new JFrame("Cruise Reservation Application");
         mainFrame.setSize(1000, 700);
         mainFrame.setLayout(new BorderLayout());
 
         headerLabel = new JLabel("", JLabel.CENTER);
         headerPanel = new JPanel(new GridLayout(2, 5));
+
+        logoutLabel = new JLabel("", JLabel.CENTER);
+        logoutPanel = new JPanel(new GridLayout(1, 5));
 
         JPanel topPanel = new JPanel(new BorderLayout());
         JPanel middlePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -78,20 +81,34 @@ public class TravelAgentLandingPage extends LandingPage {
         JButton editRoomButton = new JButton("Edit Rooms");
         editRoomButton.addActionListener(e -> navigateToModifyRooms());
 
-        JButton supportButton = new JButton("Edit Profile");
-        supportButton.addActionListener(e -> navigateToEditProfile());
+        JButton editProfile = new JButton("Edit Profile");
+        editProfile.addActionListener(e -> navigateToEditProfile());
+
+        JButton logoutButton = new JButton("Logout");
+        logoutButton.addActionListener(e -> logout());
 
         headerPanel.add(browseCruisesButton);
         headerPanel.add(myReservationsButton);
         headerPanel.add(editRoomButton);
-        headerPanel.add(supportButton, BorderLayout.EAST);
+        headerPanel.add(editProfile, BorderLayout.EAST);
 
         headerPanel.add(topPanel);
         headerPanel.add(new JPanel());
         headerPanel.add(middlePanel);
 
+        logoutPanel.add(new JPanel());
+        logoutPanel.add(new JPanel());
+        logoutPanel.add(logoutButton);
+
         mainFrame.add(headerLabel, BorderLayout.CENTER);
         mainFrame.add(headerPanel, BorderLayout.NORTH);
+        mainFrame.add(logoutLabel, BorderLayout.CENTER);
+        mainFrame.add(logoutPanel, BorderLayout.SOUTH);
+    }
+
+    private void logout() {
+        mainFrame.dispose();
+        new LoginPage();
     }
 
     /**
@@ -99,20 +116,20 @@ public class TravelAgentLandingPage extends LandingPage {
      *
      * @param account The user who is logged in
      */
-    public void showLandingPage(User account) {
+    public void showLandingPage(User account) throws UserNotFoundException {
         this.account = account;
 
         String name = account.getFirstName() + " " + account.getLastName();
         int count = AccountDatabase.getUserCount();
 
-        headerLabel.setText(String.format("<html>" +
+        logoutLabel.setText(String.format("<html>" +
                 "<div style='text-align: center; font-size: 24px;'>Cruise Reservation</div>" +
                 "<div style='text-align: center; font-size: 11px;'>Logged in as travel agent %s</div>" +
                 "<div style='text-align: center;'>%s</div></html>", name, "Total Account Population is " + count));
 
         /* If the travel agent has no name, it is because their account was just
         created by an admin and needs to be finished */
-        if (Objects.equals(account.getFirstName(), "")) {
+        if (Objects.equals(AccountDatabase.getUser(account.getUsername()).getFirstName(), "") && Objects.equals(account.getFirstName(), "")) {
             finishAccountCreation(account);
         }
         else {
