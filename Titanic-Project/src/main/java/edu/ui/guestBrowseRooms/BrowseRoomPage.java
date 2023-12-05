@@ -189,15 +189,7 @@ public class BrowseRoomPage implements RoomListInterface {
 
     public void refreshRooms() {
         List<Room> roomSet = BrowseRoomController.getRooms(selectedCruise);
-        System.err.println("Reservations: ");
         int numRooms = 0;
-
-        for (Room q : roomSet) {
-            System.err.println("\t" + q);
-            if(!q.isBooked()){
-                numRooms++;
-            }
-        }
 
         //int numRooms = roomSet.size();
         String[][] data = new String[numRooms][6];
