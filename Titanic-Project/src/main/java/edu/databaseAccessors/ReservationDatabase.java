@@ -371,14 +371,25 @@ public class ReservationDatabase {
      *
      */
     public static void updateReservation(Reservation reservation, String endDate, String roomNumber) {
+        String endCountry = reservation.getEndCountry().getName();
+
+        //find the new end country
+        for (Country c : CountryDatabase.getAllCountries()) {
+            System.out.println(c.getArrivalTime().toString());
+            if (c.getArrivalTime().toString().equals(endDate)) {
+                endCountry = c.getName();
+            }
+        }
+
         //get the connection to the db
         try (Connection connection = DriverManager.getConnection(url)) {
-            String update = "UPDATE Reservation SET endDate=?, roomNum=? WHERE id=?";
+            String update = "UPDATE Reservation SET endDate=?, roomNum=?, endCountry=? WHERE id=?";
 
             try (PreparedStatement statement = connection.prepareStatement(update)) {
                 statement.setString(1, endDate);
                 statement.setInt(2, Integer.parseInt(roomNumber));
-                statement.setInt(3, reservation.getId());
+                statement.setString(3, endCountry);
+                statement.setInt(4, reservation.getId());
 
                 int updated = statement.executeUpdate();
 

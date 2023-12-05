@@ -5,6 +5,7 @@ import edu.core.users.User;
 import edu.databaseAccessors.AccountDatabase;
 import edu.ui.adminCreateTravelAgent.CreateTravelAgentPage;
 import edu.ui.adminResetPasswords.ResetPasswordListPage;
+import edu.ui.authentication.LoginPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,6 +25,8 @@ public class AdminLandingPage extends LandingPage {
 
     private JFrame mainFrame;
     private JPanel headerPanel;
+    private JPanel logoutPanel;
+    private JLabel logoutLabel;
     private JLabel headerLabel;
     private User account;
 
@@ -42,18 +45,15 @@ public class AdminLandingPage extends LandingPage {
      *
      */
     private void prepareGUI() {
-        try {
-            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         mainFrame = new JFrame("Cruise Reservation Application");
         mainFrame.setSize(1000, 700);
         mainFrame.setLayout(new BorderLayout());
 
-        this.headerLabel = new JLabel("", JLabel.CENTER);
+        headerLabel = new JLabel("", JLabel.CENTER);
         headerPanel = new JPanel(new GridLayout(2, 5));
+
+        logoutLabel = new JLabel("", JLabel.CENTER);
+        logoutPanel = new JPanel(new GridLayout(1, 5));
 
         JPanel topPanel = new JPanel(new BorderLayout());
         JPanel middlePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -64,6 +64,9 @@ public class AdminLandingPage extends LandingPage {
         JButton addTravelAgentButton = new JButton("Add Travel Agent");
         addTravelAgentButton.addActionListener(e -> navigateToNewTravelAgent());
 
+        JButton logoutButton = new JButton("Logout");
+        logoutButton.addActionListener(e -> logout());
+
         headerPanel.add(resetPasswordButton);
         headerPanel.add(new JPanel());
         headerPanel.add(addTravelAgentButton);
@@ -72,9 +75,21 @@ public class AdminLandingPage extends LandingPage {
         headerPanel.add(new JPanel());
         headerPanel.add(middlePanel);
 
+        logoutPanel.add(new JPanel());
+        logoutPanel.add(new JPanel());
+        logoutPanel.add(logoutButton);
+
         mainFrame.add(headerLabel, BorderLayout.CENTER);
         mainFrame.add(headerPanel, BorderLayout.NORTH);
+        mainFrame.add(logoutLabel, BorderLayout.CENTER);
+        mainFrame.add(logoutPanel, BorderLayout.SOUTH);
+
         mainFrame.setVisible(true);
+    }
+
+    private void logout() {
+        mainFrame.dispose();
+        new LoginPage();
     }
 
     /**
@@ -88,7 +103,7 @@ public class AdminLandingPage extends LandingPage {
         String name = account.getFirstName();
         int count = AccountDatabase.getUserCount();
 
-        this.headerLabel.setText(String.format("<html>" +
+        this.logoutLabel.setText(String.format("<html>" +
                 "<div style='text-align: center; font-size: 24px;'>Cruise Reservation</div>" +
                 "<div style='text-align: center; font-size: 11px;'>Logged in as %s</div>" +
                 "<div style='text-align: center;'>%s</div></html>", name, "Total Account Population is " + count));
@@ -126,10 +141,19 @@ public class AdminLandingPage extends LandingPage {
     }
 
     public void show() {
+        //refresh the data on show
+        String name = account.getFirstName();
+        int count = AccountDatabase.getUserCount();
+
+        this.logoutLabel.setText(String.format("<html>" +
+                "<div style='text-align: center; font-size: 24px;'>Cruise Reservation</div>" +
+                "<div style='text-align: center; font-size: 11px;'>Logged in as %s</div>" +
+                "<div style='text-align: center;'>%s</div></html>", name, "Total Account Population is " + count));
+
         mainFrame.setVisible(true);
     }
 
     public static void main(String[] args) {
-        //new AdminLandingPage();
+        new AdminLandingPage();
     }
 }

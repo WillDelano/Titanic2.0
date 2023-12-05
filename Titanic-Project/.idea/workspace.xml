@@ -5,33 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef18d5f6-c7e4-4456-b19d-d3efff184caa" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/73220af7-872d-48ed-a1fd-ee272dbf41cb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73220af7-872d-48ed-a1fd-ee272dbf41cb.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/derby.log" beforeDir="false" afterPath="$PROJECT_DIR$/derby.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/db.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/log/log.ctrl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/log/log1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/log/log1.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/log/logmirror.ctrl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c101.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c101.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c111.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c111.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c121.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c121.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c130.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c130.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c141.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c141.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c20.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c20.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c31.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c31.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c400.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c400.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c41.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c41.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c411.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c411.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c421.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c421.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c51.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c51.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c60.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c60.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c71.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c71.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c81.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c81.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c90.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c90.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/ca1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/ca1.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/cb1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/cb1.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/cf0.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/cf0.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c490.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c490.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c4a1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c4a1.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c600.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c600.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c611.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c611.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c640.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c640.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c651.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c651.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/users/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/AccountDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CountryDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CountryDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/ReservationDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/ReservationDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/RoomDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/RoomDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/adminCreateTravelAgent/FinishTravelAgentPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/adminCreateTravelAgent/FinishTravelAgentPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/editProfile/EditProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/editProfile/EditProfile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/guestBrowseRooms/BrowseRoomPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/guestBrowseRooms/BrowseRoomPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/AdminLandingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/AdminLandingPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/GuestLandingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/GuestLandingPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/TravelAgentLandingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/TravelAgentLandingPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,12 +129,6 @@
     </configuration>
     <configuration name="console_3.sql" type="DatabaseScript" editBeforeRun="true" nameIsGenerated="true">
       <script-file value="$APPLICATION_CONFIG_DIR$/consoles/db/73220af7-872d-48ed-a1fd-ee272dbf41cb/console_3.sql" />
-      <script-mode>FILE</script-mode>
-      <data-source id="73220af7-872d-48ed-a1fd-ee272dbf41cb" />
-      <method v="2" />
-    </configuration>
-    <configuration name="console.sql" type="DatabaseScript" editBeforeRun="true" nameIsGenerated="true">
-      <script-file value="$APPLICATION_CONFIG_DIR$/consoles/db/73220af7-872d-48ed-a1fd-ee272dbf41cb/console.sql" />
       <script-mode>FILE</script-mode>
       <data-source id="73220af7-872d-48ed-a1fd-ee272dbf41cb" />
       <method v="2" />

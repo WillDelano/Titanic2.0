@@ -69,7 +69,7 @@ public class BrowseRoomPage implements RoomListInterface {
 
         JPanel searchPanel = new JPanel();
         searchTextField = new JTextField(20);
-        bedTypeFilter = new JComboBox<>(new String[]{"All", "Single", "Double", "Suite"});
+        bedTypeFilter = new JComboBox<>(new String[]{"All", "Twin", "Queen", "King"});
         smokingFilter = new JComboBox<>(new Boolean[]{true, false});
 
         searchTextField.addActionListener(this::filterRooms);
@@ -170,7 +170,7 @@ public class BrowseRoomPage implements RoomListInterface {
             DefaultTableModel model = (DefaultTableModel) roomTable.getModel();
 
             //you can't cast the object to an int in case it's null, so you have to cast to string, then cast to int
-            String row = (String) model.getValueAt(modelRow, 1);
+            String row = model.getValueAt(modelRow, 0).toString();
             int roomNumber = Integer.parseInt(row);
 
             r = BrowseRoomController.getRoom(roomNumber);
@@ -200,23 +200,22 @@ public class BrowseRoomPage implements RoomListInterface {
         }
 
         //int numRooms = roomSet.size();
-        String[][] data = new String[numRooms][7];
+        String[][] data = new String[numRooms][6];
         int i = 0;
 
         for (Room temp : roomSet) {
             if(!temp.isBooked()){
-                data[i][0] = String.valueOf(i + 1);
-                data[i][1] = String.valueOf(temp.getRoomNumber());
-                data[i][2] = String.valueOf(temp.getNumberOfBeds());
-                data[i][3] = String.valueOf(temp.getBedType());
-                data[i][4] = String.valueOf(temp.getSmokingAvailable());
-                data[i][5] = String.valueOf(temp.getRoomPrice());
-                data[i][6] = String.valueOf(temp.getCruise());
+                data[i][0] = String.valueOf(temp.getRoomNumber());
+                data[i][1] = String.valueOf(temp.getNumberOfBeds());
+                data[i][2] = String.valueOf(temp.getBedType());
+                data[i][3] = String.valueOf(temp.getSmokingAvailable());
+                data[i][4] = String.valueOf(temp.getRoomPrice());
+                data[i][5] = String.valueOf(temp.getCruise());
                 i++;
             }
         }
 
-        String[] columnNames = {"#", "Room Number", "Number of Beds", "Bed Type", "Smoking Available", "Room Price", "Cruise"};
+        String[] columnNames = {"Room Number", "Number of Beds", "Bed Type", "Smoking Available", "Room Price", "Cruise"};
         DefaultTableModel finalModel = new DefaultTableModel(data, columnNames){
             public boolean isCellEditable(int row, int column){
                 return false;
