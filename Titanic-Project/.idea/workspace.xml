@@ -5,39 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef18d5f6-c7e4-4456-b19d-d3efff184caa" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/73220af7-872d-48ed-a1fd-ee272dbf41cb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73220af7-872d-48ed-a1fd-ee272dbf41cb.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/derby.log" beforeDir="false" afterPath="$PROJECT_DIR$/derby.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/db.lck" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/log/log.ctrl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/log/log1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/log/log1.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/log/logmirror.ctrl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c101.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c101.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c111.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c111.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c121.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c121.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c130.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c130.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c141.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c141.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c20.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c20.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c31.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c31.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c400.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c400.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c41.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c41.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c490.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c490.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c4a1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c4a1.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c51.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c51.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c5e0.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c5e0.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c5f1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c5f1.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c60.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c60.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c71.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c71.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c81.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c81.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c90.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c90.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/ca1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/ca1.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/cb1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/cb1.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/cf0.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/cf0.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/AccountDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/ReservationDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/ReservationDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/billingProcessing/ProcessBillingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/billingProcessing/ProcessBillingPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/driver.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,22 +39,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Merging checkin2.0",
-    "last_opened_file_path": "C:/Users/Colet/Documents/GIT/Titanic2.0/Titanic-Project/libs/derbytools.jar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;checkin2.0&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Colet/Documents/Fall2023/Java/MidTerms/Midterm1-Practicum-Cole_Hogan/MidTermrRedo2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="edu.ui.modifyRoom" />
