@@ -4,74 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fc14b32d-70fe-4d06-8946-f4a8359f9ce0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/core/cruise/CruiseSearch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/core/users/GuestSearch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/DatabaseProperties.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ui/billingProcessing/ProcessBillingPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/edu/roomSearchTester.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/73220af7-872d-48ed-a1fd-ee272dbf41cb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73220af7-872d-48ed-a1fd-ee272dbf41cb.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/derby.log" beforeDir="false" afterPath="$PROJECT_DIR$/derby.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/db.lck" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/log/log.ctrl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/log/log1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/log/log1.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/log/logmirror.ctrl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c101.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c101.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c111.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c111.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c121.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c121.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c130.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c130.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c141.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c141.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c20.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c20.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c31.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c31.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c400.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c400.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c41.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c41.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c490.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c490.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c4a1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c4a1.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c51.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c51.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c520.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c5e0.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c531.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c5f1.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c540.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c540.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c5c0.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c5c0.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c5d1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c5d1.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c60.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c60.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c71.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c71.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c81.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c81.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c90.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c90.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/ca1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/ca1.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/cb1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/cb1.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/cf0.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/cf0.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/reservation/roomSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/reservation/roomSearch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/core/users/Guest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/core/users/Guest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/AccountDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CheckInDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CheckInDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CountryDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CountryDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CruiseDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CruiseDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/ReservationDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/ReservationDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/RoomDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/RoomDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/adminCreateTravelAgent/FinishTravelAgentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/adminCreateTravelAgent/FinishTravelAgentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/adminCreateTravelAgent/FinishTravelAgentPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/adminCreateTravelAgent/FinishTravelAgentPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/adminResetPasswords/ResetPasswordListPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/adminResetPasswords/ResetPasswordListPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/editProfile/EditProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/editProfile/EditProfile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/editProfile/EditProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/editProfile/EditProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/guestBrowseRooms/BrowseRoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/guestBrowseRooms/BrowseRoomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/guestBrowseRooms/BrowseRoomPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/guestBrowseRooms/BrowseRoomPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/guestCreateReservation/GuestCreateReservationPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/guestCreateReservation/GuestCreateReservationPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/guestReservationList/MyReservationsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/guestReservationList/MyReservationsPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/guestReservationList/MyReservationsPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/guestReservationList/MyReservationsPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/guestSelectCruise/SelectCruisePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/guestSelectCruise/SelectCruisePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/AdminLandingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/AdminLandingPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/GuestLandingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/GuestLandingPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/LandingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/LandingPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/TravelAgentLandingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/landingPage/TravelAgentLandingPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentCreateReservations/TravelAgentCreateReservationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentCreateReservations/TravelAgentCreateReservationPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/EditReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/EditReservationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/EditReservationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/EditReservationPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/GuestsWithReservationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/GuestsWithReservationPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/ReservationListPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/ReservationListPage.java" afterDir="false" />
-    </list>
+    <list default="true" id="fc14b32d-70fe-4d06-8946-f4a8359f9ce0" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -112,7 +45,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Merging checkin2.0",
+    "git-widget-placeholder": "checkin2.0",
     "jdk.selected.JAVA_MODULE": "20",
     "last_opened_file_path": "C:/Users/Owner/Desktop/Project/Titanic2.0/Titanic-Project/libs/derbytools.jar",
     "node.js.detected.package.eslint": "true",

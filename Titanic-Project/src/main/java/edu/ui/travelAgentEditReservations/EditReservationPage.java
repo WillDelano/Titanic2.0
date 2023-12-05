@@ -10,6 +10,7 @@ import edu.ui.reservationListInterface.ReservationListInterface;
 
 import javax.swing.*;
 import java.awt.*;
+
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -252,7 +253,7 @@ public class EditReservationPage {
         return false;
     }
 
-    public void show() {
+    public void show() throws SQLException {
         frame.setVisible(true);
     }
 

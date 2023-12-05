@@ -285,7 +285,6 @@ public class ReservationDatabase {
             }
         } catch (Exception e) {
             e.printStackTrace();
-
             System.err.println("Failed to connect to database.");
         }
         return false;
