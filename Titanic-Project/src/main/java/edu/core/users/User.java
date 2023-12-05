@@ -68,7 +68,6 @@ public abstract class User  {
     }
 
     public void setLastName(String lastName) {
-
         this.lastName = lastName;
     }
 
@@ -104,5 +103,9 @@ public abstract class User  {
 
     public int getRewardPoints() {
         return rewardPoints;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

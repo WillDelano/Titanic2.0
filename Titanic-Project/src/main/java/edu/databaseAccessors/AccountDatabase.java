@@ -164,7 +164,6 @@ public class AccountDatabase {
     public static void addSampleUsers() {
         if (getUserCount() == 0) {
             addUser("wdelano", "baylor", "Will", "Delano", 0, "wdelano2002@gmail.com", "Guest");
-            addUser("wdelano2", "baylor", "Will", "Delano", 0, "wdelano2002@gmail.com", "Guest");
             addUser("wdelanoagent", "baylor", "Will", "Delano", 0, "wdelano2002@gmail.com", "Agent");
             addUser("admin", "baylor", "Will", "Delano", 0, "wdelano2002@gmail.com", "Admin");
         }
@@ -424,6 +423,18 @@ public class AccountDatabase {
      *
      */
     public static void removeUser(User userToRemove) {
+
+        //if the account to remove has potential reservations (is a guest)
+        if (Objects.equals(AccountDatabase.getAccountType(userToRemove.getUsername()), "Guest")) {
+            //get all the reservations to remove associated with the user
+            Set<Reservation> resToRemove = ReservationDatabase.getReservations((Guest) userToRemove);
+
+            //loop through all reservations and delete
+            for (Reservation r : resToRemove) {
+                ReservationDatabase.deleteReservation(r);
+            }
+        }
+
         try (Connection connection = DriverManager.getConnection(url)) {
             String delete = "DELETE FROM UsersV2 WHERE username = ?";
             try (PreparedStatement statement = connection.prepareStatement(delete)) {

@@ -1,13 +1,6 @@
 package edu.ui.guestBrowseRooms;
 
 import edu.core.reservation.Room;
-import edu.core.users.CurrentGuest;
-import edu.databaseAccessors.RoomDatabase;
-
-import javax.swing.*;
-import edu.core.reservation.Reservation;
-import edu.core.reservation.Room;
-import edu.core.users.CurrentGuest;
 import edu.databaseAccessors.RoomDatabase;
 import edu.exceptions.NoMatchingRoomException;
 import edu.ui.guestCreateReservation.GuestCreateReservationPage;
@@ -25,20 +18,10 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.util.stream.Collectors;
 
-/**
- * UI for displaying all rooms on a cruise
- *
- * This class displays all the rooms of a selected cruise to a user
- *
- * @author Vincent Dinh
- * @version 1.0
- * @see RoomDatabase , Room, BrowseRoomController
- */
 public class BrowseRoomPage implements RoomListInterface {
 
     private JFrame roomFrame;
     private JLabel titleLabel;
-    private JList<Room> roomList;
     private JButton backButton;
     private JButton selectRoomButton;
     private JTable roomTable;
@@ -49,6 +32,7 @@ public class BrowseRoomPage implements RoomListInterface {
     private JComboBox<Boolean> smokingFilter;
     private List<Room> allRooms;
     private JPanel northPanel;
+
     public BrowseRoomPage(SelectCruisePage prevPage, String selectedCruise) {
         this.selectedCruise = selectedCruise;
         this.prevPage = prevPage;
@@ -69,12 +53,21 @@ public class BrowseRoomPage implements RoomListInterface {
 
         JPanel searchPanel = new JPanel();
         searchTextField = new JTextField(20);
-        bedTypeFilter = new JComboBox<>(new String[]{"All", "Single", "Double", "Suite"});
+        bedTypeFilter = new JComboBox<>(new String[]{"All", "Twin", "Queen", "King"});
         smokingFilter = new JComboBox<>(new Boolean[]{true, false});
 
-        searchTextField.addActionListener(this::filterRooms);
-        bedTypeFilter.addActionListener(this::filterRooms);
-        smokingFilter.addActionListener(this::filterRooms);
+        searchTextField.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent e) { filterRooms(); }
+            public void removeUpdate(DocumentEvent e) { filterRooms(); }
+            public void insertUpdate(DocumentEvent e) { filterRooms(); }
+
+            private void filterRooms() {
+                BrowseRoomPage.this.filterRooms();
+            }
+        });
+
+        bedTypeFilter.addActionListener(e -> filterRooms());
+        smokingFilter.addActionListener(e -> filterRooms());
 
         searchPanel.add(new JLabel("Search:"));
         searchPanel.add(searchTextField);
@@ -122,21 +115,22 @@ public class BrowseRoomPage implements RoomListInterface {
         roomFrame.setVisible(true);
     }
 
-
-    private void filterRooms(ActionEvent e) {
+    private void filterRooms() {
         String searchText = searchTextField.getText().toLowerCase();
-        String selectedBedType = bedTypeFilter.getSelectedItem().toString();
-        boolean selectedSmoking = (Boolean)smokingFilter.getSelectedItem();
+        String selectedBedType = (String) bedTypeFilter.getSelectedItem();
+        boolean selectedSmoking = (Boolean) smokingFilter.getSelectedItem();
 
         List<Room> filteredRooms = allRooms.stream()
-                .filter(room -> room.toString().toLowerCase().contains(searchText))
+                .filter(room -> room.getCruise().toLowerCase().contains(searchText) ||
+                        room.getBedType().toLowerCase().contains(searchText) ||
+                        String.valueOf(room.getRoomNumber()).contains(searchText) ||
+                        String.valueOf(room.getRoomPrice()).contains(searchText))
                 .filter(room -> selectedBedType.equals("All") || room.getBedType().equals(selectedBedType))
                 .filter(room -> room.getSmokingAvailable() == selectedSmoking)
                 .collect(Collectors.toList());
 
         updateRoomTable(filteredRooms);
     }
-
     private void updateRoomTable(List<Room> rooms) {
         String[] columnNames = {"Room Number", "Number of Beds", "Bed Type", "Smoking Available", "Room Price", "Cruise"};
 
@@ -170,7 +164,7 @@ public class BrowseRoomPage implements RoomListInterface {
             DefaultTableModel model = (DefaultTableModel) roomTable.getModel();
 
             //you can't cast the object to an int in case it's null, so you have to cast to string, then cast to int
-            String row = (String) model.getValueAt(modelRow, 1);
+            String row = model.getValueAt(modelRow, 0).toString();
             int roomNumber = Integer.parseInt(row);
 
             r = BrowseRoomController.getRoom(roomNumber);
@@ -200,23 +194,22 @@ public class BrowseRoomPage implements RoomListInterface {
         }
 
         //int numRooms = roomSet.size();
-        String[][] data = new String[numRooms][7];
+        String[][] data = new String[numRooms][6];
         int i = 0;
 
         for (Room temp : roomSet) {
             if(!temp.isBooked()){
-                data[i][0] = String.valueOf(i + 1);
-                data[i][1] = String.valueOf(temp.getRoomNumber());
-                data[i][2] = String.valueOf(temp.getNumberOfBeds());
-                data[i][3] = String.valueOf(temp.getBedType());
-                data[i][4] = String.valueOf(temp.getSmokingAvailable());
-                data[i][5] = String.valueOf(temp.getRoomPrice());
-                data[i][6] = String.valueOf(temp.getCruise());
+                data[i][0] = String.valueOf(temp.getRoomNumber());
+                data[i][1] = String.valueOf(temp.getNumberOfBeds());
+                data[i][2] = String.valueOf(temp.getBedType());
+                data[i][3] = String.valueOf(temp.getSmokingAvailable());
+                data[i][4] = String.valueOf(temp.getRoomPrice());
+                data[i][5] = String.valueOf(temp.getCruise());
                 i++;
             }
         }
 
-        String[] columnNames = {"#", "Room Number", "Number of Beds", "Bed Type", "Smoking Available", "Room Price", "Cruise"};
+        String[] columnNames = {"Room Number", "Number of Beds", "Bed Type", "Smoking Available", "Room Price", "Cruise"};
         DefaultTableModel finalModel = new DefaultTableModel(data, columnNames){
             public boolean isCellEditable(int row, int column){
                 return false;

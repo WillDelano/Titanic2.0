@@ -148,7 +148,11 @@ public class FinishTravelAgentPage {
     }
 
     private void updateAccount(User account, String email, String first, String last) {
+        //update in db and the account details
         FinishTravelAgentController.updateAccount(account, email, first, last);
+        account.setFirstName(first);
+        account.setLastName(last);
+        account.setEmail(email);
     }
 
     public boolean validateDecision(String email, String password) {

@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Tue Dec 05 07:51:33 CST 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018c-3a3f-9105-00001e894a98 
+Tue Dec 05 08:34:06 CST 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018c-3a66-84ef-00001e8f2190 
 on database directory C:\Users\vince\IdeaProjects\titanic2\Titanic2.0\Titanic-Project\src\main\java\edu\Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528 
 Loaded from file:/C:/Users/vince/.m2/repository/org/apache/derby/derby/10.16.1.1/derby-10.16.1.1.jar
 java.vendor=Oracle Corporation
