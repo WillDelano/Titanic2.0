@@ -1,6 +1,7 @@
 package edu.ui.editProfile;
 
 import edu.core.users.User;
+import edu.databaseAccessors.AccountDatabase;
 import edu.ui.landingPage.LandingPage;
 
 import edu.ui.adminResetPasswords.ResetPasswordListPage;
@@ -102,6 +103,11 @@ public class EditProfile {
 
         //prefill the correct account information to display
         String password = account.getPassword();
+        try {
+            password = AccountDatabase.getUser(account.getUsername()).getPassword();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         passwordField.setText(password);
 
         mainPanel.add(new JLabel());

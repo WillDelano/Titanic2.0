@@ -192,6 +192,8 @@ public class ReservationDatabase {
         String startDate = String.valueOf(newReservation.getStartDate());
         String endDate = String.valueOf(newReservation.getEndDate());
 
+        RoomDatabase.bookRoom(newReservation.getRoom().getRoomNumber());
+
         //if the reservation was not a duplicate
         if (!ReservationDatabase.hasReservation(newReservation)) {
             //create the connection to the db

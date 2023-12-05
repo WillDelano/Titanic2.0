@@ -15,6 +15,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -187,6 +188,11 @@ public class TravelAgentCreateReservationPage {
 
             if (TravelAgentCreateReservationController.createReservation(new Reservation(-1, u, r, startDate, endDate, startCountry, endCountry))) {
                 JOptionPane.showMessageDialog(mainPanel, "Reservation created.");
+                try {
+                    previousPage.refreshRooms();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
             else {
                 try {
@@ -217,7 +223,15 @@ public class TravelAgentCreateReservationPage {
         checkoutDropdown.setRenderer(new LineWrapRenderer());
 
         List<Room> roomList = TravelAgentCreateReservationController.getAllRooms(cruise);
-        String[] roomNumberArray = roomList.stream().map(Object::toString).toArray(String[]::new);
+        List<Room> nonBooked = new ArrayList<>();
+
+        for (Room r : roomList) {
+            if (!r.isBooked()) {
+                nonBooked.add(r);
+            }
+        }
+
+        String[] roomNumberArray = nonBooked.stream().map(Object::toString).toArray(String[]::new);
 
         //update the model of the existing roomNumberDropdown
         roomNumberDropdown.setModel(new DefaultComboBoxModel<>(roomNumberArray));
