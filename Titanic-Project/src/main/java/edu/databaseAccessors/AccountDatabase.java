@@ -33,7 +33,7 @@ public class AccountDatabase {
 
     private static void initializeDatabase() {
         try (Connection connection = DriverManager.getConnection(url)) {
-            String query = "SELECT * FROM Users";
+            String query = "SELECT * FROM UsersV2";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 try (ResultSet resultSet = statement.executeQuery()) {
                     while (resultSet.next()) {
@@ -62,6 +62,7 @@ public class AccountDatabase {
         String email = resultSet.getString("email");
         int rewardPoints = resultSet.getInt("rewardPoints"); // Assuming you have this column in your database
         String userType = resultSet.getString("type");
+        System.out.println(userType);
 
         // Determine the type of user and instantiate accordingly
         switch (userType) {
@@ -72,7 +73,7 @@ public class AccountDatabase {
             case "Admin":
                 return new Admin(username, password, firstName, lastName, email);
             default:
-                throw new NoMatchingClassException("No class matches the user type!");
+                throw new NoMatchingClassException("No class matches the user type!" + userType);
         }
     }
 
@@ -84,7 +85,7 @@ public class AccountDatabase {
     public static int getUserCount() {
         int count = 0;
         try (Connection connection = DriverManager.getConnection(url)) {
-            String selectCount = "SELECT COUNT(*) FROM Users";
+            String selectCount = "SELECT COUNT(*) FROM UsersV2";
             try (PreparedStatement statement = connection.prepareStatement(selectCount)) {
                 try (ResultSet resultSet = statement.executeQuery()) {
                     if (resultSet.next()) {
@@ -109,7 +110,7 @@ public class AccountDatabase {
         //create the connection to the db
         try (Connection connection = DriverManager.getConnection(url)) {
             //command to select all rows from db matching the guest id
-            String selectAll = "SELECT * FROM Users";
+            String selectAll = "SELECT * FROM UsersV2";
             //preparing the statement
             try (PreparedStatement statement = connection.prepareStatement(selectAll)) {
                 //executing the statement (executeQuery returns a ResultSet)
@@ -139,7 +140,7 @@ public class AccountDatabase {
      */
     public boolean isValidLogin(String username, String pass) {
         try (Connection connection = DriverManager.getConnection(url)) {
-            String select = "SELECT * FROM Users WHERE username = ? AND password = ?";
+            String select = "SELECT * FROM UsersV2 WHERE username = ? AND password = ?";
 
             try (PreparedStatement statement = connection.prepareStatement(select)) {
                 statement.setString(1, username);
@@ -161,7 +162,7 @@ public class AccountDatabase {
      * Method to add users to the 'Users' Database
      */
     public static void addSampleUsers() {
-        if (getUserCount() == 0) { // Check if there are already users in the database
+        if (getUserCount() == 0) {
             addUser("wdelano", "baylor", "Will", "Delano", 0, "wdelano2002@gmail.com", "Guest");
             addUser("wdelano2", "baylor", "Will", "Delano", 0, "wdelano2002@gmail.com", "Guest");
             addUser("wdelanoagent", "baylor", "Will", "Delano", 0, "wdelano2002@gmail.com", "Agent");
@@ -175,18 +176,20 @@ public class AccountDatabase {
      * @param username The new user to add to account database
      */
     public static void addUser(String username, String password, String firstName, String lastName, int rewardPoints, String email, String userType) {
-        String insertSQL = "INSERT INTO Users (username, password, firstName, lastName, rewardPoints, email, type) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        String insertSQL = "INSERT INTO UsersV2 (TYPE, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL, REWARDPOINTS) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
 
         try (Connection connection = DriverManager.getConnection(url);
              PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
 
-            preparedStatement.setString(1, username);
-            preparedStatement.setString(2, password);
-            preparedStatement.setString(3, firstName);
-            preparedStatement.setString(4, lastName);
-            preparedStatement.setInt(5, rewardPoints);
+            preparedStatement.setString(1, userType);
+            preparedStatement.setString(2, username);
+            preparedStatement.setString(3, password);
+            preparedStatement.setString(4, firstName);
+            preparedStatement.setString(5, lastName);
             preparedStatement.setString(6, email);
-            preparedStatement.setString(7, userType);
+            preparedStatement.setInt(7, rewardPoints);
 
             if (Objects.equals(userType, "Guest")) {
                 accountDatabase.add(new Guest(username, password , firstName, lastName, rewardPoints, email));
@@ -219,7 +222,7 @@ public class AccountDatabase {
 
     String accountType = "";
         try (Connection connection = DriverManager.getConnection(url)) {
-        String query = "SELECT type FROM Users WHERE username = ?";
+        String query = "SELECT type FROM UsersV2 WHERE username = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, username);
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -243,7 +246,7 @@ public class AccountDatabase {
      */
     public static boolean accountExists(String username) {
         try (Connection connection = DriverManager.getConnection(url)) {
-            String query = "SELECT COUNT(*) FROM Users WHERE username = ?";
+            String query = "SELECT COUNT(*) FROM UsersV2 WHERE username = ?";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setString(1, username);
                 try (ResultSet resultSet = statement.executeQuery()) {
@@ -267,7 +270,7 @@ public class AccountDatabase {
      */
     public boolean modifyUsername(String oldUser, String newUser) {
         try (Connection connection = DriverManager.getConnection(url)) {
-            String update = "UPDATE Users SET username = ? WHERE username = ?";
+            String update = "UPDATE UsersV2 SET username = ? WHERE username = ?";
             try (PreparedStatement statement = connection.prepareStatement(update)) {
                 statement.setString(1, newUser);
                 statement.setString(2, oldUser);
@@ -289,7 +292,7 @@ public class AccountDatabase {
      */
     public static void modifyPassword(String username, String newPass) {
         try (Connection connection = DriverManager.getConnection(url)) {
-            String update = "UPDATE Users SET password = ? WHERE username = ?";
+            String update = "UPDATE UsersV2 SET password = ? WHERE username = ?";
             try (PreparedStatement statement = connection.prepareStatement(update)) {
                 statement.setString(1, newPass);
                 statement.setString(2, username);
@@ -310,7 +313,7 @@ public class AccountDatabase {
      */
     public void modifyFirstName(String username, String newFName) {
         try (Connection connection = DriverManager.getConnection(url)) {
-            String update = "UPDATE Users SET firstName = ? WHERE username = ?";
+            String update = "UPDATE UsersV2 SET firstName = ? WHERE username = ?";
             try (PreparedStatement statement = connection.prepareStatement(update)) {
                 statement.setString(1, newFName);
                 statement.setString(2, username);
@@ -329,7 +332,7 @@ public class AccountDatabase {
      */
     public void modifyLastName(String username, String newLName) {
         try (Connection connection = DriverManager.getConnection(url)) {
-            String update = "UPDATE Users SET lastName = ? WHERE username = ?";
+            String update = "UPDATE UsersV2 SET lastName = ? WHERE username = ?";
             try (PreparedStatement statement = connection.prepareStatement(update)) {
                 statement.setString(1, newLName);
                 statement.setString(2, username);
@@ -382,7 +385,7 @@ public class AccountDatabase {
 
             //if the updating is for a travel agent finishing their account creation
             if (!Objects.equals(firstName, "")) {
-                String update = "UPDATE Users SET firstName = ?, lastName = ?, email = ? WHERE username = ? AND password = ?";
+                String update = "UPDATE UsersV2 SET firstName = ?, lastName = ?, email = ? WHERE username = ? AND password = ?";
                 try (PreparedStatement statement = connection.prepareStatement(update)) {
                     statement.setString(1, firstName);
                     statement.setString(2, lastName);
@@ -396,7 +399,7 @@ public class AccountDatabase {
                     }
                 }
             } else {
-                String update = "UPDATE Users SET email = ?, password = ? WHERE username = ?";
+                String update = "UPDATE UsersV2 SET email = ?, password = ? WHERE username = ?";
                 try (PreparedStatement statement = connection.prepareStatement(update)) {
                     statement.setString(1, email);
                     statement.setString(2, password);
@@ -422,7 +425,7 @@ public class AccountDatabase {
      */
     public static void removeUser(User userToRemove) {
         try (Connection connection = DriverManager.getConnection(url)) {
-            String delete = "DELETE FROM Users WHERE username = ?";
+            String delete = "DELETE FROM UsersV2 WHERE username = ?";
             try (PreparedStatement statement = connection.prepareStatement(delete)) {
                 statement.setString(1, userToRemove.getUsername());
                 int deleted = statement.executeUpdate();
