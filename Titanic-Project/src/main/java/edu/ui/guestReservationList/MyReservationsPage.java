@@ -65,7 +65,14 @@ public class MyReservationsPage implements ReservationListInterface {
         contentPanel.add(buttonPanel, BorderLayout.SOUTH); // Add the button panel to the content panel
 
         JButton payNowButton = new JButton("Pay Now");
-        payNowButton.addActionListener(e -> navigateToProcessBilling());
+
+        payNowButton.addActionListener(e -> {
+            try {
+                navigateToProcessBilling();
+            } catch (NoMatchingReservationException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
         buttonPanel.add(payNowButton);
 
@@ -136,7 +143,7 @@ public class MyReservationsPage implements ReservationListInterface {
         }
     }
 
-    private void navigateToProcessBilling() {
+    private void navigateToProcessBilling() throws NoMatchingReservationException {
         int selectedRow = reservationsTable.getSelectedRow();
         if (selectedRow >= 0) {
             int modelRow = reservationsTable.convertRowIndexToModel(selectedRow);
@@ -144,7 +151,12 @@ public class MyReservationsPage implements ReservationListInterface {
             String priceString = (String) model.getValueAt(modelRow, 7);
             double price = Double.parseDouble(priceString);
 
-            ProcessBillingPage billingPage = new ProcessBillingPage(price);
+            String row = (String) model.getValueAt(modelRow, 2);
+            int intRow = Integer.parseInt(row);
+
+            Reservation r = MyReservationsPageController.getReservation(intRow);
+
+            ProcessBillingPage billingPage = new ProcessBillingPage(price, r, this);
             billingPage.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Please select a reservation to pay.");
