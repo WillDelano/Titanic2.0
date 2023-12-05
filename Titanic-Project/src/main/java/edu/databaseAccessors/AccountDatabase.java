@@ -24,6 +24,7 @@ import java.lang.*;
 public class AccountDatabase {
     private static final String url = DatabaseProperties.url;
     private static Set<User> accountDatabase;
+    //private String fileName = getClass().getClassLoader().getResource("accountList.csv").getFile();
 
     static {
         accountDatabase = new HashSet<>();
