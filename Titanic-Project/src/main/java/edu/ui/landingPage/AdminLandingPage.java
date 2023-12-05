@@ -58,7 +58,7 @@ public class AdminLandingPage extends LandingPage {
         JPanel topPanel = new JPanel(new BorderLayout());
         JPanel middlePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
-        JButton resetPasswordButton = new JButton("Reset a Password");
+        JButton resetPasswordButton = new JButton("Edit an Account");
         resetPasswordButton.addActionListener(e -> navigateToResetPassword());
 
         JButton addTravelAgentButton = new JButton("Add Travel Agent");

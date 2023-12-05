@@ -1,5 +1,9 @@
 package edu.ui.billingProcessing;
 
+import edu.core.reservation.Reservation;
+import edu.databaseAccessors.ReservationDatabase;
+import edu.ui.guestReservationList.MyReservationsPage;
+
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -10,6 +14,7 @@ import javax.swing.text.DocumentFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
+import java.sql.SQLException;
 
 public class ProcessBillingPage extends JFrame {
     private JTextField firstNameField, lastNameField, addressField, zipCodeField, creditCardField, expiryDateField, cvcField;
@@ -17,15 +22,20 @@ public class ProcessBillingPage extends JFrame {
     private JLabel totalAmountLabel;
     private JButton payButton;
     private double totalAmount;
+    JPanel panel;
+    Reservation reservation;
+    MyReservationsPage page;
 
-    public ProcessBillingPage(double totalAmount) {
+    public ProcessBillingPage(double totalAmount, Reservation r, MyReservationsPage page) {
+        this.page = page;
+        this.reservation = r;
         this.totalAmount = totalAmount;
         setTitle("Process Billing");
         setSize(400, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        JPanel panel = new JPanel(new GridLayout(10, 2, 10, 10));
+        panel = new JPanel(new GridLayout(10, 2, 10, 10));
 
         panel.add(new JLabel("First Name:"));
         firstNameField = new JTextField(20);
@@ -59,6 +69,11 @@ public class ProcessBillingPage extends JFrame {
             }
         });
 
+        countryComboBox.addItemListener(e -> {
+            if (e.getItem().toString() == "United States") {
+                stateComboBox.setVisible(true);
+            }
+        });
 
         countryComboBox.setSelectedItem("United States");
         panel.add(countryComboBox);
@@ -68,6 +83,8 @@ public class ProcessBillingPage extends JFrame {
 
 
         panel.add(countryComboBox);
+        //set country to canada so they have to refresh the states and click on US
+        countryComboBox.setSelectedItem(countryComboBox.getItemAt(1));
 
         panel.add(new JLabel("State:"));
         stateComboBox = new JComboBox<>(getAllStates());
@@ -246,9 +263,16 @@ public class ProcessBillingPage extends JFrame {
             return;
         }
         JOptionPane.showMessageDialog(this, "Payment processed for $" + totalAmount);
+        ReservationDatabase.deleteReservation(reservation);
+        remove(panel);
+        try {
+            page.refreshReservations();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new ProcessBillingPage(100.00).setVisible(true));
+        //SwingUtilities.invokeLater(() -> new ProcessBillingPage(100.00).setVisible(true));
     }
 }

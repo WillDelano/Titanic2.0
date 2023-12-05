@@ -33,6 +33,8 @@ public class EditProfileController {
     public static void editAccount(User account, String email, String password) {
         /* Pass empty strings as the remaining parameters to show that this isn't a travel agent finishing their account.
         * For more information, read the updateAccount function */
+        account.setEmail(email);
+        account.setPassword(password);
         AccountDatabase.updateAccount(account, email, password, "", "", "");
     }
 

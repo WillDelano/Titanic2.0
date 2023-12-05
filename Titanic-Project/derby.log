@@ -1,24 +1,40 @@
 ----------------------------------------------------------------
-<<<<<<< HEAD
-Tue Dec 05 07:58:00 CST 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018c-3a45-7705-00001b590320 
+Tue Dec 05 17:28:48 CST 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018c-3c50-0b1d-00001b4c2628 
 on database directory C:\Users\Colet\Documents\GIT\Titanic2.0\Titanic-Project\src\main\java\edu\Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528 
 Loaded from file:/C:/Users/Colet/Documents/GIT/Titanic2.0/Titanic-Project/libs/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=21.0.1+12-29
 user.dir=C:\Users\Colet\Documents\GIT\Titanic2.0\Titanic-Project
 os.name=Windows 11
-=======
-Tue Dec 05 07:50:34 CST 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018c-3a3e-a9e8-00000f313c20 
-on database directory C:\Users\Owner\Desktop\Project\Titanic2.0\Titanic-Project\src\main\java\edu\Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528 
-Loaded from file:/C:/Users/Owner/Desktop/Project/Titanic2.0/Titanic-Project/libs/derby.jar
-java.vendor=Oracle Corporation
-java.runtime.version=20.0.1+9-29
-user.dir=C:\Users\Owner\Desktop\Project\Titanic2.0\Titanic-Project
-os.name=Windows 10
->>>>>>> 82f5531625976b7da86ebb7ee8922c7470c7d2e7
 os.arch=amd64
 os.version=10.0
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
+Tue Dec 05 17:28:48 CST 2023 Thread[#1,main,5,main] (XID = 7851), (SESSIONID = 3), (DATABASE = C:\Users\Colet\Documents\GIT\Titanic2.0\Titanic-Project\src\main\java\edu\Database), (DRDAID = null), Cleanup action starting
+Tue Dec 05 17:28:48 CST 2023 Thread[#1,main,5,main] (XID = 7851), (SESSIONID = 3), (DATABASE = C:\Users\Colet\Documents\GIT\Titanic2.0\Titanic-Project\src\main\java\edu\Database), (DRDAID = null), Failed Statement is: SELECT COUNT(*) FROM UsersV2
+java.lang.NullPointerException: Cannot invoke "org.apache.derby.iapi.sql.dictionary.ColumnDescriptor.getType()" because "<local9>" is null
+	at org.apache.derby.impl.sql.compile.ResultColumnList.buildEmptyIndexRow(ResultColumnList.java:1540)
+	at org.apache.derby.impl.sql.compile.FromBaseTable.getRowTemplate(FromBaseTable.java:4878)
+	at org.apache.derby.impl.sql.compile.FromBaseTable.estimateCost(FromBaseTable.java:1520)
+	at org.apache.derby.impl.sql.compile.OptimizerImpl.estimateTotalCost(OptimizerImpl.java:2709)
+	at org.apache.derby.impl.sql.compile.OptimizerImpl.costBasedCostOptimizable(OptimizerImpl.java:2265)
+	at org.apache.derby.impl.sql.compile.OptimizerImpl.costOptimizable(OptimizerImpl.java:2082)
+	at org.apache.derby.impl.sql.compile.FromBaseTable.optimizeIt(FromBaseTable.java:537)
+	at org.apache.derby.impl.sql.compile.ProjectRestrictNode.optimizeIt(ProjectRestrictNode.java:290)
+	at org.apache.derby.impl.sql.compile.OptimizerImpl.costPermutation(OptimizerImpl.java:2036)
+	at org.apache.derby.impl.sql.compile.SelectNode.optimize(SelectNode.java:1978)
+	at org.apache.derby.impl.sql.compile.DMLStatementNode.optimizeStatement(DMLStatementNode.java:298)
+	at org.apache.derby.impl.sql.compile.CursorNode.optimizeStatement(CursorNode.java:594)
+	at org.apache.derby.impl.sql.GenericStatement.prepMinion(GenericStatement.java:461)
+	at org.apache.derby.impl.sql.GenericStatement.prepare(GenericStatement.java:99)
+	at org.apache.derby.impl.sql.conn.GenericLanguageConnectionContext.prepareInternalStatement(GenericLanguageConnectionContext.java:1114)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement.<init>(EmbedPreparedStatement.java:134)
+	at org.apache.derby.impl.jdbc.EmbedPreparedStatement42.<init>(EmbedPreparedStatement42.java:41)
+	at org.apache.derby.iapi.jdbc.Driver42.newEmbedPreparedStatement(Driver42.java:56)
+	at org.apache.derby.impl.jdbc.EmbedConnection.prepareStatement(EmbedConnection.java:1735)
+	at org.apache.derby.impl.jdbc.EmbedConnection.prepareStatement(EmbedConnection.java:1563)
+	at edu.databaseAccessors.AccountDatabase.getUserCount(AccountDatabase.java:89)
+	at edu.databaseAccessors.AccountDatabase.addSampleUsers(AccountDatabase.java:165)
+	at edu.ui.authentication.LoginPage.main(LoginPage.java:148)
+Cleanup action completed

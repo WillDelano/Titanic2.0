@@ -130,7 +130,7 @@ public class BrowseRoomPage implements RoomListInterface {
 
         List<Room> filteredRooms = allRooms.stream()
                 .filter(room -> room.toString().toLowerCase().contains(searchText))
-                .filter(room -> selectedBedType.equals("All") || room.getBedType().equals(selectedBedType))
+                .filter(room -> selectedBedType.equals("All") || room.getBedTypeStr().equals(selectedBedType))
                 .filter(room -> room.getSmokingAvailable() == selectedSmoking)
                 .collect(Collectors.toList());
 
@@ -147,7 +147,7 @@ public class BrowseRoomPage implements RoomListInterface {
             Object[] row = new Object[]{
                     room.getRoomNumber(),
                     room.getNumberOfBeds(),
-                    room.getBedType(),
+                    room.getBedTypeStr(),
                     smoking,
                     room.getRoomPrice(),
                     room.getCruise()
@@ -189,38 +189,20 @@ public class BrowseRoomPage implements RoomListInterface {
 
     public void refreshRooms() {
         List<Room> roomSet = BrowseRoomController.getRooms(selectedCruise);
-        System.err.println("Reservations: ");
-        int numRooms = 0;
 
-        for (Room q : roomSet) {
-            System.err.println("\t" + q);
-            if(!q.isBooked()){
-                numRooms++;
-            }
-        }
-
-        //int numRooms = roomSet.size();
+        int numRooms = roomSet.size();
         String[][] data = new String[numRooms][6];
         int i = 0;
 
         for (Room temp : roomSet) {
             if(!temp.isBooked()){
-<<<<<<< HEAD
-                data[i][0] = String.valueOf(i + 1);
-                data[i][1] = String.valueOf(temp.getRoomNumber());
-                data[i][2] = String.valueOf(temp.getNumberOfBeds());
-                data[i][3] = String.valueOf(temp.getBedTypeStr());
-                data[i][4] = String.valueOf(temp.getSmokingAvailable());
-                data[i][5] = String.valueOf(temp.getRoomPrice());
-                data[i][6] = String.valueOf(temp.getCruise());
-=======
+
                 data[i][0] = String.valueOf(temp.getRoomNumber());
                 data[i][1] = String.valueOf(temp.getNumberOfBeds());
-                data[i][2] = String.valueOf(temp.getBedType());
+                data[i][2] = String.valueOf(temp.getBedTypeStr());
                 data[i][3] = String.valueOf(temp.getSmokingAvailable());
                 data[i][4] = String.valueOf(temp.getRoomPrice());
                 data[i][5] = String.valueOf(temp.getCruise());
->>>>>>> 82f5531625976b7da86ebb7ee8922c7470c7d2e7
                 i++;
             }
         }

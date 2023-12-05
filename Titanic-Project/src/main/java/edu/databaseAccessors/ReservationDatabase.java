@@ -93,7 +93,7 @@ public class ReservationDatabase {
                         Country endCountry = CountryDatabase.getCountry(resultSet.getString("endCountry"));
 
                         Reservation r = new Reservation(id, user, room, startDate, endDate, startCountry, endCountry);
-                        r.setCheckedIn(resultSet.getBoolean("CHECKEDIN"));
+
                         guestReservations.add(r);
                     }
                 }
@@ -133,10 +133,8 @@ public class ReservationDatabase {
                         LocalDate endDate = LocalDate.parse(resultSet.getString("endDate"));
                         Country startCountry = CountryDatabase.getCountry(resultSet.getString("startCountry"));
                         Country endCountry = CountryDatabase.getCountry(resultSet.getString("endCountry"));
-                        Reservation reserve = new Reservation(id,user,room,startDate,endDate,startCountry,endCountry);
-                        reserve.setCheckedIn(resultSet.getBoolean("checkedIn"));
-                        return new Reservation(id, user, room, startDate, endDate, startCountry, endCountry);
 
+                        return new Reservation(id, user, room, startDate, endDate, startCountry, endCountry);
                     }
                 }
             }
@@ -193,6 +191,8 @@ public class ReservationDatabase {
     public static boolean addReservation(Reservation newReservation) {
         String startDate = String.valueOf(newReservation.getStartDate());
         String endDate = String.valueOf(newReservation.getEndDate());
+
+        RoomDatabase.bookRoom(newReservation.getRoom().getRoomNumber());
 
         //if the reservation was not a duplicate
         if (!ReservationDatabase.hasReservation(newReservation)) {
@@ -286,6 +286,7 @@ public class ReservationDatabase {
             }
         } catch (Exception e) {
             e.printStackTrace();
+
             System.err.println("Failed to connect to database.");
         }
         return false;
@@ -341,9 +342,10 @@ public class ReservationDatabase {
      */
     public static void deleteReservation(Reservation reservation) {
         System.out.println("Deleting: " + reservation.getId());
-        try (Connection connection = DriverManager.getConnection(url)) {
+
         RoomDatabase.unbookRoom(reservation.getRoom().getRoomNumber());
 
+        try (Connection connection = DriverManager.getConnection(url)) {
             String select = "DELETE FROM Reservation WHERE id = ?";
             try (PreparedStatement statement = connection.prepareStatement(select)) {
                 statement.setLong(1, reservation.getId());
@@ -382,14 +384,9 @@ public class ReservationDatabase {
         }
 
         //get the connection to the db
-
         try (Connection connection = DriverManager.getConnection(url)) {
-<<<<<<< HEAD
-            String update = "UPDATE Reservation SET endDate=?, roomNum=? WHERE id=?";
-=======
             String update = "UPDATE Reservation SET endDate=?, roomNum=?, endCountry=? WHERE id=?";
 
->>>>>>> 82f5531625976b7da86ebb7ee8922c7470c7d2e7
             try (PreparedStatement statement = connection.prepareStatement(update)) {
                 statement.setString(1, endDate);
                 statement.setInt(2, Integer.parseInt(roomNumber));

@@ -1,6 +1,8 @@
 package edu.ui.editProfile;
 
 import edu.core.users.User;
+import edu.databaseAccessors.AccountDatabase;
+import edu.ui.authentication.LoginPage;
 import edu.ui.landingPage.LandingPage;
 
 import edu.ui.adminResetPasswords.ResetPasswordListPage;
@@ -50,7 +52,7 @@ public class EditProfile {
         frame.setSize(600, 400);
 
         mainPanel = new JPanel();
-        mainPanel.setLayout(new GridLayout(7, 3, 15, 20));
+        mainPanel.setLayout(new GridLayout(6, 3, 15, 20));
 
         String firstName = account.getFirstName();
         String lastName = account.getLastName();
@@ -61,9 +63,6 @@ public class EditProfile {
 
         passwordLabel = new JLabel("Password:");
         passwordField = new JTextField();
-
-        paymentLabel = new JLabel("Edit Payment Info:");
-        paymentButton = new JButton("Edit");
 
         deleteAccountLabel = new JLabel("Delete account:");
         deleteAccountYes = new JRadioButton("Yes");
@@ -102,26 +101,26 @@ public class EditProfile {
 
         //prefill the correct account information to display
         String password = account.getPassword();
+        try {
+            password = AccountDatabase.getUser(account.getUsername()).getPassword();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         passwordField.setText(password);
 
         mainPanel.add(new JLabel());
 
         //fourth row
-        mainPanel.add(paymentLabel);
-        mainPanel.add(paymentButton);
-        mainPanel.add(new JLabel());
-
-        //fifth row
         mainPanel.add(deleteAccountLabel);
         mainPanel.add(deleteAccountYes);
         mainPanel.add(deleteAccountNo);
 
-        //sixth row
+        //fifth row
         mainPanel.add(new JLabel());
         mainPanel.add(submitButton);
         mainPanel.add(new JLabel());
 
-        //seventh row
+        //sixth row
         mainPanel.add(new JLabel());
         mainPanel.add(backButton);
         mainPanel.add(new JLabel());
@@ -200,7 +199,7 @@ public class EditProfile {
                         frame.dispose();
 
                         if (comingFromTravelAgentPage) {
-                            previousLandingPage.show(); // Go back to the landing page
+                            new LoginPage(); // Go back to the landing page
                         }
                         else {
                             prevListPage.show(); // Go back to list page

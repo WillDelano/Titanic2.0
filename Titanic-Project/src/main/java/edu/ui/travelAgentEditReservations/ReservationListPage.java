@@ -94,6 +94,11 @@ public class ReservationListPage implements ReservationListInterface {
         backButton.addActionListener(e -> {
             mainFrame.dispose(); // Close the Edit Reservation page
             previousPage.show(); // Go back to the landingPage
+            try {
+                previousPage.refreshRooms();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         });
 
         JPanel buttonPanel = new JPanel();
