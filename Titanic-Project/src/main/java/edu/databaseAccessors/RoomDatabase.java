@@ -35,7 +35,7 @@ public class RoomDatabase {
      */
     public static void addRoom(Room room) {
         String insertSQL = "INSERT INTO Rooms (roomnumber, numberofbeds, bedtype, smokingavailable, roomprice, isbooked, cruise) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        try (Connection connection = driver.getDBConnection();
+        try (Connection connection = DriverManager.getConnection(url);
              PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
 
             preparedStatement.setInt(1, room.getRoomNumber());
@@ -54,7 +54,7 @@ public class RoomDatabase {
 
     public static boolean roomExists(int roomNumber) {
         String query = "SELECT COUNT(*) FROM Rooms WHERE roomnumber = ?";
-        try (Connection connection = driver.getDBConnection();
+        try (Connection connection = DriverManager.getConnection(url);
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setInt(1, roomNumber);
@@ -79,7 +79,7 @@ public class RoomDatabase {
     public static List<Room> getRoomsForCruise(String cruiseName) {
         List<Room> rooms = new ArrayList<>();
         String query = "SELECT * FROM Rooms WHERE cruise = ?";
-        try (Connection connection = driver.getDBConnection();
+        try (Connection connection = DriverManager.getConnection(url);
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, cruiseName);
@@ -132,7 +132,7 @@ public class RoomDatabase {
      */
     public static Room getRoom(int roomNumber) {
         String query = "SELECT * FROM Rooms WHERE roomnumber = ?";
-        try (Connection connection = driver.getDBConnection();
+        try (Connection connection = DriverManager.getConnection(url);
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setInt(1, roomNumber);
@@ -165,7 +165,7 @@ public class RoomDatabase {
     public static List<Room> getAllRooms() {
         List<Room> rooms = new ArrayList<>();
         String query = "SELECT * FROM Rooms";
-        try (Connection connection = driver.getDBConnection();
+        try (Connection connection = DriverManager.getConnection(url);
              PreparedStatement statement = connection.prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
@@ -199,7 +199,7 @@ public class RoomDatabase {
         }
 
         String query = "SELECT COUNT(*) FROM Rooms WHERE roomnumber = ?";
-        try (Connection connection = driver.getDBConnection();
+        try (Connection connection = DriverManager.getConnection(url);
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setInt(1, roomChoice);
@@ -218,7 +218,7 @@ public class RoomDatabase {
 
     public static void unbookRoom(int roomNumber) {
         String updateSQL = "UPDATE Rooms SET isbooked = false WHERE roomnumber = ?";
-        try (Connection connection = driver.getDBConnection();
+        try (Connection connection = DriverManager.getConnection(url);
              PreparedStatement preparedStatement = connection.prepareStatement(updateSQL)) {
 
             preparedStatement.setInt(1, roomNumber);
@@ -232,7 +232,7 @@ public class RoomDatabase {
 
     public static void bookRoom(int roomNumber) {
         String updateSQL = "UPDATE Rooms SET isbooked = true WHERE roomnumber = ?";
-        try (Connection connection = driver.getDBConnection();
+        try (Connection connection = DriverManager.getConnection(url);
              PreparedStatement preparedStatement = connection.prepareStatement(updateSQL)) {
 
             preparedStatement.setInt(1, roomNumber);
@@ -246,7 +246,7 @@ public class RoomDatabase {
         //fixme: actually updating sql(bed type, number of beds, status, and price all at once even if some are same)
         //fixme: finds room based on roomNumber
         int roomNum = room.getRoomNumber();
-        try (Connection connection = driver.getDBConnection()) {
+        try (Connection connection = DriverManager.getConnection(url)) {
             String update = "UPDATE ROOMS SET BEDTYPE = ?, NUMBEROFBEDS = ?,SMOKINGAVAILABLE = ?, ROOMPRICE = ? WHERE ROOMNUMBER = ?";
             try (PreparedStatement statement = connection.prepareStatement(update)) {
                 statement.setString(1, bedType);
