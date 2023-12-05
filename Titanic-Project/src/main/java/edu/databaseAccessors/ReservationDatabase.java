@@ -165,7 +165,7 @@ public class ReservationDatabase {
                 //executing the statement (executeQuery returns a ResultSet)
                 try (ResultSet resultSet = statement.executeQuery()) {
                     //get the values in the set and create reservations for them
-                    if (resultSet.next()) {
+                    while (resultSet.next()) {
                         String username = resultSet.getString("username");
 
                         allUsernames.add(username);
