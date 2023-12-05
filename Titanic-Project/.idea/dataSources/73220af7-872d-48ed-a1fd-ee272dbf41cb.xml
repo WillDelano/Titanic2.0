@@ -6,7 +6,7 @@
     </root>
     <schema id="2" parent="1" name="APP">
       <Current>1</Current>
-      <LocalIntrospectionTimestamp>2023-12-04.22:27:24</LocalIntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2023-12-05.03:34:58</LocalIntrospectionTimestamp>
     </schema>
     <schema id="3" parent="1" name="NULLID"/>
     <schema id="4" parent="1" name="SQLJ"/>
@@ -147,86 +147,47 @@
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <column id="43" parent="16" name="ROOMNUMBER">
-      <DasType>INTEGER|4s</DasType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-    </column>
-    <column id="44" parent="16" name="NUMBEROFBEDS">
-      <DasType>INTEGER|4s</DasType>
-      <Position>2</Position>
-    </column>
-    <column id="45" parent="16" name="BEDTYPE">
-      <DasType>VARCHAR(255)|12s</DasType>
-      <Position>3</Position>
-    </column>
-    <column id="46" parent="16" name="SMOKINGAVAILABLE">
-      <DasType>BOOLEAN|16s</DasType>
-      <Position>4</Position>
-    </column>
-    <column id="47" parent="16" name="ROOMPRICE">
-      <DasType>DOUBLE|8s</DasType>
-      <Position>5</Position>
-    </column>
-    <column id="48" parent="16" name="ISBOOKED">
-      <DasType>BOOLEAN|16s</DasType>
-      <Position>6</Position>
-    </column>
-    <column id="49" parent="16" name="CRUISE">
-      <DasType>VARCHAR(255)|12s</DasType>
-      <Position>7</Position>
-    </column>
-    <index id="50" parent="16" name="SQL0000000003-3988c0be-018b-87d4-1e11-0000073811d8">
-      <ColNames>ROOMNUMBER</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-      <Unique>1</Unique>
-    </index>
-    <key id="51" parent="16" name="SQL0000000003-3988c0be-018b-87d4-1e11-0000073811d8">
-      <ColNames>ROOMNUMBER</ColNames>
-      <NameSurrogate>1</NameSurrogate>
-      <Primary>1</Primary>
-    </key>
-    <column id="52" parent="17" name="ID">
+    <column id="43" parent="17" name="ID">
       <DasType>INTEGER|4s</DasType>
       <DefaultExpression>AUTOINCREMENT: start 1 increment 1</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="53" parent="17" name="TYPE">
+    <column id="44" parent="17" name="TYPE">
       <DasType>VARCHAR(255)|12s</DasType>
       <Position>2</Position>
     </column>
-    <column id="54" parent="17" name="USERNAME">
+    <column id="45" parent="17" name="USERNAME">
       <DasType>VARCHAR(255)|12s</DasType>
       <Position>3</Position>
     </column>
-    <column id="55" parent="17" name="PASSWORD">
+    <column id="46" parent="17" name="PASSWORD">
       <DasType>VARCHAR(255)|12s</DasType>
       <Position>4</Position>
     </column>
-    <column id="56" parent="17" name="FIRSTNAME">
+    <column id="47" parent="17" name="FIRSTNAME">
       <DasType>VARCHAR(255)|12s</DasType>
       <Position>5</Position>
     </column>
-    <column id="57" parent="17" name="LASTNAME">
+    <column id="48" parent="17" name="LASTNAME">
       <DasType>VARCHAR(255)|12s</DasType>
       <Position>6</Position>
     </column>
-    <column id="58" parent="17" name="EMAIL">
+    <column id="49" parent="17" name="EMAIL">
       <DasType>VARCHAR(255)|12s</DasType>
       <Position>7</Position>
     </column>
-    <column id="59" parent="17" name="REWARDPOINTS">
+    <column id="50" parent="17" name="REWARDPOINTS">
       <DasType>INTEGER|4s</DasType>
       <Position>8</Position>
     </column>
-    <index id="60" parent="17" name="SQL0000000002-dcd58064-018b-fb54-c77d-0000073796b8">
+    <index id="51" parent="17" name="SQL0000000002-dcd58064-018b-fb54-c77d-0000073796b8">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="61" parent="17" name="SQL0000000002-dcd58064-018b-fb54-c77d-0000073796b8">
+    <key id="52" parent="17" name="SQL0000000002-dcd58064-018b-fb54-c77d-0000073796b8">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>

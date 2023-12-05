@@ -45,11 +45,28 @@ public class ProcessBillingPage extends JFrame {
 
         panel.add(new JLabel("Country:"));
         countryComboBox = new JComboBox<>(getAllCountries());
+
+        // Initialize stateComboBox before calling toggleStateField
+        stateComboBox = new JComboBox<>(getAllStates());
+        stateComboBox.setVisible(false); // Initially hidden
+
+        // Now safely call toggleStateField
+        toggleStateField("United States");
+
         countryComboBox.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 toggleStateField(e.getItem().toString());
             }
         });
+
+
+        countryComboBox.setSelectedItem("United States");
+        panel.add(countryComboBox);
+
+        // Initialize the state field based on the default country
+        toggleStateField("United States");
+
+
         panel.add(countryComboBox);
 
         panel.add(new JLabel("State:"));
@@ -151,11 +168,83 @@ public class ProcessBillingPage extends JFrame {
 
     private String[] getAllStates() {
         // TODO: Replace with actual states list
-        return new String[]{"Alabama", "Alaska", "Arizona", "Arkansas", "California"};
+        return new String[] {
+                "Alabama", "Alaska", "Arizona", "Arkansas", "California",
+                "Colorado", "Connecticut", "Delaware", "Florida", "Georgia",
+                "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa",
+                "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland",
+                "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri",
+                "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey",
+                "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio",
+                "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina",
+                "South Dakota", "Tennessee", "Texas", "Utah", "Vermont",
+                "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"
+        };
+    }
+
+    // validation for each field
+    private boolean validateFields() {
+
+        if (firstNameField.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter your first name.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+
+        if (lastNameField.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter your last name.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+
+        if (addressField.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter your address.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+
+        if (!zipCodeField.getText().matches("\\d{5}")) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid 5-digit ZIP code.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+
+        if (countryComboBox.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(this, "Please select a country.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+
+        if ("United States".equals(countryComboBox.getSelectedItem()) && (stateComboBox.getSelectedItem() == null || stateComboBox.isVisible() && stateComboBox.getSelectedItem().toString().isEmpty())) {
+            JOptionPane.showMessageDialog(this, "Please select a state.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+
+        if (!creditCardField.getText().matches("\\d{4}-\\d{4}-\\d{4}-\\d{4}")) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid credit card number in the format XXXX-XXXX-XXXX-XXXX.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+
+        if (!expiryDateField.getText().matches("(0[1-9]|1[0-2])/\\d{2}")) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid expiry date in the format MM/YY.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+
+        if (!cvcField.getText().matches("\\d{3}")) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid 3-digit CVC number.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        return true;
     }
 
     private void processPayment() {
-        // Implement payment processing logic
+        if (!validateFields()) {
+            return;
+        }
         JOptionPane.showMessageDialog(this, "Payment processed for $" + totalAmount);
     }
 
