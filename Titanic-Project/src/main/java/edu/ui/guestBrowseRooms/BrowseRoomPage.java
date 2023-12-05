@@ -189,9 +189,8 @@ public class BrowseRoomPage implements RoomListInterface {
 
     public void refreshRooms() {
         List<Room> roomSet = BrowseRoomController.getRooms(selectedCruise);
-        int numRooms = 0;
 
-        //int numRooms = roomSet.size();
+        int numRooms = roomSet.size();
         String[][] data = new String[numRooms][6];
         int i = 0;
 
