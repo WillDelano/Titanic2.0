@@ -221,8 +221,7 @@ public class AccountDatabase {
 
         String accountType = "";
         try (Connection connection = DriverManager.getConnection(url)) {
-<<<<<<< HEAD
-            String query = "SELECT type FROM Users WHERE username = ?";
+            String query = "SELECT type FROM UsersV2 WHERE username = ?";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setString(1, username);
                 try (ResultSet resultSet = statement.executeQuery()) {
@@ -231,16 +230,6 @@ public class AccountDatabase {
                     } else {
                         System.err.println("No account found, returning empty account type.");
                     }
-=======
-        String query = "SELECT type FROM UsersV2 WHERE username = ?";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, username);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    accountType = resultSet.getString("type");
-                } else {
-                    System.err.println("No account found, returning empty account type.");
->>>>>>> 82f5531625976b7da86ebb7ee8922c7470c7d2e7
                 }
             }
         } catch (SQLException e) {
