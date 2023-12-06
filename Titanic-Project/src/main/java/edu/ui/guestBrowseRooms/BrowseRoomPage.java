@@ -20,10 +20,12 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.util.stream.Collectors;
+import edu.core.reservation.roomSearch;
 
 /**
  * UI for displaying all rooms on a cruise
@@ -34,21 +36,29 @@ import java.util.stream.Collectors;
  * @version 1.0
  * @see RoomDatabase , Room, BrowseRoomController
  */
-public class BrowseRoomPage implements RoomListInterface {
 
+public class BrowseRoomPage implements RoomListInterface {
+    private roomSearch cruiseSearch;
     private JFrame roomFrame;
-    private JLabel titleLabel;
+    JScrollPane listScrollPane;
+    private JLabel titleLabel, bedCount, sortBy;
+    private JPanel northPanel, filterPanel;
+    private JMenuBar searchMenu;
     private JList<Room> roomList;
-    private JButton backButton;
-    private JButton selectRoomButton;
+    private JTextField searchTextField;
+    private JButton backButton, selectRoomButton, optionsButton, searchButton;
+    private JButton applyButton;
+    private JCheckBox smokingBox, nonSmokingBox;
+    JComboBox<String> bedCountOption, sortTypeOption;
+    List<Room> currentRooms;
+    private boolean optionVisible = false;
     private JTable roomTable;
     private String selectedCruise;
     private SelectCruisePage prevPage;
-    private JTextField searchTextField;
     private JComboBox<String> bedTypeFilter;
     private JComboBox<Boolean> smokingFilter;
     private List<Room> allRooms;
-    private JPanel northPanel;
+
     public BrowseRoomPage(SelectCruisePage prevPage, String selectedCruise) {
         this.selectedCruise = selectedCruise;
         this.prevPage = prevPage;
@@ -67,23 +77,9 @@ public class BrowseRoomPage implements RoomListInterface {
         northPanel.setLayout(new BorderLayout());
         northPanel.add(titleLabel, BorderLayout.NORTH);
 
-        JPanel searchPanel = new JPanel();
-        searchTextField = new JTextField(20);
-        bedTypeFilter = new JComboBox<>(new String[]{"All", "Twin", "Queen", "King"});
-        smokingFilter = new JComboBox<>(new Boolean[]{true, false});
-
-        searchTextField.addActionListener(this::filterRooms);
-        bedTypeFilter.addActionListener(this::filterRooms);
-        smokingFilter.addActionListener(this::filterRooms);
-
-        searchPanel.add(new JLabel("Search:"));
-        searchPanel.add(searchTextField);
-        searchPanel.add(new JLabel("Bed Type:"));
-        searchPanel.add(bedTypeFilter);
-        searchPanel.add(new JLabel("Smoking:"));
-        searchPanel.add(smokingFilter);
-
-        northPanel.add(searchPanel, BorderLayout.SOUTH);
+        generateSearchMenu();
+        generateFilterPanel();
+        cruiseSearch = new roomSearch(allRooms);
 
         roomFrame.add(northPanel, BorderLayout.NORTH);
 
@@ -116,6 +112,9 @@ public class BrowseRoomPage implements RoomListInterface {
         contentPanel.add(new JScrollPane(roomTable), BorderLayout.CENTER);
 
         roomFrame.add(contentPanel, BorderLayout.CENTER);
+        roomFrame.add(northPanel, BorderLayout.NORTH);
+        roomFrame.setJMenuBar(searchMenu);
+        roomFrame.add(buttonPanel, BorderLayout.SOUTH);
 
         refreshRooms();
 
@@ -187,6 +186,110 @@ public class BrowseRoomPage implements RoomListInterface {
         }
     }
 
+    /**
+     * Generates panel for search input
+     *
+     */
+    private void generateSearchMenu(){
+        searchMenu = new JMenuBar();
+        searchMenu.setPreferredSize(new Dimension(1000, 30));
+        searchTextField = new JTextField();
+        searchButton = new JButton("search");
+        optionsButton = new JButton("options");
+
+        optionsButton.addActionListener(e -> {
+            filterPanelVisibility();
+        });
+        searchButton.addActionListener(e -> {
+            applyFilters();
+            List <Room> list = cruiseSearch.findRooms(searchTextField.getText());
+            updateRoomTable(list);
+            /*
+            currentRooms = new ArrayList<>(list);
+            roomFrame.remove(listScrollPane);
+
+            roomList = new JList<>(list.toArray(new Room[0]));
+            listScrollPane = new JScrollPane(roomList);
+            listScrollPane.getViewport().revalidate();
+            listScrollPane.getViewport().repaint();
+            roomFrame.add(listScrollPane, BorderLayout.CENTER);
+
+            roomFrame.revalidate();
+            roomFrame.repaint();*/
+        });
+
+        searchMenu.add(searchTextField);
+        searchMenu.add(searchButton);
+        searchMenu.add(optionsButton);
+    }
+
+    /**
+     * Generates panel for filter input options
+     *
+     */
+    private void generateFilterPanel(){
+        filterPanel = new JPanel();
+        smokingBox = new JCheckBox("Smoking");
+        smokingBox.setSelected(true);
+        nonSmokingBox = new JCheckBox("Non-Smoking  ");
+        nonSmokingBox.setSelected(true);
+        applyButton = new JButton("apply");
+
+        bedCount = new JLabel("number of beds  ");
+        sortBy = new JLabel("sortBy  ");
+
+        String bedCounts[] = { "All","1", "2", "3", "4"};
+        bedCountOption = new JComboBox<>(bedCounts);
+
+        String sortTypes[] = { "None","Price: Ascending", "Price: Descending"};
+        sortTypeOption = new JComboBox<>(sortTypes);
+
+        applyButton.addActionListener( e->{
+            applyFilters();
+            //roomFrame.remove(listScrollPane);
+
+            List<Room> list = new ArrayList<>(cruiseSearch.sortAndFilterRooms(allRooms));
+            updateRoomTable(list);
+            /*
+            roomList = new JList<>(list.toArray(new Room[0]));
+
+            listScrollPane = new JScrollPane(roomList);
+            listScrollPane.getViewport().revalidate();
+            listScrollPane.getViewport().repaint();
+            roomFrame.add(listScrollPane, BorderLayout.CENTER);
+
+            roomFrame.revalidate();
+            roomFrame.repaint();*/
+        });
+
+        filterPanel.add(smokingBox, BorderLayout.SOUTH);
+        filterPanel.add(nonSmokingBox);
+        filterPanel.add(bedCountOption);
+        filterPanel.add(bedCount);
+        filterPanel.add(sortTypeOption);
+        filterPanel.add(sortBy);
+
+        filterPanel.add(applyButton);
+    }
+
+    /**
+     * Allows panel for filters option to be open and closed
+     *
+     */
+    private void filterPanelVisibility(){
+        if(!optionVisible) {
+            northPanel.add(filterPanel, BorderLayout.CENTER);
+            optionVisible = true;
+            //roomFrame.add(filterPanel, BorderLayout.NORTH);
+            roomFrame.revalidate();
+        } else {
+            optionVisible = false;
+            //roomFrame.remove(filterPanel);
+            northPanel.remove(filterPanel);
+            roomFrame.revalidate();
+        }
+    }
+
     public void refreshRooms() {
         List<Room> roomSet = BrowseRoomController.getRooms(selectedCruise);
 
@@ -217,6 +320,47 @@ public class BrowseRoomPage implements RoomListInterface {
         TableColumnModel columnModel = roomTable.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(1);
         columnModel.getColumn(1).setPreferredWidth(100);
+    }
+    private void applyFilters(){
+
+        //smoking options
+        if(smokingBox.isSelected() && nonSmokingBox.isSelected()){
+            cruiseSearch.setSmokingType(roomSearch.smokingSortType.ALL);
+        } else if (smokingBox.isSelected() && !nonSmokingBox.isSelected()){
+            cruiseSearch.setSmokingType(roomSearch.smokingSortType.SMOKING);
+        } else if (!smokingBox.isSelected() && nonSmokingBox.isSelected()){
+            cruiseSearch.setSmokingType(roomSearch.smokingSortType.NON_SMOKING);
+        } else {
+            cruiseSearch.setSmokingType(roomSearch.smokingSortType.ALL);
+        }
+
+        //bed count options
+        if(bedCountOption.getSelectedItem().equals("All")){
+            cruiseSearch.setBedCount(roomSearch.bedCountType.ALL);
+
+        } else if (bedCountOption.getSelectedItem().equals("1")) {
+            cruiseSearch.setBedCount(roomSearch.bedCountType.ONE);
+
+        }else if (bedCountOption.getSelectedItem().equals("2")) {
+            cruiseSearch.setBedCount(roomSearch.bedCountType.TWO);
+
+        }else if (bedCountOption.getSelectedItem().equals("3")) {
+            cruiseSearch.setBedCount(roomSearch.bedCountType.THREE);
+
+        }else if (bedCountOption.getSelectedItem().equals("4")) {
+            cruiseSearch.setBedCount(roomSearch.bedCountType.FOUR);
+        }
+
+        //sort option
+        if(sortTypeOption.getSelectedItem().equals("None")){
+            cruiseSearch.setPriceSorting(roomSearch.priceSortType.NONE);
+
+        } else if (sortTypeOption.getSelectedItem().equals("Price: Ascending")) {
+            cruiseSearch.setPriceSorting(roomSearch.priceSortType.ASCENDING);
+
+        }else if (sortTypeOption.getSelectedItem().equals("Price: Descending")) {
+            cruiseSearch.setPriceSorting(roomSearch.priceSortType.DESCENDING);
+        }
     }
     public void show() {
         refreshRooms();
