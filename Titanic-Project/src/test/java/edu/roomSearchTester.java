@@ -43,7 +43,7 @@ public class roomSearchTester {
 
     @Test
     public void printRoomTest() {
-        //allRooms.forEach(obj -> System.out.println(obj.getRoomNumber()));
+        allRooms.forEach(obj -> System.out.println(obj.getRoomNumber()));
 
     }
     @Test

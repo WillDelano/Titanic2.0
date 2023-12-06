@@ -5,6 +5,7 @@ import edu.core.reservation.Reservation;
 import edu.core.reservation.Room;
 import edu.core.users.Guest;
 import edu.core.users.User;
+import edu.databaseAccessors.DatabaseProperties;
 import edu.databaseAccessors.ReservationDatabase;
 import edu.databaseAccessors.RoomDatabase;
 
@@ -30,7 +31,7 @@ public class RoomDBTester {
 
     @Test
     public void testAddRoom() {
-        Room testRoom = new Room(101, 2, "Single", false, 150.0, "CruiseA");
+        Room testRoom = new Room(10001, 2, "Single", false, 150.0, "CruiseA");
         RoomDatabase.addRoom(testRoom);
 
         Room retrievedRoom = RoomDatabase.getRoom(101);
@@ -54,6 +55,31 @@ public class RoomDBTester {
     @Test
     public void getRoomForCruiseTrue(){
         assertEquals(RoomDatabase.getRoomsForCruise("Alaskan").size(),57);
+    }
+
+    @Test
+    public void testGetAllRooms(){
+        assertEquals(RoomDatabase.getAllRooms().size(),148);
+    }
+
+    @AfterEach
+    public void tearDown() {
+        String url = DatabaseProperties.url;
+        try (Connection connection = DriverManager.getConnection(url)) {
+            String deleteQuery = "DELETE FROM ROOMS WHERE roomNumber = ?";
+            try (PreparedStatement statement = connection.prepareStatement(deleteQuery)) {
+                statement.setInt(1, 10001);
+                int deleted;
+                deleted = statement.executeUpdate();
+
+                if (deleted <= 0) {
+                    System.out.println("Failed to delete data");
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
