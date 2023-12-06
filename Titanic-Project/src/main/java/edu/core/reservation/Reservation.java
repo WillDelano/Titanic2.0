@@ -56,8 +56,8 @@ public class Reservation {
         room.bookRoom();
     }
 
-    public void setCheckedIn(){
-        checkedIn = true;
+    public void setCheckedIn(boolean newCheckIn){
+        checkedIn = newCheckIn;
     }
     public boolean getCheckedIn(){
         return checkedIn;

@@ -93,6 +93,7 @@ public class ReservationDatabase {
                         Country endCountry = CountryDatabase.getCountry(resultSet.getString("endCountry"));
 
                         Reservation r = new Reservation(id, user, room, startDate, endDate, startCountry, endCountry);
+                        r.setCheckedIn(resultSet.getBoolean("checkedIn"));
 
                         guestReservations.add(r);
                     }
