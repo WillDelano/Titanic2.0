@@ -29,9 +29,11 @@ public class CruiseDatabase {
         initializeDatabase(); // Static initialization of the database
     }
 
-    public CruiseDatabase() {
-    }
-
+    /**
+     * operation to add a cruise to the database
+     *
+     * @param cruise cruise object to add to the database
+     */
     public static void addCruise(Cruise cruise) {
         String insertSQL = "INSERT INTO Cruises (name, departure, maxCapacity) VALUES (?, ?, ?)";
         try (Connection connection = DriverManager.getConnection(url);
@@ -47,6 +49,10 @@ public class CruiseDatabase {
         }
     }
 
+    /**
+     * operation initialize the database and add the cruises to the database list
+     *
+     */
     private static void initializeDatabase() {
         try (Connection connection = DriverManager.getConnection(url)) {
             String query = "SELECT * FROM Cruises";
@@ -65,6 +71,12 @@ public class CruiseDatabase {
         }
     }
 
+    /**
+     * operation to get a cruise from the database
+     *
+     * @param cruiseName name of cruise to get from the database
+     * @return the cruise object retrieved
+     */
     public static Cruise getCruise(String cruiseName) {
         String query = "SELECT * FROM Cruises WHERE name = ?";
         try (Connection connection = DriverManager.getConnection(url);
@@ -82,6 +94,11 @@ public class CruiseDatabase {
         return null;
     }
 
+    /**
+     * operation to create cruises from a given result set
+     *
+     * @param resultSet the set to create cruise objects from
+     */
     private static Cruise createCruiseFromResultSet(ResultSet resultSet) throws SQLException {
         String name = resultSet.getString("name");
         LocalDate departure = resultSet.getDate("departure").toLocalDate();
@@ -95,6 +112,11 @@ public class CruiseDatabase {
         return new Cruise(name, departure, maxCapacity, travelPath, roomList);
     }
 
+    /**
+     * Retrieves a list of all cruises from the database.
+     *
+     * @return A list of Cruise objects representing all cruises.
+     */
     public static List<Cruise> getAllCruises() {
         List<Cruise> cruises = new ArrayList<>();
         String query = "SELECT * FROM Cruises";
@@ -111,7 +133,11 @@ public class CruiseDatabase {
         return cruises;
     }
 
-
+    /**
+     * Retrieves a list of names of all cruises from the database.
+     *
+     * @return A list of strings containing names of all cruises.
+     */
     public static List<String> getAllCruiseNames() {
         List<String> cruiseNames = new ArrayList<>();
         String query = "SELECT name FROM Cruises";
@@ -129,6 +155,9 @@ public class CruiseDatabase {
         return cruiseNames;
     }
 
+    /**
+     * Initializes the database with predefined cruises if they do not exist.
+     */
     public static void initializeCruises() {
         List<Cruise> predefinedCruises = Arrays.asList(
                 new Cruise("Caribbean Adventure", LocalDate.of(2023, 12, 12), 200, createCaribbeanTravelPath(), createSampleRoomList()),
@@ -143,10 +172,21 @@ public class CruiseDatabase {
         }
     }
 
+    /**
+     * Checks if a cruise with the specified name already exists in the database.
+     *
+     * @param cruiseName The name of the cruise to check.
+     * @return true if the cruise exists, false otherwise.
+     */
     private static boolean cruiseExists(String cruiseName) {
         return getAllCruiseNames().contains(cruiseName);
     }
 
+    /**
+     * Creates a travel path for the Caribbean cruise.
+     *
+     * @return A list of Country objects representing the travel path.
+     */
     private static List<Country> createCaribbeanTravelPath() {
         return Arrays.asList(
                 new Country("Kingston, Jamaica", LocalDate.of(2023, 12, 12), LocalDate.of(2023, 12, 12)),
@@ -155,6 +195,11 @@ public class CruiseDatabase {
         );
     }
 
+    /**
+     * Creates a travel path for the Mediterranean cruise.
+     *
+     * @return A list of Country objects representing the travel path.
+     */
     private static List<Country> createMediterraneanTravelPath() {
         return Arrays.asList(
                 new Country("Naples, Italy", LocalDate.of(2023, 7, 4), LocalDate.of(2023, 7, 4)),
@@ -163,6 +208,11 @@ public class CruiseDatabase {
         );
     }
 
+    /**
+     * Creates a travel path for the Alaskan cruise.
+     *
+     * @return A list of Country objects representing the travel path.
+     */
     private static List<Country> createAlaskanTravelPath() {
         return Arrays.asList(
                 new Country("Juneau, United States", LocalDate.of(2023, 6, 14), LocalDate.of(2023, 6, 14)),
@@ -171,7 +221,11 @@ public class CruiseDatabase {
         );
     }
 
-
+    /**
+     * Creates a sample list of rooms for different cruises.
+     *
+     * @return A list of Room objects representing sample rooms.
+     */
     private static List<Room> createSampleRoomList() {
         return Arrays.asList(
                 new Room(101, 2, "Double", false, 150.0, "Caribbean Adventure"),
@@ -184,6 +238,12 @@ public class CruiseDatabase {
         );
     }
 
+    /**
+     * Retrieves the travel path for a specific cruise from the database.
+     *
+     * @param cruiseName The name of the cruise to retrieve the travel path for.
+     * @return A list of Country objects representing the travel path.
+     */
     public static List<Country> getTravelPathForCruise(String cruiseName) {
         List<Country> travelPath = new ArrayList<>();
         String query = "SELECT c.* FROM Countries c JOIN Cruises cr ON c.cruise_id = cr.id WHERE cr.name = ?";
@@ -208,5 +268,4 @@ public class CruiseDatabase {
 
         return travelPath;
     }
-
 }
