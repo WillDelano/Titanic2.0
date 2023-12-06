@@ -421,10 +421,10 @@ public class ReservationDatabase {
         //connecting to the table
         String updateTableSQL = "UPDATE Reservation SET Checkedin = ? WHERE id = ?";
         LocalDate rightNow = LocalDate.now();
-        LocalDate testDate = LocalDate.of(2023,12,12);
+        //LocalDate testDate = LocalDate.of(2023,12,12);
         //LocalDate testDate = LocalDate.of(2023,12,12);
         System.out.println("the current date is: " + rightNow + "The check in date is: " + reservation.getStartDate());
-        if (testDate.equals(reservation.getStartDate())) {
+        if (rightNow.equals(reservation.getStartDate())) {
             try (Connection dbConnection = DriverManager.getConnection(url);
                  PreparedStatement statement = dbConnection.prepareStatement(updateTableSQL)) {
                 //the checked in is being inserted first, then the id in the updateTableSQL
