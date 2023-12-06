@@ -5,8 +5,9 @@ import edu.core.reservation.Reservation;
 import edu.core.reservation.Room;
 import edu.core.users.Guest;
 import edu.core.users.User;
+import edu.databaseAccessors.DatabaseProperties;
 import edu.databaseAccessors.ReservationDatabase;
-import edu.uniqueID.UniqueID;
+import edu.databaseAccessors.RoomDatabase;
 import org.junit.jupiter.api.*;
 
 import java.sql.Connection;
@@ -22,50 +23,50 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ReservationDBTester {
-    private String url = "jdbc:derby:C:\\Users\\Owner\\Desktop\\Titanic2.0\\Titanic-Project\\src\\main\\java\\edu\\Database";
-    private Guest u = new Guest("wdelano", "baylor", new UniqueID().getId(), "Will", "Delano", 0, "wdelano2002@gmail.com");
+private String url = DatabaseProperties.url;
+    private Guest c = new Guest("chogan","baylor","cole","hogan",100,"yo@gmail.com");
+    Reservation r;
+    int id;
     @BeforeEach
     public void setUp() {
-        new ReservationDatabase();
 
         try (Connection connection = DriverManager.getConnection(url)) {
-            String insertQuery = "INSERT INTO Reservation (username, duration, startCountry, endCountry, roomNum, startDate, endDate)" +
-                    " VALUES (?, ?, ?, ?, ?, ?, ?)";
+            //command to insert all information
+            String insert = "INSERT INTO Reservation (username, duration, startDate, endDate, startCountry, endCountry, roomNum) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement statement = connection.prepareStatement(insert)) {
+                statement.setString(1,"chogan" );
+                statement.setLong(2, 0);
+                statement.setString(3, "2023-12-12");
+                statement.setString(4, "2023-12-12");
+                statement.setString(5, "Kingston, Jamaica");
+                statement.setString(6, "Kingston, Jamaica");
+                statement.setInt(7, 9999);
 
-            try (PreparedStatement statement = connection.prepareStatement(insertQuery)) {
-                statement.setString(1, "wdelano");
-                statement.setInt(2, 10);
-                statement.setString(3, "Cambodia");
-                statement.setString(4, "Kyrgyzstan");
-                statement.setInt(5, 4327);
-                statement.setString(6, "2002-29-09");
-                statement.setString(7, "2002-30-09");
-
-                int result = statement.executeUpdate();
-
-                if (result <= 0) {
-                    System.out.println("Failed to insert test data");
+                int inserted = statement.executeUpdate();
+                r = ReservationDatabase.getReservationByRoom(9999);
+                id = r.getId();
+                if (inserted <= 0) {
+                    System.out.println("Failed to insert data");
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
+
         }
     }
+
+
 
     @AfterEach
     public void tearDown() {
         try (Connection connection = DriverManager.getConnection(url)) {
             //clear the table
-            String deleteQuery = "DELETE FROM Reservation";
+            String deleteQuery = "DELETE FROM Reservation WHERE roomNumber = 9999";
             try (PreparedStatement statement = connection.prepareStatement(deleteQuery)) {
                 statement.executeUpdate();
             }
 
-            //reset the id incrementer to 1
-            String resetId = "ALTER TABLE Reservation ALTER COLUMN id RESTART WITH 1";
-            try (PreparedStatement statement = connection.prepareStatement(resetId)) {
-                statement.executeUpdate();
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -77,8 +78,8 @@ public class ReservationDBTester {
     }
 
     @Test
-    public void findTest() {
-        assertTrue(ReservationDatabase.hasUser(u));
+    public void getReservations(){
+        assertTrue(ReservationDatabase.hasReservation(r));
     }
 
     @Test
@@ -86,11 +87,12 @@ public class ReservationDBTester {
         //setting values to null and hardcoding id because delete only uses the id to match
         LocalDate date = LocalDate.now();
         Room room = new Room(0, 0, null, false, 0, null);
-        Reservation r = new Reservation(null, room, date, date, null, null);
+        Country u = new Country("Kingston, Jamaica", date, date);
+        Reservation r2 = new Reservation(id+1,c, room, date, date,u,u);
         r.setId(1);
 
         ReservationDatabase.deleteReservation(r);
-        Assertions.assertFalse(ReservationDatabase.hasUser(u));
+        Assertions.assertFalse(ReservationDatabase.hasUser(c));
     }
 
     @Test
@@ -101,10 +103,10 @@ public class ReservationDBTester {
         //setting values to null and hardcoding id because delete only uses the id to match
         LocalDate date = LocalDate.now();
         Room room = new Room(0, 0, null, false, 0, null);
-        Reservation r = new Reservation(null, room, date, date, null, null);
-        r.setId(1);
+        Reservation r2 = new Reservation(id+1,c, room, date, date, null, null);
 
-        ReservationDatabase.deleteReservation(r);
+
+        ReservationDatabase.deleteReservation(r2);
 
         //should have no data
         assertEquals(ReservationDatabase.getReservationDatabaseSize(), 0);
@@ -113,34 +115,35 @@ public class ReservationDBTester {
     @Test
     public void addReservationTest() {
         Room room = new Room(0, 0, "", false, 0, "test");
-        LocalDate date = LocalDate.now();
-        Country c = new Country("Test", date, date);
+        LocalDate date = LocalDate.of(2023,12,12);
+        Country u= new Country("Test", date, date);
 
-        Reservation r = new Reservation(u, room, date, date, c, c);
+        Reservation r2 = new Reservation(id+1,c, room, date, date, u, u);
 
-        ReservationDatabase.addReservation(r);
+        ReservationDatabase.addReservation(r2);
 
         //should have init data and function data
         assertEquals(ReservationDatabase.getReservationDatabaseSize(), 2);
-        assertTrue((ReservationDatabase.hasReservation(r)));
+        assertTrue((ReservationDatabase.hasReservation(r2)));
     }
 
     @Test
     public void getReservationsTest() {
         LocalDate date = LocalDate.now();
         Room room = new Room(0, 0, "", false, 0, "test");
-        Country c = new Country("Test", date, date);
-        Reservation r = new Reservation(u, room, date, date, c, c);
+        Country u = new Country("Kingston, Jamaica", date, date);
+        Reservation r2 = new Reservation(id+1,c, room, date, date, u, u);
 
-        ReservationDatabase.addReservation(r);
+        ReservationDatabase.addReservation(r2);
 
-        Set<Reservation> set = ReservationDatabase.getReservations(u);
+        Set<Reservation> set = ReservationDatabase.getReservations(c);
 
         assertEquals(set.size(), 2);
 
         for (Reservation res : set) {
-            assertEquals(res.getUser().getUsername(), "wdelano");
+            assertEquals(res.getUser().getUsername(), "chogan");
         }
+        ReservationDatabase.deleteReservation(r2);
     }
 
     public static void shutdownDatabase() {

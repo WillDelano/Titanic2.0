@@ -7,7 +7,7 @@ import edu.core.users.Guest;
 import edu.core.users.User;
 import edu.databaseAccessors.ReservationDatabase;
 import edu.databaseAccessors.RoomDatabase;
-import edu.uniqueID.UniqueID;
+
 import org.junit.jupiter.api.*;
 
 import java.sql.Connection;
@@ -19,11 +19,14 @@ import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class RoomDBTester {
+
+
 
     @Test
     public void testAddRoom() {
@@ -36,4 +39,22 @@ public class RoomDBTester {
         assertEquals(2, retrievedRoom.getNumberOfBeds());
 
     }
+
+    @Test
+    public void roomExistsFails(){
+        Room testRoom = new Room(20001, 3,"Double", false,150.0,"CruiseB");
+        assertNotEquals(RoomDatabase.roomExists(20001),true);
+    }
+
+    @Test
+    public void roomExistsTrue(){
+        assertTrue(RoomDatabase.roomExists(102));
+    }
+
+    @Test
+    public void getRoomForCruiseTrue(){
+        assertEquals(RoomDatabase.getRoomsForCruise("Alaskan").size(),57);
+    }
+
+
 }
