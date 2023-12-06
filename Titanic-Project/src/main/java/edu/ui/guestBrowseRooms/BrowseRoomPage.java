@@ -204,18 +204,6 @@ public class BrowseRoomPage implements RoomListInterface {
             applyFilters();
             List <Room> list = cruiseSearch.findRooms(searchTextField.getText());
             updateRoomTable(list);
-            /*
-            currentRooms = new ArrayList<>(list);
-            roomFrame.remove(listScrollPane);
-
-            roomList = new JList<>(list.toArray(new Room[0]));
-            listScrollPane = new JScrollPane(roomList);
-            listScrollPane.getViewport().revalidate();
-            listScrollPane.getViewport().repaint();
-            roomFrame.add(listScrollPane, BorderLayout.CENTER);
-
-            roomFrame.revalidate();
-            roomFrame.repaint();*/
         });
 
         searchMenu.add(searchTextField);
@@ -246,20 +234,8 @@ public class BrowseRoomPage implements RoomListInterface {
 
         applyButton.addActionListener( e->{
             applyFilters();
-            //roomFrame.remove(listScrollPane);
-
             List<Room> list = new ArrayList<>(cruiseSearch.sortAndFilterRooms(allRooms));
             updateRoomTable(list);
-            /*
-            roomList = new JList<>(list.toArray(new Room[0]));
-
-            listScrollPane = new JScrollPane(roomList);
-            listScrollPane.getViewport().revalidate();
-            listScrollPane.getViewport().repaint();
-            roomFrame.add(listScrollPane, BorderLayout.CENTER);
-
-            roomFrame.revalidate();
-            roomFrame.repaint();*/
         });
 
         filterPanel.add(smokingBox, BorderLayout.SOUTH);
