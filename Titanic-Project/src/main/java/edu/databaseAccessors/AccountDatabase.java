@@ -415,7 +415,6 @@ public class AccountDatabase {
         }
     }
 
-
     /**
      * Operation to delete account from SQL database
      *
@@ -449,6 +448,10 @@ public class AccountDatabase {
         }
     }
 
+    /**
+     * Operation to shut down the SQL database
+     *
+     */
     public static void shutdown() throws SQLException {
         try {
             DriverManager.getConnection("jdbc:derby:;shutdown=true");
