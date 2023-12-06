@@ -8,6 +8,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/derby.log" beforeDir="false" afterPath="$PROJECT_DIR$/derby.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/db.lck" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/log/log.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/log/log1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/log/log1.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/log/logmirror.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c490.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c490.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c4a1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c4a1.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c600.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c600.dat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Tue Dec 05 21:18:05 CST 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018c-3d21-f74c-00001b4bec90 
+on database directory C:\Users\Colet\Documents\GIT\Titanic2.0\Titanic-Project\src\main\java\edu\Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528 
+Loaded from file:/C:/Users/Colet/Documents/GIT/Titanic2.0/Titanic-Project/libs/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=21.0.1+12-29
+user.dir=C:\Users\Colet\Documents\GIT\Titanic2.0\Titanic-Project
+os.name=Windows 11
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
