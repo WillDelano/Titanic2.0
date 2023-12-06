@@ -503,7 +503,7 @@ public class ReservationDatabase {
             statement.setBoolean(1, false);
             statement.setInt(2, reservation.getId());
 
-            ReservationDatabase.deleteReservation(reservation);
+            RoomDatabase.unbookRoom(reservation.getRoom().getRoomNumber());
 
             System.out.println("Data updated successfully");
             System.out.println(updateTableSQL);

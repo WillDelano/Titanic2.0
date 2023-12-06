@@ -26,8 +26,6 @@ public class ReservationListPageController {
     }
 
     public static void CheckOutGuest(Reservation reservation){
-        ReservationDatabase.checkOutGuest(reservation);
-
+        ReservationDatabase.deleteReservation(reservation);
     }
-
 }
