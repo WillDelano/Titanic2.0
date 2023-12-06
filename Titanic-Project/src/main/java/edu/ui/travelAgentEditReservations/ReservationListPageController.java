@@ -2,7 +2,7 @@ package edu.ui.travelAgentEditReservations;
 
 import edu.core.reservation.Reservation;
 import edu.core.users.Guest;
-import edu.databaseAccessors.CheckInDatabase;
+
 import edu.databaseAccessors.ReservationDatabase;
 import edu.exceptions.NoMatchingReservationException;
 
@@ -21,12 +21,12 @@ public class ReservationListPageController {
     public static boolean CheckInGuest(Reservation reservation){
         boolean checkedIn;
 
-        checkedIn = CheckInDatabase.checkInGuest(reservation);
+        checkedIn = ReservationDatabase.checkInGuest(reservation);
         return checkedIn;
     }
 
     public static void CheckOutGuest(Reservation reservation){
-        CheckInDatabase.checkOutGuest(reservation);
+        ReservationDatabase.checkOutGuest(reservation);
 
     }
 
