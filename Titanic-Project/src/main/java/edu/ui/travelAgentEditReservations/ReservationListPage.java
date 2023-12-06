@@ -209,10 +209,8 @@ public class ReservationListPage implements ReservationListInterface {
 
             //you can't cast the object to an int in case it's null, so you have to cast to string, then cast to int
             String row = (String) model.getValueAt(modelRow, 0);
-            System.out.println("the row is: " + row);
             int intRow = Integer.parseInt(row);
             String roomNumStr = String.valueOf(table.getValueAt(selectedRow, 4));
-            System.out.println("the room num is: " + roomNumStr);
             int RoomNum = Integer.parseInt(roomNumStr);
             r = ReservationListPageController.getReservation(RoomNum);
             checkedIn = ReservationListPageController.CheckInGuest(r);
@@ -234,14 +232,12 @@ public class ReservationListPage implements ReservationListInterface {
                 int answer = JOptionPane
                         .showConfirmDialog(null,
                                 "Do you want to checkout Guest " + model.getValueAt(modelRow, 1) + " from room "
-                                        + model.getValueAt(modelRow, 5) + "?",
+                                        + model.getValueAt(modelRow, 4) + "?",
                                 "Warning", JOptionPane.YES_NO_OPTION);
                 if (answer == 0) {
                     String row = (String) model.getValueAt(modelRow, 0);
-                    System.out.println("the row is: " + row);
                     int intRow = Integer.parseInt(row);
                     String roomNumStr = String.valueOf(reservationTable.getValueAt(selectedRowForDeletion, 4));
-                    System.out.println("the room num is: " + roomNumStr);
                     int RoomNum = Integer.parseInt(roomNumStr);
                     Reservation r;
                     try {
@@ -255,22 +251,21 @@ public class ReservationListPage implements ReservationListInterface {
                     } catch (SQLException ex) {
                         throw new RuntimeException(ex);
                     }
-                    //model.removeRow(modelRow);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Unable to delete");
+                JOptionPane.showMessageDialog(null, "Select a row");
             }
         }
     }
 
 
     public void show() {
-        mainFrame.setVisible(true);
         try {
             refreshRooms();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
+        mainFrame.setVisible(true);
     }
 
 }
