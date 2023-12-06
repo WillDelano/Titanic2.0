@@ -46,18 +46,38 @@ public class Guest extends User {
         this.reservations = new ArrayList<>();
     }
 
+    /**
+     * This function returns the payment info
+     *
+     * @return the payment information associated with the guest
+     */
     public PaymentInfo getPaymentInfo() {
         return paymentInfo;
     }
 
+    /**
+     * This function sets the payment info
+     *
+     * @param paymentInfo the payment information to associate with a guest
+     */
     public void setPaymentInfo(PaymentInfo paymentInfo) {
         this.paymentInfo = paymentInfo;
     }
 
+    /**
+     * This function sets the reward points
+     *
+     * @param rewardPoints the amount of points to set
+     */
     public void setRewardPoints(int rewardPoints) {
         this.rewardPoints = rewardPoints;
     }
 
+    /**
+     * This gets the reward points of a guest
+     *
+     * @return the points associated with a guest
+     */
     public int getRewardPoints() {
         return rewardPoints;
     }
@@ -117,26 +137,6 @@ public class Guest extends User {
     public Set<Reservation> getReservations() {
         return ReservationDatabase.getReservations(this);
     }
-
-    /**
-     * Requests modification to an existing reservation.
-     *
-     * @param reservationID The ID of the reservation to be modified.
-     */
-    public void requestModifyReservation(int reservationID) {
-        //TODO Implement method
-    }
-
-    /**
-     * Requests cancellation of an existing reservation.
-     *
-     * @param reservationID The ID of the reservation to be canceled.
-     */
-    public void requestCancelReservation(int reservationID) {
-        //TODO Implement method
-    }
-
-
 
     /**
      * Method that allows for the guest to make a payment for their cruise

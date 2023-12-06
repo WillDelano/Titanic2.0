@@ -15,6 +15,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 
+/**
+ * GUI class for processing billing information in the reservation system.
+ *
+ * <p>
+ * This class provides a user interface to collect billing information, such as name, address, credit card details,
+ * and processes the payment for a given reservation. It includes methods for validating user inputs and handling
+ * payment processing logic.
+ * </p>
+ *
+ * @version 1.0
+ */
 public class ProcessBillingPage extends JFrame {
     private JTextField firstNameField, lastNameField, addressField, zipCodeField, creditCardField, expiryDateField, cvcField;
     private JComboBox<String> countryComboBox, stateComboBox;
@@ -25,6 +36,13 @@ public class ProcessBillingPage extends JFrame {
     Reservation reservation;
     MyReservationsPage page;
 
+    /**
+     * Constructs a new ProcessBillingPage with the specified total amount, reservation, and parent page.
+     *
+     * @param totalAmount The total amount to be paid.
+     * @param r The reservation for which the payment is processed.
+     * @param page        The parent page (MyReservationsPage) for updating reservation information.
+     */
     public ProcessBillingPage(double totalAmount, Reservation r, MyReservationsPage page) {
         this.page = page;
         this.reservation = r;
@@ -169,6 +187,11 @@ public class ProcessBillingPage extends JFrame {
         add(panel);
     }
 
+    /**
+     * Toggles the visibility of the state field based on the selected country.
+     *
+     * @param country The selected country.
+     */
     private void toggleStateField(String country) {
         if ("United States".equals(country)) {
             stateComboBox.setVisible(true);
@@ -177,13 +200,21 @@ public class ProcessBillingPage extends JFrame {
         }
     }
 
+    /**
+     * Retrieves an array of all countries.
+     *
+     * @return An array of country names.
+     */
     private String[] getAllCountries() {
-        // TODO: Replace with actual countries list
         return new String[]{"United States", "Canada", "United Kingdom", "Australia"};
     }
 
+    /**
+     * Retrieves an array of all states.
+     *
+     * @return An array of state names.
+     */
     private String[] getAllStates() {
-        // TODO: Replace with actual states list
         return new String[] {
                 "Alabama", "Alaska", "Arizona", "Arkansas", "California",
                 "Colorado", "Connecticut", "Delaware", "Florida", "Georgia",
@@ -198,7 +229,11 @@ public class ProcessBillingPage extends JFrame {
         };
     }
 
-    // validation for each field
+    /**
+     * Validates the input fields for billing information.
+     *
+     * @return True if all fields are valid, false otherwise.
+     */
     private boolean validateFields() {
 
         if (firstNameField.getText().trim().isEmpty()) {
@@ -257,6 +292,10 @@ public class ProcessBillingPage extends JFrame {
         return true;
     }
 
+    /**
+     * Processes the payment if all fields are valid.
+     * Displays a confirmation message and updates the reservation status.
+     */
     private void processPayment() {
         if (!validateFields()) {
             return;
@@ -267,6 +306,11 @@ public class ProcessBillingPage extends JFrame {
         page.refreshReservations();
     }
 
+    /**
+     * The main method for testing the ProcessBillingPage class.
+     *
+     * @param args Command-line arguments (unused).
+     */
     public static void main(String[] args) {
         //SwingUtilities.invokeLater(() -> new ProcessBillingPage(100.00).setVisible(true));
     }

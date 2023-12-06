@@ -52,6 +52,12 @@ public class RoomDatabase {
         }
     }
 
+    /**
+     * This method checks if a room exists in the database
+     *
+     * @param roomNumber room number to check for
+     * @return true if the room exists
+     */
     public static boolean roomExists(int roomNumber) {
         String query = "SELECT COUNT(*) FROM Rooms WHERE roomnumber = ?";
         try (Connection connection = DriverManager.getConnection(url);
@@ -104,6 +110,9 @@ public class RoomDatabase {
         return rooms;
     }
 
+    /**
+     * Initializes the database with predefined rooms if they do not exist.
+     */
     public static void initializeRooms() {
         List<Room> predefinedRooms = Arrays.asList(
                 // Caribbean Adventure
@@ -263,7 +272,6 @@ public class RoomDatabase {
      * Operation to get a room
      *
      * @param roomNumber specified room to get
-     *
      */
     public static Room getRoom(int roomNumber) {
         String query = "SELECT * FROM Rooms WHERE roomnumber = ?";
@@ -294,7 +302,6 @@ public class RoomDatabase {
     /**
      * Operation to get all the rooms that exist
      *
-     *
      * @return list of rooms for the specific cruise
      */
     public static List<Room> getAllRooms() {
@@ -323,34 +330,11 @@ public class RoomDatabase {
         return rooms;
     }
 
-    public static void editRoom(User account, String email, String password) {
-        //SQL STUFF TO ALTER ROOM
-    }
-
-    public boolean isValidRoom(int roomChoice) {
-        if (roomChoice < 0) {
-            System.out.println("Please enter a valid room choice.");
-            return false;
-        }
-
-        String query = "SELECT COUNT(*) FROM Rooms WHERE roomnumber = ?";
-        try (Connection connection = DriverManager.getConnection(url);
-             PreparedStatement statement = connection.prepareStatement(query)) {
-
-            statement.setInt(1, roomChoice);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next() && resultSet.getInt(1) > 0) {
-                    return true;
-                }
-            }
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Room not found.");
-        return false;
-    }
-
+    /**
+     * Marks a room as unbooked in the database based on the room number.
+     *
+     * @param roomNumber The number of the room to be unbooked.
+     */
     public static void unbookRoom(int roomNumber) {
         String updateSQL = "UPDATE Rooms SET isbooked = false WHERE roomnumber = ?";
         try (Connection connection = DriverManager.getConnection(url);
@@ -365,6 +349,11 @@ public class RoomDatabase {
         System.err.println("Room: " + roomNumber + " unbooked");
     }
 
+    /**
+     * Marks a room as booked in the database based on the room number.
+     *
+     * @param roomNumber The number of the room to be booked.
+     */
     public static void bookRoom(int roomNumber) {
         String updateSQL = "UPDATE Rooms SET isbooked = true WHERE roomnumber = ?";
         try (Connection connection = DriverManager.getConnection(url);
@@ -377,9 +366,16 @@ public class RoomDatabase {
         }
     }
 
+    /**
+     * Updates the details of a room in the database.
+     *
+     * @param room          The Room object representing the room to be updated.
+     * @param bedType       The type of bed in the room.
+     * @param numOfBeds     The number of beds in the room.
+     * @param smokingStatus The smoking availability status of the room.
+     * @param price         The new price of the room.
+     */
     public void updateRoom(Room room, String bedType, int numOfBeds, boolean smokingStatus, double price) {
-        //fixme: actually updating sql(bed type, number of beds, status, and price all at once even if some are same)
-        //fixme: finds room based on roomNumber
         int roomNum = room.getRoomNumber();
         try (Connection connection = DriverManager.getConnection(url)) {
             String update = "UPDATE ROOMS SET BEDTYPE = ?, NUMBEROFBEDS = ?,SMOKINGAVAILABLE = ?, ROOMPRICE = ? WHERE ROOMNUMBER = ?";

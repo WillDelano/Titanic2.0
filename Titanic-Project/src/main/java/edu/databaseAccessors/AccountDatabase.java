@@ -31,6 +31,10 @@ public class AccountDatabase {
         initializeDatabase(); // Static initialization of the database
     }
 
+    /**
+     * operation to initialize the database and populate the list of users associated with accountDatabase class
+     *
+     */
     private static void initializeDatabase() {
         try (Connection connection = DriverManager.getConnection(url)) {
             String query = "SELECT * FROM UsersV2";
@@ -51,7 +55,11 @@ public class AccountDatabase {
         }
     }
 
-
+    /**
+     * operation to create a user object from a given result set
+     *
+     * @param resultSet set to create user from
+     */
     private static User createUserFromResultSet(ResultSet resultSet) throws SQLException, NoMatchingClassException {
         // Extract data from resultSet
         String username = resultSet.getString("username");
@@ -158,6 +166,7 @@ public class AccountDatabase {
             return false;
         }
     }
+
     /**
      * Method to add users to the 'Users' Database
      */
@@ -216,7 +225,6 @@ public class AccountDatabase {
      *
      * @param username A given username to find
      */
-
     public static String getAccountType(String username) {
 
     String accountType = "";
@@ -282,7 +290,6 @@ public class AccountDatabase {
         return false;
     }
 
-
     /**
      * Operation to modify an account password.
      *
@@ -301,8 +308,6 @@ public class AccountDatabase {
             e.printStackTrace();
         }
     }
-
-
 
     /**
      * Operation to modify an account first name.
@@ -357,8 +362,6 @@ public class AccountDatabase {
         }
         throw new UserNotFoundException("No user with username " + username + " exists.");
     }
-
-
 
     /**
      * Operation to update account details for user on SQL database
@@ -415,7 +418,6 @@ public class AccountDatabase {
         }
     }
 
-
     /**
      * Operation to delete account from SQL database
      *
@@ -449,6 +451,10 @@ public class AccountDatabase {
         }
     }
 
+    /**
+     * Operation to shut down the SQL database
+     *
+     */
     public static void shutdown() throws SQLException {
         try {
             DriverManager.getConnection("jdbc:derby:;shutdown=true");
