@@ -6,12 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ef18d5f6-c7e4-4456-b19d-d3efff184caa" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/AccountDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CountryDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CountryDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CruiseDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/CruiseDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/DatabaseProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/DatabaseProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/ReservationDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/ReservationDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/RoomDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/databaseAccessors/RoomDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/adminCreateTravelAgent/CreateTravelAgentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/adminCreateTravelAgent/CreateTravelAgentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/adminCreateTravelAgent/CreateTravelAgentPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/adminCreateTravelAgent/CreateTravelAgentPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/adminCreateTravelAgent/FinishTravelAgentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/adminCreateTravelAgent/FinishTravelAgentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/adminCreateTravelAgent/FinishTravelAgentPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/adminCreateTravelAgent/FinishTravelAgentPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/adminResetPasswords/ResetPasswordListPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/adminResetPasswords/ResetPasswordListPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
