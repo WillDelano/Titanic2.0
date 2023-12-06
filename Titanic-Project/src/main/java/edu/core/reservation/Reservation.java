@@ -55,77 +55,149 @@ public class Reservation {
 
         room.bookRoom();
     }
-
+    /**
+     * Sets the check in
+     *
+     * @param newCheckIn
+     */
     public void setCheckedIn(boolean newCheckIn){
         checkedIn = newCheckIn;
     }
+    /**
+     * getter for checkin
+     *
+     * @return checkedIn
+     */
     public boolean getCheckedIn(){
         return checkedIn;
     }
+    /**
+     * getter for id
+     *
+     * @return id of reservation
+     */
     public int getId() {
         return id;
     }
+    /**
+     * getter for user on reservation
+     *
+     * @return user
+     */
 
     public User getUser() {
         return user;
     }
-
+    /**
+     * getter for reservation duration
+     *
+     * @return days/duration of the reservation
+     */
     public long getDays() {
         return days;
     }
-
+    /**
+     * getter for the room reserved in reservation
+     *
+     * @return room
+     */
     public Room getRoom() { return room; }
+    /**
+     * getter for reservation start country
+     *
+     * @return startCountry
+     */
 
     public Country getStartCountry() {
         return startCountry;
     }
-
+    /**
+     * getter for reservation endCountry
+     *
+     * @return the last country for reservation
+     */
     public Country getEndCountry() {
         return endCountry;
     }
-
+    /**
+     * getter for reservation start date
+     *
+     * @return start date
+     */
     public LocalDate getStartDate() {
         return startDate;
     }
-
+    /**
+     * getter for reservation end date
+     *
+     * @return end Date
+     */
     public LocalDate getEndDate() {
         return endDate;
     }
-
+    /**
+     * setter for reservation Id
+     *
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
-
+    /**
+     * setter for the how many days the reservation lasts for
+     *
+     * @param days
+     */
     public void setDays(Integer days) {
         Reservation oldReservation = this;
         this.days = days;
         alterReservationList(oldReservation);
     }
-
+    /**
+     * setter for the start country of the reservation
+     *
+     * @param startCountry
+     */
     public void setStartCountry(Country startCountry) {
         Reservation oldReservation = this;
         this.startCountry = startCountry;
         alterReservationList(oldReservation);
     }
-
+    /**
+     * setter for the last country for the reservation
+     *
+     * @param endCountry
+     */
     public void setEndCountry(Country endCountry) {
         Reservation oldReservation = this;
         this.endCountry = endCountry;
         alterReservationList(oldReservation);
     }
-
+    /**
+     * setter for the starting date for the reservation
+     *
+     * @param startDate
+     */
     public void setStartDate(LocalDate startDate) {
         Reservation oldReservation = this;
         this.startDate = startDate;
         alterReservationList(oldReservation);
     }
-
+    /**
+     * setter for the endDate for the reservation
+     *
+     * @param endDate
+     */
     public void setEndDate(LocalDate endDate) {
         Reservation oldReservation = this;
         this.endDate = endDate;
         alterReservationList(oldReservation);
     }
-
+    /**
+     * setter for the room of allocated to the reservation
+     *
+     * @param room
+     */
     public void setRoom(Room room){
         Reservation oldReservation = this;
         this.room = room;
