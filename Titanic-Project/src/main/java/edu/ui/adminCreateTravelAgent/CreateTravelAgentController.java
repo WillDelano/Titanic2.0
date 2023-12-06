@@ -13,6 +13,7 @@ import edu.databaseAccessors.AccountDatabase;
  *
  * @version 1.0
  * @see AccountDatabase
+ * @author William Delano
  */
 public class CreateTravelAgentController {
     /**

@@ -15,15 +15,15 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
- * UI display for a guest's reservations
+ * GUI class for displaying and managing all rooms available for reservations.
+ * Allows the travel agent to view a list of rooms, select a room for further actions,
+ * and navigate back to the landing page.
+ * Utilizes the {@link ViewAllRoomsController} to interact with room data.
  *
- * This class displays all the reservations assigned to a user
- *
- * @author Vincent Dinh
+ * @author William Delano
  * @version 1.0
- * @see ReservationDatabase , Reservation
+ * @see Room, ReservationDatabase, NoMatchingReservationException, LandingPage, ViewAllRoomsController
  */
 public class ViewAllRoomsPage {
     private JFrame frame;
@@ -44,11 +44,24 @@ public class ViewAllRoomsPage {
     private List<Room> allRooms;
 
 
+    /**
+     * Constructor for the ViewAllRoomsPage class.
+     *
+     * @param prevPage The landing page to return to when navigating back.
+     */
     public ViewAllRoomsPage(LandingPage prevPage) {
         this.prevPage = prevPage;
         prepareUI();
     }
 
+    /**
+     * Prepares the user interface for displaying all available rooms.
+     * Sets up the main frame, content panel, table, and buttons for interacting with room data.
+     * Initializes the button actions for selecting a room and navigating back to the landing page.
+     * Invokes the {@link ViewAllRoomsController#getAllRooms()} method to retrieve room data from the database.
+     * Displays the room information in a JTable and adjusts column widths for better visibility.
+     * Finally, makes the frame visible to the user.
+     */
     private void prepareUI() {
         frame = new JFrame("All Rooms");
         frame.setSize(800, 600);
@@ -96,6 +109,10 @@ public class ViewAllRoomsPage {
         frame.setVisible(true);
     }
 
+
+    /**
+     * Refreshes the displayed list of rooms by retrieving the latest data from the database.
+     */
     public void refreshReservations() {
         List<Room> roomList = ViewAllRoomsController.getAllRooms();
 
@@ -147,11 +164,20 @@ public class ViewAllRoomsPage {
         columnModel.getColumn(4).setPreferredWidth(100);
     }
 
+    /**
+     * Displays the ViewAllRoomsPage.
+     */
     public void show() {
         refreshReservations();
         frame.setVisible(true);
     }
 
+    /**
+     * Handles the action when a row is selected in the JTable.
+     *
+     * @param table The JTable containing the list of rooms.
+     * @throws NoMatchingReservationException If there is no matching reservation for the selected room.
+     */
     private void selectRow(JTable table) throws NoMatchingReservationException {
         Room r;
         int selectedRow;
@@ -177,6 +203,7 @@ public class ViewAllRoomsPage {
     }
 
     /**
+<<<<<<< HEAD
      * Generates panel for search input
      *
      */
@@ -296,6 +323,11 @@ public class ViewAllRoomsPage {
         }
     }
 
+    /**
+     * The main method to test and demonstrate the ViewAllRoomsPage.
+     *
+     * @param args The command-line arguments.
+     */
     public static void main(String[] args) {
         new ViewAllRoomsPage(null).show();
     }
