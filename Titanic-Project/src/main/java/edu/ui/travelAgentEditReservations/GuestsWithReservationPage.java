@@ -27,6 +27,7 @@ import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -174,7 +175,11 @@ public class GuestsWithReservationPage {
 
     private void handleReservationList(Guest guest) {
         mainFrame.setVisible(false);
-        new ReservationListPage(this, guest);
+        try {
+            new ReservationListPage(this, guest);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void createReservation() {
