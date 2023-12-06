@@ -18,7 +18,12 @@ import java.util.List;
  *
  * @author [Your Name]
  * @version 1.0
- * @see GuestCreateReservationPage, CruiseDatabase, Guest, Room, Cruise, Country
+ * @see GuestCreateReservationPage
+ * @see CruiseDatabase
+ * @see Guest
+ * @see Room
+ * @see Cruise
+ * @see Country
  */
 public class GuestCreateReservationPageController {
 

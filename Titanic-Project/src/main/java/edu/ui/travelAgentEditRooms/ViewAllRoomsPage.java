@@ -20,7 +20,11 @@ import java.util.List;
  *
  * @author William Delano
  * @version 1.0
- * @see Room, ReservationDatabase, NoMatchingReservationException, LandingPage, ViewAllRoomsController
+ * @see Room
+ * @see ReservationDatabase
+ * @see NoMatchingReservationException
+ * @see LandingPage
+ * @see ViewAllRoomsController
  */
 public class ViewAllRoomsPage {
     private JFrame frame;

@@ -2,7 +2,6 @@ package edu.core.reservation;
 import edu.core.cruise.Country;
 import edu.core.users.User;
 import edu.databaseAccessors.ReservationDatabase;
-
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;

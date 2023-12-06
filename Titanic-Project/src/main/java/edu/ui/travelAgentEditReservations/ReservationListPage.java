@@ -35,7 +35,10 @@ import java.util.Set;
  *
  * @author William Delano
  * @version 1.0
- * @see Reservation, Guest, NoMatchingReservationException, ReservationListInterface
+ * @see Reservation
+ * @see Guest
+ * @see NoMatchingReservationException
+ * @see ReservationListInterface
  */
 public class ReservationListPage implements ReservationListInterface {
     private JFrame mainFrame;

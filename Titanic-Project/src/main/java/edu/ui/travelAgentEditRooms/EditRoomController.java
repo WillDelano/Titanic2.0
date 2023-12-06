@@ -9,7 +9,8 @@ import edu.databaseAccessors.RoomDatabase;
  *
  * @author William Delano
  * @version 1.0
- * @see Room, RoomDatabase
+ * @see Room
+ * @see RoomDatabase
  */
 public class EditRoomController {
 

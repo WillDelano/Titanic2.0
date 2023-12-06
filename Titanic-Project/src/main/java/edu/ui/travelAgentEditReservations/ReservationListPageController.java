@@ -16,7 +16,9 @@ import java.util.Set;
  *
  * @author William Delano
  * @version 1.0
- * @see Reservation, Guest, ReservationDatabase
+ * @see Reservation
+ * @see Guest
+ * @see ReservationDatabase
  */
 public class ReservationListPageController {
 

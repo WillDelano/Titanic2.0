@@ -12,7 +12,10 @@ import java.util.Set;
  *
  * @author William Delano
  * @version 1.0
- * @see Room, RoomDatabase, ViewAllRoomsPage, EditRoomPage
+ * @see Room
+ * @see RoomDatabase
+ * @see ViewAllRoomsPage
+ * @see EditRoomPage
  */
 public class ViewAllRoomsController {
     /**

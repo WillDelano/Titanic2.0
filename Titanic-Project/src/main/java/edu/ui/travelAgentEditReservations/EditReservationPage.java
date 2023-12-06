@@ -25,7 +25,9 @@ import java.util.regex.Pattern;
  *
  * @author William Delano
  * @version 1.0
- * @see EditReservationController, Reservation, Room
+ * @see EditReservationController
+ * @see Reservation
+ * @see Room
  */
 public class EditReservationPage {
     private Reservation reservation;

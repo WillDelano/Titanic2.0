@@ -11,7 +11,11 @@ import edu.ui.travelAgentEditReservations.EditReservationPage;
  *
  * This class provides methods to edit a reservation and retrieve a reservation by room number.
  *
- * @see MyReservationsPage, EditReservationPage, ReservationListInterface, ReservationDatabase, NoMatchingReservationException
+ * @see MyReservationsPage
+ * @see EditReservationPage
+ * @see ReservationListInterface
+ * @see ReservationDatabase
+ * @see NoMatchingReservationException
  */
 public class MyReservationsPageController {
     /**

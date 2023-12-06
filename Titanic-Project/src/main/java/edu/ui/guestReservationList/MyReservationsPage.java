@@ -24,7 +24,11 @@ import java.util.Set;
  *
  * @author Vincent Dinh
  * @version 1.0
- * @see ReservationDatabase, Reservation, Guest, ProcessBillingPage, MyReservationsPageController
+ * @see ReservationDatabase
+ * @see Reservation
+ * @see Guest
+ * @see ProcessBillingPage
+ * @see MyReservationsPageController
  */
 public class MyReservationsPage implements ReservationListInterface {
     private JFrame frame;

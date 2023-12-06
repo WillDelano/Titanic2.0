@@ -33,7 +33,9 @@ import edu.core.reservation.roomSearch;
  *
  * @author Vincent Dinh
  * @version 1.0
- * @see RoomDatabase, Room, BrowseRoomController
+ * @see RoomDatabase
+ * @see Room
+ * @see BrowseRoomController
  */
 public class BrowseRoomPage implements RoomListInterface {
     private roomSearch cruiseSearch;

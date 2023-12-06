@@ -145,6 +145,7 @@ public class AccountDatabase {
      * operation to validate login information from input
      *
      * @param username The username of the user.
+     * @param pass The password of the user
      */
     public boolean isValidLogin(String username, String pass) {
         try (Connection connection = DriverManager.getConnection(url)) {

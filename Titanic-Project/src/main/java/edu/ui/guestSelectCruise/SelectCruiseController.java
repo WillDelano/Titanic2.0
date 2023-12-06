@@ -14,7 +14,9 @@ import java.util.stream.Collectors;
  *
  * @author Vincent Dinh
  * @version 1.0
- * @see Cruise, CruiseDatabase, SelectCruisePage
+ * @see Cruise
+ * @see CruiseDatabase
+ * @see SelectCruisePage
  */
 public class SelectCruiseController {
 

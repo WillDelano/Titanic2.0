@@ -31,7 +31,11 @@ import java.util.concurrent.atomic.AtomicInteger;
  *
  * @author [Your Name]
  * @version 1.0
- * @see GuestCreateReservationPageController, BrowseRoomPage, CurrentGuest, Room, Reservation
+ * @see GuestCreateReservationPageController
+ * @see BrowseRoomPage
+ * @see CurrentGuest
+ * @see Room
+ * @see Reservation
  */
 public class GuestCreateReservationPage {
     private JFrame frame;

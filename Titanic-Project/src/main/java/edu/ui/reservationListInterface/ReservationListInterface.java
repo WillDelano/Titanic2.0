@@ -1,6 +1,7 @@
 package edu.ui.reservationListInterface;
 
 import edu.ui.guestReservationList.MyReservationsPage;
+import edu.ui.travelAgentEditReservations.ReservationListPage;
 
 /**
  * Allows the edit reservation ui to be called from different classes
@@ -14,7 +15,8 @@ import edu.ui.guestReservationList.MyReservationsPage;
  *
  * @author William Delano
  * @version 1.0
- * @see MyReservationsPage, ReservationListPage
+ * @see MyReservationsPage
+ * @see ReservationListPage
  */
 public interface ReservationListInterface {
     void show();

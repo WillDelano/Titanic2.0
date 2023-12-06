@@ -19,7 +19,7 @@ import java.util.Objects;
  * </p>
  *
  * @version 1.0
- * @see CreateTravelAgentController\
+ * @see CreateTravelAgentController
  * @author William Delano
  */
 public class CreateTravelAgentPage {

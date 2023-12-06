@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef18d5f6-c7e4-4456-b19d-d3efff184caa" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/73220af7-872d-48ed-a1fd-ee272dbf41cb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/73220af7-872d-48ed-a1fd-ee272dbf41cb.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentCreateReservations/TravelAgentCreateReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentCreateReservations/TravelAgentCreateReservationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/EditReservationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/EditReservationPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/GuestsWithReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/GuestsWithReservationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/GuestsWithReservationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/GuestsWithReservationPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/ReservationListPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/ReservationListPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/ReservationListPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ui/travelAgentEditReservations/ReservationListPageController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,22 +60,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Colet/Documents/GIT/Titanic2.0/Titanic-Project/libs/derbytools.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.15287356&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "comments",
+    "last_opened_file_path": "C:/Users/Colet/Documents/GIT/Titanic2.0/Titanic-Project/libs/derbytools.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.15287356",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="edu.ui.modifyRoom" />

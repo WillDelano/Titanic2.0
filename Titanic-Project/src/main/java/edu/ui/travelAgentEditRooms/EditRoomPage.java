@@ -16,7 +16,10 @@ import java.awt.*;
  *
  * @author Michael Okonkwo
  * @version 1.0
- * @see Room, User, LandingPage, ViewAllRoomsPage, EditRoomController
+ * @see Room
+ * @see User
+ * @see ViewAllRoomsPage
+ * @see EditRoomController
  */
 public class EditRoomPage {
     private JFrame frame;
