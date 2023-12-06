@@ -422,9 +422,9 @@ public class ReservationDatabase {
         String updateTableSQL = "UPDATE Reservation SET Checkedin = ? WHERE id = ?";
         LocalDate rightNow = LocalDate.now();
         //LocalDate testDate = LocalDate.of(2023,12,12);
-        //LocalDate testDate = LocalDate.of(2023,12,12);
+        LocalDate testDate = LocalDate.of(2023,06,14);
         System.out.println("the current date is: " + rightNow + "The check in date is: " + reservation.getStartDate());
-        if (rightNow.equals(reservation.getStartDate())) {
+        if (testDate.equals(reservation.getStartDate())) {
             try (Connection dbConnection = DriverManager.getConnection(url);
                  PreparedStatement statement = dbConnection.prepareStatement(updateTableSQL)) {
                 //the checked in is being inserted first, then the id in the updateTableSQL
@@ -503,13 +503,15 @@ public class ReservationDatabase {
             statement.setBoolean(1, false);
             statement.setInt(2, reservation.getId());
 
+            ReservationDatabase.deleteReservation(reservation);
+
             System.out.println("Data updated successfully");
             System.out.println(updateTableSQL);
 
             // execute update SQL statement
             statement.executeUpdate();  // Use executeUpdate instead of execute
 
-            System.out.println("User has been checked into Reservation table!");
+            System.out.println("User has been checked out of the Reservation table!");
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
