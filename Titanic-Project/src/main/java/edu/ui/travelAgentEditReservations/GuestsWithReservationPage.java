@@ -1,7 +1,7 @@
 package edu.ui.travelAgentEditReservations;
 
 import edu.core.cruise.Cruise;
-import edu.core.users.Guest;
+import edu.core.users.*;
 import edu.exceptions.UserNotFoundException;
 import edu.ui.landingPage.TravelAgentLandingPage;
 
@@ -10,9 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import edu.core.reservation.Room;
-import edu.core.users.CurrentGuest;
 import edu.core.users.Guest;
-import edu.core.users.TravelAgent;
 import edu.exceptions.NoMatchingRoomException;
 import edu.ui.landingPage.LandingPage;
 import edu.ui.landingPage.TravelAgentLandingPage;
@@ -44,10 +42,15 @@ public class GuestsWithReservationPage {
     private TravelAgentLandingPage landingPage;
     private JFrame mainFrame;
     private JLabel titleLabel;
-    private JButton backButton;
+    private JButton backButton, selectButton, searchButton;
     private JTextArea detailsTextArea;
     private JTable table;
     private JButton newReservation;
+    private JList<String> guestList;
+    private JTextField searchTextField;
+    private JMenuBar searchMenu;
+    private GuestSearch guestSearch;
+    JPanel mainPanel;
 
     public GuestsWithReservationPage(TravelAgentLandingPage landingPage) throws UserNotFoundException {
         this.landingPage = landingPage;
@@ -60,7 +63,10 @@ public class GuestsWithReservationPage {
         mainFrame.setLayout(new BorderLayout());
 
         titleLabel = new JLabel("Guests with a Reservation", JLabel.CENTER);
-        mainFrame.add(titleLabel, BorderLayout.NORTH);
+        //mainFrame.add(titleLabel, BorderLayout.NORTH);
+        JPanel titlePanel = new JPanel();
+        titlePanel.add(titleLabel);
+
 
         List<Guest> guestsWithReservations = null;
 
@@ -69,12 +75,10 @@ public class GuestsWithReservationPage {
         } catch (UserNotFoundException e) {
             e.printStackTrace();
         }
-
-        JPanel mainPanel = new JPanel();
+        guestSearch = new GuestSearch(guestsWithReservations);
+        mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
-
-        JPanel detailsPanel = new JPanel();
-        detailsPanel.setLayout(new BoxLayout(detailsPanel, BoxLayout.Y_AXIS));
+        generateSearchMenu();
 
         JPanel buttonPanel = new JPanel();
         JButton selectButton = new JButton("Select");
@@ -108,20 +112,54 @@ public class GuestsWithReservationPage {
 
         contentPanel.add(new JScrollPane(table), BorderLayout.CENTER);
 
-        mainFrame.add(contentPanel, BorderLayout.CENTER);
-
         try {
-            refreshRooms();
+            refreshRooms(guestsWithReservations);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        //mainFrame.add(mainPanel);
+        //mainFrame.add(contentPanel, BorderLayout.CENTER);
+        mainPanel.add(contentPanel, BorderLayout.CENTER);
+
+        mainFrame.add(titlePanel,BorderLayout.NORTH);
+        mainFrame.setJMenuBar(searchMenu);
+        mainFrame.add(mainPanel);
         mainFrame.setVisible(true);
     }
 
     public void refreshRooms() throws UserNotFoundException {
         List<Guest> guestList = GuestsWithReservationController.getGuestsWithReservations();
+        System.err.println("Reservations: ");
+        int numGuests = guestList.size();
+
+        //int numRooms = roomSet.size();
+        String[][] data = new String[numGuests][5];
+        int i = 0;
+
+        for (Guest temp : guestList) {
+            data[i][0] = String.valueOf(i + 1);
+            data[i][1] = String.valueOf(temp.getUsername());
+            data[i][2] = String.valueOf(temp.getFirstName());
+            data[i][3] = String.valueOf(temp.getLastName());
+            data[i][4] = String.valueOf(temp.getReservations().size());
+            i++;
+        }
+
+        String[] columnNames = {"#", "Guest Username", "Guest Firstname", "Guest Lastname", "# of Reservations"};
+        DefaultTableModel finalModel = new DefaultTableModel(data, columnNames){
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
+        table.setModel(finalModel);
+
+        TableColumnModel columnModel = table.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(1);
+        columnModel.getColumn(1).setPreferredWidth(100);
+    }
+    public void refreshRooms(List<Guest> list) throws UserNotFoundException {
+        //List<Guest> guestList = GuestsWithReservationController.getGuestsWithReservations();
+        List<Guest> guestList = new ArrayList<>(list);
         System.err.println("Reservations: ");
         int numGuests = guestList.size();
 
@@ -180,6 +218,25 @@ public class GuestsWithReservationPage {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    private void generateSearchMenu() {
+        searchMenu = new JMenuBar();
+        searchMenu.setPreferredSize(new Dimension(1000, 25));
+        searchTextField = new JTextField();
+        searchButton = new JButton("search");
+
+        searchButton.addActionListener(e -> {
+            List<Guest> list = guestSearch.findGuests(searchTextField.getText());
+            System.out.println(list.size()+": ");
+            try {
+                refreshRooms(list);
+            } catch (Exception x) {
+                x.printStackTrace();
+            }
+        });
+
+        searchMenu.add(searchTextField);
+        searchMenu.add(searchButton);
     }
 
     private void createReservation() {

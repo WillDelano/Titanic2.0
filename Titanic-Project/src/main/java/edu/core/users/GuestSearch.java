@@ -15,6 +15,10 @@ public class GuestSearch {
         String[] input = line.split( " ");
         String currName;
 
+        if(line.replaceAll(" ", "").isEmpty()){
+            return allGuests;
+        }
+
         for(Guest guest : allGuests){
 
             for(String s : input){
