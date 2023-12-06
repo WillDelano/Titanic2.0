@@ -70,6 +70,9 @@ public class GuestLandingPage extends LandingPage {
         mainFrame.setVisible(true);
     }
 
+    /**
+     * Logs out the current guest and navigates to the login page.
+     */
     private void logout() {
         mainFrame.dispose();
         CurrentGuest.logoutCurrentGuest();
@@ -92,15 +95,24 @@ public class GuestLandingPage extends LandingPage {
         mainFrame.setVisible(true);
     }
 
+    /**
+     * Navigates to the Select Cruise page.
+     */
     private void navigateToSelectCruisePage() {
         mainFrame.setVisible(false);   // hide the current landing page
         new SelectCruisePage(this);       // navigate to SelectCruisePage
     }
 
+    /**
+     * Opens the My Reservations page.
+     */
     private void openMyReservationsPage() {
         new edu.ui.guestReservationList.MyReservationsPage().show();
     }
 
+    /**
+     * Displays the landing page.
+     */
     public void show() {
         mainFrame.setVisible(true);
     }

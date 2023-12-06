@@ -34,7 +34,6 @@ public class AdminLandingPage extends LandingPage {
 
     /**
      * Constructor for the landing page that creates the GUI
-     *
      */
     public AdminLandingPage() {
         prepareGUI();
@@ -87,6 +86,9 @@ public class AdminLandingPage extends LandingPage {
         mainFrame.setVisible(true);
     }
 
+    /**
+     * Logs out the current user and navigates to the login page.
+     */
     private void logout() {
         mainFrame.dispose();
         new LoginPage();
@@ -130,16 +132,25 @@ public class AdminLandingPage extends LandingPage {
         }
     }
 
+    /**
+     * Navigates to the reset password page.
+     */
     private void navigateToResetPassword() {
         mainFrame.setVisible(false);   // hide the current landing page
         new ResetPasswordListPage(this);
     }
 
+    /**
+     * Navigates to the new travel agent page.
+     */
     private void navigateToNewTravelAgent() {
         mainFrame.setVisible(false);   // hide the current landing page
         new CreateTravelAgentPage(this);
     }
 
+    /**
+     * Refreshes the data and displays the landing page.
+     */
     public void show() {
         //refresh the data on show
         String name = account.getFirstName();

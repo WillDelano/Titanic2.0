@@ -17,13 +17,14 @@ import java.util.Set;
 
 
 /**
- * UI display for a guest's reservations
+ * UI display for a guest's reservations.
  *
- * This class displays all the reservations assigned to a user
+ * This class displays all the reservations assigned to the currently logged-in guest.
+ * It provides functionality to select a reservation and navigate to the billing process.
  *
  * @author Vincent Dinh
  * @version 1.0
- * @see ReservationDatabase , Reservation
+ * @see ReservationDatabase, Reservation, Guest, ProcessBillingPage, MyReservationsPageController
  */
 public class MyReservationsPage implements ReservationListInterface {
     private JFrame frame;
@@ -31,10 +32,16 @@ public class MyReservationsPage implements ReservationListInterface {
     private JTable reservationsTable;
     private Timer refreshTimer;
 
+    /**
+     * Constructs a new instance of the MyReservationsPage.
+     */
     public MyReservationsPage() {
         prepareUI();
     }
 
+    /**
+     * Prepares the graphical user interface for the MyReservationsPage.
+     */
     private void prepareUI() {
         Set<Reservation> reservationSet = CurrentGuest.getCurrentGuest().getReservations();
         System.out.println("Reservations: ");
@@ -87,6 +94,9 @@ public class MyReservationsPage implements ReservationListInterface {
         refreshReservations();
     }
 
+    /**
+     * Refreshes the displayed reservations based on the currently logged-in guest.
+     */
     public void refreshReservations() {
         Set<Reservation> reservationSet = CurrentGuest.getCurrentGuest().getReservations();
 
@@ -114,11 +124,20 @@ public class MyReservationsPage implements ReservationListInterface {
         columnModel.getColumn(1).setPreferredWidth(100);
     }
 
+    /**
+     * Displays the MyReservationsPage.
+     */
     public void show() {
         refreshReservations();
         frame.setVisible(true);
     }
 
+    /**
+     * Handles the selection of a row in the reservations table.
+     *
+     * @param table The JTable representing the reservations.
+     * @throws NoMatchingReservationException If no matching reservation is found.
+     */
     private void selectRow(JTable table) throws NoMatchingReservationException {
         Reservation r;
         int selectedRow;
@@ -143,6 +162,11 @@ public class MyReservationsPage implements ReservationListInterface {
         }
     }
 
+    /**
+     * Navigates to the billing process for the selected reservation.
+     *
+     * @throws NoMatchingReservationException If no matching reservation is found.
+     */
     private void navigateToProcessBilling() throws NoMatchingReservationException {
         int selectedRow = reservationsTable.getSelectedRow();
         if (selectedRow >= 0) {
@@ -162,6 +186,12 @@ public class MyReservationsPage implements ReservationListInterface {
             JOptionPane.showMessageDialog(null, "Please select a reservation to pay.");
         }
     }
+
+    /**
+     * The main method for testing purposes.
+     *
+     * @param args Command-line arguments.
+     */
     public static void main(String[] args) {
         Guest g = new Guest("wdelano", "baylor", "Will", "Delano", 0, "wdelano2002@gmail.com");
 
