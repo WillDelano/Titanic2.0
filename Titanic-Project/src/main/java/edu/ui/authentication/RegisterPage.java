@@ -37,6 +37,7 @@ public class RegisterPage {
         mainFrame = new JFrame("Create an Account Page");
         mainFrame.setSize(1000, 700);
         mainFrame.setLayout(new BorderLayout());
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JLabel registerLabel = new JLabel("Create an Account", JLabel.CENTER);
         mainFrame.add(registerLabel, BorderLayout.PAGE_START);

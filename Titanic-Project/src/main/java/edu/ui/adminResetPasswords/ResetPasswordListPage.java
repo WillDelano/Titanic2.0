@@ -49,6 +49,7 @@ public class ResetPasswordListPage {
         mainFrame = new JFrame("Choose an Account");
         mainFrame.setSize(1000, 700);
         mainFrame.setLayout(new BorderLayout());
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         titleLabel = new JLabel("Users", JLabel.CENTER);
         mainFrame.add(titleLabel, BorderLayout.NORTH);

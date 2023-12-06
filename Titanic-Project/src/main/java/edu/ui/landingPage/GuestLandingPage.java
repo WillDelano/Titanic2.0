@@ -40,6 +40,7 @@ public class GuestLandingPage extends LandingPage {
         mainFrame = new JFrame("Cruise Reservation Application");
         mainFrame.setSize(1000, 700);
         mainFrame.setLayout(new BorderLayout());
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         headerLabel = new JLabel("", JLabel.CENTER);
         headerPanel = new JPanel(new GridLayout(2, 4));

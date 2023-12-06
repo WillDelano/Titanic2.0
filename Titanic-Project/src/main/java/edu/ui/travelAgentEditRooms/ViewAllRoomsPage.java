@@ -38,6 +38,7 @@ public class ViewAllRoomsPage {
         frame = new JFrame("All Rooms");
         frame.setSize(800, 600);
         frame.setLayout(new BorderLayout());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         contentPanel = new JPanel(new BorderLayout());
         contentPanel.setBorder(new EmptyBorder(10, 10, 10, 10));

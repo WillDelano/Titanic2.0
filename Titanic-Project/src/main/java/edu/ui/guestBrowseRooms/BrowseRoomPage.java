@@ -70,6 +70,7 @@ public class BrowseRoomPage implements RoomListInterface {
         roomFrame = new JFrame("Rooms for Cruise: " + selectedCruise);
         roomFrame.setSize(1000, 700);
         roomFrame.setLayout(new BorderLayout());
+        roomFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         titleLabel = new JLabel("Available Rooms for " + selectedCruise, JLabel.CENTER);
 

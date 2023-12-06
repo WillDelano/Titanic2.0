@@ -39,6 +39,7 @@ public class EditRoomPage {
     private void createGUI() {
         frame = new JFrame("Edit Room");
         frame.setSize(600, 400);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayout(8, 3, 15, 20));
