@@ -232,7 +232,6 @@ public class ReservationDatabase {
         return false;
     }
 
-
     /**
      * Operation to check if a User has reservations
      *
@@ -263,8 +262,6 @@ public class ReservationDatabase {
         return false;
     }
 
-
-
     /**
      * Operation to check if a specific room is reserved
      *
@@ -294,8 +291,6 @@ public class ReservationDatabase {
         }
         return false;
     }
-
-
 
     /**
      * Operation to check if the database has a specific reservation
@@ -408,15 +403,13 @@ public class ReservationDatabase {
             System.err.println("Failed to connect to database.");
         }
     }
+
     /**
-     * this method checks in a user to a Reservation. The method will return true
-     * allowing the front end to print out the the user can check in. The method will
-     * return false if the user cannot check in.
+     * This method checks in a user to a Reservation
      *
      * @param reservation the reservation being booked
-     *
+     * @return true if the guest has been checked in
      */
-
     public static boolean checkInGuest(Reservation reservation) {
         //connecting to the table
         String updateTableSQL = "UPDATE Reservation SET Checkedin = ? WHERE id = ?";
@@ -449,10 +442,11 @@ public class ReservationDatabase {
             return false;
         }
     }
+
     /**
      * Checks if a guest is checked in or not
      *
-     * @param userName: the username of the guest
+     * @param userName the username of the guest
      * @return Returns true or false whether the guest is checked in or not
      *
      */
@@ -478,7 +472,6 @@ public class ReservationDatabase {
                     }
                 }
             }
-
         }
         if (checkedIn){
             System.out.println("you have two reservations checked in for the same user");
@@ -486,11 +479,10 @@ public class ReservationDatabase {
         return checkedIn;
     }
 
-
     /**
      * Checking out a guest from a room
      *
-     * @param reservation: the reservation the room is booked under
+     * @param reservation the reservation the room is booked under
      *
      */
     public static void checkOutGuest(Reservation reservation){
@@ -516,6 +508,4 @@ public class ReservationDatabase {
             throw new RuntimeException(ex);
         }
     }
-
-
 }
