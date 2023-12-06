@@ -30,13 +30,12 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Controller for displaying and selecting a cruise on the ui
+ * Represents the UI for displaying and managing reservations for a guest.
+ * Allows a travel agent to view, select, check-in, and check-out reservations.
  *
- * This class allows a user to browse and select cruises
- *
- * @author Vincent Dinh
+ * @author William Delano
  * @version 1.0
- * @see Cruise , CruiseDatabase, CruiseDetailsPage
+ * @see Reservation, Guest, NoMatchingReservationException, ReservationListInterface
  */
 public class ReservationListPage implements ReservationListInterface {
     private JFrame mainFrame;
@@ -47,13 +46,24 @@ public class ReservationListPage implements ReservationListInterface {
     private Guest guest;
     private JTable reservationTable;
 
+    /**
+     * Constructs a new ReservationListPage.
+     *
+     * @param previousPage The previous page from which this page was accessed.
+     * @param guest        The guest for whom the reservations are displayed.
+     * @throws SQLException If a SQL exception occurs.
+     */
     public ReservationListPage(GuestsWithReservationPage previousPage, Guest guest) throws SQLException {
         this.previousPage = previousPage;
         this.guest = guest;
         prepareGUI();
     }
 
-
+    /**
+     * Prepares the graphical user interface for the ReservationListPage.
+     *
+     * @throws SQLException If a SQL exception occurs.
+     */
     private void prepareGUI() throws SQLException {
         Set<Reservation> reservationSet = ReservationListPageController.getReservationList(guest);
 
@@ -136,11 +146,21 @@ public class ReservationListPage implements ReservationListInterface {
         refreshRooms();
     }
 
+    /**
+     * Handles the selection of a reservation.
+     *
+     * @param reservation The selected reservation.
+     */
     private void handleReservationSelection(Reservation reservation) {
         mainFrame.setVisible(false);
         new EditReservationPage(this, reservation.getRoom().getCruise(), reservation);
     }
 
+    /**
+     * Refreshes the displayed reservations in the table.
+     *
+     * @throws SQLException If a SQL exception occurs.
+     */
     public void refreshRooms() throws SQLException {
         Set<Reservation> reservationSet = ReservationListPageController.getReservationList(guest);
 
@@ -174,6 +194,12 @@ public class ReservationListPage implements ReservationListInterface {
         columnModel.getColumn(1).setPreferredWidth(100);
     }
 
+    /**
+     * Handles the selection of a row in the table.
+     *
+     * @param table The JTable instance.
+     * @throws NoMatchingReservationException If there is no matching reservation.
+     */
     private void selectRow(JTable table) throws NoMatchingReservationException {
         Reservation r;
         int selectedRow;
@@ -195,6 +221,12 @@ public class ReservationListPage implements ReservationListInterface {
         }
     }
 
+    /**
+     * Handles the check-in of a guest.
+     *
+     * @param table The JTable instance.
+     * @throws NoMatchingReservationException If there is no matching reservation.
+     */
     private void checkIn(JTable table) throws NoMatchingReservationException, SQLException {
         Reservation r;
         int selectedRow;
@@ -219,6 +251,10 @@ public class ReservationListPage implements ReservationListInterface {
         }
     }
 
+    /**
+     * ActionListener implementation for handling check-out action.
+     * Displays a confirmation dialog and performs check-out if user confirms.
+     */
     private final class CheckOutActionLister implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -258,7 +294,9 @@ public class ReservationListPage implements ReservationListInterface {
         }
     }
 
-
+    /**
+     * Displays the ReservationListPage and refreshes the displayed reservations.
+     */
     public void show() {
         try {
             refreshRooms();
@@ -267,5 +305,4 @@ public class ReservationListPage implements ReservationListInterface {
         }
         mainFrame.setVisible(true);
     }
-
 }

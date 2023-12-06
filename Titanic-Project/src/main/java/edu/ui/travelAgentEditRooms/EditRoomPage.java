@@ -2,11 +2,22 @@ package edu.ui.travelAgentEditRooms;
 
 import edu.core.reservation.Room;
 import edu.core.users.User;
-import edu.ui.landingPage.LandingPage;
 
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * GUI class for editing room details.
+ * Allows the travel agent to modify the information of a specific room.
+ * Provides options for updating bed type, number of beds, smoking availability, and price.
+ * Displays the current details of the room and prompts the user for confirmation before making changes.
+ * Provides feedback on invalid inputs and handles the decision-making process.
+ * Utilizes the {@link EditRoomController} for updating room information in the database.
+ *
+ * @author Michael Okonkwo
+ * @version 1.0
+ * @see Room, User, LandingPage, ViewAllRoomsPage, EditRoomController
+ */
 public class EditRoomPage {
     private JFrame frame;
     private JLabel titleLabel;
@@ -20,22 +31,39 @@ public class EditRoomPage {
     private  JRadioButton smokingNo;
     private JLabel priceLabel;
     private JTextField priceField;
-
     private JButton submitButton;
     private User account;
     private static ViewAllRoomsPage previousPage;
     private static Room room;
 
+
+    /**
+     * Constructor for the EditRoomPage class.
+     *
+     * @param room      The room to be edited.
+     * @param prevPage  The previous page to return to after editing.
+     */
     public EditRoomPage(Room room, ViewAllRoomsPage prevPage) {
         this.previousPage = prevPage;
         this.room = room;
         createGUI();
     }
 
+    /**
+     * The main method used for testing the EditRoomPage class.
+     *
+     * @param args Command-line arguments.
+     */
     public static void main(String[]args){
         boolean tester = true;
         EditRoomPage testing = new EditRoomPage(new Room(101, 2, "Queen", false, 250, "Caribbean Adventure"),previousPage);
     }
+
+    /**
+     * Creates the graphical user interface (GUI) for editing room details.
+     * Sets up components such as labels, combo boxes, buttons, and event listeners.
+     * Handles user input, validates decisions, and updates the room information.
+     */
     private void createGUI() {
         frame = new JFrame("Edit Room");
         frame.setSize(600, 400);
@@ -184,15 +212,34 @@ public class EditRoomPage {
         });
     }
 
+    /**
+     * Displays the EditRoomPage frame.
+     */
     public void show() {
         frame.setVisible(true);
     }
 
+    /**
+     * Updates the room information using the {@link EditRoomController}.
+     *
+     * @param bedType        The new bed type.
+     * @param numOfBeds      The new number of beds.
+     * @param smokingChoice  The new smoking availability.
+     * @param price          The new price.
+     */
     private void updateRoom( String bedType, int numOfBeds, boolean smokingChoice, double price) {
         EditRoomController.editRoom(room,bedType,numOfBeds,smokingChoice,price);
     }
 
-
+    /**
+     * Validates the user's decision before updating the room.
+     *
+     * @param bedType        The new bed type.
+     * @param numOfBeds      The new number of beds.
+     * @param smokingChoice  The new smoking availability.
+     * @param price          The new price.
+     * @return True if the user confirms the decision, false otherwise.
+     */
     public boolean validateDecision(String bedType, int numOfBeds, boolean smokingChoice, double price) {
         UIManager.put("OptionPane.yesButtonText", "Confirm");
         UIManager.put("OptionPane.noButtonText", "Cancel");
@@ -208,7 +255,9 @@ public class EditRoomPage {
         return dialogResult == JOptionPane.YES_OPTION;
     }
 
-
+    /**
+     * Displays an error message for invalid input during room modification.
+     */
     public void invalidDecision(){
         JOptionPane.showMessageDialog(mainPanel, "Invalid Input for Room Modification", "Error!", JOptionPane.PLAIN_MESSAGE);
         try {
@@ -218,7 +267,10 @@ public class EditRoomPage {
         }
     }
 
-    public boolean noChangesDecision() {
+    /**
+     * Handles the decision-making process when no changes have been made.
+     */
+    public void noChangesDecision() {
         UIManager.put("OptionPane.yesButtonText", "Yes, quit");
         UIManager.put("OptionPane.noButtonText", "No, continue");
 
@@ -228,12 +280,10 @@ public class EditRoomPage {
         if (dialogResult == JOptionPane.YES_OPTION) {
             frame.dispose(); //close this frame
             previousPage.show(); // Go back to the previous page
-            return true;
         }
         else {
             frame.dispose(); //close this instance of frame
             createGUI(); //restart the frame
-            return false;
         }
     }
 }

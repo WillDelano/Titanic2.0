@@ -32,13 +32,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Controller for displaying and selecting a cruise on the ui
+ * Opens a Swing page for a travel agent to view guests with reservations.
+ * Allows the travel agent to select a guest, view reservation details, and create new reservations.
  *
- * This class allows a user to browse and select cruises
- *
- * @author Vincent Dinh
+ * @author Vincent Dinh, Gabriel Choi
  * @version 1.0
- * @see Cruise, CruiseDatabase, CruiseDetailsPage
  */
 public class GuestsWithReservationPage {
     private TravelAgentLandingPage landingPage;
@@ -49,11 +47,20 @@ public class GuestsWithReservationPage {
     private JTable table;
     private JButton newReservation;
 
+    /**
+     * Constructs a new GuestsWithReservationPage.
+     *
+     * @param landingPage The landing page for the travel agent.
+     * @throws UserNotFoundException If a user is not found.
+     */
     public GuestsWithReservationPage(TravelAgentLandingPage landingPage) throws UserNotFoundException {
         this.landingPage = landingPage;
         prepareGUI();
     }
 
+    /**
+     * Prepares the graphical user interface for the GuestsWithReservationPage.
+     */
     private void prepareGUI() {
         mainFrame = new JFrame("Select a Cruise");
         mainFrame.setSize(1000, 700);
@@ -120,6 +127,11 @@ public class GuestsWithReservationPage {
         mainFrame.setVisible(true);
     }
 
+    /**
+     * Refreshes the table with the list of guests with reservations.
+     *
+     * @throws UserNotFoundException If a user is not found.
+     */
     public void refreshRooms() throws UserNotFoundException {
         List<Guest> guestList = GuestsWithReservationController.getGuestsWithReservations();
         System.err.println("Reservations: ");
@@ -151,6 +163,11 @@ public class GuestsWithReservationPage {
         columnModel.getColumn(1).setPreferredWidth(100);
     }
 
+    /**
+     * Handles the selection of a row in the table.
+     *
+     * @param roomTable The table of guests with reservations.
+     */
     private void selectRow(JTable roomTable){
         List<Guest> guestsWithReservations = new ArrayList<>();
         try {
@@ -173,6 +190,11 @@ public class GuestsWithReservationPage {
         }
     }
 
+    /**
+     * Handles the list of reservations for a selected guest.
+     *
+     * @param guest The selected guest.
+     */
     private void handleReservationList(Guest guest) {
         mainFrame.setVisible(false);
         try {
@@ -182,14 +204,26 @@ public class GuestsWithReservationPage {
         }
     }
 
+    /**
+     * Creates a new reservation for a guest.
+     */
     private void createReservation() {
         new TravelAgentCreateReservationPage(this);
     }
 
+    /**
+     * Displays the main frame of the GuestsWithReservationPage.
+     */
     public void show() {
         mainFrame.setVisible(true);
     }
 
+    /**
+     * Main method for testing the GuestsWithReservationPage.
+     *
+     * @param args Command-line arguments.
+     * @throws UserNotFoundException If a user is not found.
+     */
     public static void main(String[] args) throws UserNotFoundException {
         TravelAgent ta = new TravelAgent("s","s","s","s","s");
         new GuestsWithReservationPage(new TravelAgentLandingPage(ta));
