@@ -13,13 +13,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * Creates the landing page
+ * Creates the admin landing page
  *
- * This class creates the landing page for the cruise reservation application
+ * This class creates the admin landing page for the cruise reservation application
  *
  * @author William Delano
  * @version 1.0
- * @see LandingPageController
+ * @see LandingPage
  */
 public class AdminLandingPage extends LandingPage {
 

@@ -23,6 +23,7 @@ import java.util.List;
  * It also handles the process of creating reservations and checking the existence of a username.
  *
  * @see TravelAgentCreateReservationPage
+ * @author William Delano
  */
 public class TravelAgentCreateReservationController {
 

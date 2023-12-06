@@ -10,13 +10,13 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Creates the landing page
+ * Creates the guest landing page
  *
- * This class creates the landing page for the cruise reservation application
+ * This class creates the guest landing page for the cruise reservation application
  *
  * @author William Delano
  * @version 1.0
- * @see LandingPageController
+ * @see LandingPage
  */
 public class GuestLandingPage extends LandingPage {
 

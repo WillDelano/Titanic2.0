@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
  * The class includes methods for creating the GUI, handling user inputs, updating account information, and managing account deletion.
  *
  * @version 1.0
+ * @author William Delano
  */
 
 public class EditProfile {

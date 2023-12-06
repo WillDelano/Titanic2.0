@@ -15,13 +15,14 @@ import java.util.regex.Pattern;
  *
  * <p>
  * This class provides a graphical user interface to input and submit additional information
- * for creating or updating a travel agent account. It includes fields for email, first name,
+ * for finishing a travel agent account. It includes fields for email, first name,
  * and last name, as well as buttons to submit the information and navigate back to the landing page.
  * The class interacts with the {@link FinishTravelAgentController} for account updates.
  * </p>
  *
  * @version 1.0
  * @see FinishTravelAgentController
+ * @author William Delano
  */
 public class FinishTravelAgentPage {
     private JFrame frame;

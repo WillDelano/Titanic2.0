@@ -20,13 +20,13 @@ import java.net.URL;
 import java.util.Objects;
 
 /**
- * Creates the landing page
+ * Creates the travel agent landing page
  *
- * This class creates the landing page for the cruise reservation application
+ * This class creates the travel agent landing page for the cruise reservation application
  *
  * @author William Delano
  * @version 1.0
- * @see LandingPageController
+ * @see LandingPage
  */
 public class TravelAgentLandingPage extends LandingPage {
     private JFrame mainFrame;
