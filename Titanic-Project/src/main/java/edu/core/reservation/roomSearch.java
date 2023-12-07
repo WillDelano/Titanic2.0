@@ -11,7 +11,8 @@ import java.util.List;
 /**
  * Used to search for rooms and filter room searches
  *
- * More detailed description of the class, including its purpose, usage, and any other relevant information.
+ * Includes functions that set preferences for the user while
+ * searching for rooms and functions that return filtered lists of rooms.
  *
  * @author Chas Doughtry
  */
@@ -28,7 +29,6 @@ public class roomSearch {
     bedPreferenceType bedType;
     bedCountType bedCount;
 
-    enum roomSortType{/* add room types here */}
 
     /**
      * RoomSearch Constructor
@@ -57,6 +57,15 @@ public class roomSearch {
         bedCount = bedCountType.ALL;
     }
 
+    /**
+     * findRooms
+     *
+     * function that searches through allRooms to
+     * find the room objects that meet the users
+     * preferences through filtering options.
+     *
+     * @param line - user input.
+     */
     public List<Room> findRooms(String line){
         String[] traits = line.split( " ");
         List<Room> relevantRooms = new ArrayList<>();

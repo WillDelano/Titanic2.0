@@ -19,7 +19,8 @@ import java.util.Objects;
  * </p>
  *
  * @version 1.0
- * @see CreateTravelAgentController
+ * @see CreateTravelAgentController\
+ * @author William Delano
  */
 public class CreateTravelAgentPage {
     private JFrame frame;
@@ -56,6 +57,7 @@ public class CreateTravelAgentPage {
     private void createGUI() {
         frame = new JFrame("Edit Profile");
         frame.setSize(650, 300);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayout(5, 3, 15, 20));

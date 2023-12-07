@@ -20,13 +20,13 @@ import java.net.URL;
 import java.util.Objects;
 
 /**
- * Creates the landing page
+ * Creates the travel agent landing page
  *
- * This class creates the landing page for the cruise reservation application
+ * This class creates the travel agent landing page for the cruise reservation application
  *
  * @author William Delano
  * @version 1.0
- * @see LandingPageController
+ * @see LandingPage
  */
 public class TravelAgentLandingPage extends LandingPage {
     private JFrame mainFrame;
@@ -56,6 +56,7 @@ public class TravelAgentLandingPage extends LandingPage {
         mainFrame = new JFrame("Cruise Reservation Application");
         mainFrame.setSize(1000, 700);
         mainFrame.setLayout(new BorderLayout());
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         headerLabel = new JLabel("", JLabel.CENTER);
         headerPanel = new JPanel(new GridLayout(2, 5));
@@ -106,6 +107,9 @@ public class TravelAgentLandingPage extends LandingPage {
         mainFrame.add(logoutPanel, BorderLayout.SOUTH);
     }
 
+    /**
+     * Logs out the travel agent and disposes of the landing page.
+     */
     private void logout() {
         mainFrame.dispose();
         new LoginPage();
@@ -164,16 +168,28 @@ public class TravelAgentLandingPage extends LandingPage {
             return null;
         }
     }
+
+    /**
+     * Navigates to the page for editing reservations.
+     *
+     * @throws UserNotFoundException If the user is not found in the database.
+     */
     private void navigateToEditReservations() throws UserNotFoundException {
         mainFrame.setVisible(false);   // hide the current landing page
         new GuestsWithReservationPage(this);
     }
 
+    /**
+     * Navigates to the page for adding rooms.
+     */
     private void navigateToAddRooms() {
         //does not pass the landing page instance because it is a pop-up
         new AddRoomPage();
     }
 
+    /**
+     * Navigates to the page for modifying rooms.
+     */
     private void navigateToModifyRooms() {
         //get specified room in room database then modify it if necessary
         mainFrame.setVisible(false);
@@ -182,16 +198,17 @@ public class TravelAgentLandingPage extends LandingPage {
         new ViewAllRoomsPage(this);
     }
 
+    /**
+     * Navigates to the page for editing the travel agent's profile.
+     */
     private void navigateToEditProfile() {
         mainFrame.setVisible(false);   // hide the current landing page
         new EditProfile(account, this, null, true);
     }
 
-    public void invalidDecision(){
-        JOptionPane.showMessageDialog(mainFrame
-                , "Invalid Input for Room Modification", "Error!", JOptionPane.OK_OPTION);
-    }
-
+    /**
+     * Shows the travel agent landing page.
+     */
     public void show() {
         mainFrame.setVisible(true);
     }

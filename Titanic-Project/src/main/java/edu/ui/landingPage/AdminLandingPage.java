@@ -13,13 +13,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * Creates the landing page
+ * Creates the admin landing page
  *
- * This class creates the landing page for the cruise reservation application
+ * This class creates the admin landing page for the cruise reservation application
  *
  * @author William Delano
  * @version 1.0
- * @see LandingPageController
+ * @see LandingPage
  */
 public class AdminLandingPage extends LandingPage {
 
@@ -34,7 +34,6 @@ public class AdminLandingPage extends LandingPage {
 
     /**
      * Constructor for the landing page that creates the GUI
-     *
      */
     public AdminLandingPage() {
         prepareGUI();
@@ -48,6 +47,7 @@ public class AdminLandingPage extends LandingPage {
         mainFrame = new JFrame("Cruise Reservation Application");
         mainFrame.setSize(1000, 700);
         mainFrame.setLayout(new BorderLayout());
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         headerLabel = new JLabel("", JLabel.CENTER);
         headerPanel = new JPanel(new GridLayout(2, 5));
@@ -87,6 +87,9 @@ public class AdminLandingPage extends LandingPage {
         mainFrame.setVisible(true);
     }
 
+    /**
+     * Logs out the current user and navigates to the login page.
+     */
     private void logout() {
         mainFrame.dispose();
         new LoginPage();
@@ -130,16 +133,25 @@ public class AdminLandingPage extends LandingPage {
         }
     }
 
+    /**
+     * Navigates to the reset password page.
+     */
     private void navigateToResetPassword() {
         mainFrame.setVisible(false);   // hide the current landing page
         new ResetPasswordListPage(this);
     }
 
+    /**
+     * Navigates to the new travel agent page.
+     */
     private void navigateToNewTravelAgent() {
         mainFrame.setVisible(false);   // hide the current landing page
         new CreateTravelAgentPage(this);
     }
 
+    /**
+     * Refreshes the data and displays the landing page.
+     */
     public void show() {
         //refresh the data on show
         String name = account.getFirstName();

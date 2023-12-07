@@ -16,13 +16,17 @@ import java.util.List;
 import java.util.Vector;
 
 /**
- * Controller for displaying and selecting a cruise on the ui
+ * Class for displaying and selecting cruises in the UI.
  *
- * This class allows a user to browse and select cruises
+ * This class facilitates the browsing and selection of cruises, allowing users to view details
+ * and proceed to browse available rooms.
  *
  * @author Vincent Dinh
  * @version 1.0
- * @see Cruise, CruiseDatabase, CruiseDetailsPage
+ * @see Cruise
+ * @see CruiseDatabase
+ * @see BrowseRoomPage
+ * @see SelectCruiseController
  */
 public class SelectCruisePage {
     private JFrame cruiseFrame;
@@ -35,20 +39,29 @@ public class SelectCruisePage {
     private JTextArea detailsTextArea;
     private JMenuBar searchMenu;
     JComboBox<String> allDestinations, departureCountry;
-
     private JTextField searchTextField;
     private CruiseSearch SearchCruises;
     private List<Cruise> cruisesFromDatabase;
     private boolean optionVisible = false;
 
+    /**
+     * Constructs a new SelectCruisePage.
+     *
+     * @param landingPage The landing page reference for navigation.
+     */
     public SelectCruisePage(LandingPage landingPage) {
         this.landingPage = landingPage;
         prepareGUI();
     }
+
+    /**
+     * Prepares the graphical user interface for the SelectCruisePage.
+     */
     private void prepareGUI() {
         cruiseFrame = new JFrame("Select a Cruise");
         cruiseFrame.setSize(1000, 700);
         cruiseFrame.setLayout(new BorderLayout());
+        cruiseFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         titleLabel = new JLabel("Available Cruises", JLabel.CENTER);
         JPanel titlePanel = new JPanel();
@@ -90,6 +103,11 @@ public class SelectCruisePage {
         cruiseFrame.setVisible(true);
     }
 
+    /**
+     * Handles the event when a user selects a cruise.
+     *
+     * @param e The ActionEvent representing the user's selection.
+     */
     private void handleCruiseSelection(ActionEvent e) {
         String selectedCruiseName = cruiseList.getSelectedValue();
         if (selectedCruiseName != null) {
@@ -104,9 +122,19 @@ public class SelectCruisePage {
             JOptionPane.showMessageDialog(cruiseFrame, "Please select a cruise first.", "Warning", JOptionPane.WARNING_MESSAGE);
         }
     }
+
+    /**
+     * Displays a message dialog with the given message.
+     *
+     * @param message The message to be displayed in the dialog.
+     */
     private void showMessage(String message) {
         JOptionPane.showMessageDialog(cruiseFrame, message);
     }
+
+    /**
+     * Generates the search menu for the UI.
+     */
     private void generateSearchMenu(){
         searchMenu = new JMenuBar();
         searchMenu.setPreferredSize(new Dimension(1000, 30));
@@ -128,6 +156,9 @@ public class SelectCruisePage {
         searchMenu.add(optionsButton);
     }
 
+    /**
+     * Generates the filter panel for the UI.
+     */
     private void generateFilterPanel(){
         filterPanel = new JPanel();
         applyButton = new JButton("apply");
@@ -155,6 +186,9 @@ public class SelectCruisePage {
         filterPanel.add(applyButton);
     }
 
+    /**
+     * Toggles the visibility of the filter options panel.
+     */
     private void filterPanelVisibility(){
         if(!optionVisible) {
             northPanel.add(filterPanel, BorderLayout.CENTER);
@@ -167,6 +201,12 @@ public class SelectCruisePage {
         }
     }
 
+    /**
+     * Retrieves a list model containing names of all available cruises.
+     *
+     * @param cruises The list of cruises to extract names from.
+     * @return A DefaultListModel containing cruise names.
+     */
     private DefaultListModel<String> getAllCruiseNames(List<Cruise> cruises){
         DefaultListModel<String> model = new DefaultListModel<>();
         for (Cruise cruise : cruises) {
@@ -176,6 +216,13 @@ public class SelectCruisePage {
         }
         return model;
     }
+
+
+    /**
+     * Retrieves a vector containing names of all destination countries.
+     *
+     * @return A Vector containing destination country names.
+     */
     private Vector<String> getAllDestinations(){
         Vector<String> allCountries = new Vector<>();
         List<Cruise> cruises = CruiseDatabase.getAllCruises();
@@ -193,6 +240,12 @@ public class SelectCruisePage {
 
         return allCountries;
     }
+
+    /**
+     * Retrieves a vector containing names of departure countries for cruises.
+     *
+     * @return A Vector containing departure country names.
+     */
     private Vector<String> getFirstCountries(){
         Vector<String> firstCountries = new Vector<>();
         List<Cruise> cruises = CruiseDatabase.getAllCruises();
@@ -210,6 +263,9 @@ public class SelectCruisePage {
         return firstCountries;
     }
 
+    /**
+     * Sets the filters for cruise searches based on user selections.
+     */
     private void setFilters(){
         //destination selection
         if(String.valueOf(allDestinations.getSelectedItem()).equals("Any")) {
@@ -229,6 +285,11 @@ public class SelectCruisePage {
 
     }
 
+    /**
+     * Updates the cruise list view based on the provided list of cruises.
+     *
+     * @param list The list of cruises to be displayed.
+     */
     private void updateCruiseListView(List<Cruise> list) {
         cruiseFrame.remove(listScrollPane);
         DefaultListModel<String> model = getAllCruiseNames(list);
@@ -242,10 +303,18 @@ public class SelectCruisePage {
         cruiseFrame.repaint();
     }
 
+    /**
+     * Displays the cruise selection UI.
+     */
     public void show() {
         cruiseFrame.setVisible(true);
     }
 
+    /**
+     * The main method to launch an instance of the page.
+     *
+     * @param args The command line arguments.
+     */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new SelectCruisePage(null));
     }

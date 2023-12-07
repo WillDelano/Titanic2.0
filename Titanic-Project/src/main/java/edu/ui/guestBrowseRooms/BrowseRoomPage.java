@@ -28,15 +28,13 @@ import java.util.stream.Collectors;
 import edu.core.reservation.roomSearch;
 
 /**
- * UI for displaying all rooms on a cruise
- *
- * This class displays all the rooms of a selected cruise to a user
+ * UI for displaying all rooms on a cruise.
+ * Displays rooms for a selected cruise, allowing users to filter and select rooms.
  *
  * @author Vincent Dinh
  * @version 1.0
- * @see RoomDatabase , Room, BrowseRoomController
+ * @see RoomDatabase, Room, BrowseRoomController
  */
-
 public class BrowseRoomPage implements RoomListInterface {
     private roomSearch cruiseSearch;
     private JFrame roomFrame;
@@ -59,6 +57,12 @@ public class BrowseRoomPage implements RoomListInterface {
     private JComboBox<Boolean> smokingFilter;
     private List<Room> allRooms;
 
+    /**
+     * Constructor for BrowseRoomPage.
+     *
+     * @param prevPage The previous page (SelectCruisePage) to navigate back.
+     * @param selectedCruise The name of the selected cruise for which rooms are displayed.
+     */
     public BrowseRoomPage(SelectCruisePage prevPage, String selectedCruise) {
         this.selectedCruise = selectedCruise;
         this.prevPage = prevPage;
@@ -66,10 +70,14 @@ public class BrowseRoomPage implements RoomListInterface {
         prepareGUI();
     }
 
+    /**
+     * Prepares the GUI components for the room browsing page.
+     */
     private void prepareGUI() {
         roomFrame = new JFrame("Rooms for Cruise: " + selectedCruise);
         roomFrame.setSize(1000, 700);
         roomFrame.setLayout(new BorderLayout());
+        roomFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         titleLabel = new JLabel("Available Rooms for " + selectedCruise, JLabel.CENTER);
 
@@ -121,7 +129,11 @@ public class BrowseRoomPage implements RoomListInterface {
         roomFrame.setVisible(true);
     }
 
-
+    /**
+     * Filters the rooms based on user input and updates the displayed room table.
+     *
+     * @param e The ActionEvent triggering the filter action.
+     */
     private void filterRooms(ActionEvent e) {
         String searchText = searchTextField.getText().toLowerCase();
         String selectedBedType = bedTypeFilter.getSelectedItem().toString();
@@ -136,6 +148,11 @@ public class BrowseRoomPage implements RoomListInterface {
         updateRoomTable(filteredRooms);
     }
 
+    /**
+     * Updates the displayed room table with the provided list of rooms.
+     *
+     * @param rooms The list of rooms to be displayed in the table.
+     */
     private void updateRoomTable(List<Room> rooms) {
         String[] columnNames = {"Room Number", "Number of Beds", "Bed Type", "Smoking Available", "Room Price", "Cruise"};
 
@@ -156,6 +173,12 @@ public class BrowseRoomPage implements RoomListInterface {
         roomTable.setModel(model);
     }
 
+    /**
+     * Handles the selection of a room from the table and navigates to the reservation page.
+     *
+     * @param roomTable The JTable containing the rooms.
+     * @throws NoMatchingRoomException If no matching room is found.
+     */
     private void selectRow(JTable roomTable) throws NoMatchingRoomException{
         BrowseRoomController controller = new BrowseRoomController();
 
@@ -187,8 +210,7 @@ public class BrowseRoomPage implements RoomListInterface {
     }
 
     /**
-     * Generates panel for search input
-     *
+     * Generates the search menu for inputting search queries.
      */
     private void generateSearchMenu(){
         searchMenu = new JMenuBar();
@@ -212,8 +234,7 @@ public class BrowseRoomPage implements RoomListInterface {
     }
 
     /**
-     * Generates panel for filter input options
-     *
+     * Generates the panel for filter input options.
      */
     private void generateFilterPanel(){
         filterPanel = new JPanel();
@@ -249,8 +270,7 @@ public class BrowseRoomPage implements RoomListInterface {
     }
 
     /**
-     * Allows panel for filters option to be open and closed
-     *
+     * Toggles the visibility of the filter panel.
      */
     private void filterPanelVisibility(){
         if(!optionVisible) {
@@ -266,6 +286,9 @@ public class BrowseRoomPage implements RoomListInterface {
         }
     }
 
+    /**
+     * Refreshes the displayed rooms by querying the database and updating the room table.
+     */
     public void refreshRooms() {
         List<Room> roomSet = BrowseRoomController.getRooms(selectedCruise);
 
@@ -297,6 +320,10 @@ public class BrowseRoomPage implements RoomListInterface {
         columnModel.getColumn(0).setPreferredWidth(1);
         columnModel.getColumn(1).setPreferredWidth(100);
     }
+
+    /**
+     * Applies the selected filters and updates the room table accordingly.
+     */
     private void applyFilters(){
 
         //smoking options
@@ -338,10 +365,20 @@ public class BrowseRoomPage implements RoomListInterface {
             cruiseSearch.setPriceSorting(roomSearch.priceSortType.DESCENDING);
         }
     }
+
+    /**
+     * Displays the BrowseRoomPage by making it visible and refreshing the room data.
+     */
     public void show() {
         refreshRooms();
         roomFrame.setVisible(true);
     }
+
+    /**
+     * The main method to test the BrowseRoomPage class.
+     *
+     * @param args Command-line arguments (not used in this context).
+     */
     public static void main(String[] args) {
         //new BrowseRoomPage("Caribbean Adventure").show();
     }

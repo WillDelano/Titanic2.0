@@ -1,336 +1,82 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
-  <component name="ChangeListManager">
-    <list default="true" id="ef18d5f6-c7e4-4456-b19d-d3efff184caa" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/derby.log" beforeDir="false" afterPath="$PROJECT_DIR$/derby.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/db.lck" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/log/log.ctrl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/log/log1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/log/log1.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/log/logmirror.ctrl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c590.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c590.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c5a1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c5a1.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c5b1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/Database/seg0/c5b1.dat" afterDir="false" />
-    </list>
-    <option name="SHOW_DIALOG" value="false" />
-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
-    <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$/.." value="main" />
-      </map>
-    </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;eeggssyy&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="recentNewPullRequestHead">
-      <RepoCoordinatesHolder>
-        <option name="owner" value="eeggssyy" />
-        <option name="repository" value="Titanic2.0" />
-      </RepoCoordinatesHolder>
-    </option>
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="0d066de5-cdbe-4c3b-bd96-697ef47aff3c" />
-        <option name="url" value="https://github.com/eeggssyy/Titanic2.0" />
-      </UrlAndAccount>
-    </option>
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 5
-}</component>
-  <component name="ProjectId" id="2XQ6Zh8cx2s9nDtpFvH7eKKH80z" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;testCases&quot;,
-    &quot;grid.search.filter.rows&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Colet/Documents/GIT/Titanic2.0/Titanic-Project/libs/derbytools.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.15287356&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  }
-}</component>
-  <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="edu.ui.modifyRoom" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Owner\Desktop\Titanic2.0\Titanic-Project\libs2" />
-      <recent name="C:\Users\Owner\Desktop\Titanic2.0\Titanic-Project\libs" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\vince\Java Projects\Titanic2.0\Titanic-Project\src\main\resources" />
-    </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="console_1.sql" type="DatabaseScript" editBeforeRun="true" nameIsGenerated="true">
-      <script-file value="$APPLICATION_CONFIG_DIR$/consoles/db/73220af7-872d-48ed-a1fd-ee272dbf41cb/console_1.sql" />
-      <script-mode>FILE</script-mode>
-      <data-source id="73220af7-872d-48ed-a1fd-ee272dbf41cb" />
-      <method v="2" />
-    </configuration>
-    <configuration name="console_2.sql" type="DatabaseScript" editBeforeRun="true" nameIsGenerated="true">
-      <script-file value="$APPLICATION_CONFIG_DIR$/consoles/db/73220af7-872d-48ed-a1fd-ee272dbf41cb/console_2.sql" />
-      <script-mode>FILE</script-mode>
-      <data-source id="73220af7-872d-48ed-a1fd-ee272dbf41cb" />
-      <method v="2" />
-    </configuration>
-    <configuration name="console_3.sql" type="DatabaseScript" editBeforeRun="true" nameIsGenerated="true">
-      <script-file value="$APPLICATION_CONFIG_DIR$/consoles/db/73220af7-872d-48ed-a1fd-ee272dbf41cb/console_3.sql" />
-      <script-mode>FILE</script-mode>
-      <data-source id="73220af7-872d-48ed-a1fd-ee272dbf41cb" />
-      <method v="2" />
-    </configuration>
-    <configuration name="CruiseDBTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Titanic-Project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="edu" />
-      <option name="MAIN_CLASS_NAME" value="edu.CruiseDBTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CruiseDBTest.addCruiseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Titanic-Project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="edu" />
-      <option name="MAIN_CLASS_NAME" value="edu.CruiseDBTest" />
-      <option name="METHOD_NAME" value="addCruiseTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CruiseDBTest.cruisePathTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Titanic-Project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="edu" />
-      <option name="MAIN_CLASS_NAME" value="edu.CruiseDBTest" />
-      <option name="METHOD_NAME" value="cruisePathTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RoomDBTester.testGetAllRooms" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Titanic-Project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="edu" />
-      <option name="MAIN_CLASS_NAME" value="edu.RoomDBTester" />
-      <option name="METHOD_NAME" value="testGetAllRooms" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="countryDBTest.addCountry" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Titanic-Project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="edu" />
-      <option name="MAIN_CLASS_NAME" value="edu.countryDBTest" />
-      <option name="METHOD_NAME" value="addCountry" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="Database Script.console_1.sql" />
-      <item itemvalue="Database Script.console_2.sql" />
-      <item itemvalue="Database Script.console_3.sql" />
-      <item itemvalue="JUnit.CruiseDBTest" />
-      <item itemvalue="JUnit.CruiseDBTest.addCruiseTest" />
-      <item itemvalue="JUnit.CruiseDBTest.cruisePathTest" />
-      <item itemvalue="JUnit.RoomDBTester.testGetAllRooms" />
-      <item itemvalue="JUnit.countryDBTest.addCountry" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="JUnit.countryDBTest.addCountry" />
-        <item itemvalue="JUnit.RoomDBTester.testGetAllRooms" />
-        <item itemvalue="JUnit.CruiseDBTest.cruisePathTest" />
-        <item itemvalue="JUnit.CruiseDBTest" />
-        <item itemvalue="JUnit.CruiseDBTest.addCruiseTest" />
-      </list>
-    </recent_temporary>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="ef18d5f6-c7e4-4456-b19d-d3efff184caa" name="Changes" comment="" />
-      <created>1699939099892</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1699939099892</updated>
-      <workItem from="1699939103388" duration="1008000" />
-      <workItem from="1700258093319" duration="1418000" />
-      <workItem from="1700259950272" duration="12000" />
-      <workItem from="1700268568301" duration="54000" />
-      <workItem from="1700332827715" duration="1205000" />
-      <workItem from="1700334039701" duration="295000" />
-      <workItem from="1700334342692" duration="329000" />
-      <workItem from="1700336807203" duration="103000" />
-      <workItem from="1700336917281" duration="63000" />
-      <workItem from="1700336986575" duration="843000" />
-      <workItem from="1700352708294" duration="191000" />
-      <workItem from="1700352906203" duration="286000" />
-      <workItem from="1700353199535" duration="119000" />
-      <workItem from="1700353325338" duration="3390000" />
-      <workItem from="1700419879123" duration="204000" />
-      <workItem from="1700439447157" duration="1340000" />
-      <workItem from="1700501632859" duration="2166000" />
-      <workItem from="1700503806221" duration="488000" />
-      <workItem from="1700504301629" duration="73000" />
-      <workItem from="1700504382560" duration="144000" />
-      <workItem from="1700504533320" duration="281000" />
-      <workItem from="1700504821686" duration="470000" />
-      <workItem from="1700505298852" duration="322000" />
-      <workItem from="1700519382412" duration="22000" />
-      <workItem from="1700519556330" duration="14000" />
-      <workItem from="1700520447122" duration="1208000" />
-      <workItem from="1700537953201" duration="293000" />
-      <workItem from="1700590252117" duration="958000" />
-      <workItem from="1700591216691" duration="72000" />
-      <workItem from="1700591295147" duration="1558000" />
-      <workItem from="1700592860888" duration="174000" />
-      <workItem from="1700593042044" duration="57000" />
-      <workItem from="1700593105345" duration="191000" />
-      <workItem from="1700593306300" duration="174000" />
-      <workItem from="1700593486870" duration="583000" />
-      <workItem from="1700594077018" duration="151000" />
-      <workItem from="1700594234404" duration="347000" />
-      <workItem from="1700594588274" duration="768000" />
-      <workItem from="1700595428667" duration="84000" />
-      <workItem from="1700595519078" duration="20000" />
-      <workItem from="1700595545553" duration="41000" />
-      <workItem from="1700595592327" duration="93000" />
-      <workItem from="1700595693210" duration="78000" />
-      <workItem from="1700595778397" duration="245000" />
-      <workItem from="1700613734883" duration="504000" />
-      <workItem from="1700614245433" duration="107000" />
-      <workItem from="1700614358538" duration="694000" />
-      <workItem from="1700615059867" duration="260000" />
-      <workItem from="1700615326161" duration="262000" />
-      <workItem from="1700683603718" duration="110000" />
-      <workItem from="1700683719978" duration="276000" />
-      <workItem from="1700684002480" duration="73000" />
-      <workItem from="1700684082373" duration="49000" />
-      <workItem from="1700684138791" duration="23000" />
-      <workItem from="1700684168512" duration="500000" />
-      <workItem from="1701320701337" duration="132000" />
-      <workItem from="1701172691611" duration="10800000" />
-      <workItem from="1701172691611" duration="10800000" />
-      <workItem from="1701598961855" duration="1827000" />
-      <workItem from="1701629698568" duration="5717000" />
-      <workItem from="1701728052092" duration="138000" />
-      <workItem from="1701728197171" duration="480000" />
-      <workItem from="1701728683703" duration="349000" />
-      <workItem from="1701729039258" duration="522000" />
-      <workItem from="1701729568345" duration="456000" />
-      <workItem from="1701730033280" duration="2157000" />
-      <workItem from="1701756560366" duration="412000" />
-      <workItem from="1701756979340" duration="345000" />
-      <workItem from="1701757331856" duration="249000" />
-      <workItem from="1701757587638" duration="1082000" />
-      <workItem from="1701758678075" duration="295000" />
-      <workItem from="1701758980272" duration="109000" />
-      <workItem from="1701759097215" duration="87000" />
-      <workItem from="1701759191760" duration="139000" />
-      <workItem from="1701759338099" duration="188000" />
-      <workItem from="1701802454477" duration="1419000" />
-      <workItem from="1701901735210" duration="5291000" />
-    </task>
-    <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/ui/editReservation/GuestsWithReservationPage.java</url>
-          <line>181</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/ui/editReservation/GuestsWithReservationPage.java</url>
-          <line>166</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/ui/editReservation/GuestsWithReservationPage.java</url>
-          <line>191</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/edu/ui/editReservation/GuestsWithReservationPage.java</url>
-          <line>169</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.sql.SQLException" package="java.sql" />
-          <option name="timeStamp" value="15" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.example</groupId>
+  <artifactId>Titanic-Project</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <name>Archetype - Titanic-Project</name>
+  <url>http://maven.apache.org</url>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>RELEASE</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>5.10.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.opencsv</groupId>
+      <artifactId>opencsv</artifactId>
+      <version>5.5.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.derby</groupId>
+      <artifactId>derby-project</artifactId>
+      <version>10.16.1.1</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>8</source>
+          <target>8</target>
+        </configuration>
+        <executions>
+          <execution>
+            <id>default-compile</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.2.0</version>
+        <executions>
+          <execution>
+            <id>default-jar</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>

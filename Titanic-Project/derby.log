@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Wed Dec 06 18:04:40 CST 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018c-4197-3f60-00001b528548 
+Wed Dec 06 19:07:40 CST 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018c-41d0-ec9a-00001b528a10 
 on database directory C:\Users\Colet\Documents\GIT\Titanic2.0\Titanic-Project\src\main\java\edu\Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528 
 Loaded from file:/C:/Users/Colet/Documents/GIT/Titanic2.0/Titanic-Project/libs/derby.jar
 java.vendor=Oracle Corporation
@@ -11,3 +11,9 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Wed Dec 06 19:07:43 CST 2023: Shutting down Derby engine
+----------------------------------------------------------------
+Wed Dec 06 19:07:43 CST 2023:
+Shutting down instance a816c00e-018c-41d0-ec9a-00001b528a10 on database directory C:\Users\Colet\Documents\GIT\Titanic2.0\Titanic-Project\src\main\java\edu\Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528 
+----------------------------------------------------------------

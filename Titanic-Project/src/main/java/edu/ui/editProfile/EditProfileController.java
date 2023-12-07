@@ -48,6 +48,12 @@ public class EditProfileController {
         AccountDatabase.removeUser(account);
     }
 
+    /**
+     * Operation to get an account's email
+     *
+     * @param account User account to get email
+     *
+     */
     public static String getAccountEmail(User account) throws UserNotFoundException {
         return AccountDatabase.getUser(account.getUsername()).getEmail();
     }
