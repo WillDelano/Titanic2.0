@@ -317,7 +317,7 @@ public class AccountDatabase {
      */
     public void modifyFirstName(String username, String newFName) {
         try (Connection connection = DriverManager.getConnection(url)) {
-            String update = "UPDATE UsersV2 SET firstName = ? WHERE username = ?";
+            String update = "UPDATE USERSV2 SET firstName = ? WHERE username = ?";
             try (PreparedStatement statement = connection.prepareStatement(update)) {
                 statement.setString(1, newFName);
                 statement.setString(2, username);
