@@ -21,13 +21,16 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Controller for displaying and selecting a cruise on the ui
+ * UI class for displaying a list of users and allowing the selection of a user to reset their password.
  *
- * This class allows a user to browse and select cruises
+ * <p>
+ * This class provides a graphical user interface to view a list of users, including their usernames,
+ * first names, and last names. It allows the selection of a user to initiate the password reset process.
+ * The class interacts with the {@link ResetPasswordListPageController} for user-related operations.
+ * </p>
  *
- * @author Vincent Dinh
  * @version 1.0
- * @see Cruise, CruiseDatabase, CruiseDetailsPage
+ * @see ResetPasswordListPageController
  */
 public class ResetPasswordListPage {
     private LandingPage landingPage;
@@ -40,11 +43,19 @@ public class ResetPasswordListPage {
     private JTable userTable;
     private JPanel contentPanel;
 
+    /**
+     * Constructor for the ResetPasswordListPage class.
+     *
+     * @param landingPage The LandingPage instance to navigate back.
+     */
     public ResetPasswordListPage(LandingPage landingPage) {
         this.landingPage = landingPage;
         prepareGUI();
     }
 
+    /**
+     * Prepares the graphical user interface for displaying a list of users and initiating password reset.
+     */
     private void prepareGUI() {
         mainFrame = new JFrame("Choose an Account");
         mainFrame.setSize(1000, 700);
@@ -80,7 +91,6 @@ public class ResetPasswordListPage {
 
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 
-
         userTable = new JTable();
         userTable.setAutoCreateRowSorter(true);
         userTable.setFillsViewportHeight(true);
@@ -93,6 +103,11 @@ public class ResetPasswordListPage {
         mainFrame.setVisible(true);
     }
 
+    /**
+     * Handles the selection of a row in the user table and initiates the password reset process.
+     *
+     * @param table The JTable representing the list of users.
+     */
     private void selectRow(JTable table) {
         User u = null;
         int selectedRowForDeletion;
@@ -118,6 +133,9 @@ public class ResetPasswordListPage {
         }
     }
 
+    /**
+     * Refreshes the displayed list of users in the user table.
+     */
     public void refreshUsers() {
         List<User> userList = ResetPasswordListPageController.getAllUsers();
 
@@ -152,16 +170,29 @@ public class ResetPasswordListPage {
         columnModel.getColumn(1).setPreferredWidth(100);
     }
 
+    /**
+     * Navigates to the EditProfile page for the selected user to reset their password.
+     *
+     * @param user The selected User instance for password reset.
+     */
     private void navigateToResetPassword(User user) {
         mainFrame.setVisible(false);
         new EditProfile(user, null, this, false);
     }
 
+    /**
+     * Displays the ResetPasswordListPage frame and refreshes the list of users.
+     */
     public void show() {
         refreshUsers();
         mainFrame.setVisible(true);
     }
 
+    /**
+     * The main method to create an instance of the ResetPasswordListPage class.
+     *
+     * @param args Command-line arguments (not used).
+     */
     public static void main(String[] args) {
         new ResetPasswordListPage(null);
     }

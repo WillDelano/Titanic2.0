@@ -10,6 +10,20 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * UI class for completing the creation or updating of a travel agent account.
+ *
+ * <p>
+ * This class provides a graphical user interface to input and submit additional information
+ * for finishing a travel agent account. It includes fields for email, first name,
+ * and last name, as well as buttons to submit the information and navigate back to the landing page.
+ * The class interacts with the {@link FinishTravelAgentController} for account updates.
+ * </p>
+ *
+ * @version 1.0
+ * @see FinishTravelAgentController
+ * @author William Delano
+ */
 public class FinishTravelAgentPage {
     private JFrame frame;
     private JLabel titleLabel;
@@ -33,13 +47,22 @@ public class FinishTravelAgentPage {
     private JTextField lastNameField;
     LandingPage prevPage;
 
+    /**
+     * Constructor for the FinishTravelAgentPage class.
+     *
+     * @param prevPage The LandingPage instance to navigate back.
+     * @param account  The User object representing the travel agent account.
+     */
     public FinishTravelAgentPage(LandingPage prevPage, User account) {
         this.account = account;
         this.prevPage = prevPage;
-
         createGUI();
     }
 
+    /**
+     * Initializes the graphical user interface for completing the creation or updating
+     * of a travel agent account. Sets up the frame, panels, labels, text fields, and buttons.
+     */
     private void createGUI() {
         frame = new JFrame("Finish Profile");
         frame.setSize(600, 400);
@@ -143,10 +166,21 @@ public class FinishTravelAgentPage {
         });
     }
 
+    /**
+     * Displays the FinishTravelAgentPage frame.
+     */
     public void show() {
         frame.setVisible(true);
     }
 
+    /**
+     * Updates the account information by creating or updating a travel agent account.
+     *
+     * @param account The User object representing the travel agent account.
+     * @param email   The new email for the travel agent account.
+     * @param first   The new first name for the travel agent account.
+     * @param last    The new last name for the travel agent account.
+     */
     private void updateAccount(User account, String email, String first, String last) {
         //update in db and the account details
         FinishTravelAgentController.updateAccount(account, email, first, last);
@@ -155,6 +189,13 @@ public class FinishTravelAgentPage {
         account.setEmail(email);
     }
 
+    /**
+     * Validates the user's decision to create or update a travel agent account.
+     *
+     * @param email    The new email for the travel agent account.
+     * @param password The new password for the travel agent account.
+     * @return true if the user confirms the decision, false otherwise.
+     */
     public boolean validateDecision(String email, String password) {
         UIManager.put("OptionPane.yesButtonText", "Confirm");
         UIManager.put("OptionPane.noButtonText", "Cancel");
@@ -166,6 +207,12 @@ public class FinishTravelAgentPage {
         return dialogResult == JOptionPane.YES_OPTION;
     }
 
+    /**
+     * Validates the format of the provided email address.
+     *
+     * @param email The email address to validate.
+     * @return true if the email format is valid, false otherwise.
+     */
     public boolean validateEmail(String email) {
         //Checking email format
         String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}";

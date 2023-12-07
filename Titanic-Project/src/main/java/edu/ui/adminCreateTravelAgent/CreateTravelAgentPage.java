@@ -7,6 +7,21 @@ import java.awt.*;
 
 import java.util.Objects;
 
+/**
+ * UI class for creating a new travel agent account.
+ *
+ * <p>
+ * This class provides a graphical user interface to input and submit information
+ * for creating a new travel agent account. It includes fields for the username and
+ * password, as well as buttons to submit the information and navigate back to the
+ * landing page. The class interacts with the {@link CreateTravelAgentController}
+ * to handle account creation and validation.
+ * </p>
+ *
+ * @version 1.0
+ * @see CreateTravelAgentController\
+ * @author William Delano
+ */
 public class CreateTravelAgentPage {
     private JFrame frame;
     private JLabel titleLabel;
@@ -24,12 +39,21 @@ public class CreateTravelAgentPage {
     private LandingPage prevPage;
     private JButton backButton;
 
+    /**
+     * Constructor for the CreateTravelAgentPage class.
+     *
+     * @param prevPage The LandingPage instance to navigate back.
+     */
     public CreateTravelAgentPage(LandingPage prevPage) {
         this.prevPage = prevPage;
 
         createGUI();
     }
 
+    /**
+     * Initializes the graphical user interface for creating a new travel agent account.
+     * Sets up the frame, panels, labels, text fields, and buttons.
+     */
     private void createGUI() {
         frame = new JFrame("Edit Profile");
         frame.setSize(650, 300);
@@ -107,7 +131,7 @@ public class CreateTravelAgentPage {
 
                 //if the user confirms their decision, update and go back to landing page
                 if (validateDecision(newUsername, newPassword)) {
-                    updateAccount(newUsername, newPassword);
+                    createAccount(newUsername, newPassword);
                     frame.dispose();
                     prevPage.show();
                 }
@@ -120,14 +144,30 @@ public class CreateTravelAgentPage {
         });
     }
 
+    /**
+     * Displays the CreateTravelAgentPage frame.
+     */
     public void show() {
         frame.setVisible(true);
     }
 
-    private void updateAccount(String username, String password) {
+    /**
+     * Creates a new travel agent account.
+     *
+     * @param username The new username for the travel agent account.
+     * @param password The new password for the travel agent account.
+     */
+    private void createAccount(String username, String password) {
         CreateTravelAgentController.createAccount(username, password);
     }
 
+    /**
+     * Validates the user's decision to create a new travel agent account.
+     *
+     * @param username The new username for the travel agent account.
+     * @param password The new password for the travel agent account.
+     * @return true if the user confirms the decision, false otherwise.
+     */
     public boolean validateDecision(String username, String password) {
         UIManager.put("OptionPane.yesButtonText", "Confirm");
         UIManager.put("OptionPane.noButtonText", "Cancel");
@@ -139,6 +179,13 @@ public class CreateTravelAgentPage {
         return dialogResult == JOptionPane.YES_OPTION;
     }
 
+    /**
+     * Handles the decision when there are no changes in the account information.
+     *
+     * @param username The new username for the travel agent account.
+     * @param password The new password for the travel agent account.
+     * @return true if the user decides to quit, false to continue.
+     */
     public boolean noChangesDecision(String username, String password) {
         UIManager.put("OptionPane.yesButtonText", "Yes, quit");
         UIManager.put("OptionPane.noButtonText", "No, continue");

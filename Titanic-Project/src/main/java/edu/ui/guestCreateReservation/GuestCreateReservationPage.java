@@ -24,6 +24,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * UI for creating a new reservation for a guest.
+ * Allows guests to create reservations by selecting a room, check-in and check-out dates.
+ * Displays relevant information and provides a user-friendly interface.
+ *
+ * @author [Your Name]
+ * @version 1.0
+ * @see GuestCreateReservationPageController, BrowseRoomPage, CurrentGuest, Room, Reservation
+ */
 public class GuestCreateReservationPage {
     private JFrame frame;
     private JLabel titleLabel;
@@ -45,6 +54,12 @@ public class GuestCreateReservationPage {
     Room roomToReserve;
     boolean test = false;
 
+    /**
+     * Constructs a new GuestCreateReservationPage.
+     *
+     * @param previousPage The previous page (BrowseRoomPage) to navigate back.
+     * @param room The room for which the reservation is being created.
+     */
     public GuestCreateReservationPage(BrowseRoomPage previousPage, Room room) {
         this.previousPage = previousPage;
         this.checkoutDropdown = new JComboBox<>();
@@ -56,6 +71,9 @@ public class GuestCreateReservationPage {
         createGUI();
     }
 
+    /**
+     * Creates and initializes the graphical user interface for creating a reservation.
+     */
     private void createGUI() {
         frame = new JFrame("New Reservation");
         frame.setSize(1000, 600);
@@ -164,10 +182,16 @@ public class GuestCreateReservationPage {
         });
     }
 
+    /**
+     * Displays the GuestCreateReservationPage.
+     */
     public void show() {
         frame.setVisible(true);
     }
 
+    /**
+     * Custom list cell renderer for displaying wrapped text in a JComboBox.
+     */
     public class LineWrapRenderer extends DefaultListCellRenderer {
         public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
             JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);

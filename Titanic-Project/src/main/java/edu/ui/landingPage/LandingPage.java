@@ -18,5 +18,4 @@ public abstract class LandingPage {
     public void show() {
         mainFrame.setVisible(true);
     }
-
 }

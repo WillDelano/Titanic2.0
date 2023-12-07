@@ -1,5 +1,4 @@
 ----------------------------------------------------------------
-<<<<<<< HEAD
 Wed Dec 06 12:16:06 CST 2023:
 Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018c-4058-21a0-00000f117a90 
 on database directory C:\Users\gabec\SoftwareEngineeringI\Titanic2.0\Titanic-Project\src\main\java\edu\Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528 
@@ -7,30 +6,17 @@ Loaded from file:/C:/Users/gabec/.m2/repository/org/apache/derby/derby/10.16.1.1
 java.vendor=Oracle Corporation
 java.runtime.version=20+36-2344
 user.dir=C:\Users\gabec\SoftwareEngineeringI\Titanic2.0\Titanic-Project
-=======
-<<<<<<< HEAD
 Wed Dec 06 11:15:13 CST 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018c-4020-6375-00000f08e758 
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018c-4020-6375-00000f08e758
+Wed Dec 06 15:43:19 CST 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018c-4115-d442-00000f17e7d0
 on database directory C:\Users\Chas\Soft.Eng\Group project\Titanic8\Titanic2.0\Titanic-Project\src\main\java\edu\Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528 
 Loaded from file:/C:/Users/Chas/Soft.Eng/Group%20project/Titanic8/Titanic2.0/Titanic-Project/libs/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=20+36-2344
 user.dir=C:\Users\Chas\Soft.Eng\Group project\Titanic8\Titanic2.0\Titanic-Project
->>>>>>> 34e90a1a2612c113d36e354c53460e7fb59e81c2
 os.name=Windows 11
 os.arch=amd64
 os.version=10.0
-=======
-Wed Dec 06 12:06:37 CST 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018c-404f-71a0-0000078b55a0 
-on database directory /Users/willdelano/Desktop/Software1/Titanic2.0/Titanic-Project/src/main/java/edu/Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@4e0e2f2a 
-Loaded from file:/Users/willdelano/Desktop/Software1/Titanic2.0/Titanic-Project/libs/derby.jar
-java.vendor=Oracle Corporation
-java.runtime.version=21+35-2513
-user.dir=/Users/willdelano/Desktop/Software1/Titanic2.0/Titanic-Project
-os.name=Mac OS X
-os.arch=x86_64
-os.version=12.2.1
->>>>>>> main
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''

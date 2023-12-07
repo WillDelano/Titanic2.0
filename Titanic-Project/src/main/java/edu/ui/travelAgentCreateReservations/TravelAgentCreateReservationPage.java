@@ -21,6 +21,18 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * GUI class for creating reservations by travel agents.
+ *
+ * This class provides a graphical user interface for travel agents to create reservations
+ * for guests. It includes fields for entering guest details, selecting cruises, specifying
+ * check-in and check-out dates, and choosing available rooms.
+ *
+ * @author Vincent Dinh
+ * @version 1.0
+ * @see TravelAgentCreateReservationController
+ * @see GuestsWithReservationPage
+ */
 public class TravelAgentCreateReservationPage {
     private JFrame frame;
     private JLabel titleLabel;
@@ -42,6 +54,16 @@ public class TravelAgentCreateReservationPage {
 
     boolean test = false;
 
+    /**
+     * Constructs a new instance of the TravelAgentCreateReservationPage class.
+     *
+     * This constructor initializes the graphical user interface components for creating reservations.
+     * It sets up the frame, labels, input fields, and buttons. Event listeners are also attached
+     * to handle user interactions.
+     *
+     * @param previousPage The page from which the travel agent navigated to this create reservation page.
+     *                     This allows for returning to the previous page when needed.
+     */
     public TravelAgentCreateReservationPage(GuestsWithReservationPage previousPage) {
         this.previousPage = previousPage;
         this.checkoutDropdown = new JComboBox<>();
@@ -51,6 +73,12 @@ public class TravelAgentCreateReservationPage {
         createGUI();
     }
 
+    /**
+     * Creates the graphical user interface for creating reservations.
+     *
+     * This method sets up the frame, panels, labels, and input fields required for
+     * creating reservations. It also initializes event listeners for buttons and dropdowns.
+     */
     private void createGUI() {
         frame = new JFrame("New Reservation");
         frame.setSize(1000, 600);
@@ -204,6 +232,14 @@ public class TravelAgentCreateReservationPage {
         });
     }
 
+    /**
+     * Refreshes the data in the GUI based on the selected cruise.
+     *
+     * This method is called when the travel agent selects a different cruise in the dropdown.
+     * It updates the check-in date, available check-out dates, and available rooms accordingly.
+     *
+     * @param cruiseName The name of the selected cruise.
+     */
     private void refreshData(String cruiseName) {
         Cruise cruise = CruiseDatabase.getCruise(cruiseName);
 
@@ -238,10 +274,20 @@ public class TravelAgentCreateReservationPage {
         roomNumberDropdown.setRenderer(new LineWrapRenderer());
     }
 
+    /**
+     * Displays the create reservation page.
+     *
+     * This method makes the frame visible, allowing travel agents to interact with the page.
+     */
     public void show() {
         frame.setVisible(true);
     }
 
+    /**
+     * Custom cell renderer for wrapping text in dropdown lists.
+     *
+     * This inner class allows wrapping long text in dropdown lists to improve readability.
+     */
     public class LineWrapRenderer extends DefaultListCellRenderer {
         public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
             JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
@@ -250,6 +296,16 @@ public class TravelAgentCreateReservationPage {
         }
     }
 
+    /**
+     * Validates the existence of a guest user.
+     *
+     * This method checks if the entered username corresponds to an existing guest user.
+     * If the user does not exist, it displays an error message and prompts the travel agent
+     * to try again.
+     *
+     * @param username The username of the guest user.
+     * @return true if the user is valid, false otherwise.
+     */
    public boolean validateUser(String username) {
         //if username doesn't exist
         if (!TravelAgentCreateReservationController.usernameExists(username)) {
@@ -261,6 +317,13 @@ public class TravelAgentCreateReservationPage {
         return true;
     }
 
+    /**
+     * Main method to launch the create reservation page.
+     *
+     * This method is the entry point for launching the create reservation page.
+     *
+     * @param args Command-line arguments (not used in this application).
+     */
     public static void main(String[] args) {
         new TravelAgentCreateReservationPage(null);
     }

@@ -17,11 +17,8 @@ public abstract class User  {
     private int id;
     private String firstName;
     private String lastName;
-
     private String email;
     private int rewardPoints;
-
-    //private AccountDatabase accountList = new AccountDatabase();
 
     /**
      * Constructor for creating a new User.
@@ -41,58 +38,108 @@ public abstract class User  {
         this.email = email;
     }
 
+    /**
+     * This function returns the password of the user
+     *
+     * @return the password of the user
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * This function returns the last name of the user
+     *
+     * @return the last name of the user
+     */
     public String getLastName() {
         return lastName;
     }
 
+    /**
+     * This function returns the first name of the user
+     *
+     * @return the first name of the user
+     */
     public String getFirstName() {
         return firstName;
     }
 
+    /**
+     * This function returns the username of the user
+     *
+     * @return the username of the user
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * This function returns the id of the user
+     *
+     * @return the id of the user
+     */
     public int getId() {
         return id;
     }
+
+    /**
+     * This function returns the email of the user
+     *
+     * @return the email of the user
+     */
     public String getEmail() { return email; }
 
-
+    /**
+     * This function sets the password of a user
+     *
+     * @param password the password to set
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     * This function sets the last name of a user
+     *
+     * @param lastName the last name to set
+     */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    /**
+     * This function sets the first name of a user
+     *
+     * @param firstName the first name to set
+     */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    /**
+     * This function sets the username of a user
+     *
+     * @param username the username to set
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     * This function sets the id of a user
+     *
+     * @param id the id to set
+     */
     public void setId(int id) {
         this.id = id;
     }
 
     /**
-     * This logs the Travel Agent out of the system.
+     * This function overrides the equals function
      *
-     * @return if the Travel Agent has successfully been logged out of the system
+     * @return true if the users are equal
      */
-    public boolean logout(){
-        //TODO
-        return false;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -101,10 +148,20 @@ public abstract class User  {
         return Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(id, user.id) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName);
     }
 
+    /**
+     * This function returns the reward points of a user
+     *
+     * @return the reward points
+     */
     public int getRewardPoints() {
         return rewardPoints;
     }
 
+    /**
+     * This sets the email for a user
+     *
+     * @param email to assign to the user
+     */
     public void setEmail(String email) {
         this.email = email;
     }
