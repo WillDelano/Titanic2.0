@@ -77,6 +77,7 @@ public class GuestCreateReservationPage {
     private void createGUI() {
         frame = new JFrame("New Reservation");
         frame.setSize(1000, 600);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayout(7, 3, 15, 20));

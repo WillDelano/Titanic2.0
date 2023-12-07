@@ -76,6 +76,7 @@ public class ReservationListPage implements ReservationListInterface {
         mainFrame = new JFrame("Reservation List");
         mainFrame.setSize(1000, 700);
         mainFrame.setLayout(new BorderLayout());
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         titleLabel = new JLabel(guest.getUsername() + "'s Reservations", JLabel.CENTER);
         mainFrame.add(titleLabel, BorderLayout.NORTH);

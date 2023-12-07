@@ -71,6 +71,7 @@ public class EditProfile {
     private void createGUI() {
         frame = new JFrame("Edit Profile");
         frame.setSize(600, 400);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayout(6, 3, 15, 20));

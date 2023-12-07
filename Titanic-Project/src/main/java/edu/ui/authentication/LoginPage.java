@@ -47,6 +47,7 @@ public class LoginPage {
         mainFrame = new JFrame("Login Page");
         mainFrame.setSize(1000, 700);
         mainFrame.setLayout(null);
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel headerPanel = new JPanel();
         JLabel headerLabel = new JLabel("Login Page", JLabel.CENTER);

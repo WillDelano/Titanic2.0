@@ -61,6 +61,7 @@ public class SelectCruisePage {
         cruiseFrame = new JFrame("Select a Cruise");
         cruiseFrame.setSize(1000, 700);
         cruiseFrame.setLayout(new BorderLayout());
+        cruiseFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         titleLabel = new JLabel("Available Cruises", JLabel.CENTER);
         JPanel titlePanel = new JPanel();

@@ -9,6 +9,7 @@ import edu.databaseAccessors.RoomDatabase;
 
 import javax.swing.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,7 +30,14 @@ public class BrowseRoomController {
      * @return A list of available rooms for the specified cruise.
      */
     public static List<Room> getRooms(String cruise) {
-        return RoomDatabase.getRoomsForCruise(cruise);
+        List<Room> unbooked = new ArrayList<>();
+        List<Room> rooms = RoomDatabase.getRoomsForCruise(cruise);
+        for(Room r : rooms){
+            if(!r.isBooked()){
+                unbooked.add(r);
+            }
+        }
+        return unbooked;
     }
 
     /**

@@ -68,6 +68,7 @@ public class GuestsWithReservationPage {
         mainFrame = new JFrame("Select a Cruise");
         mainFrame.setSize(1000, 700);
         mainFrame.setLayout(new BorderLayout());
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         titleLabel = new JLabel("Guests with a Reservation", JLabel.CENTER);
         //mainFrame.add(titleLabel, BorderLayout.NORTH);

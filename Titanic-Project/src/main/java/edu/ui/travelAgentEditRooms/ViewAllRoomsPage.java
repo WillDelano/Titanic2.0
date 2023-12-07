@@ -66,6 +66,7 @@ public class ViewAllRoomsPage {
         frame = new JFrame("All Rooms");
         frame.setSize(800, 600);
         frame.setLayout(new BorderLayout());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         allRooms = ViewAllRoomsController.getAllRooms();
         searchRooms = new roomSearch(allRooms);

@@ -71,6 +71,7 @@ public class EditReservationPage {
     private void createGUI() {
         frame = new JFrame("Edit Reservation");
         frame.setSize(1000, 600);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayout(6, 3, 15, 20));
