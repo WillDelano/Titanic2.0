@@ -34,6 +34,12 @@ import java.util.*;
 public class CountryDatabase {
     private static final String url = DatabaseProperties.url;
 
+    /**
+     * operation to add a country to the database
+     *
+     * @param country country object to add
+     * @param cruiseId id of cruise to associate with the country
+     */
     public static void addCountry(Country country, int cruiseId) {
         String insertSQL = "INSERT INTO Countries (name, arrivalTime, departureTime, cruise_id) VALUES (?, ?, ?, ?)";
         try (Connection connection = DriverManager.getConnection(url);
@@ -48,6 +54,13 @@ public class CountryDatabase {
             e.printStackTrace();
         }
     }
+
+    /**
+     * operation to check if a country exists in the database
+     *
+     * @param countryName the name of the country to check for
+     * @return true if the country exists
+     */
     private static boolean countryExists(String countryName) {
         String query = "SELECT COUNT(*) FROM Countries WHERE name = ?";
         try (Connection connection = DriverManager.getConnection(url);
@@ -65,6 +78,10 @@ public class CountryDatabase {
         return false;
     }
 
+    /**
+     * operation to initialize countries if they don't already exist
+     *
+     */
     public static void initializeCountries() {
         int caribbeanCruiseId = 1;
         int mediterraneanCruiseId = 2;
@@ -110,8 +127,13 @@ public class CountryDatabase {
         }
     }
 
+    /**
+     * operation to get a country from the database
+     *
+     * @param name name of the country to get
+     * @return the country found
+     */
     public static Country getCountry(String name) {
-
         String query = "SELECT * FROM Countries WHERE name = ?";
         try (Connection connection = DriverManager.getConnection(url);
              PreparedStatement statement = connection.prepareStatement(query)) {
@@ -135,6 +157,11 @@ public class CountryDatabase {
         return null;
     }
 
+    /**
+     * operation to get all the countries in the database
+     *
+     * @return a list of all the countries
+     */
     public static List<Country> getAllCountries() {
         List<Country> countries = new ArrayList<>();
         String query = "SELECT * FROM Countries";
@@ -154,5 +181,4 @@ public class CountryDatabase {
         }
         return countries;
     }
-
 }

@@ -26,7 +26,6 @@ public class TravelAgent extends User {
         super(username, password, firstName, lastName, email);
     }
 
-
     /**
      * Allows the travel agent to handle a dispute raised by a guest.
      *

@@ -10,13 +10,13 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Creates the landing page
+ * Creates the guest landing page
  *
- * This class creates the landing page for the cruise reservation application
+ * This class creates the guest landing page for the cruise reservation application
  *
  * @author William Delano
  * @version 1.0
- * @see LandingPageController
+ * @see LandingPage
  */
 public class GuestLandingPage extends LandingPage {
 
@@ -71,6 +71,9 @@ public class GuestLandingPage extends LandingPage {
         mainFrame.setVisible(true);
     }
 
+    /**
+     * Logs out the current guest and navigates to the login page.
+     */
     private void logout() {
         mainFrame.dispose();
         CurrentGuest.logoutCurrentGuest();
@@ -93,15 +96,24 @@ public class GuestLandingPage extends LandingPage {
         mainFrame.setVisible(true);
     }
 
+    /**
+     * Navigates to the Select Cruise page.
+     */
     private void navigateToSelectCruisePage() {
         mainFrame.setVisible(false);   // hide the current landing page
         new SelectCruisePage(this);       // navigate to SelectCruisePage
     }
 
+    /**
+     * Opens the My Reservations page.
+     */
     private void openMyReservationsPage() {
         new edu.ui.guestReservationList.MyReservationsPage().show();
     }
 
+    /**
+     * Displays the landing page.
+     */
     public void show() {
         mainFrame.setVisible(true);
     }

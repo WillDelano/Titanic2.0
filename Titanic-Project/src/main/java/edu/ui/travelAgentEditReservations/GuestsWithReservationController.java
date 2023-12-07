@@ -10,7 +10,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * The GuestsWithReservationController class provides functionality to retrieve information
+ * about guests with reservations and obtain the total number of reservations.
+ *
+ * @author William Delano
+ * @see GuestsWithReservationPage
+ */
 public class GuestsWithReservationController {
+
+    /**
+     * Retrieves a list of guests who have reservations.
+     *
+     * @return A list of Guest objects representing guests with reservations.
+     * @throws UserNotFoundException If a user associated with a reservation is not found.
+     */
     public static List<Guest> getGuestsWithReservations() throws UserNotFoundException {
         new AccountDatabase();
         new ReservationDatabase();
@@ -34,6 +48,11 @@ public class GuestsWithReservationController {
         return guestsWithReservations;
     }
 
+    /**
+     * Retrieves the total number of reservations.
+     *
+     * @return The total number of reservations.
+     */
     public static int getNumberOfReservations() {
         return ReservationDatabase.getReservationDatabaseSize();
     }

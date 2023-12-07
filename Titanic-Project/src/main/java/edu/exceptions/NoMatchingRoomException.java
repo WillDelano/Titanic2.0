@@ -1,5 +1,23 @@
 package edu.exceptions;
 
+/**
+ * An exception class to indicate that no matching room was found.
+ * This exception is typically thrown when attempting to find or access a
+ * room, and no room matching the specified criteria is available.
+ *
+ * <p>
+ * This class extends the {@link Exception} class and is intended to be used
+ * in scenarios where the absence of a matching room is considered exceptional.
+ * </p>
+ *
+ * <p>
+ * The detail message and cause (if available) can be retrieved using the
+ * {@link #getMessage()} and {@link #getCause()} methods, respectively.
+ * </p>
+ *
+ * @version 1.0
+ * @see Exception
+ */
 public class NoMatchingRoomException extends Exception {
 
     private static final long serialVersionUID = -2414489560888085344L;

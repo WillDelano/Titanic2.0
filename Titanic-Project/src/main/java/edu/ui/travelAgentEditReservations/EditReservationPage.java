@@ -17,6 +17,16 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Represents the graphical user interface for editing reservations.
+ * This class allows a travel agent to modify the check-out date and room number
+ * for an existing reservation. It provides input fields, dropdowns, and buttons
+ * for the user to interact with.
+ *
+ * @author William Delano
+ * @version 1.0
+ * @see EditReservationController, Reservation, Room
+ */
 public class EditReservationPage {
     private Reservation reservation;
     private String cruise;
@@ -39,6 +49,13 @@ public class EditReservationPage {
     JComboBox<String> checkoutDropdown;
     private ReservationListInterface previousPage;
 
+    /**
+     * Constructs a new instance of the EditReservationPage class.
+     *
+     * @param previousPage The page from which the travel agent navigated to this edit reservation page.
+     * @param cruise The name of the cruise associated with the reservation.
+     * @param reservation The reservation to be edited.
+     */
     public EditReservationPage(ReservationListInterface previousPage, String cruise, Reservation reservation) {
         this.reservation = reservation;
         this.cruise = cruise;
@@ -47,6 +64,10 @@ public class EditReservationPage {
         createGUI();
     }
 
+    /**
+     * Creates and initializes the graphical user interface for editing reservations.
+     * This method sets up the frame, panel, labels, dropdowns, buttons, and event listeners.
+     */
     private void createGUI() {
         frame = new JFrame("Edit Reservation");
         frame.setSize(1000, 600);
@@ -221,10 +242,21 @@ public class EditReservationPage {
         });
     }
 
+    /**
+     * Updates the reservation with the new check-out date and room number.
+     *
+     * @param checkout The new check-out date.
+     * @param room The new room number.
+     */
     private void updateReservation(String checkout, String room) {
         EditReservationController.updateReservation(reservation, checkout, room);
     }
 
+    /**
+     * Displays a confirmation dialog for canceling the reservation and cancels it if confirmed.
+     *
+     * @return True if the reservation is canceled, false otherwise.
+     */
     public boolean cancelReservation() {
         int dialogResult = JOptionPane.showConfirmDialog(mainPanel, "Are you sure you want to cancel the reservation?",
                 "This action cannot be undone!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -236,10 +268,17 @@ public class EditReservationPage {
         return false;
     }
 
+    /**
+     * Displays the Edit Reservation page.
+     */
     public void show() {
         frame.setVisible(true);
     }
 
+    /**
+     * Custom renderer class for rendering list cells with line wrapping.
+     * It extends DefaultListCellRenderer and overrides getListCellRendererComponent.
+     */
     public class LineWrapRenderer extends DefaultListCellRenderer {
         public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
             JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
@@ -248,6 +287,14 @@ public class EditReservationPage {
         }
     }
 
+    /**
+     * Validates the user's decision to make changes to the reservation.
+     * Displays a confirmation dialog with the proposed changes and asks the user to confirm.
+     *
+     * @param checkout The new check-out date.
+     * @param room The new room number.
+     * @return True if the user confirms the changes, false otherwise.
+     */
     public boolean validateDecision(String checkout, String room) {
         UIManager.put("OptionPane.yesButtonText", "Confirm");
         UIManager.put("OptionPane.noButtonText", "Cancel");
@@ -276,6 +323,13 @@ public class EditReservationPage {
         }
     }
 
+    /**
+     * Validates whether the specified room number is valid and available.
+     * Checks if the room exists in the database and is not already booked.
+     *
+     * @param room The room number to validate.
+     * @return True if the room is valid and available, false otherwise.
+     */
     public boolean validateRoomNumber(int room) {
         //if the room exists in the database
         if (RoomDatabase.getRoom(room).getRoomNumber() != -1) {
@@ -295,6 +349,13 @@ public class EditReservationPage {
         return false;
     }
 
+    /**
+     * Validates the format of the check-out date.
+     * Checks if the input string can be parsed into a valid LocalDate object.
+     *
+     * @param checkout The check-out date to validate.
+     * @return True if the date format is valid, false otherwise.
+     */
     public boolean validateDate(String checkout) {
         try {
             LocalDate date = LocalDate.parse(checkout);
@@ -306,6 +367,12 @@ public class EditReservationPage {
         return true;
     }
 
+    /**
+     * Handles the decision when no changes have been made to the reservation.
+     * Asks the user if they want to quit or continue editing.
+     *
+     * @return True if the user chooses to quit, false if they choose to continue editing.
+     */
     public boolean noChangesDecision() {
         UIManager.put("OptionPane.yesButtonText", "Yes, quit");
         UIManager.put("OptionPane.noButtonText", "No, continue");

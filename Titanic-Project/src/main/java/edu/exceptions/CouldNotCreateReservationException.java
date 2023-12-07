@@ -1,5 +1,23 @@
 package edu.exceptions;
 
+/**
+ * An exception class to indicate that a reservation could not be created.
+ * This exception is typically thrown when there is an issue during the
+ * reservation creation process.
+ *
+ * <p>
+ * This class extends the {@link Exception} class and provides constructors
+ * for creating instances of the exception with various levels of detail.
+ * </p>
+ *
+ * <p>
+ * The detail message and cause (if available) can be retrieved using the
+ * {@link #getMessage()} and {@link #getCause()} methods, respectively.
+ * </p>
+ *
+ * @version 1.0
+ * @see Exception
+ */
 public class CouldNotCreateReservationException extends Exception {
 
     private static final long serialVersionUID = -2414489560888085344L;
