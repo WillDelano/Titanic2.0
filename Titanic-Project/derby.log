@@ -1,26 +1,19 @@
 ----------------------------------------------------------------
-Wed Dec 06 13:06:07 CST 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018c-4085-e940-00000f0a5370 
-on database directory C:\Users\gabec\SoftwareEngineeringI\Titanic2.0\Titanic-Project\src\main\java\edu\Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528 
-Loaded from file:/C:/Users/gabec/.m2/repository/org/apache/derby/derby/10.16.1.1/derby-10.16.1.1.jar
-Wed Dec 06 12:16:06 CST 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018c-4058-21a0-00000f117a90 
-on database directory C:\Users\gabec\SoftwareEngineeringI\Titanic2.0\Titanic-Project\src\main\java\edu\Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528 
-Loaded from file:/C:/Users/gabec/.m2/repository/org/apache/derby/derby/10.16.1.1/derby-10.16.1.1.jar
+Wed Dec 06 19:07:40 CST 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018c-41d0-ec9a-00001b528a10 
+on database directory C:\Users\Colet\Documents\GIT\Titanic2.0\Titanic-Project\src\main\java\edu\Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528 
+Loaded from file:/C:/Users/Colet/Documents/GIT/Titanic2.0/Titanic-Project/libs/derby.jar
 java.vendor=Oracle Corporation
-java.runtime.version=20+36-2344
-user.dir=C:\Users\gabec\SoftwareEngineeringI\Titanic2.0\Titanic-Project
-Wed Dec 06 11:15:13 CST 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018c-4020-6375-00000f08e758
-Wed Dec 06 15:43:19 CST 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018c-4115-d442-00000f17e7d0
-on database directory C:\Users\Chas\Soft.Eng\Group project\Titanic8\Titanic2.0\Titanic-Project\src\main\java\edu\Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528 
-Loaded from file:/C:/Users/Chas/Soft.Eng/Group%20project/Titanic8/Titanic2.0/Titanic-Project/libs/derby.jar
-java.vendor=Oracle Corporation
-java.runtime.version=20+36-2344
-user.dir=C:\Users\gabec\SoftwareEngineeringI\Titanic2.0\Titanic-Project
+java.runtime.version=21.0.1+12-29
+user.dir=C:\Users\Colet\Documents\GIT\Titanic2.0\Titanic-Project
 os.name=Windows 11
 os.arch=amd64
 os.version=10.0
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Wed Dec 06 19:07:43 CST 2023: Shutting down Derby engine
+----------------------------------------------------------------
+Wed Dec 06 19:07:43 CST 2023:
+Shutting down instance a816c00e-018c-41d0-ec9a-00001b528a10 on database directory C:\Users\Colet\Documents\GIT\Titanic2.0\Titanic-Project\src\main\java\edu\Database with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528 
+----------------------------------------------------------------

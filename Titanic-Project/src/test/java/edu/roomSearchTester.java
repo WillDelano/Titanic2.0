@@ -8,8 +8,7 @@ import edu.core.users.Guest;
 import edu.core.users.User;
 import edu.databaseAccessors.ReservationDatabase;
 import edu.databaseAccessors.RoomDatabase;
-import edu.ui.roomDetails.BrowseRoomController;
-import edu.uniqueID.UniqueID;
+
 import org.junit.Test;
 import org.junit.jupiter.api.*;
 
@@ -37,14 +36,14 @@ public class roomSearchTester {
         cruiseName = "Carnival Cruise";
         //allRooms = gettingAllRooms(cruiseName);
         //allRooms = BrowseRoomController.getRooms(cruiseName);
-        allRooms = RoomDatabase.getAllRooms(cruiseName);
+        allRooms = RoomDatabase.getAllRooms();
         //roomArr = allRooms.toArray();
         cruiseSearch = new roomSearch(allRooms);
     }
 
     @Test
     public void printRoomTest() {
-        //allRooms.forEach(obj -> System.out.println(obj.getRoomNumber()));
+        allRooms.forEach(obj -> System.out.println(obj.getRoomNumber()));
 
     }
     @Test
